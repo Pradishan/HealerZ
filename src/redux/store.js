@@ -1,5 +1,5 @@
 import {createStore} from "redux";
-import reducer from "./reducer";
+import reducer from "../redux/reducer";
 
 export const store = createStore(reducer, {
     setting: {
@@ -8,4 +8,5 @@ export const store = createStore(reducer, {
     loader: {
         isLoading: false,
     }
+
 })

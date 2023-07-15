@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Admin from "./components/admin/Admin";
 import Doctorinterface from "./components/doctorinterface/Doctorinterface";
@@ -11,7 +12,7 @@ import Loader from "./components/Loader";
 
 function App() {
   return (
-    <Router>
+    // <Router>
       <div className="">
         {/* <Loader /> */}
         <Routes>
@@ -24,7 +25,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
-    </Router>
+    // </Router>
   );
 }
 
