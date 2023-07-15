@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from "../../layouts/layout";
 
-function Inventory(props) {
+function Manage(props) {
     return (
-        <Layout>Inventory</Layout>
+        <Layout>Manage</Layout>
     );
 }
 
-export default Inventory;
+export default Manage;
