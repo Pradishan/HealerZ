@@ -1,0 +1,137 @@
+.border-right {
+    border-right: 1px solid #D1D1D1 !important;
+}
+
+.border-bottom-d1d1d1 {
+    border-bottom: 1px solid #D1D1D1 !important;
+}
+
+.bg-f3f3f3 {
+    background-color: #f3f3f3 !important;
+}
+
+.red-dot {
+    position: absolute;
+    background-color: red;
+    border-radius: 100%;
+    height: 10px;
+    width: 10px;
+    right: 10px;
+}
+
+.side-menu-item {
+    color: #7C7C7C !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    padding: 8px 16px;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+
+.side-menu-item:hover, .side-menu-active {
+    color: #00AB55 !important;
+    background-color: #EBF8F2;
+}
+
+.mt-2px {
+    margin-top: 2px !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.close-btn-container {
+    border-radius: 6px 0px 0px 6px;
+    border: 1px solid #D1D1D1;
+    justify-content: end;
+    margin-left: auto;
+    display: flex;
+    width: fit-content;
+    padding: 10px 0 10px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-right-width: 0;
+}
+
+.w-100px {
+    width: 100px !important;
+
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.trans {
+    transition: width 100ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms
+}
+
+.trans-1 {
+    transition: 1000ms
+}
+
+.loader-model-bg-hidden {
+    position: fixed;
+    display: table;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -999;
+}
+
+.loader-model-bg-visible {
+    position: fixed;
+    display: table;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+}
+
+.sa-modal-bg-inner {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 8px;
+}
+
+.loader-model {
+    padding: 45px;
+    max-width: 674px;
+    margin: 0 auto;
+}
+
+.sa-modal-bg-inner {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 8px;
+}
+
+.loader-model {
+    padding: 45px;
+    max-width: 674px;
+    margin: 0 auto;
+}
+
+.sa-modal-bg {
+    position: fixed;
+    display: table;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+@media (max-width: 767px) {
+    .sa-modal-bg-inner {
+        display: block;
+    }
+}
