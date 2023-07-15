@@ -7,11 +7,13 @@ import Clubs from "./components/clubs/Clubs";
 import Profile from "./components/profile/Profile";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
+import Loader from "./components/Loader";
 
 function App() {
   return (
     <Router>
       <div className="">
+        {/* <Loader /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/doctor" element={<Doctorinterface />} />
