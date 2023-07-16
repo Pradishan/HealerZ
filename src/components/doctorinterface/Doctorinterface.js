@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import Dnav from "./Dnav";
+import './doctor.css';
 
 export default function Doctorinterface() {
-  return (
-    <div>Doctorinterface</div>
-  )
+  return (<>
+  <Dnav />
+  <h1>Doctorinterface</h1>
+  </>);
 }

@@ -1,0 +1,37 @@
+:root {
+    --maincolor:linear-gradient(90deg, rgba(75, 20, 141, 1) 0%, rgba(224, 64, 253, 1) 100%);
+  }
+body {
+  background-color: #F1F0F0;
+}
+.color-gradient {
+    color:var(--maincolor);
+}
+
+.bg-gradident {
+    background-color: var(--maincolor);
+}
+.nav-hover{
+    position: relative;
+}
+.nav-hover::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: var(--maincolor);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: 0.2s ease-out;
+}
+
+.nav-hover:hover::after{
+    width: 100%;
+}
+
+.icon-hover:hover{
+    
+    color: var(--maincolor) !important;
+    background-color: #F1F0F0;
+    border-radius: 50%;
+}
