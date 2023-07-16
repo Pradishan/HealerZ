@@ -9,6 +9,7 @@ import Profile from "./components/profile/Profile";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import Loader from "./components/Loader";
+import Page404 from "./components/page404/Page404";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>
     // </Router>
