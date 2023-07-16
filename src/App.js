@@ -12,6 +12,7 @@ import Home from "./components/home/Home";
 import Loader from "./components/Loader";
 import Manage from "./components/inventoryinterface/Manage";
 import Supply from "./components/inventoryinterface/Supply";
+import Page404 from "./components/page404/Page404";
 
 function App() {
   return (
@@ -26,10 +27,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/manage" element={<Manage />} />
-            <Route path="/supply" element={<Supply />} />
-
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/manage" element={<Manage />} />
+          <Route path="/supply" element={<Supply />} />
+          <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>
     // </Router>
