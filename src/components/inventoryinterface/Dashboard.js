@@ -4,7 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
 import '@fontsource/poppins';
-
+import './inventory.css';
+// import DoughnutChart from './DoughnutChart';
 
 // Import react-circular-progressbar module and styles
 import {
@@ -17,7 +18,6 @@ import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./ChangingProgressProvider";
 
 
-// Radial separators
 function Dashboard(props) {
     return (
        <Layout>
@@ -98,6 +98,8 @@ function Dashboard(props) {
 
                            <Card.Body>
                                <Card.Title className="CardTitle">Weighted score</Card.Title>
+                               {/*<DoughnutChart/>*/}
+
 
 
                            </Card.Body>
@@ -109,7 +111,7 @@ function Dashboard(props) {
                            <Card.Body>
                                <Card.Title className="CardTitle"> Stock Percentage</Card.Title>
                                <div className="percentagebarr" >
-                                   <ChangingProgressProvider  values={[0, 60]}>
+                                   <ChangingProgressProvider  values={[0, 77]}>
                                        {percentage => (
                                            <CircularProgressbar
                                                value={percentage}
