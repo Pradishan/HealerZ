@@ -1,13 +1,27 @@
+/*.boddy{*/
+/*    background: #DCDCDC;*/
+/*}*/
+
+
 .border-right {
-    border-right: 1px solid #D1D1D1 !important;
+    border-right: 2px solid #D1D1D1 !important;
 }
 
 .border-bottom-d1d1d1 {
-    border-bottom: 1px solid #D1D1D1 !important;
+    border-bottom: 2px solid #D1D1D1 !important;
 }
 
 .bg-f3f3f3 {
     background-color: #f3f3f3 !important;
+}
+.sidebaar{
+    background: #FFF;
+    box-shadow: 14px 20px 41px 0px rgba(0, 0, 0, 0.25);
+
+}
+.navbaar{
+    background: #FFF;
+    box-shadow: 20px 6px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 .red-dot {
@@ -20,7 +34,7 @@
 }
 
 .side-menu-item {
-    color: #7C7C7C !important;
+    color: #000000 !important;
     font-size: 16px !important;
     font-weight: 500 !important;
     padding: 8px 16px;
@@ -33,7 +47,7 @@
 
 
 .side-menu-item:hover, .side-menu-active {
-    color: #00AB55 !important;
+    color: #0064ab !important;
     background-color: #EBF8F2;
 }
 
@@ -135,3 +149,90 @@
         display: block;
     }
 }
+
+
+
+.Sliderr{
+    border-radius: 44px;
+    background: linear-gradient(130deg, #FFF 0%, #D1BBFF 100%);
+    box-shadow: 8px 11px 13px 0px rgba(0, 0, 0, 0.25);
+
+}
+.cardText{
+    color: #000;
+    font-family: Poppins, serif;
+    font-size: 64px !important;
+    font-style: normal !important;
+    font-weight: 800 !important;
+    line-height: normal !important;
+}
+
+.StockIndicator{
+    margin-top: 50px;
+}
+
+.card1{
+    height: 144px !important;
+    width: 334px !important;
+    border-radius: 29px;
+    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
+    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card1 .CardTitle{
+    color: #000;
+    text-align: center ;
+    font-family: Poppins, serif;
+    font-size: 22px ;
+    font-style: normal;
+    font-weight: 800 ;
+    line-height: normal;
+}
+.indicatorimage{
+    position: absolute;
+    left: 124px;
+    bottom: 38px;
+}
+.card2 h4{
+    color: #000;
+    text-align: center;
+    font-family: Poppins, serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 1000 !important;
+    line-height: normal;
+    position: absolute;
+    right: 95px;
+    bottom: 30px;
+}
+
+.percentageIndicator{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.card3{
+    height: 250px !important;
+    width: 500px;
+    border-radius: 29px;
+    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
+    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card3 .CardTitle{
+    color: #000;
+    text-align: center ;
+    font-family: Poppins, serif;
+    font-size: 26px ;
+    font-style: normal;
+    font-weight: 800 ;
+    line-height: normal;
+
+}
+
+.percentagebarr{
+    margin-left: 150px;
+    height: 150px ;
+    width: 150px ;
+}
+
