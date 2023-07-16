@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;package-lock.json&#10;#&#9;src/components/inventoryinterface/Inventory.js&#10;#&#9;src/components/inventoryinterface/inventory.css&#10;#&#9;src/layouts/layout.js">
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/ChangingProgressProvider.js" afterDir="false" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="dashboard updated">
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/msg-icon.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +35,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Sb8ZsOsDw99MSeHW5qjYMRDEyr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,7 +48,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/hp/Desktop/HealerZ",
+    "last_opened_file_path": "C:/Users/hp/Desktop/Institute-web-main",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -55,9 +62,14 @@
     <option name="myId2Visible">
       <map>
         <entry key="com.haulmont.rcb.reactComponents" value="false" />
-        <entry key="com.haulmont.rcb.reactInspector" value="true" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
       </map>
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\HealerZ\src\layouts" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -77,7 +89,7 @@
       <workItem from="1689442621071" duration="98000" />
       <workItem from="1689484364786" duration="369000" />
       <workItem from="1689488536087" duration="5389000" />
-      <workItem from="1689493994119" duration="8847000" />
+      <workItem from="1689493994119" duration="17135000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -163,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689493828063</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="dashboard updated">
+      <created>1689514002700</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1689514002700</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,10 +202,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="package change" />
     <MESSAGE value="Merge branch 'main' of https://github.com/Powsihan/HealerZ" />
-    <MESSAGE value="dashboard updated" />
     <MESSAGE value="inventory error fixed" />
     <MESSAGE value="images" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;package-lock.json&#10;#&#9;src/components/inventoryinterface/Inventory.js&#10;#&#9;src/components/inventoryinterface/inventory.css&#10;#&#9;src/layouts/layout.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;package-lock.json&#10;#&#9;src/components/inventoryinterface/Inventory.js&#10;#&#9;src/components/inventoryinterface/inventory.css&#10;#&#9;src/layouts/layout.js" />
+    <MESSAGE value="dashboard updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="dashboard updated" />
   </component>
 </project>

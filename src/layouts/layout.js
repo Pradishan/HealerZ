@@ -8,7 +8,7 @@ import logos from '../assets/logo-small.png';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {changeToggle} from "../redux/actions";
-import '../components/inventoryinterface/inventory.css';
+import './layout.css';
 
 function Layout({children}) {
 
