@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="dashboard updated">
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/layout.css" afterDir="false" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="inventory updated">
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -89,7 +89,11 @@
       <workItem from="1689442621071" duration="98000" />
       <workItem from="1689484364786" duration="369000" />
       <workItem from="1689488536087" duration="5389000" />
-      <workItem from="1689493994119" duration="17135000" />
+      <workItem from="1689493994119" duration="18000000" />
+      <workItem from="1689571336887" duration="801000" />
+      <workItem from="1689589491897" duration="70000" />
+      <workItem from="1689611736048" duration="3938000" />
+      <workItem from="1689779986334" duration="7524000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -182,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689514002700</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="inventory updated">
+      <created>1689527123005</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1689527123005</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +217,7 @@
     <MESSAGE value="images" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;package-lock.json&#10;#&#9;src/components/inventoryinterface/Inventory.js&#10;#&#9;src/components/inventoryinterface/inventory.css&#10;#&#9;src/layouts/layout.js" />
     <MESSAGE value="dashboard updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="dashboard updated" />
+    <MESSAGE value="inventory updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="inventory updated" />
   </component>
 </project>
