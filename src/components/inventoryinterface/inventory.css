@@ -99,25 +99,21 @@
     margin-right: 10px;
 }
 
-.text-red {
-    color: red !important;
 
+.SearchSection{
+    margin-bottom: 10px;
 }
-
+.SearchSection2{
+    padding-left: 240px;
+    display: flex;
+    flex-direction: row;
+}
 .content-heading {
     color: #000000;
-}
-
-.marks-dropdown-container {
-    display: flex;
-    gap: 20px;
-}
-
-.dropdown {
-    background-color: #00AB55;
-    color: white;
-    border-radius: 5px;
-
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .table-container {
@@ -132,12 +128,30 @@
     height: 45px !important;
 }
 
-.marks-dropdown-btn {
-    background-color: #00AB55 !important;
-    border: none !important
-}
 .top-0{
     top: 0 !important;
+}
+.filterbutt{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 70px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #7D0080;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    color: white;
+
+
+}
+.SearchBox1{
+    border-radius: 5px;
+    background: #D9D9D9;
+    height: 33px;
 }
 
 

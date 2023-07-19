@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Layout from "../../layouts/layout";
 
 function Manage(props) {
+
     return (
-        <Layout>Manage</Layout>
+        <Layout>
+           Manage
+        </Layout>
     );
 }
 

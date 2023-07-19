@@ -14,13 +14,14 @@ const SearchBarID = ({ onSearch }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
+
+            <input className={"SearchBox1"}
                 type="text"
-                placeholder="Drug_ID"
+                placeholder="DRUG_ID "
                 value={searchTerm}
                 onChange={handleChange}
             />
-            <button type="submit">Filter</button>
+            <button type="submit" className="filterbutt">Filter</button>
         </form>
     );
 };
