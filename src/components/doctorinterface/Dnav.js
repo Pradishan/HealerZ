@@ -1,12 +1,26 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 import logo from '../logo/logo.png';
+import Notifiaction from './Notifiaction';
+import './doctor.css';
 
 
 export default function Dnav() {
+
+  const notificationsData = [];
+
+  for (let i = 0; i < 20; i++) {
+    notificationsData.push({
+      src: `https://source.unsplash.com/random/${i}`,
+      name: `User ${i + 1}`,
+      id: `cst2000${i + 1}`,
+      status: Math.floor(Math.random() * 3) + 1, // Random status between 1 and 3
+    });
+  }
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-white shadow">
+      <nav className="navbar navbar-expand-lg bg-white shadow fixed-top">
         <div className="container-fluid d-flex align-items-center">
           <a href='/' className='text-decoration-none color-gradident text-dark fs-4 nav-hover ms-5'>
             Home
@@ -55,25 +69,15 @@ export default function Dnav() {
 
       {/* notificaton body */}
 
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <div className="offcanvas offcanvas-end" tabindex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasExampleLabel">Medical Request</h5>
+          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <div>
-            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-          </div>
-          <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
+          {notificationsData.map((notification, index) => (
+            <div className='icon-hover rounded p-1' type='button'><Notifiaction key={index} src={notification.src} name={notification.name} id={notification.id} status={notification.status} /></div>
+          ))}
         </div>
       </div>
 
