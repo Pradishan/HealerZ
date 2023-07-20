@@ -12,9 +12,6 @@ export default function Doctorinterface() {
     top:'6rem',
     right: '2rem',
   }
-  const topGap = {
-    paddingTop: '60px',
-  }
   return (<>
     <Dnav />
     <div className="row mt-5">

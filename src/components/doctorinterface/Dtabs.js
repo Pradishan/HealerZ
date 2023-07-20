@@ -1,5 +1,8 @@
 import React from 'react';
 import './Dtabs.js';
+import TestPage from './pages/TestPage.js';
+import EmailPage from './pages/EmailPage.js';
+import MedicalPage from './pages/MedicalPage.js';
 
 export default function Dtabs() {
     return (
@@ -16,9 +19,9 @@ export default function Dtabs() {
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabindex="0">test</div>
-                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabindex="0">email</div>
-                <div className="tab-pane fade" id="medical-tab-pane" role="tabpanel" aria-labelledby="medical-tab" tabindex="0">medical</div>
+                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabindex="0"><TestPage /></div>
+                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabindex="0"><EmailPage /></div>
+                <div className="tab-pane fade" id="medical-tab-pane" role="tabpanel" aria-labelledby="medical-tab" tabindex="0"><MedicalPage /></div>
             </div>
         </>
     )
