@@ -22,7 +22,7 @@ export default function Dnav() {
     <>
       <nav className="navbar navbar-expand-lg bg-white shadow fixed-top">
         <div className="container-fluid d-flex align-items-center">
-          <a href='/' className='text-decoration-none color-gradident text-dark fs-4 nav-hover ms-5'>
+          <a href='/' className='text-decoration-none color-gradident text-dark fs-5 nav-hover ms-5'>
             Home
           </a>
           <div className='d-flex align-items-center justify-content-center'>
@@ -44,7 +44,7 @@ export default function Dnav() {
             <div class="dropdown me-5">
               <div className='d-flex align-items-center icon-hover rounded p-2' type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src='https://source.unsplash.com/random/1' alt="avatar" height='38px' width='38px' className='rounded-circle me-2' />
-                <p className='mb-0 fs-5'>Pradishan</p>
+                <p className='mb-0'>Pradishan</p>
               </div>
 
               <ul class="dropdown-menu">
