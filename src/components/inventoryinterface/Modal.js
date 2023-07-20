@@ -61,6 +61,8 @@ export default function Modal() {
                             </table>
 
                             <hr/>
+
+
                         </MDBModalBody>
 
                         <MDBModalFooter>
