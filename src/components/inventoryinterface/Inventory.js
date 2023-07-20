@@ -138,30 +138,40 @@ function Inventory(props) {
                                     <tr>
                                         <th>Drug_ID</th>
                                         <th>:</th>
-                                        <th>ifidhuhfguherufh</th>
+                                        <th className={"detaildet"}>DRUG0001</th>
                                     </tr>
                                     <tr>
                                         <th>Drug_Name</th>
                                         <th>:</th>
-                                        <th>Drug_ID</th>
+                                        <th className={"detaildet"}>Aspirin</th>
                                     </tr>
                                     <tr>
                                         <th>Category</th>
                                         <th>:</th>
-                                        <th>Drug_ID</th>
+                                        <th className={"detaildet"}>Category 1</th>
                                     </tr>
                                     <tr>
                                         <th>Dosage</th>
                                         <th>:</th>
-                                        <th>Drug_ID</th>
+                                        <th className={"detaildet"}>500mg</th>
                                     </tr>
                                     <tr>
                                         <th>Description</th>
                                         <th>:</th>
-                                        <th>Drug_ID</th>
+                                        <th className={"detaildet"}>Aspirin is a commonly used medication classified as a nonsteroidal anti-inflammatory drug (NSAID). It is widely known for its pain-relieving, anti-inflammatory, and fever-reducing properties.</th>
                                     </tr>
 
                                 </table>
+
+                                <hr/>
+                                <div>
+                                    <div style={{display:"flex",flexDirection:'row'}}>
+                                        <p style={{marginRight:"120px"}}>StockIn:</p>
+                                        <p style={{marginRight:"120px"}}>StockOut:</p>
+                                        <p>Expired:</p>
+                                    </div>
+                                    <div style={{marginLeft:"174px"}}>Stock_Count:</div>
+                                </div>
 
                                 <hr/>
                             </MDBModalBody>
