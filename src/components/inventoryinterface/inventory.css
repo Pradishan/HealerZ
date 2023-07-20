@@ -208,5 +208,16 @@
     transition: 200ms ease-in-out;
 }
 
+.viewbutt{
+    color: #000000;
+    height: 30px;
+    width: 50px;
+}
+.viewbutt:hover{
+    transform: scale(1.1);
+    transition: 200ms ease-in-out;
+    color: #00168e;
+    cursor: pointer;
+}
 
 

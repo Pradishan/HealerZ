@@ -7,22 +7,15 @@ import FeatherIcon from 'feather-icons-react';
 import './inventory.css';
 import SearchBarID from "./SearchBarID";
 import SearchBarName from "./SearchBarName";
-import Modal from "./Modal";
-import {
-    MDBBtn,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-} from "mdb-react-ui-kit";
+import ViewModal from "./ViewModal";
+
 
 function Inventory(props) {
-    const [basicModal, setBasicModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const toggleShow = () => setBasicModal(!basicModal);
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
 
         const handleSearch = (searchTerm) => {
             // Perform search logic using the search term
@@ -32,7 +25,7 @@ function Inventory(props) {
         // Perform search logic using the search term
         console.log('Search term:', searchTerm1);
     };
-        const [drugList, setdrugList] = useState([
+    const [drugList, setdrugList] = useState([
             {No: 1, ID: "DRUG0001", name: "Aspirin", stock_in: 500, stock_out: 100, expire: 50, available: 350},
             {No: 2, ID: "DRUG0002", name: "Ibuprofen", stock_in: 1000, stock_out: 300, expire: 10, available: 600},
             {No: 3, ID: "DRUG0003", name: "Acetaminophen", stock_in: 1500, stock_out: 200, expire: 50, available: 350},
@@ -107,83 +100,20 @@ function Inventory(props) {
                                     <td>{data.expire}</td>
                                     <td>{data.available}</td>
                                     <td>
-                                        <MDBBtn onClick={toggleShow}>
-                                            <FeatherIcon className={"action-icons"} icon={"eye"} />
-                                        </MDBBtn>
+                                        <FeatherIcon className={"viewbutt"} icon={"eye"}  onClick={toggleModal} />
+
+
                                     </td>
                                 </tr>))}
 
                                 </tbody>
                             </table>
 
+
                         </div>
                     </div>
                 </div>
-
-                <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
-                    <MDBModalDialog>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle>Drug Detail</MDBModalTitle>
-                                <MDBBtn
-                                    className="btn-close"
-                                    color="none"
-                                    onClick={toggleShow}
-                                ></MDBBtn>
-                            </MDBModalHeader>
-                            <MDBModalBody>
-
-                                <hr/>
-                                <table>
-                                    <tr>
-                                        <th>Drug_ID</th>
-                                        <th>:</th>
-                                        <th className={"detaildet"}>DRUG0001</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Drug_Name</th>
-                                        <th>:</th>
-                                        <th className={"detaildet"}>Aspirin</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>:</th>
-                                        <th className={"detaildet"}>Category 1</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Dosage</th>
-                                        <th>:</th>
-                                        <th className={"detaildet"}>500mg</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Description</th>
-                                        <th>:</th>
-                                        <th className={"detaildet"}>Aspirin is a commonly used medication classified as a nonsteroidal anti-inflammatory drug (NSAID). It is widely known for its pain-relieving, anti-inflammatory, and fever-reducing properties.</th>
-                                    </tr>
-
-                                </table>
-
-                                <hr/>
-                                <div>
-                                    <div style={{display:"flex",flexDirection:'row'}}>
-                                        <p style={{marginRight:"120px"}}>StockIn:</p>
-                                        <p style={{marginRight:"120px"}}>StockOut:</p>
-                                        <p>Expired:</p>
-                                    </div>
-                                    <div style={{marginLeft:"174px"}}>Stock_Count:</div>
-                                </div>
-
-                                <hr/>
-                            </MDBModalBody>
-
-                            <MDBModalFooter>
-                                <MDBBtn onClick={toggleShow}>Cancel</MDBBtn>
-                            </MDBModalFooter>
-                        </MDBModalContent>
-                    </MDBModalDialog>
-                </MDBModal>
-
-
+                <ViewModal show={showModal} onHide={toggleModal} />
             </Layout>
         );
     }
