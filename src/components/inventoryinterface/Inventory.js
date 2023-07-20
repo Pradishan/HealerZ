@@ -7,8 +7,23 @@ import FeatherIcon from 'feather-icons-react';
 import './inventory.css';
 import SearchBarID from "./SearchBarID";
 import SearchBarName from "./SearchBarName";
+import Modal from "./Modal";
+import {
+    MDBBtn,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
+} from "mdb-react-ui-kit";
 
 function Inventory(props) {
+    const [basicModal, setBasicModal] = useState(false);
+
+    const toggleShow = () => setBasicModal(!basicModal);
+
         const handleSearch = (searchTerm) => {
             // Perform search logic using the search term
             console.log('Search term:', searchTerm);
@@ -26,8 +41,16 @@ function Inventory(props) {
             {No: 6, ID: "DRUG0010", name: "Metformin", stock_in: 700, stock_out: 50, expire: 50, available: 250},
             {No: 7, ID: "DRUG0016", name: "Omeprazole", stock_in: 200, stock_out: 70, expire: 100, available: 300},
             {No: 8, ID: "DRUG0017", name: "Sertraline", stock_in: 500, stock_out: 300, expire: 0, available: 250},
-            {No: 9, ID: "DRUG0018", name: "Sertraline", stock_in: 300, stock_out: 200, expire: 20, available: 550},
-            {No: 10, ID: "DRUG0025", name: "Lisinopril", stock_in: 500, stock_out: 300, expire: 10, available: 250}
+            {No: 9, ID: "DRUG0018", name: "Citalopram", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 10, ID: "DRUG0019", name: "Escitalopram", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 11, ID: "DRUG0020", name: "Bupropion", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 12, ID: "DRUG0028", name: "Metronidazole", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 13, ID: "DRUG0029", name: "Carvedilol", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 14, ID: "DRUG0030", name: "Risperidone", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 15, ID: "DRUG0031", name: "Docusate", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 16, ID: "DRUG0032", name: "Duloxetine", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 17, ID: "DRUG0035", name: "Amiodarone", stock_in: 300, stock_out: 200, expire: 20, available: 550},
+            {No: 18, ID: "DRUG0040", name: "Lisinopril", stock_in: 500, stock_out: 300, expire: 10, available: 250}
         ])
         // console.log(drugList)
         // console.log(drugList[0])
@@ -52,10 +75,13 @@ function Inventory(props) {
 
                 <div className={"container"}>
                     <div className={"p-5"}>
-                        <div className={"students_marks_container "} style={{display: 'flex', flexDirection: 'row'}}>
-                            <div><h3 className={"content-heading"}>Filter the Results</h3></div>
-                            <SearchBarID onSearch={handleSearch}/>
-                            <SearchBarName onSearch={handleSearch1}/>
+                        <div className={"SearchSection"} style={{display: 'flex', flexDirection: 'row'}}>
+                            <div><h3 className={"content-heading"}>Filter the Results : </h3></div>
+                            <div className={"SearchSection2"}>
+                                <SearchBarID onSearch={handleSearch}/>
+                                <SearchBarName onSearch={handleSearch1}/>
+                            </div>
+
                         </div>
                         <div className={"table-container "}>
                             <table className={"table table-hover table-striped "}>
@@ -81,14 +107,81 @@ function Inventory(props) {
                                     <td>{data.expire}</td>
                                     <td>{data.available}</td>
                                     <td>
-                                        <FeatherIcon className={"action-icons"} icon={"eye"}/>
+                                        <MDBBtn onClick={toggleShow}>
+                                            <FeatherIcon className={"action-icons"} icon={"eye"} />
+                                        </MDBBtn>
                                     </td>
                                 </tr>))}
+
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
+
+                <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
+                    <MDBModalDialog>
+                        <MDBModalContent>
+                            <MDBModalHeader>
+                                <MDBModalTitle>Drug Detail</MDBModalTitle>
+                                <MDBBtn
+                                    className="btn-close"
+                                    color="none"
+                                    onClick={toggleShow}
+                                ></MDBBtn>
+                            </MDBModalHeader>
+                            <MDBModalBody>
+
+                                <hr/>
+                                <table>
+                                    <tr>
+                                        <th>Drug_ID</th>
+                                        <th>:</th>
+                                        <th className={"detaildet"}>DRUG0001</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Drug_Name</th>
+                                        <th>:</th>
+                                        <th className={"detaildet"}>Aspirin</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>:</th>
+                                        <th className={"detaildet"}>Category 1</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dosage</th>
+                                        <th>:</th>
+                                        <th className={"detaildet"}>500mg</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>:</th>
+                                        <th className={"detaildet"}>Aspirin is a commonly used medication classified as a nonsteroidal anti-inflammatory drug (NSAID). It is widely known for its pain-relieving, anti-inflammatory, and fever-reducing properties.</th>
+                                    </tr>
+
+                                </table>
+
+                                <hr/>
+                                <div>
+                                    <div style={{display:"flex",flexDirection:'row'}}>
+                                        <p style={{marginRight:"120px"}}>StockIn:</p>
+                                        <p style={{marginRight:"120px"}}>StockOut:</p>
+                                        <p>Expired:</p>
+                                    </div>
+                                    <div style={{marginLeft:"174px"}}>Stock_Count:</div>
+                                </div>
+
+                                <hr/>
+                            </MDBModalBody>
+
+                            <MDBModalFooter>
+                                <MDBBtn onClick={toggleShow}>Cancel</MDBBtn>
+                            </MDBModalFooter>
+                        </MDBModalContent>
+                    </MDBModalDialog>
+                </MDBModal>
 
 
             </Layout>

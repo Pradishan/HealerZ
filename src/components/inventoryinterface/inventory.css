@@ -99,13 +99,21 @@
     margin-right: 10px;
 }
 
-.text-red {
-    color: red !important;
 
+.SearchSection{
+    margin-bottom: 10px;
 }
-
+.SearchSection2{
+    padding-left: 240px;
+    display: flex;
+    flex-direction: row;
+}
 .content-heading {
     color: #000000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .table-container {
@@ -120,12 +128,30 @@
     height: 45px !important;
 }
 
-.marks-dropdown-btn {
-    background-color: #00AB55 !important;
-    border: none !important
-}
 .top-0{
     top: 0 !important;
+}
+.filterbutt{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 70px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #7D0080;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    color: white;
+
+
+}
+.SearchBox1{
+    border-radius: 5px;
+    background: #D9D9D9;
+    height: 33px;
 }
 
 
@@ -135,6 +161,51 @@
         overflow: scroll;
         min-width: 500px;
     }
+}
+
+.detaildet{
+    font-size:16px ;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.Managebutt{
+    margin-top: 50px;
+    margin-left: 150px !important;
+}
+
+.Managebutt1{
+    height: 180px !important;
+    width: 300px !important;
+    border-radius: 29px;
+    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
+    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+
+
+}
+.Managebutt1:hover{
+    background: linear-gradient(204deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 60.94%, #FFF 100%, #000 100%);
+    cursor: pointer;
+
+}
+.Managebutt1 .CardTitle{
+    color: #000;
+    text-align: center;
+    font-family: Poppins, serif;
+    font-size: 26px ;
+    font-style: normal;
+    font-weight: 800 ;
+    line-height: normal;
+
+}
+.Managebuttimg{
+    position: absolute;
+    left: 115px;
+    bottom: 38px;
+}
+.Managebuttimg:hover{
+    transform: scale(1.1);
+    transition: 200ms ease-in-out;
 }
 
 

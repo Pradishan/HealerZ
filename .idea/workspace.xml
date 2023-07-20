@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="dashboard updated">
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/layout.css" afterDir="false" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="popup update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -42,22 +36,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/hp/Desktop/Institute-web-main",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hp/Desktop/Institute-web-main&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.2.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -89,7 +83,12 @@
       <workItem from="1689442621071" duration="98000" />
       <workItem from="1689484364786" duration="369000" />
       <workItem from="1689488536087" duration="5389000" />
-      <workItem from="1689493994119" duration="17135000" />
+      <workItem from="1689493994119" duration="18000000" />
+      <workItem from="1689571336887" duration="801000" />
+      <workItem from="1689589491897" duration="70000" />
+      <workItem from="1689611736048" duration="3938000" />
+      <workItem from="1689779986334" duration="8002000" />
+      <workItem from="1689827522514" duration="4119000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -182,7 +181,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689514002700</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="inventory updated">
+      <created>1689527123005</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1689527123005</updated>
+    </task>
+    <task id="LOCAL-00015" summary="popup update">
+      <created>1689787914816</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1689787914816</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +219,8 @@
     <MESSAGE value="images" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;package-lock.json&#10;#&#9;src/components/inventoryinterface/Inventory.js&#10;#&#9;src/components/inventoryinterface/inventory.css&#10;#&#9;src/layouts/layout.js" />
     <MESSAGE value="dashboard updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="dashboard updated" />
+    <MESSAGE value="inventory updated" />
+    <MESSAGE value="popup update" />
+    <option name="LAST_COMMIT_MESSAGE" value="popup update" />
   </component>
 </project>

@@ -14,13 +14,13 @@ const SearchBarName = ({ onSearch }) => {
 
     return (
         <form onSubmit={handleSubmit1}>
-            <input
+            <input className={"SearchBox1"}
                 type="text"
                 placeholder="DRUG_NAME"
                 value={searchTerm}
                 onChange={handleChange1}
             />
-            <button type="submit">Filter</button>
+            <button type="submit" className="filterbutt">Filter</button>
         </form>
     );
 };
