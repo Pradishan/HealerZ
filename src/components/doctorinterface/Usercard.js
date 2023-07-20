@@ -10,6 +10,10 @@ export default function Usercard({ src }) {
         minWidth: '150px',
         minHeight: '150px',
     }
+    const scroll = {
+        maxHeight: '10vh',
+        overflowY: 'auto',
+    }
     return (
         <>
             <div className='bg-white shadow rounded p-2' style={width}>
@@ -29,38 +33,38 @@ export default function Usercard({ src }) {
                     </div>
                     <div>
                         <div className='d-lg-flex flex-md-colum justify-content-between'>
-                            <p className='fs-5 m-0'>31 Aug 2000</p>
+                            <p className='m-0'>31 Aug 2000</p>
                             <p className='text-muted m-0'>22 years</p>
                         </div>
 
                         <div className='d-lg-flex flex-md-colum justify-content-between'>
                             <p className='text-muted m-0 me-2'>No31 newyork ,Sri Lanka</p>
-                            <p className='m-0'>070 4470004</p>
+                            <p className='m-0'>0704470004</p>
                         </div>
 
                     </div>
 
                     <hr />
 
-                    <div className='d-flex justify-content-between'>
-                        <p className='fs-5 m-0'>Age</p>
-                        <p className='fs-6 text-success m-0 fw-bold'>22 years</p>
+                    <div className='d-flex justify-content-between my-0 py-0'>
+                        <p className='m-0'>Age</p>
+                        <p className='text-success m-0 fw-bold'>22 years</p>
                     </div>
-                    <div className='d-flex justify-content-between'>
+                    <div className='d-flex justify-content-between my-0 py-0'>
                         <p className='fs-5 m-0'>Gender</p>
-                        <p className='fs-6 m-0 fw-bold'>Male</p>
+                        <p className='m-0 fw-bold'>Male</p>
                     </div>
-                    <div className='d-flex justify-content-between'>
-                        <p className='fs-5 m-0'>Bloog group</p>
-                        <p className='fs-6 text-danger m-0 fw-bold'>B+</p>
+                    <div className='d-flex justify-content-between my-0 py-0'>
+                        <p className='m-0'>Bloog group</p>
+                        <p className='text-danger m-0 fw-bold'>B+</p>
                     </div>
-                    <div className='d-flex justify-content-between'>
-                        <p className='fs-5 m-0'>Allergy</p>
-                        <p className='fs-6 text-primary m-0 fw-bold'>No</p>
+                    <div className='d-flex justify-content-between my-0 py-0'>
+                        <p className='m-0'>Allergy</p>
+                        <p className='text-primary m-0 fw-bold'>No</p>
                     </div>
 
-                    <h3 className='mt-2'>Special disease</h3>
-                    <p className='fs-6 text-muted m-0'>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</p>
+                    <h5 className='mt-2'>Special disease</h5>
+                    <div style={scroll}><p className='text-muted m-0'>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</p></div>
                     <button className='btn w-100 text-white shadow my-3 btn-gr'>Medical Records</button>
                 </div>
             </div>
