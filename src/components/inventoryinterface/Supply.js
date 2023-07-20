@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 import Layout from "../../layouts/layout";
+
 
 function Supply(props) {
     return (
-        <Layout>Supply</Layout>
+        <Layout>
+           supply
+        </Layout>
     );
 }
 
