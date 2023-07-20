@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="popup update">
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="popup error fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Supply.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Supply.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +90,8 @@
       <workItem from="1689589491897" duration="70000" />
       <workItem from="1689611736048" duration="3938000" />
       <workItem from="1689779986334" duration="8002000" />
-      <workItem from="1689827522514" duration="4119000" />
+      <workItem from="1689827522514" duration="4514000" />
+      <workItem from="1689834656914" duration="6213000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -195,7 +198,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689787914816</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="manage section updated">
+      <created>1689832180424</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1689832180424</updated>
+    </task>
+    <task id="LOCAL-00017" summary="popup error fixed">
+      <created>1689837413812</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1689837413812</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +238,8 @@
     <MESSAGE value="dashboard updated" />
     <MESSAGE value="inventory updated" />
     <MESSAGE value="popup update" />
-    <option name="LAST_COMMIT_MESSAGE" value="popup update" />
+    <MESSAGE value="manage section updated" />
+    <MESSAGE value="popup error fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="popup error fixed" />
   </component>
 </project>
