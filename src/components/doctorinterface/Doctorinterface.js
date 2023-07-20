@@ -20,7 +20,7 @@ export default function Doctorinterface() {
           {/* search */}
           <Dsearch />
         </div>
-        <div className="my-3 scrollable-column">
+        <div className="my-3 me-0">
           <Usercard src={'https://source.unsplash.com/random/2'} />
         </div>
       </div>

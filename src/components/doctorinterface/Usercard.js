@@ -17,7 +17,6 @@ export default function Usercard({ src }) {
     return (
         <>
             <div className='bg-white shadow rounded p-2' style={width}>
-
                 <div className='m-3'>
                     <div className='d-flex align-items-center justify-content-center mb-2'>
                         <div className='d-flex align-items-center justify-content-center ms-2'>
@@ -26,8 +25,8 @@ export default function Usercard({ src }) {
 
                         <div className='d-flex align-items-center justify-content-center'>
                             <div>
-                                <h3 className='m-0'>FirstName</h3>
-                                <p className='fs-4 m-0'>cst20001</p>
+                                <h4 className='m-0'>FirstName</h4>
+                                <p className='fs-5 m-0'>cst20001</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@ export default function Usercard({ src }) {
                         <p className='text-primary m-0 fw-bold'>No</p>
                     </div>
 
-                    <h5 className='mt-2'>Special disease</h5>
+                    <h5 className='mt-2'>Special Disease</h5>
                     <div style={scroll}><p className='text-muted m-0'>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</p></div>
                     <button className='btn w-100 text-white shadow my-3 btn-gr'>Medical Records</button>
                 </div>
