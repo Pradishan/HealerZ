@@ -5,7 +5,7 @@ import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
 import '@fontsource/poppins';
 import './inventory.css';
-// import DoughnutChart from './DoughnutChart';
+import DoughnutChart from './DoughnutChart';
 
 // Import react-circular-progressbar module and styles
 import {
@@ -16,6 +16,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 
 import ChangingProgressProvider from "./ChangingProgressProvider";
+
 
 
 function Dashboard(props) {
@@ -98,9 +99,29 @@ function Dashboard(props) {
 
                            <Card.Body>
                                <Card.Title className="CardTitle">Weighted score</Card.Title>
-                               {/* <DoughnutChart/> */}
-
-
+                               <div className="percentagebarr">
+                                   <DoughnutChart/>
+                               </div>
+                               <div className={"doughnutindicator"}>
+                                   <div className={"doughnutindicator1"}>
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                           <circle cx="10" cy="10.5" r="10" fill="#CE0000"/>
+                                       </svg>
+                                       <p>Out Of Stocks Products </p>
+                                   </div>
+                                   <div className={"doughnutindicator1"}>
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                           <path d="M19.5 10C19.5 15.2467 15.2467 19.5 10 19.5C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5C15.2467 0.5 19.5 4.75329 19.5 10Z" fill="#FCC400" stroke="black"/>
+                                       </svg>
+                                       <p>Products on low stock</p>
+                                   </div>
+                                   <div className={"doughnutindicator1"}>
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                           <circle cx="10" cy="10.5" r="10" fill="#0300A0"/>
+                                       </svg>
+                                       <p>Expired Products </p>
+                                   </div>
+                               </div>
 
                            </Card.Body>
                        </Card>
