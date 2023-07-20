@@ -123,9 +123,6 @@ function Dashboard(props) {
                                    </div>
                                </div>
 
-
-
-
                            </Card.Body>
                        </Card>
                    </Col>
