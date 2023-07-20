@@ -34,9 +34,9 @@ export default function Dnav() {
             {/* notification */}
             <div className='position-relative me-2' type="button" data-bs-toggle="offcanvas" data-bs-target="#medicalNotification" aria-controls="offcanvasExample"><FeatherIcon icon="bell" className='icon-hover p-2 fs-1' height='38px' width='38px' />
 
-              <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+              <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
                 99+
-                <span class="visually-hidden">unread messages</span>
+                <span className="visually-hidden">unread messages</span>
               </span>
 
             </div>
