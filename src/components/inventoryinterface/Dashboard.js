@@ -98,7 +98,7 @@ function Dashboard(props) {
 
                            <Card.Body>
                                <Card.Title className="CardTitle">Weighted score</Card.Title>
-                               {/*<DoughnutChart/>*/}
+                               {/* <DoughnutChart/> */}
 
 
 
