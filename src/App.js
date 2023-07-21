@@ -22,14 +22,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/doctor" element={<Doctorinterface />} />
-          <Route path="/inventory" element={<Inventory/>} />
+          <Route path="/inventory-interface/inventory" element={<Inventory/>} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/inventory/dashboard" element={<Dashboard />} />
-          <Route path="/manage" element={<Manage />} />
-          <Route path="/supply" element={<Supply />} />
+          <Route path="/inventory-interface/dashboard" element={<Dashboard />} />
+          <Route path="/inventory-interface/manage" element={<Manage />} />
+          <Route path="/inventory-interface/supply" element={<Supply />} />
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>

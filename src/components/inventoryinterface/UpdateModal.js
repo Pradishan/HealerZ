@@ -18,7 +18,7 @@ function UpdateModal(props) {
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Drug Updated</Modal.Title>
+                <Modal.Title>Drug UPDATE</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
