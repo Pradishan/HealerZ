@@ -37,8 +37,8 @@ export default function Usercard({ src }) {
                         </div>
 
                         <div className='d-lg-flex flex-md-colum justify-content-between'>
-                            <p className='text-muted m-0 me-2'>No31 newyork ,Sri Lanka</p>
-                            <p className='m-0'>0704470004</p>
+                            <p className='text-muted m-0 me-2 fs-7'>No31 newyork ,Sri Lanka</p>
+                            <p className='m-0 fs-7'>0704470004</p>
                         </div>
 
                     </div>
