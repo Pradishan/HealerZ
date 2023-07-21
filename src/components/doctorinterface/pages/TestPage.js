@@ -62,8 +62,8 @@ export default function TestPage() {
               </table>
             </div>
             <div className='d-flex justify-content-between align-items-center'>
-            <p className='m-0'>DR.V.K.Pradishan MBBS</p>
-            <button className='btn w-25 text-white shadow btn-gr'>Done</button>
+              <p className='m-0'>DR.V.K.Pradishan MBBS</p>
+              <button className='btn w-25 text-white shadow btn-gr'>Done</button>
             </div>
           </div>
         </div>
