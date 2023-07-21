@@ -20,7 +20,7 @@ export default function Dnav() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-white shadow fixed-top">
+      <nav className="navbar navbar-expand-lg bg-white shadow fixed-top py-0">
         <div className="container-fluid d-flex align-items-center">
           <a href='/' className='text-decoration-none color-gradident text-dark fs-5 nav-hover ms-5'>
             Home
@@ -34,7 +34,7 @@ export default function Dnav() {
             {/* notification */}
             <div className='position-relative me-2' type="button" data-bs-toggle="offcanvas" data-bs-target="#medicalNotification" aria-controls="offcanvasExample"><FeatherIcon icon="bell" className='icon-hover p-2 fs-1' height='38px' width='38px' />
 
-              <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+              <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger fs-7 p-1 mt-1">
                 99+
                 <span className="visually-hidden">unread messages</span>
               </span>
