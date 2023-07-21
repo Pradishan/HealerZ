@@ -36,7 +36,7 @@ export default function TestPage() {
         </div>
         <div className='row'>
           <div className='col'>
-            <div className='d-flex align-items-center justify-content-evenly'>
+            <div className='d-flex align-items-center justify-content-between'>
               <h5 className='mt-2'>Prescription</h5>
               <div className='d-flex align-items-center'>
                 <div className='input-group-text bg-gray border-0 rounded-pill'>
@@ -56,14 +56,14 @@ export default function TestPage() {
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td><FeatherIcon icon="x-circle" className='me-2 text-danger' type='button' /></td>
+                    <td className='d-flex justify-content-end'><FeatherIcon icon="trash-2" className='me-2 text-danger' type='button' /></td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div className='d-flex justify-content-between align-items-center'>
             <p className='m-0'>DR.V.K.Pradishan MBBS</p>
-            <button className='btn w-25 text-white shadow my-3 btn-gr'>Done</button>
+            <button className='btn w-25 text-white shadow btn-gr'>Done</button>
             </div>
           </div>
         </div>
