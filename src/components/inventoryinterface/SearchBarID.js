@@ -13,7 +13,7 @@ const SearchBarID = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'row'}}>
 
             <input className={"SearchBox1"}
                 type="text"

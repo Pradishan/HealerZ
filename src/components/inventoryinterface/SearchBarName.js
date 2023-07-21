@@ -13,7 +13,7 @@ const SearchBarName = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit1}>
+        <form onSubmit={handleSubmit1} style={{display:'flex',flexDirection:'row'}}>
             <input className={"SearchBox1"}
                 type="text"
                 placeholder="DRUG_NAME"
