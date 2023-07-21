@@ -3,7 +3,6 @@ import Layout from "../../layouts/layout";
 import Card from 'react-bootstrap/Card';
 import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
-import '@fontsource/poppins';
 import './inventory.css';
 import DoughnutChart from './DoughnutChart';
 
