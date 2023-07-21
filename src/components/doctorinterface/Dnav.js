@@ -1,6 +1,6 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import logo from '../logo/logo.png';
+import logo from '../../assets/logo.png';
 import Notifiaction from './Notifiaction';
 import './doctor.css';
 
