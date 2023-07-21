@@ -9,7 +9,7 @@ export default function TestPage() {
         <div className='row p-2'>
           <div className='col-6'>
             <div className="form-floating">
-              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea1" style={{ height: '100px' }}></textarea>
               <label for="floatingTextarea2">Patient complain</label>
             </div>
           </div>
@@ -23,13 +23,13 @@ export default function TestPage() {
         <div className='row p-2'>
           <div className='col-6'>
             <div className="form-floating">
-              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea3" style={{ height: '100px' }}></textarea>
               <label for="floatingTextarea2">Tests</label>
             </div>
           </div>
           <div className='col-6'>
             <div className="form-floating">
-              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea4" style={{ height: '100px' }}></textarea>
               <label for="floatingTextarea2">Confirmed diagnosis</label>
             </div>
           </div>
