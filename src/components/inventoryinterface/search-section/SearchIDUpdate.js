@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import UpdateModal from "../UpdateModal";
 
-const SearchBarID = ({ onSearch }) => {
+const SearchIDUpdate = ({ onSearch }) => {
+    const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleChange2 = (event) => {
@@ -10,6 +12,9 @@ const SearchBarID = ({ onSearch }) => {
     const handleSubmit2 = (event) => {
         event.preventDefault();
         onSearch(searchTerm);
+    };
+    const UpdateModal1 = () => {
+        setShowModal(!showModal);
     };
 
     return (
@@ -21,9 +26,11 @@ const SearchBarID = ({ onSearch }) => {
                    value={searchTerm}
                    onChange={handleChange2}
             />
-            <button type="submit" className="filterbutt">Search</button>
+            <button type="submit" className="filterbutt" onClick={UpdateModal1}>Search</button>
+            <UpdateModal show={showModal} onHide={UpdateModal1} />
         </form>
+
     );
 };
 
-export default SearchBarID;
+export default SearchIDUpdate;

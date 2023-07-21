@@ -5,8 +5,8 @@ import Card from "react-bootstrap/Card";
 import Logosmall from "../../assets/logo-small.png";
 import FeatherIcon from 'feather-icons-react';
 import './inventory.css';
-import SearchBarID from "./SearchBarID";
-import SearchBarName from "./SearchBarName";
+import SearchBarID from "./search-section/SearchBarID";
+import SearchBarName from "./search-section/SearchBarName";
 import ViewModal from "./ViewModal";
 
 
