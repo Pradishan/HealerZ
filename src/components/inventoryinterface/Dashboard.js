@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
 import './inventory.css';
-import DoughnutChart from './DoughnutChart';
+import DoughnutChart from './additional/DoughnutChart';
 
 // Import react-circular-progressbar module and styles
 import {
@@ -14,7 +14,7 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 
 
-import ChangingProgressProvider from "./ChangingProgressProvider";
+import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 
 
 

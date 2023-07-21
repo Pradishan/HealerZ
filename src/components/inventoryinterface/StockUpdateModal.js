@@ -2,8 +2,10 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import './inventory.css';
+import {toast, ToastContainer} from "react-toastify";
 
 function StockUpdateModal(props) {
+    const notify = () => toast("Stock Updated Successfully!");
     const { show, onHide } = props;
     return (
         <Modal show={show} onHide={onHide}>
@@ -49,7 +51,9 @@ function StockUpdateModal(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={onHide}>Close</Button>
+                <Button variant="primary" onClick={notify} >Update</Button>
+                <ToastContainer/>
+                <Button variant="secondary" onClick={onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

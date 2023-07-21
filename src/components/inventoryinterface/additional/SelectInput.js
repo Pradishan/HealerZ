@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './inventory.css';
+import '../inventory.css';
 
 const SelectInput = ({ options, onChange }) => {
     const [selectedOption, setSelectedOption] = useState('');

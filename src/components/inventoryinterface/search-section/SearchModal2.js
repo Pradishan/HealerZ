@@ -1,14 +1,14 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import './inventory.css';
+import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
 // import SearchBarID from "./SearchBarID";
 // import SearchBarName from "./SearchBarName";
-import SearchID from "./SearchID";
+import SearchIDUpdate from "./SearchIDUpdate";
 
-function SearchModal(props) {
+function SearchModal2(props) {
 
-    const handleSearch2 = (searchTerm1) => {
+    const handleSearch3 = (searchTerm1) => {
         // Perform search logic using the search term
         console.log('Search term:', searchTerm1);
     };
@@ -22,7 +22,7 @@ function SearchModal(props) {
                 <div className={"SearchSection"} style={{display: 'flex', flexDirection: 'row'}}>
                     <div><h3 className={"content-heading1"}>Search DRUG ID: </h3></div>
                     <div className={"SearchSection3"} >
-                        <SearchID onSearch={handleSearch2}/>
+                        <SearchIDUpdate onSearch={handleSearch3}/>
                     </div>
 
                 </div>
@@ -34,4 +34,4 @@ function SearchModal(props) {
     );
 }
 
-export default SearchModal;
+export default SearchModal2;
