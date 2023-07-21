@@ -10,8 +10,8 @@ const scrollMedTable = {
 export default function EmailPage() {
   return (
     <>
-      <div className='bg-white p-3 rounded m-2 '>
-        <div className='d-flex align-items-center justify-content-between'>
+      <div className='bg-white p-3 rounded'>
+        <div className='d-flex align-items-center justify-content-between m-2'>
           <h5 className='mt-2'>Prescription</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
@@ -82,7 +82,7 @@ export default function EmailPage() {
         {/* Email */}
         <Demail />
 
-        <div className='d-flex justify-content-between align-items-center'>
+        <div className='d-flex justify-content-between align-items-center m-2'>
           <p className='m-0'>DR.V.K.Pradishan MBBS</p>
           <button className='btn w-25 text-white shadow btn-gr'>Send</button>
         </div>
