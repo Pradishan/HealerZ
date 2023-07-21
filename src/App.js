@@ -27,7 +27,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/inventory/dashboard" element={<Dashboard />} />
           <Route path="/manage" element={<Manage />} />
           <Route path="/supply" element={<Supply />} />
           <Route path="/*" element={<Page404 />} />

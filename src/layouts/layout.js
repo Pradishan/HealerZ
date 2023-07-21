@@ -47,7 +47,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
-                                to={"/dashboard"}>
+                                to={"/inventory/dashboard"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="layout" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={'trans-1'}>Dashboard</div>}

@@ -3,8 +3,25 @@ import Layout from "../../layouts/layout";
 import {Col, Container, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Logosmall from "../../assets/logo-small.png";
+import AddModal from "./AddModal";
+import UpdateModal from "./UpdateModal";
+import SearchModal from "./SearchModal";
+// import ViewModal from "./ViewModal";
 
 function Manage(props) {
+    const [showModal, setShowModal] = useState(false);
+    const [showModal1, setShowModal1] = useState(false);
+    const [showModal2, setShowModal2] = useState(false);
+
+    const addModal = () => {
+        setShowModal(!showModal);
+    };
+    const updateModal = () => {
+        setShowModal1(!showModal1);
+    };
+    const searchModal = () => {
+        setShowModal2(!showModal2);
+    };
 
     return (
         <Layout>
@@ -26,7 +43,7 @@ function Manage(props) {
 
             <Container className="Managebutt">
                 <div style={{display:"flex",flexDirection:'row'}}>
-                        <Card className="Managebutt1">
+                        <Card className="Managebutt1" onClick={addModal} >
                             <Card.Body>
                                 <Card.Title className="CardTitle">DRUG ADD</Card.Title>
                                 <svg  className="Managebuttimg" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
@@ -36,7 +53,7 @@ function Manage(props) {
 
                             </Card.Body>
                         </Card>
-                        <Card className="Managebutt1" style={{marginLeft:'200px'}}>
+                        <Card className="Managebutt1" style={{marginLeft:'200px'}} onClick={updateModal}>
 
                             <Card.Body>
                                 <Card.Title className="CardTitle"> DRUG UPDATE</Card.Title>
@@ -49,7 +66,7 @@ function Manage(props) {
                         </Card>
 
                 </div>
-                <div style={{marginTop:'50px',marginLeft:'250px', marginBottom:'50px'}}>
+                <div style={{marginTop:'50px',marginLeft:'250px', marginBottom:'50px'}} onClick={searchModal}>
                         <Card className="Managebutt1">
 
                             <Card.Body>
@@ -63,6 +80,9 @@ function Manage(props) {
                         </Card>
                 </div>
             </Container>
+            <AddModal show={showModal} onHide={addModal} />
+            <UpdateModal show={showModal1} onHide={updateModal} />
+            <SearchModal show={showModal2} onHide={searchModal}/>
 
 
         </Layout>
