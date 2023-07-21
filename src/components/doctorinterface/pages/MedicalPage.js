@@ -1,6 +1,5 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
-import CurrentTime from '../CurrentTime';
 
 export default function MedicalPage() {
   return (
