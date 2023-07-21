@@ -51,13 +51,13 @@ export default function Dnav() {
                 <li><a class="dropdown-item" href="#">
                   <div className='d-flex'>
                     <FeatherIcon icon="log-out" className='me-2' />
-                    <p className='mb-0'>Logout</p>
+                    <p className='fs-7 mb-0'>Logout</p>
                   </div>
                 </a></li>
                 <li><a class="dropdown-item" href="#">
                   <div className='d-flex'>
                     <FeatherIcon icon="settings" className='me-2' />
-                    <p className='mb-0'>Settings</p>
+                    <p className='fs-7 mb-0'>Settings</p>
                   </div>
                 </a></li>
               </ul>
