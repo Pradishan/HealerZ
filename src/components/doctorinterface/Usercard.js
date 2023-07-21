@@ -4,12 +4,6 @@ export default function Usercard({ src }) {
     const width = {
         minWidth: '230px',
     }
-    const profilSize = {
-        maxWidth: '150px',
-        maxHeight: '150px',
-        minWidth: '150px',
-        minHeight: '150px',
-    }
     const scroll = {
         maxHeight: '10vh',
         overflowY: 'auto',
