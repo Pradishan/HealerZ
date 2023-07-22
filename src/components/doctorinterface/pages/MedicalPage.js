@@ -16,6 +16,11 @@ export default function MedicalPage() {
     });
   }
 
+  const scroll = {
+    overflowY: 'scroll',
+    maxHeight: '10vh',
+}
+
   return (
     <>
       <div className='bg-white p-3 rounded m-0 '>
@@ -30,8 +35,9 @@ export default function MedicalPage() {
         </div>
 
         {/* tabele */}
+        <div className={"table-container border-0 shadow-none"}>
         <table className="table table-hover px-2">
-          <thead>
+          <thead className='top-0 position-sticky h-70' style={{zIndex:1,}}>
             <tr>
               <th scope="col">ID</th>
               <th scope="col">NAME</th>
@@ -49,6 +55,7 @@ export default function MedicalPage() {
             }
           </tbody>
         </table>
+        </div>
       </div>
     </>
   )
