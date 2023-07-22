@@ -3,6 +3,7 @@ import FeatherIcon from 'feather-icons-react';
 import logo from '../../assets/logo.png';
 import Notifiaction from './Notifiaction';
 import './doctor.css';
+import { Link } from 'react-router-dom';
 
 
 export default function Dnav() {
@@ -41,25 +42,25 @@ export default function Dnav() {
 
             </div>
             {/* profile */}
-            <div class="dropdown me-5">
+            <div className="dropdown me-5">
               <div className='d-flex align-items-center icon-hover rounded p-2' type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src='https://source.unsplash.com/random/1' alt="avatar" height='38px' width='38px' className='rounded-circle me-2' />
                 <p className='mb-0'>Pradishan</p>
               </div>
 
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="#">
                   <div className='d-flex'>
                     <FeatherIcon icon="log-out" className='me-2' />
                     <p className='fs-7 mb-0'>Logout</p>
                   </div>
-                </a></li>
-                <li><a class="dropdown-item" href="#">
+                </Link></li>
+                <li><Link className="dropdown-item" to="#">
                   <div className='d-flex'>
                     <FeatherIcon icon="settings" className='me-2' />
                     <p className='fs-7 mb-0'>Settings</p>
                   </div>
-                </a></li>
+                </Link></li>
               </ul>
             </div>
 
@@ -69,14 +70,14 @@ export default function Dnav() {
 
       {/* notificaton body */}
 
-      <div className="offcanvas offcanvas-end" tabindex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
+      <div className="offcanvas offcanvas-end" tabIndex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">Medical Request</h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          {notificationsData.map((notification, index) => (
-            <div className='icon-hover rounded p-1' type='button'><Notifiaction key={index} src={notification.src} name={notification.name} id={notification.id} status={notification.status} /></div>
+        <div className="offcanvas-body">
+          {notificationsData.map((notification) => (
+            <div className='icon-hover rounded p-1' type='button' key={notification.id}><Notifiaction key={notification.id} src={notification.src} name={notification.name} id={notification.id} status={notification.status} /></div>
           ))}
         </div>
       </div>

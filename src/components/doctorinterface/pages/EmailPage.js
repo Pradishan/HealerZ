@@ -12,10 +12,10 @@ export default function EmailPage() {
     <>
       <div className='bg-white p-3 rounded'>
         <div className='d-flex align-items-center justify-content-between m-2'>
-          <h5 className='mt-2'>Prescription</h5>
+          <h5 className='mt-2'>Medical Records</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
-              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' />
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Records' id='searchRecord'/>
               <FeatherIcon icon="search" className='me-2 text-muted' type='button' />
             </div>
           </div>
@@ -23,7 +23,7 @@ export default function EmailPage() {
 
         {/* tabele */}
         <div className='px-2'>
-          <table class="table table-hover">
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th scope="col">ID</th>

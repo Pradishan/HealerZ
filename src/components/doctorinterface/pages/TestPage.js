@@ -10,13 +10,13 @@ export default function TestPage() {
           <div className='col-6'>
             <div className="form-floating">
               <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea1" style={{ height: '100px' }}></textarea>
-              <label for="floatingTextarea2">Patient complain</label>
+              <label htmlFor="floatingTextarea2">Patient complain</label>
             </div>
           </div>
           <div className='col-6'>
             <div className="form-floating">
               <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
-              <label for="floatingTextarea2">On examination</label>
+              <label htmlFor="floatingTextarea2">On examination</label>
             </div>
           </div>
         </div>
@@ -24,13 +24,13 @@ export default function TestPage() {
           <div className='col-6'>
             <div className="form-floating">
               <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea3" style={{ height: '100px' }}></textarea>
-              <label for="floatingTextarea2">Tests</label>
+              <label htmlFor="floatingTextarea2">Tests</label>
             </div>
           </div>
           <div className='col-6'>
             <div className="form-floating">
               <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea4" style={{ height: '100px' }}></textarea>
-              <label for="floatingTextarea2">Confirmed diagnosis</label>
+              <label htmlFor="floatingTextarea2">Confirmed diagnosis</label>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function TestPage() {
               <h5 className='mt-2'>Prescription</h5>
               <div className='d-flex align-items-center'>
                 <div className='input-group-text bg-gray border-0 rounded-pill'>
-                  <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' />
+                  <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' id='searchDrug' />
                   <FeatherIcon icon="plus-circle" className='me-2 text-success' type='button' />
                 </div>
               </div>
@@ -49,7 +49,7 @@ export default function TestPage() {
               </div>
             </div>
             <div className='m-2'>
-              <table class="table table-hover">
+              <table className="table table-hover">
                 <tbody>
                   <tr>
                     <th scope="row">1</th>

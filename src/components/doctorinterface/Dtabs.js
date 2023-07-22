@@ -19,9 +19,9 @@ export default function Dtabs() {
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabindex="0"><TestPage /></div>
-                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabindex="0"><EmailPage /></div>
-                <div className="tab-pane fade" id="medical-tab-pane" role="tabpanel" aria-labelledby="medical-tab" tabindex="0"><MedicalPage /></div>
+                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabIndex="0"><TestPage /></div>
+                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabIndex="0"><EmailPage /></div>
+                <div className="tab-pane fade" id="medical-tab-pane" role="tabpanel" aria-labelledby="medical-tab" tabIndex="0"><MedicalPage /></div>
             </div>
         </>
     )

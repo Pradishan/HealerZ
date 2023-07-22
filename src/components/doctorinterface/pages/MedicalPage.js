@@ -9,14 +9,14 @@ export default function MedicalPage() {
           <h5 className='mt-2'>Medical Request</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
-              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' />
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Request'id='requestSearch' />
               <FeatherIcon icon="search" className='me-2 text-muted' type='button' />
             </div>
           </div>
         </div>
 
         {/* tabele */}
-        <table class="table table-hover px-2">
+        <table className="table table-hover px-2">
           <thead>
             <tr>
               <th scope="col">ID</th>
