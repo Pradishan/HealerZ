@@ -12,16 +12,16 @@ export default function MedicalRequest(props) {
 
     switch (status) {
         case 1:
-            medStatus = <div className="alert alert-primary m-0 p-1 ms-1" role="alert">requested</div>;
+            medStatus = <div className="alert alert-primary m-0 p-1 ms-1 text-center" role="alert">requested</div>;
             break;
         case 2:
-            medStatus = <div className="alert alert-success m-0 p-1 ms-1" role="alert">Approved</div>;
+            medStatus = <div className="alert alert-success m-0 p-1 ms-1 text-center" role="alert">Approved</div>;
             break;
         case 3:
-            medStatus = <div className="alert alert-danger m-0 p-1 ms-1" role="alert">Rejected</div>;
+            medStatus = <div className="alert alert-danger m-0 p-1 ms-1 text-center" role="alert">Rejected</div>;
             break;
         default:
-            medStatus = <div className="alert alert-warning m-0 p-1 ms-1" role="alert">Unknown Status</div>;
+            medStatus = <div className="alert alert-warning m-0 p-1 ms-1 text-center" role="alert">Unknown Status</div>;
             break;
     }
 
@@ -32,7 +32,7 @@ export default function MedicalRequest(props) {
             <td>{date}</td>
             <td>{description}</td>
             <td>{medStatus}</td>
-            <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
+            <td className='text-center'><button className='btn text-white shadow btn-gr p-1'>View</button></td>
         </tr>
     )
 }
