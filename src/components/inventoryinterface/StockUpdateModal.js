@@ -53,7 +53,7 @@ function StockUpdateModal(props) {
             <Modal.Footer>
                 <Button variant="primary" onClick={notify} >Update</Button>
                 <ToastContainer/>
-                <Button variant="secondary" onClick={onHide}>Close</Button>
+                <Button variant="secondary" onClick={onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );
