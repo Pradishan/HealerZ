@@ -23,7 +23,7 @@ export default function EmailPage() {
         </div>
 
         {/* tabele */}
-        <div className={"table-container border-0 shadow-none mt-2"} style={{overflow: 'scroll',}}>
+        <div className={"table-container border-0 shadow-none mt-2"} style={{overflow: 'auto',}}>
           <table className="table table-hover" style={{minWidth: '900px',}}>
             <thead className='top-0 position-sticky h-45' style={{zIndex:1,}}>
               <tr>
