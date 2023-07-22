@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import './inventory.css';
 import SelectInput from "./additional/SelectInput";
