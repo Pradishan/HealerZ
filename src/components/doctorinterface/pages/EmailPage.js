@@ -6,7 +6,8 @@ const scrollMedTable = {
   maxHeight: '10rem',
   overflowY: 'auto'
 }
-
+let drugList = [];
+drugList.length = 10;
 export default function EmailPage() {
   return (
     <>
@@ -15,16 +16,16 @@ export default function EmailPage() {
           <h5 className='mt-2'>Medical Records</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
-              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Records' id='searchRecord'/>
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Records' id='searchRecord' />
               <FeatherIcon icon="search" className='me-2 text-muted' type='button' />
             </div>
           </div>
         </div>
 
         {/* tabele */}
-        <div className='px-2'>
-          <table className="table table-hover">
-            <thead>
+        <div className={"table-container border-0 shadow-none mt-2"} style={{overflow: 'scroll',}}>
+          <table className="table table-hover" style={{minWidth: '900px',}}>
+            <thead className='top-0 position-sticky h-45' style={{zIndex:1,}}>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">NAME</th>
@@ -34,7 +35,7 @@ export default function EmailPage() {
                 <th scope="col">ACTION</th>
               </tr>
             </thead>
-            <tbody style={scrollMedTable}>
+            <tbody >
               <tr className=''>
                 <td>cst20001</td>
                 <td>Mark</td>
