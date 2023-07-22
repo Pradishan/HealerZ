@@ -1,7 +1,21 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
+import MedicalRequest from '../utilites/MedicalRequest';
 
 export default function MedicalPage() {
+
+  const medRequests = [];
+
+  for (let i = 0; i < 20; i++) {
+    medRequests.push({
+      id:`cst200${i}`,
+      name:`Name${i}`,
+      date:'26-12-2013',
+      description:'Technophobia Virus" or "Technophobia Syndrome"',
+      status: Math.floor(Math.random() * 3) + 1, // Random status between 1 and 3
+    });
+  }
+
   return (
     <>
       <div className='bg-white p-3 rounded m-0 '>
@@ -9,7 +23,7 @@ export default function MedicalPage() {
           <h5 className='mt-2'>Medical Request</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
-              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Request'id='requestSearch' />
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Request' id='requestSearch' />
               <FeatherIcon icon="search" className='me-2 text-muted' type='button' />
             </div>
           </div>
@@ -28,14 +42,11 @@ export default function MedicalPage() {
             </tr>
           </thead>
           <tbody>
-            <tr className=''>
-              <td>cst20001</td>
-              <td>Mark</td>
-              <td>26-12-2013</td>
-              <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-              <td>requested</td>
-              <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
-            </tr>
+            {
+              medRequests.map((requs)=>(<MedicalRequest id={requs.id} name={requs.name} date={requs.date} description={requs.description} status={requs.status} />
+                )
+              )
+            }
           </tbody>
         </table>
       </div>
