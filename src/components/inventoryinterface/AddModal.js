@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import './inventory.css';
-import SelectInput from "./SelectInput";
+import SelectInput from "./additional/SelectInput";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

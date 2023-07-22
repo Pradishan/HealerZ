@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import './inventory.css';
-import SelectInput from "./SelectInput";
+import SelectInput from "./additional/SelectInput";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,7 +18,7 @@ function UpdateModal(props) {
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Drug Updated</Modal.Title>
+                <Modal.Title>Drug UPDATE</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
@@ -26,23 +26,23 @@ function UpdateModal(props) {
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"drug_id"} placeholder={"DRUGXXXXX"} className={"inputt"}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"drug_id"}  value={"DRUG00005"} placeholder={"DRUGXXXXX"} className={"inputt"} /><br/></th>
                         </tr>
                         <tr>
                             <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"drug_name"} placeholder={"XXXXXXXXXX"} className={"inputt"}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"drug_name"} placeholder={"XXXXXXXXXX"} value={"Amoxicillin"} className={"inputt"}/><br/></th>
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={"inputfield1"}><SelectInput options={options} onChange={handleSelectChange} className={"inputt"} /><br/></th>
+                            <th className={"inputfield1"}><SelectInput options={options} onChange={handleSelectChange} className={"inputt"}/><br/></th>
                         </tr>
                         <tr>
                             <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"dosage"} placeholder={"XXXmg"} className={"inputt"}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"dosage"} value={"500mg"} placeholder={"XXXmg"} className={"inputt"}/><br/></th>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <th className={"inputfield"}><textarea name="message"  placeholder={"Type description here..."} className={"inputt"} rows={3}/><br/></th>
+                            <th className={"inputfield"}><textarea name="message"  value={"dbhwbhd dwdbhuwqbhwqd dwqhdbwqhdbhwqd  wqhdbhwqyb"} placeholder={"Type description here..."} className={"inputt"} rows={3}/><br/></th>
                         </tr>
                     </table>
                 </form>

@@ -4,23 +4,23 @@ import {Col, Container, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Logosmall from "../../assets/logo-small.png";
 import AddModal from "./AddModal";
-import UpdateModal from "./UpdateModal";
-import SearchModal from "./SearchModal";
+import SearchModal from "./search-section/SearchModal";
+import SearchModal2 from "./search-section/SearchModal2";
 // import ViewModal from "./ViewModal";
 
 function Manage(props) {
     const [showModal, setShowModal] = useState(false);
-    const [showModal1, setShowModal1] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
+    const [showModal3, setShowModal3] = useState(false);
 
     const addModal = () => {
         setShowModal(!showModal);
     };
-    const updateModal = () => {
-        setShowModal1(!showModal1);
-    };
     const searchModal = () => {
         setShowModal2(!showModal2);
+    };
+    const searchModal2 = () => {
+        setShowModal3(!showModal3);
     };
 
     return (
@@ -53,7 +53,7 @@ function Manage(props) {
 
                             </Card.Body>
                         </Card>
-                        <Card className="Managebutt1" style={{marginLeft:'200px'}} onClick={updateModal}>
+                        <Card className="Managebutt1" style={{marginLeft:'200px'}} onClick={searchModal2}>
 
                             <Card.Body>
                                 <Card.Title className="CardTitle"> DRUG UPDATE</Card.Title>
@@ -81,8 +81,8 @@ function Manage(props) {
                 </div>
             </Container>
             <AddModal show={showModal} onHide={addModal} />
-            <UpdateModal show={showModal1} onHide={updateModal} />
             <SearchModal show={showModal2} onHide={searchModal}/>
+            <SearchModal2 show={showModal3} onHide={searchModal2}/>
 
 
         </Layout>

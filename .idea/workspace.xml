@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="manage part updated">
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/AddModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SelectInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="path changed">
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchIDStock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchModal2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/AddModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/AddModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/ChangingProgressProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/additional/ChangingProgressProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/DoughnutChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/additional/DoughnutChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Inventory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchBarID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchBarName.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchBarName.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchIDUpdate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SearchModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/SelectInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/additional/SelectInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/StockUpdateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/StockUpdateModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +73,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\HealerZ\src\components\inventoryinterface\additional" />
+      <recent name="C:\Users\hp\Desktop\HealerZ\src\components\inventoryinterface\search-section" />
       <recent name="C:\Users\hp\Desktop\HealerZ\src\layouts" />
     </key>
   </component>
@@ -102,7 +104,8 @@
       <workItem from="1689827522514" duration="4514000" />
       <workItem from="1689834656914" duration="7228000" />
       <workItem from="1689869503429" duration="1640000" />
-      <workItem from="1689915203932" duration="8868000" />
+      <workItem from="1689915203932" duration="9538000" />
+      <workItem from="1689953102406" duration="7388000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -230,7 +233,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689841162022</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="manage part updated">
+      <created>1689932101572</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1689932101572</updated>
+    </task>
+    <task id="LOCAL-00020" summary="path changed">
+      <created>1689958859923</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1689958859923</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +277,7 @@
     <MESSAGE value="popup error fixed" />
     <MESSAGE value="doughnut chart error fixed" />
     <MESSAGE value="manage part updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage part updated" />
+    <MESSAGE value="path changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="path changed" />
   </component>
 </project>

@@ -47,7 +47,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
-                                to={"/inventory/dashboard"}>
+                                to={"/inventory-interface/dashboard"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="layout" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={'trans-1'}>Dashboard</div>}
@@ -59,7 +59,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/inventory"}>
+                                to={"/inventory-interface/inventory"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="hard-drive" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Inventory</div>}
@@ -70,7 +70,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/manage"}>
+                                to={"/inventory-interface/manage"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="monitor" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Manage</div>}
@@ -81,7 +81,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/supply"}>
+                                to={"/inventory-interface/supply"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="shopping-cart" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Supply</div>}
