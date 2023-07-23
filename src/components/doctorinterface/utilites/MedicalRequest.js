@@ -6,7 +6,7 @@ export default function MedicalRequest(props) {
     const name =props.name;
     const date =props.date;
     const description =props.description;
-    const [status,setStatud] =useState(props.status);
+    const [status,setStatus] =useState(props.status);
 
     let medStatus;
 

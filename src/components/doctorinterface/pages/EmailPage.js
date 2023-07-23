@@ -14,6 +14,7 @@ export default function EmailPage() {
       examination: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
       tests: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
       diagnosis: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
+      prescription: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
     })
   }
   return (
@@ -46,7 +47,7 @@ export default function EmailPage() {
             <tbody >
               {
                 medicalRecords.map((record) => {
-                  return <MedicalRecords date={record.date} complain={record.complain} examination={record.examination} tests={record.tests} diagnosis={record.tests} />;
+                  return <MedicalRecords date={record.date} complain={record.complain} examination={record.examination} tests={record.tests} diagnosis={record.tests} prescription={record.prescription} />;
                 })
               }
             </tbody>
