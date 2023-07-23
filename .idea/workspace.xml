@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="manage section finished">
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchPatID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchPrescID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SupplyPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="frontend finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/StockUpdateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/StockUpdateModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Supply.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Supply.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +40,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hp/Desktop/Institute-web-main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Education/Practice/REACT Project/clubhouse&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -98,7 +93,9 @@
       <workItem from="1689869503429" duration="1640000" />
       <workItem from="1689915203932" duration="9538000" />
       <workItem from="1689953102406" duration="7612000" />
-      <workItem from="1690032011213" duration="5097000" />
+      <workItem from="1690032011213" duration="6469000" />
+      <workItem from="1690045860823" duration="160000" />
+      <workItem from="1690046051437" duration="1761000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -247,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689961330038</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="frontend finished">
+      <created>1690037279165</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1690037279165</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +283,7 @@
     <MESSAGE value="manage part updated" />
     <MESSAGE value="path changed" />
     <MESSAGE value="manage section finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage section finished" />
+    <MESSAGE value="frontend finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend finished" />
   </component>
 </project>

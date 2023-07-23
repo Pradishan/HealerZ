@@ -135,18 +135,19 @@
     margin-left: 10px;
     margin-right: 10px;
     width: 70px;
-    height: 30px;
+    height: 35px;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background: #7D0080;
+    background: #7D0080 !important;
     font-size: 12px;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
     color: white;
-
-
+}
+.filterbutt:hover{
+    background: #560256 !important;
 }
 .SearchBox1{
     border-radius: 5px;
