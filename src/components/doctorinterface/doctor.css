@@ -55,12 +55,12 @@ body {
 }
 
 .btn-gr {
-    background: linear-gradient(225deg, #E040FD 0%, #4B148D 100%);
+    background: var(--maincolor);
     color: white;
 }
 
 .btn:hover{
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .icon-btn:hover{
