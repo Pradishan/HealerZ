@@ -24,7 +24,7 @@ export default function MedicalPage() {
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
               <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Request' id='requestSearch' />
-              <FeatherIcon icon="search" className='mx-2 text-muted' type='button' />
+              <FeatherIcon icon="search" className='mx-2 text-muted icon-btn' type='button' />
             </div>
           </div>
         </div>
