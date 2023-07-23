@@ -17,7 +17,7 @@ export default function EmailPage() {
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
               <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Records' id='searchRecord' />
-              <FeatherIcon icon="search" className='me-2 text-muted' type='button' />
+              <FeatherIcon icon="search" className='mx-2 text-muted' type='button' />
             </div>
           </div>
         </div>
@@ -27,54 +27,24 @@ export default function EmailPage() {
           <table className="table table-hover" style={{minWidth: '900px',}}>
             <thead className='top-0 position-sticky h-45' style={{zIndex:1,}}>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">NAME</th>
-                <th scope="col">DATE</th>
-                <th scope="col">DESCRIPTION</th>
-                <th scope="col">STATUS</th>
+                <th scope="col">Date</th>
+                <th scope="col">Patient complain</th>
+                <th scope="col">On examination  </th>
+                <th scope="col">Tests</th>
+                <th scope="col">Dignosis</th>
+                <th scope="col">Prescription</th>
                 <th scope="col">ACTION</th>
               </tr>
             </thead>
             <tbody >
               <tr className=''>
-                <td>cst20001</td>
-                <td>Mark</td>
-                <td>26-12-2013</td>
-                <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-                <td>requested</td>
-                <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
-              </tr>
-              <tr className=''>
-                <td>cst20001</td>
-                <td>Mark</td>
-                <td>26-12-2013</td>
-                <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-                <td>requested</td>
-                <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
-              </tr>
-              <tr className=''>
-                <td>cst20001</td>
-                <td>Mark</td>
-                <td>26-12-2013</td>
-                <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-                <td>requested</td>
-                <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
-              </tr>
-              <tr className=''>
-                <td>cst20001</td>
-                <td>Mark</td>
-                <td>26-12-2013</td>
-                <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-                <td>requested</td>
-                <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
-              </tr>
-              <tr className=''>
-                <td>cst20001</td>
-                <td>Mark</td>
-                <td>26-12-2013</td>
-                <td>Technophobia Virus" or "Technophobia Syndrome"</td>
-                <td>requested</td>
-                <td><button className='btn text-white shadow btn-gr p-1'>View</button></td>
+                <td style={{minWidth:'100px',}}>26-12-2013</td>
+                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
+                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
+                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
+                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
+                <td className='text-center'><button className='btn text-white btn-gr p-1'>Prescription</button></td>
+                <td className='text-center'><button className='btn text-white btn-gr p-1'>View</button></td>
               </tr>
             </tbody>
           </table>

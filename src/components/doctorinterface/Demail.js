@@ -10,7 +10,7 @@ export default function Demail() {
                     <div className='d-flex align-items-center'>
                         <div className='input-group-text bg-gray border-0 rounded-pill'>
                             <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Receptionists' id='receptionists'/>
-                            <FeatherIcon icon="at-sign" className='me-2 text-muted' />
+                            <FeatherIcon icon="at-sign" className='mx-2 text-muted' />
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ export default function MedicalRequest(props) {
             <td style={{minWidth:'100px',}}>{date}</td>
             <td className='text-truncate' style={{maxWidth:'200px',}}>{description}</td>
             <td>{medStatus}</td>
-            <td className='text-center'><button className='btn text-white shadow btn-gr p-1'>View</button></td>
+            <td className='text-center'><button className='btn text-white btn-gr p-1'>View</button></td>
         </tr>
     )
 }
