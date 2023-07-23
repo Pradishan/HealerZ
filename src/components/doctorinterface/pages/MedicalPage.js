@@ -32,7 +32,7 @@ export default function MedicalPage() {
         {/* tabele */}
         <div className={"table-container border-0 shadow-none mt-2"} style={{overflow: 'auto',}}>
         <table className="table table-hover px-2" style={{minWidth: '800px',}}>
-          <thead className='top-0 position-sticky h-70' style={{zIndex:1,}}>
+          <thead className='top-0 position-sticky' style={{zIndex:1,}}>
             <tr>
               <th scope="col">ID</th>
               <th scope="col">NAME</th>

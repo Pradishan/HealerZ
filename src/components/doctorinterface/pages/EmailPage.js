@@ -30,7 +30,7 @@ export default function EmailPage() {
         </div>
 
         {/* tabele */}
-        <div className={"table-container border-0 shadow-none mt-2"} style={{ maxHeight:'25vh',overflow: 'auto', }}>
+        <div className={"table-container border-0 shadow-none mt-2"} style={{ maxHeight:'30vh',overflow: 'auto', }}>
           <table className="table table-hover" style={{ minWidth: '900px', }}>
             <thead className='top-0 position-sticky' style={{ zIndex: 1, }}>
               <tr>
