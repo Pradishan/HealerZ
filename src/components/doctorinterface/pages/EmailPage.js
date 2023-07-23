@@ -2,10 +2,6 @@ import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 import Demail from '../Demail';
 
-const scrollMedTable = {
-  maxHeight: '10rem',
-  overflowY: 'auto'
-}
 let drugList = [];
 drugList.length = 10;
 export default function EmailPage() {

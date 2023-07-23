@@ -16,11 +16,6 @@ export default function MedicalPage() {
     });
   }
 
-  const scroll = {
-    overflowY: 'scroll',
-    maxHeight: '10vh',
-}
-
   return (
     <>
       <div className='bg-white p-3 rounded m-0 '>
