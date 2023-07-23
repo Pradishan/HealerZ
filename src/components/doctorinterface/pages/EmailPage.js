@@ -1,10 +1,21 @@
 import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 import Demail from '../Demail';
+import MedicalRecords from '../utilites/MedicalRecords';
 
 let drugList = [];
 drugList.length = 10;
 export default function EmailPage() {
+  let medicalRecords = [];
+  for (let i = 0; i < 20; i++) {
+    medicalRecords.push({
+      date: '26-12-2013',
+      complain: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
+      examination: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
+      tests: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
+      diagnosis: '"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
+    })
+  }
   return (
     <>
       <div className='bg-white p-3 rounded'>
@@ -19,9 +30,9 @@ export default function EmailPage() {
         </div>
 
         {/* tabele */}
-        <div className={"table-container border-0 shadow-none mt-2"} style={{overflow: 'auto',}}>
-          <table className="table table-hover" style={{minWidth: '900px',}}>
-            <thead className='top-0 position-sticky h-45' style={{zIndex:1,}}>
+        <div className={"table-container border-0 shadow-none mt-2"} style={{ maxHeight:'25vh',overflow: 'auto', }}>
+          <table className="table table-hover" style={{ minWidth: '900px', }}>
+            <thead className='top-0 position-sticky' style={{ zIndex: 1, }}>
               <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Patient complain</th>
@@ -33,15 +44,11 @@ export default function EmailPage() {
               </tr>
             </thead>
             <tbody >
-              <tr className=''>
-                <td style={{minWidth:'100px',}}>26-12-2013</td>
-                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
-                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
-                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
-                <td className='text-truncate' style={{maxWidth:'150px',}}>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</td>
-                <td className='text-center'><button className='btn text-white btn-gr p-1'>Prescription</button></td>
-                <td className='text-center'><button className='btn text-white btn-gr p-1'>View</button></td>
-              </tr>
+              {
+                medicalRecords.map((record) => {
+                  return <MedicalRecords date={record.date} complain={record.complain} examination={record.examination} tests={record.tests} diagnosis={record.tests} />;
+                })
+              }
             </tbody>
           </table>
         </div>
