@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="frontend finished">
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="frontend finished1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/UpdateModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/inventory.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +94,9 @@
       <workItem from="1690032011213" duration="6469000" />
       <workItem from="1690045860823" duration="160000" />
       <workItem from="1690046051437" duration="1761000" />
+      <workItem from="1690051305039" duration="139000" />
+      <workItem from="1690097391043" duration="444000" />
+      <workItem from="1690115438798" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
@@ -251,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690037279165</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="frontend finished1">
+      <created>1690051325528</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1690051325528</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +292,7 @@
     <MESSAGE value="path changed" />
     <MESSAGE value="manage section finished" />
     <MESSAGE value="frontend finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="frontend finished" />
+    <MESSAGE value="frontend finished1" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend finished1" />
   </component>
 </project>
