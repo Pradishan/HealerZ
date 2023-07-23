@@ -29,8 +29,8 @@ export default function MedicalRequest(props) {
         <tr className='' key={props.id}>
             <td>{id}</td>
             <td>{name}</td>
-            <td>{date}</td>
-            <td>{description}</td>
+            <td style={{minWidth:'100px',}}>{date}</td>
+            <td className='text-truncate' style={{maxWidth:'200px',}}>{description}</td>
             <td>{medStatus}</td>
             <td className='text-center'><button className='btn text-white shadow btn-gr p-1'>View</button></td>
         </tr>
