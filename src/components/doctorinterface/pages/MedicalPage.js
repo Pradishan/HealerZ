@@ -11,7 +11,8 @@ export default function MedicalPage() {
       id:`cst200${i}`,
       name:`Name${i}`,
       date:'26-12-2013',
-      description:'Technophobia Virus" or "Technophobia Syndrome"',
+      duration: Math.floor(Math.random() * 7) + 1,// Random status between 1 and 7
+      description:'"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.',
       status: Math.floor(Math.random() * 3) + 1, // Random status between 1 and 3
     });
   }
@@ -35,16 +36,17 @@ export default function MedicalPage() {
           <thead className='top-0 position-sticky' style={{zIndex:1,}}>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">NAME</th>
-              <th scope="col">DATE</th>
-              <th scope="col">DESCRIPTION</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">ACTION</th>
+              <th scope="col">Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Description</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             {
-              medRequests.map((requs)=>(<MedicalRequest id={requs.id} name={requs.name} date={requs.date} description={requs.description} status={requs.status} />
+              medRequests.map((requs)=>(<MedicalRequest id={requs.id} name={requs.name} date={requs.date} duration={requs.duration} description={requs.description} status={requs.status} />
                 )
               )
             }
