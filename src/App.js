@@ -1,6 +1,6 @@
 import "./App.css";
 import "./index.css"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Admin from "./components/admin/Admin";
 import Doctorinterface from "./components/doctorinterface/Doctorinterface";
 import Dashboard from "./components/inventoryinterface/Dashboard";
@@ -13,6 +13,7 @@ import Loader from "./components/Loader";
 import Manage from "./components/inventoryinterface/Manage";
 import Supply from "./components/inventoryinterface/Supply";
 import Page404 from "./components/page404/Page404";
+import DoctorLogin from "./components/login/DoctorLogin";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/inventory-interface/dashboard" element={<Dashboard />} />
           <Route path="/inventory-interface/manage" element={<Manage />} />
           <Route path="/inventory-interface/supply" element={<Supply />} />
+          <Route path="/logintest" element={<DoctorLogin />} />
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>
