@@ -2,9 +2,9 @@ import React, { useState }  from "react";
 import { Modal } from "react-bootstrap";
 import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
-import UpdateModal from "../UpdateModal";
+import StockUpdateModal from "../StockUpdateModal";
 
-function SearchModal2(props) {
+function SearchIDUpdate(props) {
     const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -18,13 +18,8 @@ function SearchModal2(props) {
       console.log(`Searching for ${searchTerm}...`);
     }
 
-    const UpdateModal1 = () => {
+    const UpdateModal2 = () => {
         setShowModal(!showModal);
-    };
-
-    const handleSearch3 = (searchTerm1) => {
-        // Perform search logic using the search term
-        console.log('Search term:', searchTerm1);
     };
     const { show, onHide } = props;
     return (
@@ -38,8 +33,8 @@ function SearchModal2(props) {
                     <div className={"SearchSection3"} >
                         <form onSubmit={handleSubmit}>
                             <input className="SearchBox1" type="text" placeholder="DRUG_ID " value={searchTerm} onChange={handleChange} />
-                            <button type="submit" className="filterbutt" onClick={UpdateModal1}>Search</button>
-                            <UpdateModal show={showModal} onHide={UpdateModal1} />
+                            <button type="submit" className="filterbutt" onClick={UpdateModal2}>Search</button>
+                            <StockUpdateModal show={showModal} onHide={UpdateModal2} />
                         </form>
                     </div>
 
@@ -52,4 +47,4 @@ function SearchModal2(props) {
     );
 }
 
-export default SearchModal2;
+export default SearchIDUpdate;
