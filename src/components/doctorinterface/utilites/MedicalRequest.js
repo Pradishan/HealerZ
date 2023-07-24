@@ -1,16 +1,21 @@
 import React from 'react'
 import { useState } from 'react';
+import MedRequestModal from './MedRequestModal';
 
 export default function MedicalRequest(props) {
-    const id =props.id;
-    const name =props.name;
-    const date =props.date;
-    const description =props.description;
-    const [status,setStatus] =useState(props.status);
+
+    const { id, name, date, duration, description, status } = props;
+    const [status1, setStatus] = useState(status);
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
 
     let medStatus;
 
-    switch (status) {
+    switch (status1) {
         case 1:
             medStatus = <div className="alert alert-primary m-0 p-1 ms-1 text-center" role="alert">requested</div>;
             break;
@@ -26,13 +31,17 @@ export default function MedicalRequest(props) {
     }
 
     return (
-        <tr className='' key={props.id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td style={{minWidth:'100px',}}>{date}</td>
-            <td className='text-truncate' style={{maxWidth:'200px',}}>{description}</td>
-            <td>{medStatus}</td>
-            <td className='text-center'><button className='btn text-white btn-gr p-1'>View</button></td>
-        </tr>
+        <>
+            <tr className='' key={props.id}>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td style={{ minWidth: '100px', }}>{date}</td>
+                <td className='text-center'>{duration}</td>
+                <td className='text-truncate' style={{ maxWidth: '200px', }}>{description}</td>
+                <td>{medStatus}</td>
+                <td className='text-center'><button className='btn text-white btn-gr p-1' onClick={toggleModal} >View</button></td>
+            </tr>
+            <MedRequestModal show={showModal} onHide={toggleModal} data={""} />
+        </>
     )
 }
