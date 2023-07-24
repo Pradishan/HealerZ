@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "Healerz";
+$dbname = "neww";
 
 $conn=new mysqli($servername, $username, $password, $dbname);
 
@@ -19,11 +19,11 @@ else{
     $dosage = $_POST["Drug_dosage"];
     $description = $_POST["Descriptions"];
 
-    $sql="INSERT INTO drug(Drug_ID, Drug_Name, Category, Drug_dosage,Descriptions) VALUES ('$drug_id', '$drug_name','$category ', '$dosage', '$description');";
+    $sql="UPDATE drugs SET Drug_Name=?, Category=?, Dosage=?, Descriptions=? WHERE Drug_ID=?;";
     $res=mysqli_query($conn,$sql);
 
     if($res){
-        echo "Item Added Succesfully";
+        echo "Update successfully";
     }else{
         echo "error";
     }
