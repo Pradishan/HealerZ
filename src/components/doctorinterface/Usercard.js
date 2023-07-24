@@ -1,7 +1,5 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import MedModal from './utilites/MedModal';
-import { useState } from 'react';
-
 export default function Usercard({ src }) {
     const width = {
         minWidth: '230px',
@@ -53,7 +51,7 @@ export default function Usercard({ src }) {
                         <p className='text-success m-0 fw-bold'>22 years</p>
                     </div>
                     <div className='d-flex justify-content-between my-0 py-0'>
-                        <p className='fs-5 m-0'>Gender</p>
+                        <p className='m-0'>Gender</p>
                         <p className='m-0 fw-bold'>Male</p>
                     </div>
                     <div className='d-flex justify-content-between my-0 py-0'>
@@ -70,7 +68,7 @@ export default function Usercard({ src }) {
                     <button className='btn w-100 text-white shadow my-3 btn-gr' onClick={toggleModal} >Medical Records</button>
                 </div>
             </div>
-            <MedModal show={showModal} onHide={toggleModal} />
+            <MedModal show={showModal} onHide={toggleModal} id={'cst20001'}/>
         </>
     )
 }
