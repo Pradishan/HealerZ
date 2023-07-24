@@ -4,7 +4,7 @@ import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdateModal from "../UpdateModal";
 
-function SearchModal2(props) {
+function SearchIDUpdate(props) {
     const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -20,11 +20,6 @@ function SearchModal2(props) {
 
     const UpdateModal1 = () => {
         setShowModal(!showModal);
-    };
-
-    const handleSearch3 = (searchTerm1) => {
-        // Perform search logic using the search term
-        console.log('Search term:', searchTerm1);
     };
     const { show, onHide } = props;
     return (
@@ -52,4 +47,4 @@ function SearchModal2(props) {
     );
 }
 
-export default SearchModal2;
+export default SearchIDUpdate;

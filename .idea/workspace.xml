@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="frontend finished1" />
+    <list default="true" id="7d08d132-4bf3-43c2-8743-eaaf409d9c4e" name="Changes" comment="frontend finished1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/Manage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchIDUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchIDUpdate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inventoryinterface/search-section/SearchModal2.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,6 +102,8 @@
       <workItem from="1690097391043" duration="444000" />
       <workItem from="1690115438798" duration="49000" />
       <workItem from="1690176781385" duration="75000" />
+      <workItem from="1690209520899" duration="246000" />
+      <workItem from="1690210695759" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="package change">
       <created>1689404987462</created>
