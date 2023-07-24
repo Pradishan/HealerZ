@@ -40,7 +40,6 @@ export default function EmailPage() {
                 <th scope="col">On examination  </th>
                 <th scope="col">Tests</th>
                 <th scope="col">Dignosis</th>
-                <th scope="col">Prescription</th>
                 <th scope="col">ACTION</th>
               </tr>
             </thead>
