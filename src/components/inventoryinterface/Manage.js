@@ -4,8 +4,8 @@ import {Col, Container, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Logosmall from "../../assets/logo-small.png";
 import AddModal from "./AddModal";
-import SearchModal from "./search-section/SearchModal";
-import SearchModal2 from "./search-section/SearchModal2";
+import SearchModal from "./search-section/SearchIDStkUpdate";
+import SearchIDUpdate from "./search-section/SearchIDUpdate";
 // import ViewModal from "./ViewModal";
 
 function Manage(props) {
@@ -82,7 +82,7 @@ function Manage(props) {
             </Container>
             <AddModal show={showModal} onHide={addModal} />
             <SearchModal show={showModal2} onHide={searchModal}/>
-            <SearchModal2 show={showModal3} onHide={searchModal2}/>
+            <SearchIDUpdate show={showModal3} onHide={searchModal2}/>
 
 
         </Layout>

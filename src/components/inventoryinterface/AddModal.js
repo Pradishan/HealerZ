@@ -1,60 +1,84 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import './inventory.css';
-import SelectInput from "./additional/SelectInput";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function AddModal(props) {
-    const [formData, setFormData] = useState({
-        drug_id: "",
-        drug_name: "",
-        category: "",
-        dosage: "",
-        description: ""
-    });
+    const MySwal = withReactContent(Swal);
 
+    const [drug_id, setID] = useState('');
+    const [drug_name, setName] = useState('');
+    const [category, setCat] = useState('');
+    const [dosage, setDos] = useState('');
+    const [description, setDes] = useState('');
 
-   
+    const handleSubmit = () => {
+        if (drug_id.length === 0) {
+            // alert("Pls Enter the Drug_ID");
+            notify1();
+        } else if (drug_name.length === 0) {
+            // alert("Pls Enter the Drug_Name");
+            notify2();
+        }
+        else if (category.length === 0) {
+            // alert("Pls Enter the Category");
+            notify3();
+        }
+        else if (dosage.length === 0) {
+            // alert("Pls Enter the Dosage");
+            notify4();
+        } else if (description.length === 0) {
+            // alert("Pls Enter the Descrption");
+            notify5();
+        }
+        else {
+            const url = "http://localhost/add.php";
+            let fdata = new FormData();
+            fdata.append('Drug_ID', drug_id);
+            fdata.append('Drug_Name', drug_name);
+            fdata.append('Category', category);
+            fdata.append('Drug_dosage', dosage);
+            fdata.append('Descriptions', description);
 
-    // const options = ['Option 1', 'Option 2', 'Option 3','Option 4','Option 5','Option 6','Option 7','Option 8','Option 8'];
+            // axios.post(url,fdata)
+            // .then(response=>alert(response.data))
+            // .catch(error=>alert(error));
 
-    // const handleSelectChange = (selectedOption) => {
-    //     setFormData({
-    //         ...formData,
-    //         category: selectedOption
-    //     });
-    // };
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-    
+            axios.post(url, fdata)
+                .then((response) => {
+                    // Show success swal notification
+                    MySwal.fire({
+                        icon: "success",
+                        title: response.data,
+                        customClass: {
+                            container: "sweetalert-container",
+                        },
+                    });
+                })
+                .catch((error) => {
+                    // Show error swal notification
+                    MySwal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: error.message,
+                        customClass: {
+                            container: "sweetalert-container",
+                        },
+                    });
+                });
 
+        }
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Send the form data to the PHP backend using fetch
-        fetch("addDrug.php", {
-            method: "POST",
-            body: new URLSearchParams(formData),
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        })
-        .then(response => response.text())
-        .then(data => {
-            // Show a toast notification upon successful submission
-            notify();
-            console.log(data);
-        })
-        .catch(error => console.error(error));
-    };
-
-    const notify = () => toast("Item Added Successfully!");
+    const notify1 = () => toast("Pls Enter the Drug_ID");
+    const notify2 = () => toast("Pls Enter the Drug_Name");
+    const notify3 = () => toast("Pls Enter the Category");
+    const notify4 = () => toast("Pls Enter the Dosage");
+    const notify5 = () => toast("Pls Enter the Description");
     const { show, onHide } = props;
 
     return (
@@ -63,38 +87,38 @@ function AddModal(props) {
                 <Modal.Title>Drug ADD</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <hr/>
-                <form onSubmit={handleSubmit}>
+                <hr />
+                <form >
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"drug_id"} placeholder={"DRUGXXXXX"} className={"inputt"} onChange={handleInputChange} value={formData.drug_id}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"} placeholder={"DRUGXXXXX"} className={"inputt"} onChange={(e) => setID(e.target.value)} /><br /></th>
                         </tr>
                         <tr>
                             <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"drug_name"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleInputChange} value={formData.drug_name}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setName(e.target.value)} /><br /></th>
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={"inputfield1"}><input type={"text"} name={"category"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleInputChange} value={formData.category}/><br/></th>
+                            <th className={"inputfield1"}><input type={"text"} name={"Category"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setCat(e.target.value)} /><br /></th>
                         </tr>
                         <tr>
                             <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"dosage"} placeholder={"XXXmg"} className={"inputt"}  onChange={handleInputChange} value={formData.dosage}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"} placeholder={"XXXmg"} className={"inputt"} onChange={(e) => setDos(e.target.value)} /><br /></th>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <th className={"inputfield"}><textarea name={"description"}  placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={handleInputChange} value={formData.description}/><br/></th>
+                            <th className={"inputfield"}><textarea name={"Descriptions"} placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={(e) => setDes(e.target.value)} /><br /></th>
                         </tr>
                     </table>
                 </form>
 
 
-                <hr/>
+                <hr />
 
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" type="submit" onClick={handleSubmit} >Add</Button>
+                <Button variant="primary" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>Add</Button>
                 <ToastContainer />
                 <Button variant="secondary" onClick={onHide}>Close</Button>
             </Modal.Footer>
