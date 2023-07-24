@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import FeatherIcon from 'feather-icons-react';
 import logo from '../../assets/logo.png';
 import Notifiaction from './Notifiaction';
 import './doctor.css';
 import { Link } from 'react-router-dom';
+import Dsettings from './Dsettings';
 
 
 export default function Dnav() {
@@ -18,6 +19,12 @@ export default function Dnav() {
       status: Math.floor(Math.random() * 3) + 1, // Random status between 1 and 3
     });
   }
+
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+      setShowModal(!showModal);
+  };
 
   return (
     <>
@@ -49,18 +56,19 @@ export default function Dnav() {
               </div>
 
               <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">
+                <li><Link className="dropdown-item" to="/logintest">
                   <div className='d-flex'>
                     <FeatherIcon icon="log-out" className='me-2' />
                     <p className='fs-7 mb-0'>Logout</p>
                   </div>
                 </Link></li>
-                <li><Link className="dropdown-item" to="#">
+                <li><div className="dropdown-item" onClick={toggleModal}>
                   <div className='d-flex'>
                     <FeatherIcon icon="settings" className='me-2' />
                     <p className='fs-7 mb-0'>Settings</p>
                   </div>
-                </Link></li>
+                </div></li>
+                <Dsettings show={showModal} onHide={toggleModal} />
               </ul>
             </div>
 
@@ -77,7 +85,7 @@ export default function Dnav() {
         </div>
         <div className="offcanvas-body">
           {notificationsData.map((notification) => (
-            <div className='icon-hover rounded p-1' type='button' key={notification.id}><Notifiaction key={notification.id} src={notification.src} name={notification.name} id={notification.id} status={notification.status} /></div>
+            <Notifiaction key={notification.id} src={notification.src} name={notification.name} id={notification.id} status={notification.status} />
           ))}
         </div>
       </div>
