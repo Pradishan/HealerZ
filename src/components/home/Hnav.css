@@ -1,0 +1,14 @@
+.navbarh{
+    background-color: white;
+}
+.navbar-brand1{
+    margin-left: 60px;
+}
+.navbar-collapse1{
+    justify-content: right !important;
+    margin-right: 100px;
+}
+.navbar-nav li a{
+    margin-right: 15px !important;
+}
+
