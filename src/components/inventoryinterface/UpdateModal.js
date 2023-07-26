@@ -9,20 +9,37 @@ function UpdateModal(props) {
     // const notify = () => toast("Item Updated Successfully!");
     const notify1 = () => toast("Item Deleted Successfully!");
 
-    const [drugData, setDrugData] = useState({
-        Drug_ID: "DRUG00005",
-        Drug_Name: "Amoxicillin",
-        Category: "Option 1",
-        Drug_dosage: "500mg",
-        Descriptions: "dbhwbhd dwdbhuwqbhwqd dwqhdbwqhdbhwqd  wqhdbhwqyb"
-    });
+    const [ID, setID] = useState("");
+    const [name, setName] = useState("");
+    const [cat, setCat] = useState("");
+    const [dos, setDos] = useState("");
+    const [des, setDes] = useState("");
+
+    
 
     const handleUpdate = () => {
-        // Send the updated drug data to the PHP script using Axios
-        axios.post("http://localhost/update.php", drugData)
-            .then(response=>alert(response.data))
-            .catch(error => alert(error));
+        axios.post('http://localhost/update.php', {
+            Drug_ID: ID,
+            Drug_Name: name,
+            Category: cat,
+            Drug_dosage: dos,
+            Descriptions: des
+        })
+        .then(response => {
+            console.log(response.data); // Debugging: Check the response from the server
+            if (response.data === 'success') {
+                toast.success("Item Updated Successfully!");
+                onHide();
+            } else {
+                toast.error("Error occurred while updating the item.");
+            }
+        })
+        .catch(error => {
+            console.error(error); // Debugging: Check for any errors in the console
+            toast.error("An error occurred while updating the item.");
+        });
     };
+    
 
     const { show, onHide } = props;
     return (
@@ -36,23 +53,23 @@ function UpdateModal(props) {
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"}  placeholder={"DRUGXXXXX"} className={"inputt"} value={drugData.Drug_ID}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"}  placeholder={"DRUGXXXXX"} className={"inputt"} onChange={(e) => setID(e.target.value)} /><br/></th>
                         </tr>
                         <tr>
                             <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} placeholder={"XXXXXXXXXX"} className={"inputt"} value={drugData.Drug_Name}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setName(e.target.value)} /><br/></th>
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={"inputfield1"}><input type={"text"} name={"Category"} placeholder={"XXXXXXXXXX"} className={"inputt"} value={drugData.Category} /><br/></th>
+                            <th className={"inputfield1"}><input type={"text"} name={"Category"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setCat(e.target.value)} /><br/></th>
                         </tr>
                         <tr>
                             <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"}  placeholder={"XXXmg"} className={"inputt"} value={drugData.Drug_dosage}/><br/></th>
+                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"}  placeholder={"XXXmg"} className={"inputt"} onChange={(e) => setDos(e.target.value)} /><br/></th>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <th className={"inputfield"}><textarea name={"Descriptions"}  placeholder={"Type description here..."} className={"inputt"} rows={3} value={drugData.Descriptions}/><br/></th>
+                            <th className={"inputfield"}><textarea name={"Descriptions"}  placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={(e) => setDes(e.target.value)} /><br/></th>
                         </tr>
                     </table>
                 </form>

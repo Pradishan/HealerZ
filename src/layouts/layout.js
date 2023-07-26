@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Bell from "../assets/bell.svg";
-import Profile from "../assets/profile-img.svg";
+// import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from 'feather-icons-react';
 import logo from '../assets/logo.png';
@@ -9,6 +9,7 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {changeToggle} from "../redux/actions";
 import './layout.css';
+import powsi from "../assets/Powsi.jpg";
 
 function Layout({children}) {
 
@@ -23,6 +24,8 @@ function Layout({children}) {
     }
 
     console.log(open);
+
+   
 
     return (
         <div className="container-fluid">
@@ -92,16 +95,12 @@ function Layout({children}) {
 
 
 
-
-
-
-
                         <div className={'w-100 border-bottom-d1d1d1 mb-3'}/>
 
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/settings"}>
+                                to={"/inventory-interface/settings"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="settings" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Settings</div>}
@@ -144,7 +143,7 @@ function Layout({children}) {
                                     <li className="nav-item px-2">
                                         <a className="nav-link  position-relative p-0" aria-current="page" href="#">
 
-                                            <img src={Profile} alt={""}/>
+                                            <img src={powsi} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
                                         </a>
                                     </li>
 
@@ -157,7 +156,10 @@ function Layout({children}) {
                     </div>
                 </div>
             </div>
+           
         </div>
+
+        
     );
 }
 

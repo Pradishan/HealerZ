@@ -14,6 +14,7 @@ import Manage from "./components/inventoryinterface/Manage";
 import Supply from "./components/inventoryinterface/Supply";
 import Page404 from "./components/page404/Page404";
 import DoctorLogin from "./components/login/DoctorLogin";
+import Settings from "./components/inventoryinterface/Settings";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/inventory-interface/manage" element={<Manage />} />
           <Route path="/inventory-interface/supply" element={<Supply />} />
           <Route path="/logintest" element={<DoctorLogin />} />
+          <Route path="/inventory-interface/settings" element={<Settings/>}/>
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>
