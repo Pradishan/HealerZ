@@ -111,7 +111,7 @@ function Layout({children}) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/logout"}>
+                                to={"/loginInventory"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="log-out" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Logout</div>}
