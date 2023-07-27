@@ -1,81 +1,91 @@
 /* Custom styles for the form container and status container */
+
 .form-container,
 .status-container,
 .download-container {
-  background-color: #f9f9f9;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
+
 
 /* Add spacing between the form fields */
+
 .form-group {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
+
 /* Add some spacing between status and download containers */
+
 .status-container,
 .download-container {
-  margin-top: 0px;
+    margin-top: 0px;
 }
+
 .form-input {
-  width: 100%;
-  padding: 10px;
-  border:none;
-  border-radius:5px;
-  background-color: #D9D9D9;
-  margin:5px 0 0 15px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    margin: 5px 0 0 15px;
 }
-.form-container,.status-container,.download-container{
+
+.form-container,
+.status-container,
+.download-container {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
 }
 
-gradient-button{
-  width: 180px;
-  height: 30px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  background: linear-gradient(to right, #462596, #D338F6);
-  border: none;
-  color: white;
-  font-size: 18px;
-  margin-top: 0;
- 
+gradient-button {
+    width: 180px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: linear-gradient(to right, #462596, #D338F6);
+    border: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 0;
 }
 
-.form-group{
-  margin-bottom: 0px;
+.form-group {
+    margin-bottom: 0px;
 }
 
-label{
-  font-size: 16px;
-  color: black;
-  font-weight: 400;
+label {
+    font-size: 16px;
+    color: black;
+    font-weight: 400;
 }
 
-.requestDate{
-  text-align: right;
-  font-size: 14px;
-  font-weight: 500;
+.requestDate {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.moveLeft{
-  text-align: right;
+.moveLeft {
+    text-align: right;
 }
 
-.row{
-  text-indent: 1;
+.row {
+    text-indent: 1;
 }
 
-.request-state{
-  color:red;
+.request-state {
+    color: red;
 }
-.note1{
-  text-indent: 10;
+
+.note1 {
+    text-indent: 10;
 }
-.date{
-  margin:auto;
+
+.date {
+    margin: auto;
 }

@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   return (
     <div className="profile">
-      <div className="card-container">
-        <div className="card card-1">
+      <div className="card-container cardprof">
+        <div className="card card-1 cardproff">
           <h2>Profile</h2>
-          <div className="card sub-card">
+          <div className="card sub-card cardproff">
             <div className="info">
               <h6>Pradheeshan Sharoon</h6>
               <p className="info">cst20001</p>
@@ -49,7 +49,7 @@ const Profile = () => {
           </Link>
         </div>
 
-        <div className="card card-2">
+        <div className="card card-2 cardproff">
           <form id="editProfileForm">
             <div className="container">
               <div className="column-container">
