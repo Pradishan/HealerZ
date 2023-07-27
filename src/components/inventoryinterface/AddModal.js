@@ -19,21 +19,25 @@ function AddModal(props) {
     const handleSubmit = () => {
         if (drug_id.length === 0) {
             // alert("Pls Enter the Drug_ID");
-            notify1();
+            toast.error("Pls Enter the Drug_ID");
         } else if (drug_name.length === 0) {
             // alert("Pls Enter the Drug_Name");
-            notify2();
+            toast.error("Pls Enter the Drug_Name");
+    
         }
         else if (category.length === 0) {
             // alert("Pls Enter the Category");
-            notify3();
+            toast.error("Pls Enter the Category");
+            
         }
         else if (dosage.length === 0) {
             // alert("Pls Enter the Dosage");
-            notify4();
+            toast.error("Pls Enter the Dosage");
+           
         } else if (description.length === 0) {
             // alert("Pls Enter the Descrption");
-            notify5();
+            toast.error("Pls Enter the Descrption");
+            
         }
         else {
             const url = "http://localhost/add.php";
@@ -74,11 +78,6 @@ function AddModal(props) {
         }
     }
 
-    const notify1 = () => toast("Pls Enter the Drug_ID");
-    const notify2 = () => toast("Pls Enter the Drug_Name");
-    const notify3 = () => toast("Pls Enter the Category");
-    const notify4 = () => toast("Pls Enter the Dosage");
-    const notify5 = () => toast("Pls Enter the Description");
     const { show, onHide } = props;
 
     return (
@@ -88,7 +87,7 @@ function AddModal(props) {
             </Modal.Header>
             <Modal.Body>
                 <hr />
-                <form >
+                <form>
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>

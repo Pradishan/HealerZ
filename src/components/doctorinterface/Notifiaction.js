@@ -12,7 +12,7 @@ export default function Notifiaction(props) {
 
     return (
         <>
-            <div key={key} className='icon-hover rounded p-2 d-flex align-items-center justify-content-between m-3 my-2' onClick={toggleModal}>
+            <div key={key} type ="button" className='icon-hover rounded p-2 d-flex align-items-center justify-content-between m-3 my-2' onClick={toggleModal}>
                 <div className='d-flex align-items-center' >
                     {/* profile */}
                     <img src={src} alt='avatar' className='rounded' width='48px' height='48px' />

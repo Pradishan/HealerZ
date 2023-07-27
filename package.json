@@ -10,6 +10,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "chart.js": "^4.3.0",
+    "cors": "^2.8.5",
     "d3-ease": "^3.0.1",
     "expo-status-bar": "^1.6.0",
     "feather-icons-react": "^0.6.2",

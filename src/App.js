@@ -14,6 +14,8 @@ import Manage from "./components/inventoryinterface/Manage";
 import Supply from "./components/inventoryinterface/Supply";
 import Page404 from "./components/page404/Page404";
 import DoctorLogin from "./components/login/DoctorLogin";
+import Settings from "./components/inventoryinterface/Settings";
+import Protected from "./components/login/Protected";
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
         {/* <Loader /> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/doctor" element={<Doctorinterface />} />
+          <Route path="/doctor" element={<Protected Component ={Doctorinterface} />} />
           <Route path="/inventory-interface/inventory" element={<Inventory/>} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/profile" element={<Profile />} />
@@ -31,7 +33,8 @@ function App() {
           <Route path="/inventory-interface/dashboard" element={<Dashboard />} />
           <Route path="/inventory-interface/manage" element={<Manage />} />
           <Route path="/inventory-interface/supply" element={<Supply />} />
-          <Route path="/logintest" element={<DoctorLogin />} />
+          <Route path="/loginDoctor" element={<DoctorLogin />} />
+          <Route path="/inventory-interface/settings" element={<Settings/>}/>
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </div>
