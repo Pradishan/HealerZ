@@ -40,7 +40,7 @@ function AddModal(props) {
             
         }
         else {
-            const url = "http://localhost/add.php";
+            const url = "http://localhost/HealerZ/PHP/add.php";
             let fdata = new FormData();
             fdata.append('Drug_ID', drug_id);
             fdata.append('Drug_Name', drug_name);
