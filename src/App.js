@@ -18,6 +18,7 @@ import Settings from "./components/inventoryinterface/Settings";
 import Protected from "./components/login/Protected";
 import Protected1 from "./components/login/Protected1";
 import InventoryLogin from "./components/login/InventoryLogin";
+import MedicalRequest from "./components/profile/MedicalRequest";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/LoginInventory" element={<InventoryLogin/>}/>
           <Route path="/inventory-interface/settings"  element={<Protected1 Component ={Settings} />}/>
           <Route path="/*" element={<Page404 />} />
+           <Route path="/MedicalRequest" element={<MedicalRequest/>} />
         </Routes>
       </div>
     // </Router>

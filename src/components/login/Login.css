@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.bacckground {
+    margin: 0;
+    padding: 0;
+}
+
+.background{
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #462596, #D338F6, #89379c);
+}
+
+.cont {
+    width: 690px  !important;
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+}
+
+.design {
+    grid-area: design;
+    display: none;
+    position: relative;
+}
+
+.rotate-45 {
+    transform: rotate(-45deg);
+}
+
+.design .pill-1 {
+    bottom: 0;
+    left: -40px;
+    position: absolute;
+    width: 60px;
+    height: 200px;
+    background: linear-gradient(#462596,#D338F6, #89379c);
+    border-radius: 40px;
+}
+
+.design .pill-2 { /*Center */
+    top: -100px;
+    left: -80px;
+    position: absolute;
+    height: 450px;
+    width: 200px;
+    background: linear-gradient(#89379c, #D338F6, #462596);
+    border-radius: 200px;
+    border: 30px solid #e2c5e2;
+}
+
+ /* Top right*/
+.design .pill-3 {
+    top: -100px;
+    left: 110px;
+    position: absolute;
+    width: 60px;
+    height: 250px;
+    background: linear-gradient(#462596,#D338F6, #89379c);
+    border-radius: 70px;
+}
+
+
+
+.design .pill-4 {     /* Bottom pill*/
+    bottom: -180px;
+    left: 220px;
+    position: absolute;
+    height: 300px;
+    width: 100px;
+    background: linear-gradient(#462596, #D338F6);
+    border-radius: 70px;
+}
+
+.login {
+    grid-area: login;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+}
+
+.login h3.title {
+    margin: 15px 0;
+}
+
+.text-input {
+    background: #e6e6e6;
+    height: 40px;
+    display: flex;
+    width: 60%;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 15px;
+    margin: 5px 0;
+}
+
+.text-input input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.text-input i {
+    color: #686868;
+}
+
+::placeholder {
+    color: #9a9a9a;
+}
+
+.login-btn {
+    width: 60%;
+    padding: 10px;
+    color: white;
+    background: linear-gradient(to right,#D338F6, #462596, #4D1290) ;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+a {
+    font-size: 12px;
+    color: #9a9a9a;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.forgot {
+    margin-top: 15px;
+}
+
+.create {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+}
+
+.create i {
+    color: #9a9a9a;
+    margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .cont {
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "design login";
+    }
+
+    .design {
+        display: block;
+    }
+}
