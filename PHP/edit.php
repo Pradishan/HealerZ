@@ -35,7 +35,7 @@ switch ($method) {
         $user = json_decode(file_get_contents('php://input'));
         $sql = "UPDATE drug SET Drug_Name= :Drug_Name, Category =:Category, Drug_dosage =:Drug_dosage, Descriptions =:Descriptions WHERE Drug_ID = :Drug_ID";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $user->id);
+        $stmt->bindParam(':Drug_ID', $user->Drug_ID);
         $stmt->bindParam(':Drug_Name', $user->Drug_Name);
         $stmt->bindParam(':Category', $user->Category);
         $stmt->bindParam(':Drug_dosage', $user->Drug_dosage);

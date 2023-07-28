@@ -1,8 +1,8 @@
 // ViewModal.js
 import React, {useState} from "react";
 import { Modal, Button } from "react-bootstrap";
-import '../inventory.css';
 import {toast, ToastContainer} from "react-toastify";
+import '../inventory.css';
 
 function SupplyPopup(props) {
     const [supplyList, setsupplyList] = useState([
