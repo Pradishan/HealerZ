@@ -51,7 +51,7 @@ function Add(props) {
     }
     return (
         <div className={"Addcontt"}>
-            <header className="App-header">
+            <header className="App-headerr">
                 <h2 className="heading-purple">Add Patient</h2>
             </header>
             <div className={"addboxx"}>
