@@ -9,12 +9,13 @@
 .bg-f3f3f3 {
     background-color: #f3f3f3 !important;
 }
-.sidebaar{
+
+.sidebaar {
     background: #FFF;
     box-shadow: 14px 20px 41px 0px rgba(0, 0, 0, 0.25);
-
 }
-.navbaar{
+
+.navbaar {
     background: #FFF;
     box-shadow: 20px 6px 10px 0px rgba(0, 0, 0, 0.25);
 }
@@ -40,8 +41,8 @@
     display: block;
 }
 
-
-.side-menu-item:hover, .side-menu-active {
+.side-menu-item:hover,
+.side-menu-active {
     color: #0064ab !important;
     background-color: #EBF8F2;
 }
@@ -69,7 +70,6 @@
 
 .w-100px {
     width: 100px !important;
-
 }
 
 .rotate-180 {
@@ -137,6 +137,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
+}
+
+.panelheading {
+    font-size: 25px;
+    font-weight: 800;
+    font-style: normal;
+    color: #090086;
 }
 
 @media (max-width: 767px) {
