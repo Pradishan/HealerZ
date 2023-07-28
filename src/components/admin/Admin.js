@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import './Admin.css';
+import Add from "./Add";
 
-export default function Admin() {
-    return (
-        <div> Admin < /div>
-    )
-}
+function Admin()
+{
+  return(
+    <Add />
+  );
+  }
+
+export default Admin;

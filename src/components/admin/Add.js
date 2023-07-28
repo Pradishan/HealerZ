@@ -20,32 +20,32 @@ function Add(props) {
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {
-            toast.error("Pls Enter the Patient_ID");
+            toast.error("Please Enter the Patient_ID");
         } else if (patient_name.length === 0) {
-            toast.error("Pls Enter the Patient_Name");
+            toast.error("Please Enter the Patient_Name");
 
         }
         else if (dob.length === 0) {
-            toast.error("Pls Enter the DOB");
+            toast.error("Please Enter the DOB");
 
         }
         else if (phoneNo.length === 0) {
-            toast.error("Pls Enter the PhoneNo");
+            toast.error("Please Enter the PhoneNo");
 
         } else if (email.length === 0) {
-            toast.error("Pls Enter the Email");
+            toast.error("Please Enter the Email");
 
         } else if (address.length === 0) {
-            toast.error("Pls Enter the Address");
+            toast.error("Please Enter the Address");
 
         }else if (bg.length === 0) {
-            toast.error("Pls Enter the BloodGroup");
+            toast.error("Please Enter the BloodGroup");
 
         }else if (pass.length === 0) {
-            toast.error("Pls Enter the Password");
+            toast.error("Please Enter the Password");
 
         } else{
-            toast.error("Pls Enter the Descrption");
+            toast.error("Please Enter the Descrption");
 
         }
     }
