@@ -1,6 +1,6 @@
   import React,{useState,useEffect} from "react";
 import { Modal, Button } from "react-bootstrap";
-import './inventory.css';
+import '../inventory.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
@@ -55,7 +55,7 @@ function UpdateModal(props) {
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"}  placeholder={"DRUGXXXXX"} className={"inputt"}  /><br/></th>
+                            <th className={"inputfield"}> <p value={Drug_ID}></p><br/></th>
                         </tr>
                         <tr>
                             <th>Drug_Name</th>

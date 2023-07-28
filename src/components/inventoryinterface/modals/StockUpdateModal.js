@@ -1,7 +1,7 @@
 // ViewModal.js
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import './inventory.css';
+import '../inventory.css';
 import {toast, ToastContainer} from "react-toastify";
 
 function StockUpdateModal(props) {

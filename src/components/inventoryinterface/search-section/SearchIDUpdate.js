@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
-import UpdateModal from "../UpdateModal";
+import UpdateModal from "../modals/UpdateModal";
 import axios from "axios";
 
 function SearchIDUpdate(props) {
@@ -21,12 +21,12 @@ function SearchIDUpdate(props) {
 
     function getUser() {
         axios.get(`http://localhost/HealerZ/PHP/edit.php/${Drug_ID}`)
-            .then(function (response) {
+            .then(function(response) {
                 console.log(response.data);
                 setInputs(response.data);
                 setShowModal(true); // Show the modal after getting the response
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.error(error);
             });
     }
@@ -36,25 +36,45 @@ function SearchIDUpdate(props) {
     };
 
     const { show, onHide } = props;
-    return (
-        <Modal show={show} onHide={onHide} className={"moddd"}>
-            <Modal.Header closeButton>
-                <Modal.Title>Search</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div><h3 className={"content-heading1"}>Search DRUG ID: </h3></div>
-                    <div className={"SearchSection3"} >
-                        <form onSubmit={handleSubmit}>
-                            <input className="SearchBox1" type="text" placeholder="DRUG_ID" value={Drug_ID} onChange={handleChange} />
-                            <button type="submit" className="filterbutt">Search</button>
-                        </form>
-                    </div>
-                </div>
-                {showModal && <UpdateModal show={showModal} onHide={UpdateModal1} inputs={inputs} />}
-            </Modal.Body>
-        </Modal>
-    );
-}
+    return ( <
+        Modal show = { show }
+        onHide = { onHide }
+        className = { "moddd" } >
+        <
+        Modal.Header closeButton >
+        <
+        Modal.Title > Search < /Modal.Title> <
+        /Modal.Header> <
+        Modal.Body >
+        <
+        div className = { "SearchSection" }
+        style = {
+            { display: 'flex', flexDirection: 'row' } } >
+        <
+        div > < h3 className = { "content-heading1" } > Search DRUG ID: < /h3></div >
+        <
+        div className = { "SearchSection3" } >
+        <
+        form onSubmit = { handleSubmit } >
+        <
+        input className = "SearchBox1"
+        type = "text"
+        placeholder = "DRUG_ID"
+        value = { Drug_ID }
+        onChange = { handleChange }
+        /> <
+        button type = "submit"
+        className = "filterbutt" > Search < /button> <
+        /form> <
+        /div> <
+        /div> {
+            showModal && < UpdateModal show = { showModal }
+            onHide = { UpdateModal1 }
+            inputs = { inputs }
+            />} <
+            /Modal.Body> <
+            /Modal>
+        );
+    }
 
-export default SearchIDUpdate;
+    export default SearchIDUpdate;
