@@ -122,16 +122,16 @@ function Add(props) {
                             <div className='cont2'>
                                 <tr>
                                     <th><label>Email:</label></th>
-                                    <th className={"addinputt"}> <input type="email" className="form-control" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
+                                    <th className={"addinputt"}> <input type="email" className="form-controll" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
                                 </tr>
                                 <tr>
                                     <th><label>Address:</label></th>
-                                    <th className={"addinputt"}><textarea className={"form-control1"} rows={3} name={"Address"} placeholder={"No07,Kili Town,Kilinochchi"} onChange={(e) => setAddress(e.target.value)}/></th>
+                                    <th className={"addinputt"}><textarea className={"form-controll1"} rows={3} name={"Address"} placeholder={"No07,Kili Town,Kilinochchi"} onChange={(e) => setAddress(e.target.value)}/></th>
                                 </tr>
 
                                 <tr>
                                     <th><label>Blood Group:</label></th>
-                                    <th className={"addinputt"}> <select className="form-control"  name={"BloodGroup"}  onChange={(e) => setBgroup(e.target.value)}>
+                                    <th className={"addinputt"}> <select className="form-controll"  name={"BloodGroup"}  onChange={(e) => setBgroup(e.target.value)}>
                                         <option value="" >
                                             Choose Blood Group
                                         </option>
@@ -147,14 +147,14 @@ function Add(props) {
                                 </tr>
                                 <tr>
                                     <th> <label>Password:</label></th>
-                                    <th className={"addinputt"}> <input type="password" className="form-control" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
+                                    <th className={"addinputt"}> <input type="password" className="form-controll" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
                                 </tr>
 
                             </div>
                         </div>
                     </table>
                     <hr/>
-                    <button className="btn btn-primary done-button" onClick={handleSubmit}>ADD</button>
+                    <button className="btn btn-primary done-buttonn" onClick={handleSubmit}>ADD</button>
                     <ToastContainer />
                 </form>
 
