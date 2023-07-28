@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React,{ useState } from 'react';
+import MedModal from './utilites/MedModal';
 export default function Usercard({ src }) {
     const width = {
         minWidth: '230px',
@@ -8,6 +8,13 @@ export default function Usercard({ src }) {
         maxHeight: '10vh',
         overflowY: 'auto',
     }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
     return (
         <>
             <div className='bg-white shadow rounded p-2' style={width}>
@@ -44,7 +51,7 @@ export default function Usercard({ src }) {
                         <p className='text-success m-0 fw-bold'>22 years</p>
                     </div>
                     <div className='d-flex justify-content-between my-0 py-0'>
-                        <p className='fs-5 m-0'>Gender</p>
+                        <p className='m-0'>Gender</p>
                         <p className='m-0 fw-bold'>Male</p>
                     </div>
                     <div className='d-flex justify-content-between my-0 py-0'>
@@ -58,9 +65,10 @@ export default function Usercard({ src }) {
 
                     <h5 className='mt-2'>Special Disease</h5>
                     <div style={scroll}><p className='text-muted m-0'>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</p></div>
-                    <button className='btn w-100 text-white shadow my-3 btn-gr'>Medical Records</button>
+                    <button className='btn w-100 text-white shadow my-3 btn-gr' onClick={toggleModal} >Medical Records</button>
                 </div>
             </div>
+            <MedModal show={showModal} onHide={toggleModal} id={'cst20001'}/>
         </>
     )
 }

@@ -41,7 +41,7 @@ export default function TestPage() {
               <div className='d-flex align-items-center'>
                 <div className='input-group-text bg-gray border-0 rounded-pill'>
                   <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' id='searchDrug' />
-                  <FeatherIcon icon="plus-circle" className='mx-2 text-success' type='button' />
+                  <FeatherIcon icon="plus-circle" className='mx-2 text-success icon-btn' type='button' />
                 </div>
               </div>
               <div className='d-md-none d-lg-flex align-items-center'>
@@ -56,7 +56,7 @@ export default function TestPage() {
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td className='d-flex justify-content-end'><FeatherIcon icon="trash-2" className='me-2 text-danger' type='button' /></td>
+                    <td className='d-flex justify-content-end'><FeatherIcon icon="trash-2" className='me-2 text-danger icon-btn' type='button' /></td>
                   </tr>
                 </tbody>
               </table>
