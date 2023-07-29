@@ -60,10 +60,10 @@
     padding: 15px;
 }
 
-.form-control {
-    width: 220px;
-    height: 20px;
-    border-radius: 5px;
+.form-control2 {
+    width: 220px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
 }
 
 .form-control1 {

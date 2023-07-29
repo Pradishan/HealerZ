@@ -64,15 +64,15 @@ function Add(props) {
                                 <div className='cont1'>
                                     <tr>
                                         <th><label>Patient_ID:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control" name={"Patient_ID"} placeholder={"CSTXXXXX"} onChange={(e) => setID(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"Patient_ID"} placeholder={"CSTXXXXX"} onChange={(e) => setID(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th> <label>Patient_Name:</label></th>
-                                        <th className={"addinputt"}><input type="text" className="form-control" name={"Patient_Name"} placeholder={"Thanu"} onChange={(e) => setName(e.target.value)} /></th>
+                                        <th className={"addinputt"}><input type="text" className="form-control2" name={"Patient_Name"} placeholder={"Thanu"} onChange={(e) => setName(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th> <label>Date of Birth:</label></th>
-                                        <th className={"addinputt"}> <input type="date" className="form-control" onChange={(e) => setDob(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="date" className="form-control2" onChange={(e) => setDob(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th><label>Gender:</label></th>
@@ -113,7 +113,7 @@ function Add(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Phone_No:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control" name={"PhoneNo"} placeholder={"076XXXXXXX"} onChange={(e) => setphoneNo(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"PhoneNo"} placeholder={"076XXXXXXX"} onChange={(e) => setphoneNo(e.target.value)} /></th>
                                     </tr>
 
 
@@ -125,7 +125,7 @@ function Add(props) {
                                 <div className='cont2'>
                                     <tr>
                                         <th><label>Email:</label></th>
-                                        <th className={"addinputt"}> <input type="email" className="form-control" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="email" className="form-control2" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th><label>Address:</label></th>
@@ -134,7 +134,7 @@ function Add(props) {
 
                                     <tr>
                                         <th><label>Blood Group:</label></th>
-                                        <th className={"addinputt"}> <select className="form-control" name={"BloodGroup"} onChange={(e) => setBgroup(e.target.value)}>
+                                        <th className={"addinputt"}> <select className="form-control2" name={"BloodGroup"} onChange={(e) => setBgroup(e.target.value)}>
                                             <option value="" >
                                                 Choose Blood Group
                                             </option>
@@ -150,7 +150,7 @@ function Add(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Password:</label></th>
-                                        <th className={"addinputt"}> <input type="password" className="form-control" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="password" className="form-control2" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
                                     </tr>
 
                                 </div>
