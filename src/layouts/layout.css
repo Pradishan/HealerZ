@@ -61,7 +61,7 @@
     justify-content: end;
     margin-left: auto;
     display: flex;
-    width: fit-content;
+    width: min-content;
     padding: 10px 0 10px 10px;
     cursor: pointer;
     margin-top: 10px;
