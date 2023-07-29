@@ -125,7 +125,9 @@ function Layout({children}) {
                 <div className="col p-0">
                     <nav className="navbar navbar-expand-lg bg-white border-bottom-d1d1d1 px-4 navbaar">
                         <div className="container-fluid">
-                            {/*<a className="navbar-brand" href="#">Navbar</a>*/}
+                        <div className='panelheading'>
+                                Inventory Panel
+                            </div>
                             <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                                     aria-label="Toggle navigation">

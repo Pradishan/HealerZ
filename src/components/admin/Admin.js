@@ -1,12 +1,13 @@
 import React from "react";
 import './Admin.css';
-import Add from "./Add";
+import AdminLayout from "../../layouts/AdminLayout";
 
-function Admin()
-{
-  return(
-    <Add />
+function Admin() {
+  return (
+    <AdminLayout>
+    </AdminLayout>
+
   );
-  }
+}
 
 export default Admin;
