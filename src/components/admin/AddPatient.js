@@ -3,14 +3,16 @@ import './Admin.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminLayout from '../../layouts/AdminLayout';
+import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-function Add(props) {
-
-
-
+function AddPatient(props) {
+    const MySwal = withReactContent(Swal);
     const [patient_id, setID] = useState('');
     const [patient_name, setName] = useState('');
     const [dob, setDob] = useState('');
+    // const [gender, setGen] = useState('');
     const [phoneNo, setphoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -47,16 +49,46 @@ function Add(props) {
             toast.error("Please Enter the Password");
 
         } else {
-            toast.error("Please Enter the Descrption");
+            const url = "http://localhost/HealerZ/PHP/addpatient.php";
+            let fdata = new FormData();
+            fdata.append('Patient_ID', patient_id);
+            fdata.append('Patient_Name', patient_name);
+            // fdata.append('DateOfBirth', dob);
+            fdata.append('PhoneNo', phoneNo);
+            fdata.append('Email', email);
+            fdata.append('Address', address);
+            fdata.append('BloodGroup', bg);
+            fdata.append('Password', pass);
+            axios.post(url, fdata)
+            .then((response) => {
+                // Show success swal notification
+                MySwal.fire({
+                    icon: "success",
+                    title: response.data,
+                    customClass: {
+                        container: "sweetalert-container",
+                    },
+                });
+            })
+            .catch((error) => {
+                // Show error swal notification
+                MySwal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: error.message,
+                    customClass: {
+                        container: "sweetalert-container",
+                    },
+                });
+            });
 
         }
     }
     return (
         <AdminLayout>
             <div className={"Addcontt"}>
-                <header className="App-header">
                     <h2 className="heading-purple">Add Patient</h2>
-                </header>
+                
                 <div className={"addboxx"}>
                     <form>
                         <table>
@@ -72,7 +104,7 @@ function Add(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Date of Birth:</label></th>
-                                        <th className={"addinputt"}> <input type="date" className="form-control2" onChange={(e) => setDob(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="date" className="form-control2" name={"DateOfBirth"} onChange={(e) => setDob(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th><label>Gender:</label></th>
@@ -115,13 +147,9 @@ function Add(props) {
                                         <th> <label>Phone_No:</label></th>
                                         <th className={"addinputt"}> <input type="text" className="form-control2" name={"PhoneNo"} placeholder={"076XXXXXXX"} onChange={(e) => setphoneNo(e.target.value)} /></th>
                                     </tr>
-
-
-
-
-
-
                                 </div>
+
+
                                 <div className='cont2'>
                                     <tr>
                                         <th><label>Email:</label></th>
@@ -152,20 +180,15 @@ function Add(props) {
                                         <th> <label>Password:</label></th>
                                         <th className={"addinputt"}> <input type="password" className="form-control2" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
                                     </tr>
-
                                 </div>
                             </div>
                         </table>
                         <hr />
-                        <button className="btn btn-primary done-button" onClick={handleSubmit}>ADD</button>
-                        <ToastContainer />
                     </form>
-
+                    <button className="btn btn-primary done-button" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>ADD</button>
+                    
                 </div>
-
-
-
-
+                <ToastContainer />
             </div>
 
         </AdminLayout>
@@ -174,4 +197,4 @@ function Add(props) {
     );
 }
 
-export default Add;
+export default AddPatient;
