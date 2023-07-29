@@ -31,29 +31,29 @@ function App() {
     // <Router>
       <div className="">
         {/* <Loader /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/doctor" element={<Protected Component ={Doctorinterface} />} />
-          <Route path="/inventory-interface/inventory" element={<Protected1 Component ={Inventory} />} />
-          <Route path="/clubs" element={<Clubs />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/inventory-interface/dashboard"  element={<Protected1 Component ={Dashboard} />} />
-          <Route path="/inventory-interface/manage" element={<Protected1 Component ={Manage} />} />
-          <Route path="/inventory-interface/supply"  element={<Protected1 Component ={Supply} />} />
-          <Route path="/loginDoctor" element={<DoctorLogin />} />
-          <Route path="/LoginInventory" element={<InventoryLogin/>}/>
-          <Route path="/inventory-interface/settings"  element={<Protected1 Component ={Settings} />}/>
-          <Route path="/*" element={<Page404 />} />
-           <Route path="/MedicalRequest" element={<MedicalRequest/>} />
-           <Route path="/admin/dashboard" element={<DashboardAdmin/>}/>
-           <Route path="/admin/addpatient" element={<AddPatient/>}/>
-           <Route path="/admin/editpatient" element={<UpdatePatient/>}/>
-           <Route path="/admin/patientlist" element={<PatientList/>}/>
-           <Route path="/admin/humanresource" element={<HumanResource/>}/>
-           <Route path="/admin/medicalreports" element={<MedicalReport/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/*" element={ <Page404 /> } />
+        <Route path="/" element={ <Home /> } />
+        <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
+        <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } /> } />
+        <Route path="/clubs" element={ <Clubs /> } />
+        <Route path="/profile" element={ <Profile /> } />
+        <Route path="/login" element={ <Login /> } />
+        <Route path="/admin" element={ <Admin /> } />
+        <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } /> } />
+        <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } /> } />
+        <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply } /> } />
+        <Route path="/loginDoctor" element={ <DoctorLogin /> } />
+        <Route path="/LoginInventory" element={ <InventoryLogin /> } />
+        <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } /> } />
+        <Route path="/MedicalRequest" element={ <MedicalRequest /> } />
+        <Route path="/admin/dashboard" element={ <DashboardAdmin /> } />
+        <Route path="/admin/addpatient" element={ <AddPatient /> } />
+        <Route path="/admin/editpatient" element={ <UpdatePatient /> } />
+        <Route path="/admin/patientlist" element={ <PatientList /> } />
+        <Route path="/admin/humanresource" element={ <HumanResource /> } />
+        <Route path="/admin/medicalreports" element={ <MedicalReport /> } />
+      </Routes>
       </div>
     // </Router>
   );
