@@ -3,7 +3,6 @@ import logo from '../../assets/logo.png';
 
 
 
-
 const Carousel = () => {
     return (
           
