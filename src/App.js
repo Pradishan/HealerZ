@@ -35,17 +35,17 @@ function App() {
         <Route path="/*" element={ <Page404 /> } />
         <Route path="/" element={ <Home /> } />
         <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
-        <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } /> } />
+        <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } roll={'Pharmacist'} /> } />
         <Route path="/clubs" element={ <Clubs /> } />
         <Route path="/profile" element={ <Profile /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/admin" element={ <Admin /> } />
-        <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } /> } />
-        <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } /> } />
-        <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply } /> } />
+        <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />
+        <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } roll={'Pharmacist'}/> } />
+        <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply }roll={'Pharmacist'} /> } />
         <Route path="/loginDoctor" element={ <DoctorLogin /> } />
         <Route path="/LoginInventory" element={ <InventoryLogin /> } />
-        <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } /> } />
+        <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
         <Route path="/MedicalRequest" element={ <MedicalRequest /> } />
         <Route path="/admin/dashboard" element={ <DashboardAdmin /> } />
         <Route path="/admin/addpatient" element={ <AddPatient /> } />

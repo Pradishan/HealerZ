@@ -22,50 +22,41 @@ function SearchIDUpdate(props) {
         setShowModal(!showModal);
     };
     const { show, onHide } = props;
-    return ( <
-        Modal show = { show }
+    return ( 
+        <Modal show = { show }
         onHide = { onHide }
         className = { "moddd" } >
-        <
-        Modal.Header closeButton >
-        <
-        Modal.Title > Search < /Modal.Title> <
-        /Modal.Header> <
-        Modal.Body >
-        <
-        div className = { "SearchSection" }
+        <Modal.Header closeButton >
+        <Modal.Title > Search </Modal.Title> 
+        </Modal.Header> 
+        <Modal.Body >
+        <div className = { "SearchSection" }
         style = {
             { display: 'flex', flexDirection: 'row' } } >
-        <
-        div > < h3 className = { "content-heading1" } > Search DRUG ID: < /h3></div >
-        <
-        div className = { "SearchSection3" } >
-        <
-        form onSubmit = { handleSubmit } >
-        <
-        input className = "SearchBox1"
+        <div> 
+            <h3 className = { "content-heading1" } > Search DRUG ID: </h3></div >
+        <div className = { "SearchSection3" } >
+        <form onSubmit = { handleSubmit } >
+        <input className = "SearchBox1"
         type = "text"
         placeholder = "DRUG_ID "
         value = { searchTerm }
         onChange = { handleChange }
-        /> <
-        button type = "submit"
+        /> 
+        <button type = "submit"
         className = "filterbutt"
-        onClick = { UpdateModal2 } > Search < /button> <
+        onClick = { UpdateModal2 } > Search </button> <
         StockUpdateModal show = { showModal }
         onHide = { UpdateModal2 }
-        /> <
-        /form> <
-        /div>
+        />
+        </form>
+        </div>
 
-        <
-        /div>
+        </div>
 
-        <
-        /Modal.Body>
+        </Modal.Body>
 
-        <
-        /Modal>
+        </Modal>
 
     );
 }
