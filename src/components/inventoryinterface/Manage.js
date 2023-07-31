@@ -3,7 +3,7 @@ import Layout from "../../layouts/layout";
 import {Col, Container, Row} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Logosmall from "../../assets/logo-small.png";
-import AddModal from "./AddModal";
+import AddModal from "./modals/AddModal";
 import SearchModal from "./search-section/SearchIDStkUpdate";
 import SearchIDUpdate from "./search-section/SearchIDUpdate";
 // import ViewModal from "./ViewModal";
