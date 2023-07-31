@@ -3,17 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 export default function Protected(props) {
   const navigate = useNavigate();
-  const { Component } = props;
+  const { Component,roll } = props;
   useEffect(() => {
-    let login = sessionStorage.getItem('login');
+    let login = sessionStorage.getItem(roll);
     console.log(login);
     console.log(sessionStorage.getItem('loginStatus'));
-    if (!login) {
+    if (login === 'false') {
       sessionStorage.setItem(
         "loginStatus",
         "Please login to access the Doctor interface!"
       );
       navigate("/loginDoctor");
+      return;
     }
   });
 
