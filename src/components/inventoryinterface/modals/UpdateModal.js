@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import '../inventory.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,7 +11,8 @@ function UpdateModal(props) {
 
     const [inputs, setInputs] = useState({});
 
-    useEffect(() => {
+    // Update 'inputs' state with the fetched data when the component receives new props (data from SearchIDUpdate)
+    React.useEffect(() => {
         setInputs(props.inputs);
     }, [props.inputs]);
 
@@ -32,7 +33,7 @@ function UpdateModal(props) {
                 notify2();
             })
             .catch(function (error) {
-                console.error(error);
+                alert(error);
             });
     };
 
