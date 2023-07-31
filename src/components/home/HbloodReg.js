@@ -5,45 +5,74 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function HbloodReg() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+      <Button className='btn bg-outline-white'  onClick={handleShow}>
+        Register
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Blood Donation Registration</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+            <Form.Group className="mb-3" controlId="">
+
+              <Form.Label>Email:</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="name@example.com"
+                placeholder="Name@example.com"
                 autoFocus
               />
             </Form.Group>
+
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              controlId="">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control 
+              type='text'
+              placeholder='Name'/>
+              </Form.Group>
+
+              <Form.Group
+              className="mb-3"
+              controlId="">
+              <Form.Label>Nic No:</Form.Label>
+              <Form.Control 
+              type='text'
+              placeholder='99#######v'/>
+             </Form.Group>
+
+             <Form.Group
+              className="mb-3"
+              controlId="">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control 
+              type='text'
+              placeholder='0767777777'/>
+            </Form.Group>
+
+              <Form.Group
+              className="mb-3"
+              controlId="">
+              <Form.Label>Phone no:</Form.Label>
+              <Form.Control 
+              type='text'
+              placeholder='Address'/>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className='btn d-md-block text-white my-3 btn-gr'  onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button className='btn d-md-block text-white my-3 btn-gr'   onClick={handleClose}>
+            Register
           </Button>
         </Modal.Footer>
       </Modal>
