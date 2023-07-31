@@ -11,9 +11,9 @@ export default function DoctorLogin() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    let login = sessionStorage.getItem('login');
+    let login = sessionStorage.getItem('Doctor');
  
-    if(login === true){
+    if(login === 'true'){
       navigate('/doctor')
     }
     let loginStatus = sessionStorage.getItem('loginStatus');
@@ -34,7 +34,8 @@ export default function DoctorLogin() {
         setMessage(response.data.message);
         if(response.data.message === "Login successful."){
           setTimeout(()=>{
-            sessionStorage.setItem('login',true);
+            sessionStorage.setItem('Doctor','true');
+            console.log(sessionStorage.getItem('Doctor'));
             navigate('/doctor');
           },100) ;
         }

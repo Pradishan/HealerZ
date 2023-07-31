@@ -20,7 +20,7 @@ export default function Dnav() {
   }
 
   const logout = () => {
-    sessionStorage.setItem('login',false);
+    sessionStorage.setItem('Doctor','false');
     sessionStorage.setItem('loginStatus','Logged out successfully!');
     navigate("/loginDoctor");
   };
