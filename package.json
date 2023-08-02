@@ -16,6 +16,7 @@
     "feather-icons-react": "^0.6.2",
     "mdb-react-ui-kit": "^6.1.0",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.1",
     "react-bootstrap": "^2.8.0",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
