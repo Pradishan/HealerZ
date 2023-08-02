@@ -90,7 +90,7 @@ function AddPatient(props) {
     return (
         <AdminLayout>
             <div className={"Addcontt"}>
-                    <h2 className="heading-purple">Add Patient</h2>
+                   
                 
                 <div className={"addboxx"}>
                     <form>
