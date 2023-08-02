@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo  } from "react";
 import { Modal, Button } from "react-bootstrap";
 import '../inventory.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,19 +9,24 @@ function UpdateModal(props) {
     const notify1 = () => toast("Item Deleted Successfully!");
     const notify2 = () => toast("Item Updated Successfully!");
 
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState(props.inputs);
+    const memoizedInputs = useMemo(() => props.inputs, [props.inputs]);
 
-    // Update 'inputs' state with the fetched data when the component receives new props (data from SearchIDUpdate)
-    React.useEffect(() => {
-        setInputs(props.inputs);
-    }, [props.inputs]);
-
+    // Update the inputs state only when it changes
+    if (memoizedInputs !== inputs) {
+      setInputs(memoizedInputs);
+    }
+  
     const handleChange = (event) => {
-        setInputs({
-            ...inputs,
-            [event.target.name]: event.target.value
-        });
+      const { name, value } = event.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
     };
+    
+
+
 
     const handleUpdate = () => {
         // Perform the update action here using the inputs state
@@ -62,30 +67,83 @@ function UpdateModal(props) {
                 <hr />
                 <form>
                     <table className={"ADDTable"}>
-                        <tr>
-                            <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"} value={inputs.Drug_ID} placeholder={"DRUGXXXXXX"} className={"inputt"} onChange={handleChange} /><br /></th>
-                        </tr>
-                        <tr>
-                            <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} value={inputs.Drug_Name} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleChange} /><br /></th>
-                        </tr>
-                        <tr>
-                            <th>Category</th>
-                            <th className={"inputfield1"}><input type={"text"} name={"Category"} value={inputs.Category} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleChange} /><br /></th>
-                        </tr>
-                        <tr>
-                            <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"} value={inputs.Drug_dosage} placeholder={"XXXmg"} className={"inputt"} onChange={handleChange} /><br /></th>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <th className={"inputfield"}><textarea name={"Descriptions"} value={inputs.Descriptions} placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={handleChange} /><br /></th>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th>Drug_ID</th>
+                                <th className={"inputfield"}>
+                                    <input
+                                        type={"text"}
+                                        name={"Drug_ID"}
+                                        value={inputs.Drug_ID}
+                                        placeholder={"DRUGXXXXXX"}
+                                        className={"inputt"}
+                                        onChange={handleChange}
+                                    />
+                                    <br />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Drug_Name</th>
+                                <th className={"inputfield"}>
+                                    <input
+                                        type={"text"}
+                                        name={"Drug_Name"}
+                                        value={inputs.Drug_Name}
+                                        placeholder={"XXXXXXXXXX"}
+                                        className={"inputt"}
+                                        onChange={handleChange}
+                                    />
+                                    <br />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Category</th>
+                                <th className={"inputfield1"}>
+                                    <input
+                                        type={"text"}
+                                        name={"Category"}
+                                        value={inputs.Category}
+                                        placeholder={"XXXXXXXXXX"}
+                                        className={"inputt"}
+                                        onChange={handleChange}
+                                    />
+                                    <br />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Dosage</th>
+                                <th className={"inputfield"}>
+                                    <input
+                                        type={"text"}
+                                        name={"Drug_dosage"}
+                                        value={inputs.Drug_dosage}
+                                        placeholder={"XXXmg"}
+                                        className={"inputt"}
+                                        onChange={handleChange}
+                                    />
+                                    <br />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <th className={"inputfield"}>
+                                    <textarea
+                                        name={"Descriptions"}
+                                        value={inputs.Descriptions}
+                                        placeholder={"Type description here..."}
+                                        className={"inputt"}
+                                        rows={3}
+                                        onChange={handleChange}
+                                    />
+                                    <br />
+                                </th>
+                            </tr>
+                        </tbody>
                     </table>
                 </form>
                 <hr />
             </Modal.Body>
+
             <Modal.Footer>
                 <Button variant="primary" onClick={handleUpdate}>Update</Button>
                 <ToastContainer />
