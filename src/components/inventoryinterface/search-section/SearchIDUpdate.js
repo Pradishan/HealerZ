@@ -4,6 +4,8 @@ import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdateModal from "../modals/UpdateModal";
 import axios from "axios";
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SearchIDUpdate(props) {
     const [showModal, setShowModal] = useState(false);
@@ -24,7 +26,17 @@ function SearchIDUpdate(props) {
             .then(function(response) {
                 console.log(response.data);
                 setInputs(response.data);
-                setShowModal(true); // Show the modal after getting the response
+                if(response.data==0){
+                    toast.error("Invalid Drug_ID");
+                    setShowModal(false);
+                    
+                   
+                }else{
+                    setShowModal(true); // Show the modal after getting the response
+                }
+                   
+                
+                
             })
             .catch(function(error) {
                 console.error(error);
@@ -58,8 +70,10 @@ function SearchIDUpdate(props) {
                     </div>
                 </div>
                 {showModal && <UpdateModal show={showModal} onHide={UpdateModal1} inputs={inputs} />}
+                <ToastContainer/>
             </Modal.Body>
         </Modal>
+       
     );
 }
 
