@@ -170,7 +170,7 @@ function AdminLayout({ children }) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({ isActive }) => isActive ? "menu-item menu-active" : "menu-item"}
-                                to={"/admin/AddDoctor"}>
+                                to={"/admin/adddoctor"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="users" className={!open ? 'me-2' : "ms-1"} />
                                     {!open && <div className={'trans-1'}>Add Doctor</div>}

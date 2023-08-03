@@ -20,6 +20,7 @@ import Protected1 from "./components/login/Protected1";
 import InventoryLogin from "./components/login/InventoryLogin";
 import MedicalRequest from "./components/profile/MedicalRequest";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
+import AddDoctor from "./components/admin/AddDoctor";
 import AddPatient from "./components/admin/AddPatient";
 import UpdatePatient from "./components/admin/UpdatePatient";
 import PatientList from "./components/admin/PatientList";
@@ -48,11 +49,13 @@ function App() {
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
         <Route path="/MedicalRequest" element={ <MedicalRequest /> } />
         <Route path="/admin/dashboard" element={ <DashboardAdmin /> } />
+        <Route path="/admin/adddoctor" element={ <AddDoctor /> } />
         <Route path="/admin/addpatient" element={ <AddPatient /> } />
         <Route path="/admin/editpatient" element={ <UpdatePatient /> } />
         <Route path="/admin/patientlist" element={ <PatientList /> } />
         <Route path="/admin/humanresource" element={ <HumanResource /> } />
         <Route path="/admin/medicalreports" element={ <MedicalReport /> } />
+        
       </Routes>
       </div>
     // </Router>
