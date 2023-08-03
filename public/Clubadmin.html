@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ClubAdmin</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
       @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap);
     </style>
@@ -219,6 +220,50 @@
       }
       /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL2hvbWUvSHRlYW0uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUJBQW1COztJQUVuQixpQkFBaUI7O0FBRXJCO0FBQ0E7SUFDSSx1QkFBdUI7QUFDM0I7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QiIsInNvdXJjZXNDb250ZW50IjpbIi5pbWd7XHJcbiAgICBib3JkZXItcmFkaXVzOiA4MHB4O1xyXG4gICAgXHJcbiAgICBtYXJnaW4tbGVmdDogMjZweDtcclxuICAgXHJcbn1cclxuLnRlYW1lbGV7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG4udGl0bGV7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAyNnB4O1xyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
     </style>
+    <style>
+    .form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
   </head>
   <body>
     <div class="navigationH">
@@ -304,5 +349,31 @@
         </div>
       </nav>
     </div>
+    <!--Container body-->
+    <div class="container">
+      <div class="card" onclick="flipCard(1)">
+        <div class="front">Vaccination</div>
+        <div class="back"></div>
+    
+</script>
+</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card" onclick="flipCard(2)">
+        <div class="front">Blood Donation</div>
+        <div class="back">Form</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card" onclick="flipCard(3)">
+        <div class="front">Event</div>
+        <div class="back">Form</div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
