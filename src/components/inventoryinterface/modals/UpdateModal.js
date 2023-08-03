@@ -23,15 +23,26 @@ function UpdateModal(props) {
   const items = props.inputs; // Assuming props.inputs is an array of objects
 
   const handleUpdate = () => {
-    // Perform the update operation here
-    
+    // Check if there is any data to update
+    if (Object.keys(newData).length === 0) {
+      toast.error("No data to update!");
+      return;
+    }
+  
+    // Check if Drug_ID is present in newData
+    if (!newData.Drug_ID) {
+      toast.error("Drug ID is missing in the update data!");
+      return;
+    }
+
+    // Perform the update operation
     axios
-      .put("http://localhost/HealerZ/PHP/updateDrug.php", newData) // Replace with the correct URL of your PHP API endpoint
+      .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
       .then((response) => {
         // Handle successful response
         console.log(response.data);
         toast.success("Drug updated successfully!");
-        props.reloadUpdatedData();
+        
       })
       .catch((error) => {
         // Handle error response
@@ -39,6 +50,7 @@ function UpdateModal(props) {
         console.error(error);
       });
   };
+  
   
   const handleDelete = () => {
     const drugIdToDelete = newData.Drug_ID || (items.length && items[0].Drug_ID);
