@@ -1,42 +1,56 @@
 <?php
-// Replace 'your_database_host', 'your_database_user', 'your_database_password', and 'your_database_name' with your actual database credentials.
-header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+// Assuming you have a database connection already established
+// Replace "your_db_host", "your_db_name", "your_db_username", and "your_db_password" with your actual database credentials
+$host = "localhost";
+$dbname = "Healerz";
 $username = "root";
 $password = "";
-$dbname = "Healerz";
 
-$conn=new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 
-// Assuming you receive the updated data from the front-end as JSON.
-$data = json_decode(file_get_contents("php://input"), true);
+// Assuming you have a table called "drugs" in your database with columns "Drug_ID", "Drug_Name", "Category", "Drug_dosage", and "Descriptions"
 
-if (!empty($data)) {
-    // Replace 'your_table_name' with the actual table name in your database.
-    $drugID = $data['Drug_ID'];
-    $drugName = $data['Drug_Name'];
-    $category = $data['Category'];
-    $dosage = $data['Drug_dosage'];
-    $description = $data['Descriptions'];
+// Check if the request is a POST request
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    try {
+        // Get the updated drug information from the POST data
+        $updatedDrugID = $_POST["Drug_ID"];
+        $updatedDrugName = $_POST["Drug_Name"];
+        $updatedCategory = $_POST["Category"];
+        $updatedDosage = $_POST["Drug_dosage"];
+        $updatedDescription = $_POST["Descriptions"];
 
-    // Update the record in the database based on the Drug_ID.
-    $query = "UPDATE drug SET Drug_Name = '$drugName', Category = '$category', Drug_dosage = '$dosage', Descriptions = '$description' WHERE Drug_ID = '$drugID'";
+        // Prepare the SQL statement for updating the drug information
+        $sql = "UPDATE drug SET Drug_Name = :Drug_Name, Category = :Category, Drug_dosage = :Drug_dosage, Descriptions = :Descriptions WHERE Drug_ID = :Drug_ID";
 
-    if ($conn->query($query) === TRUE) {
-        // The update was successful. You can send a response or handle it as needed.
-        echo json_encode(array('message' => 'Update successful'));
-    } else {
-        // If there was an error with the update query.
-        echo json_encode(array('message' => 'Update failed'));
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":Drug_Name", $updatedDrugName);
+        $stmt->bindParam(":Category", $updatedCategory);
+        $stmt->bindParam(":Drug_dosage", $updatedDosage);
+        $stmt->bindParam(":Descriptions", $updatedDescription);
+        $stmt->bindParam(":Drug_ID", $updatedDrugID);
+
+        // Execute the update query
+        if ($stmt->execute()) {
+            // Return a success response
+            echo json_encode(array("status" => "success", "message" => "Drug information updated successfully!"));
+        } else {
+            // Return an error response
+            echo json_encode(array("status" => "error", "message" => "Failed to update drug information."));
+        }
+    } catch (PDOException $e) {
+        // Return an error response if any exception occurs
+        echo json_encode(array("status" => "error", "message" => $e->getMessage()));
     }
 } else {
-    // If the data is empty or not received properly from the front-end.
-    echo json_encode(array('message' => 'Invalid data'));
+    // Return an error response for invalid request method
+    echo json_encode(array("status" => "error", "message" => "Invalid request method."));
 }
-
-$conn->close();
-?>
