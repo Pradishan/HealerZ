@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>form</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Application-Form.css">
+</head>
+
+<body>
+    <section>
+        <h1 class="text-center text-capitalize">Vaccination Application&nbsp;</h1>
+        <div class="container">
+            <form id="application-form">
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Patient ID</strong><span class="text-danger">*</span></p><input class="form-control" type="text" required="" name="" placeholder="Ex. P001">
+                        </div>
+                        <div class="col">
+                            <p><strong>Patient Name</strong><span class="text-danger">*</span></p><input class="form-control" type="text" required="" name="" placeholder="Ex. Joe">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Date Of Birth</strong>&nbsp;<span class="text-danger">*</span></p><input class="form-control" type="date" required="" name="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <p><strong>Email</strong><span class="text-danger">*</span></p><input class="form-control" type="email" name="" placeholder="joe@gmail.com">
+                </div>
+                <div class="form-group mb-3">
+                    <p><strong>Whatsapp&nbsp;Number&nbsp;</strong><span class="text-danger">*</span></p><input class="form-control" type="number" name="" placeholder="0777777777">
+                </div>
+                <div class="form-group mb-3">
+                    <p><strong>Address&nbsp;</strong><span class="text-danger">*</span></p><input class="form-control" type="text" required="" name="" placeholder="Ex. No.36, Lower road">
+                    <p>City<br></p><input class="form-control" type="text" required="" name="" placeholder="Badulla">
+                    <p>Do you have any allergies?<br></p>
+                </div>
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col"><input class="form-control" type="text" required="" name="" placeholder="wheezing">
+                            <p>Gender</p><input class="form-control" type="text" required="" name="" placeholder="Female">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p>Institute/Club</p><textarea class="form-control" type="text" required="" placeholder="Ex.  Leo Club " name="Club"></textarea>
+                        </div>
+                        <div class="col">
+                            <p>Position</p><input class="form-control" type="text" required="" name="" placeholder="Ex. President">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3"><p><strong>Vaccination Card </strong><span class="text-danger">*</span></p>
+<div class="file">
+            <!-- Upload image input-->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                <div class="input-group-append">
+                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                </div>
+            </div>
+
+            <!-- Uploaded image area-->
+            <p class="font-italic text-dark text-center">The image uploaded will be rendered inside the box below.</p>
+            <div class="image-area mt-4 text-dark"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"  width=200></div>
+<div class="col d-none">
+    <p><strong>URL</strong><span class="text-danger">*</span></p>
+    <input id="urllink" name="url" type="url" class="form-control" readonly/>
+</div>
+</div></div>
+                <div class="justify-content-center d-flex form-group mb-3">
+                    <div id="submit-btn">
+                        <div class="row"><button class="btn btn-primary btn-light m-0 rounded-pill px-4" type="button" style="min-width: 500px;" action method="POST" target="hidden_iframe">Submit</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h3 id="fail" class="text-center text-danger d-none"><br>Form not Submitted&nbsp;<a href="contact.html">Try Again</a><br><br></h3>
+            <h3 id="success-1" class="text-center text-success d-none"><br>Form Submitted Successfully&nbsp;<a href="contact.html">Send Another Response</a><br><br></h3>
+        </div>
+    </section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Application-Form-Bootstrap-Image-Uploader.js"></script>
+    <script src="assets/js/Application-Form-submit-form.js"></script>
+</body>
+
+</html>
