@@ -64,6 +64,7 @@ function UpdateModal(props) {
                 <Modal.Title>Drug UPDATE</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                
                 <hr />
                 <form>
                     <table className={"ADDTable"}>
