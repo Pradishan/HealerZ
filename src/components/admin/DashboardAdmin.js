@@ -2,34 +2,32 @@ import React from 'react'
 import AdminLayout from '../../layouts/AdminLayout'
 import Card from 'react-bootstrap/Card';
 import {Col, Container, Row} from "react-bootstrap";
-import { Calendar, globalizeLocalizer } from 'react-big-calendar'
-import globalize from 'globalize'
 import './Admin.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 
-
+function renderEventContent(eventInfo) {
+  return (
+    <>
+      <b>{eventInfo.timeText}</b>
+      <i>{eventInfo.event.title}</i>
+    </>
+  )
+}
 
 export default function DashboardAdmin() {
-  const localizer = globalizeLocalizer(globalize)
-  const MyCalendar = (props) => ( 
-    <div>
-      <Calendar
-        localizer={localizer}
-        
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-      />
-    </div>
-  )
+  const events = [
+    { title: 'Meeting', start: new Date() }
+  ]
+  
   return (
     <AdminLayout>
-      <div className="col-8 m-3 mt-5  float-end" >
-          <div className={"outerbox d-flex"}>
-          <Row>
-           <Container className="StockIndicator d-flex flex-row " >
-                
-                  
+      <div className="col-8 float-end" >
+          <div className={"outerbox d-flex mt-5 float-start flex-md-column"}>
+          
+           <div className="StockIndicator d-flex flex-row " >
+           
+                   
                        <Card className="card1" style={{backgroundColor: 'white' }}>
 
                            <Card.Body>
@@ -74,15 +72,26 @@ export default function DashboardAdmin() {
                            </Card.Body>
                        </Card>
                        
-                </Container>
-                </Row>
+                   
+                   
+                </div>
+                
 
-                <Row>
-                  <Container>
+                  <div className="calendar d-flex flex-row m-3 p-2">
+                  <div>
+                    
+                    <FullCalendar
+                      plugins={[dayGridPlugin]}
+                      initialView='dayGridMonth'
+                      weekends={true}
+                      events={events}
+                      eventContent={renderEventContent}
+                    />
+                  </div>
+
+                  </div>
                   
-
-                  </Container>
-                </Row>
+                
          
            </div>
 
@@ -90,3 +99,5 @@ export default function DashboardAdmin() {
     </AdminLayout>
   )
 }
+
+

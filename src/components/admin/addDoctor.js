@@ -7,86 +7,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-function AddPatient(props) {
-    const MySwal = withReactContent(Swal);
-    const [patient_id, setID] = useState('');
-    const [patient_name, setName] = useState('');
-    const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
-    const [phoneNo, setphoneNo] = useState('');
-    const [email, setEmail] = useState('');
-    const [address, setAddress] = useState('');
-    const [bg, setBgroup] = useState('');
-    const [pass, setPass] = useState('');
-
-
-
-
-    const handleSubmit = () => {
-        if (patient_id.length === 0) {
-            toast.error("Please Enter the Patient_ID");
-        } else if (patient_name.length === 0) {
-            toast.error("Please Enter the Patient_Name");
-
-        }
-        else if (dob.length === 0) {
-            toast.error("Please Enter the DOB");
-
-        }else  if (gender.length === 0) {
-            toast.error("Please select the Gender");
-
-        }else if (phoneNo.length === 0) {
-            toast.error("Please Enter the PhoneNo");
-
-        } else if (email.length === 0) {
-            toast.error("Please Enter the Email");
-
-        } else if (address.length === 0) {
-            toast.error("Please Enter the Address");
-
-        } else if (bg.length === 0) {
-            toast.error("Please Enter the BloodGroup");
-
-        } else if (pass.length === 0) {
-            toast.error("Please Enter the Password");
-
-        } else {
-            const url = "http://localhost/HealerZ/PHP/addpatient.php";
-            let fdata = new FormData();
-            fdata.append('Patient_ID', patient_id);
-            fdata.append('Patient_Name', patient_name);
-            fdata.append('DateOfBirth', dob);
-            fdata.append('Gender', gender);
-            fdata.append('PhoneNo', phoneNo);
-            fdata.append('Email', email);
-            fdata.append('Address', address);
-            fdata.append('BloodGroup', bg);
-            fdata.append('Password', pass);
-            axios.post(url, fdata)
-            .then((response) => {
-                // Show success swal notification
-                MySwal.fire({
-                    icon: "success",
-                    title: response.data,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
-            })
-            .catch((error) => {
-                // Show error swal notification
-                MySwal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: error.message,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
-            });
-
-        }
-    }
+function AddDoctor(props) {
+    
     return (
         <AdminLayout>
             <div className={"Addcontt"}>
@@ -141,7 +63,7 @@ function AddPatient(props) {
                     <button className="btn btn-primary done-button" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>ADD</button>
                     
                 </div>
-                <ToastContainer />
+                
             </div>
 
         </AdminLayout>
@@ -150,4 +72,4 @@ function AddPatient(props) {
     );
 }
 
-export default AddPatient;
+export default AddDoctor;

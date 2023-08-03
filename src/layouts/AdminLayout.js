@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import Bell from "../assets/bell.svg";
-// import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from 'feather-icons-react';
 import logo from '../assets/logo.png';
-import logos from '../assets/logo-small.png';
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { changeToggle } from "../redux/actions";
+import Card from 'react-bootstrap/Card';
 import './AdminLayout.css';
-import powsi from "../assets/Powsi.jpg";
 
 function AdminLayout({ children }) {
 
@@ -92,50 +89,56 @@ function AdminLayout({ children }) {
                         {children}
                     </div>
                 </div>
-
+{/** User card */}   
                 <div  className='row  mt-5  d-flex  flex-start'>
-                <div col m3>
+                <div className='col m3'>
 
-                {!open ?<div className="logodashboard ms-5">
-                           
-                           <div className='bg-white shadow p-2' >
-                               <div className='m-3'>
+                {!open ?<div className="logodashboard ms-5 mt-5">
+                        <Card className=" usercard shadow">
+                        <Card.Body>   
+                               
                                    <div className='d-flex align-items-center justify-content-center mb-2'>
                                        <div className='d-flex align-items-center justify-content-center ms-2'>
-                                           <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='100px' height='100px' />
+                                           <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
                                        </div>
        
                                        <div className='d-flex align-items-center justify-content-center'>
                                            <div>
                                                <h5 className='m-0'>Janarthanan</h5>
-                                               <p className='fs-8 m-0'>emp20345</p>
-                                               <p className='fs-8 m-0'>admin@std.uwu.ac.lk</p>
-                                               <p className='fs-8 m-0'>0771234567</p>
+                                               <p className='m-0 text-muted'>emp20345</p>
+                                               <p className='m-0 text-muted'>admin@std.uwu.ac.lk</p>
+                                               <p className='m-0 text-muted'>0771234567</p>
                                            </div>
                                        </div>
                                    </div>
-                               </div>
-                           </div> 
+                               
+                           </Card.Body>
+                       </Card>
                                </div>:
-                               <div className="logodashboard ms-3">
+                               <div className="logodashboard ms-5 mt-5">
+                                 <Card className="w-100px shadow">
+                                 <Card.Body> 
                                    <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='50px' height='50px' />
+                                
+                                </Card.Body>
+                                </Card>
                                </div>}
                 </div>
                 </div>
-                
-            <div  className='row mt-5'>
+{/** END User card */}               
+            <div  className='row mt-1'>
+  
+
             {/** Side menu */}    
             
-                <div className="col m-3 mt-4" >
+                <div className="col mt-4" >
 
                 <div   
-                    className={(!open ? " sidebaar col-xl-2" : " w-100px") + " col-auto col-md-1 bg-transparant px-0 py-0  border-right min-vh-auto trans sidebaar mt-5"  }>
+                    className={(!open ? " sidebaar col-xl-2" : " w-100px") + " col-auto col-md-1 bg-transparant px-0 py-0  border-right min-vh-auto trans sidebaar ms-5"  }>
                     <div className={"close-btn-container"} onClick={toggleDrawer}>
                         <img src={SideClose} alt="SideClose" className={!!open && "rotate-180"} />
                     </div>
-            {/** User card */}       
-                  
-                 {/** END User card */}
+            
                     <div className={'w-100 border-bottom-d1d1d1'} />
                     <div
                         className="d-flex flex-column align-items-center align-items-sm-start px-2 text-white">
@@ -157,7 +160,7 @@ function AdminLayout({ children }) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({ isActive }) => isActive ? "menu-item menu-active" : "menu-item" }
-                                to={"/admin/doctor"}>
+                                to={"/doctor"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="activity" className={!open ? 'me-2' : "ms-1"} />    
                                     {!open && <div className={''}>Doctor</div>}
@@ -167,7 +170,7 @@ function AdminLayout({ children }) {
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({ isActive }) => isActive ? "menu-item menu-active" : "menu-item"}
-                                to={"/admin/addDoctor"}>
+                                to={"/admin/AddDoctor"}>
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="users" className={!open ? 'me-2' : "ms-1"} />
                                     {!open && <div className={'trans-1'}>Add Doctor</div>}
@@ -253,16 +256,7 @@ function AdminLayout({ children }) {
 
                         <div className={'w-100 border-bottom-d1d1d1 mb-3'} />
 
-                        <div className={"w-100 px-sm-2"}>
-                            <NavLink
-                                className={({ isActive }) => isActive ? "menu-item menu-active" : "menu-item"}
-                                to={"/inventory-interface/settings"}>
-                                <div className={'d-flex'}>
-                                    <FeatherIcon icon="settings" className={!open ? 'me-2' : "ms-1"} />
-                                    {!open && <div className={''}>Settings</div>}
-                                </div>
-                            </NavLink>
-                        </div>
+                       
 
                         <div className={"w-100 px-sm-2"}>
                             <NavLink

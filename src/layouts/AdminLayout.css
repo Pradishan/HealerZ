@@ -108,3 +108,8 @@
 .trans-1 {
     transition: 1000ms
 }
+
+.usercard {
+    width: 200px;
+    height: 80px;
+}
