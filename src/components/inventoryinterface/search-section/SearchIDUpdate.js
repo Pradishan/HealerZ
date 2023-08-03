@@ -34,8 +34,10 @@ function SearchIDUpdate(props) {
                 setInputs(response.data);
                 if (response.data == 0) {
                     toast.error("Invalid Drug_ID");
+                    setShowModal(false);
                 } else {
                     setSearchResults(response.data);
+                    setShowModal(true);
                 }
             })
             .catch(function (error) {
@@ -103,6 +105,10 @@ function SearchIDUpdate(props) {
                 toast.error("Failed to delete drug information.");
             });
     };
+    const UpdateModal1 = () => {
+        setShowModal(!showModal);
+    };
+
 
 
 
@@ -206,6 +212,7 @@ function SearchIDUpdate(props) {
                         <hr />
                     </p>
                 ))}
+                {showModal && <UpdateModal show={showModal} onHide={UpdateModal1} inputs={inputs} />}
                 <ToastContainer />
             </Modal.Body>
             <Modal.Footer>
