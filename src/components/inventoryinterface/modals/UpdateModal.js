@@ -8,7 +8,7 @@ import axios from "axios";
 function UpdateModal(props) {
   
 
-  const [inputs, setInputs] = useState(props.inputs);
+  // const [inputs, setInputs] = useState(props.inputs);
   const [newData, setNewData] = useState({});
 
   const updateNewData = (e, field) => {
@@ -29,20 +29,19 @@ function UpdateModal(props) {
       return;
     }
   
-    // Check if Drug_ID is present in newData
-    if (!newData.Drug_ID) {
-      toast.error("Drug ID is missing in the update data!");
-      return;
-    }
-
+    // // Check if Drug_ID is present in newData
+    // if (!newData.Drug_ID) {
+    //   toast.error("Drug ID is missing in the update data!");
+    //   return;
+    // }
+  
     // Perform the update operation
     axios
-      .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
+    .put(`http://localhost/HealerZ/PHP/updateDrug.php?Drug_ID=${newData.Drug_ID}`, newData)
       .then((response) => {
         // Handle successful response
         console.log(response.data);
         toast.success("Drug updated successfully!");
-        
       })
       .catch((error) => {
         // Handle error response
@@ -50,6 +49,7 @@ function UpdateModal(props) {
         console.error(error);
       });
   };
+  
   
   
   const handleDelete = () => {
@@ -96,7 +96,6 @@ function UpdateModal(props) {
                         placeholder={"DRUGXXXXXX"}
                         className={"inputt"}
                         onChange={(e) => updateNewData(e, "Drug_ID")}
-                        readOnly
                       />
                       <br />
                     </th>
