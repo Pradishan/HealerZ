@@ -1,13 +1,10 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
 // Assuming you have a database connection already established
-// Replace "your_db_host", "your_db_name", "your_db_username", and "your_db_password" with your actual database credentials
-$host = "localhost";
-$dbname = "Healerz";
-$username = "root";
-$password = "";
+header("Access-Control-Allow-Origin: http://localhost:3000");
+$host = "localhost"; // Replace with your database host
+$dbname = "Healerz"; // Replace with your database name
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password (if any)
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -16,12 +13,10 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-// Assuming you have a table called "drugs" in your database with columns "Drug_ID", "Drug_Name", "Category", "Drug_dosage", and "Descriptions"
-
 // Check if the request is a POST request
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
-        // Get the updated drug information from the POST data
+        // Get the updated drug information from the FormData
         $updatedDrugID = $_POST["Drug_ID"];
         $updatedDrugName = $_POST["Drug_Name"];
         $updatedCategory = $_POST["Category"];

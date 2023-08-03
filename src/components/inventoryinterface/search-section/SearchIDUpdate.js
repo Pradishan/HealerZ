@@ -48,24 +48,15 @@ function SearchIDUpdate(props) {
         // Perform the update action here using the inputs state
         // Example: You can use axios to send a POST request to your backend PHP script with the updated data.
         if (drug_name.length === 0) {
-            // alert("Pls Enter the Drug_Name");
-            toast.error("Pls Enter the Drug_Name");
-
-        }
-        else if (category.length === 0) {
-            // alert("Pls Enter the Category");
-            toast.error("Pls Enter the Category");
-
-        }
-        else if (dosage.length === 0) {
-            // alert("Pls Enter the Dosage");
-            toast.error("Pls Enter the Dosage");
-
+            toast.error("Please Enter the Drug_Name");
+        } else if (category.length === 0) {
+            toast.error("Please Enter the Category");
+        } else if (dosage.length === 0) {
+            toast.error("Please Enter the Dosage");
         } else if (description.length === 0) {
-            // alert("Pls Enter the Descrption");
-            toast.error("Pls Enter the Descrption");
-
+            toast.error("Please Enter the Description");
         } else {
+
             // Create a new object with the updated drug information
             const updatedDrug = {
                 Drug_ID: Drug_ID, // Assuming you have the Drug_ID from the item in the searchResults array
@@ -75,9 +66,16 @@ function SearchIDUpdate(props) {
                 Descriptions: description,
             };
 
+            const formData = new FormData();
+            formData.append("Drug_ID", updatedDrug.Drug_ID);
+            formData.append("Drug_Name", updatedDrug.Drug_Name);
+            formData.append("Category", updatedDrug.Category);
+            formData.append("Drug_dosage", updatedDrug.Drug_dosage);
+            formData.append("Descriptions", updatedDrug.Descriptions);
+
             // Send a POST request to update the drug information
             axios
-                .post("http://localhost/HealerZ/PHP/update.php", updatedDrug)
+                .post("http://localhost/HealerZ/PHP/update.php", formData)
                 .then((response) => {
                     console.log(response.data);
                     toast.success("Drug information updated successfully!");
@@ -87,9 +85,25 @@ function SearchIDUpdate(props) {
                     toast.error("Failed to update drug information.");
                 });
         }
-
-
     };
+
+    const handleDelete = () => {
+        // Assuming you have a single drug result in searchResults
+        const drugToDelete = searchResults[0];
+
+        // Send a DELETE request to delete the drug information
+        axios
+            .delete(`http://localhost/HealerZ/PHP/delete.php?Drug_ID=${drugToDelete.Drug_ID}`)
+            .then((response) => {
+                console.log(response.data);
+                toast.success("Drug information deleted successfully!");
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Failed to delete drug information.");
+            });
+    };
+
 
 
     const { show, onHide } = props;
@@ -196,6 +210,7 @@ function SearchIDUpdate(props) {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" onClick={handleUpdate}>Update</Button>
+                <Button variant="primary" onClick={handleDelete}>Delete</Button>
             </Modal.Footer>
         </Modal>
     );
