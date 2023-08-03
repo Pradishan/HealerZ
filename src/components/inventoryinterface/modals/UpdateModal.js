@@ -29,15 +29,15 @@ function UpdateModal(props) {
       return;
     }
   
-    // // Check if Drug_ID is present in newData
-    // if (!newData.Drug_ID) {
-    //   toast.error("Drug ID is missing in the update data!");
-    //   return;
-    // }
+    // Check if Drug_ID is present in newData
+    if (!newData.Drug_ID) {
+      toast.error("Drug ID is missing in the update data!");
+      return;
+    }
   
     // Perform the update operation
     axios
-    .put(`http://localhost/HealerZ/PHP/updateDrug.php?Drug_ID=${newData.Drug_ID}`, newData)
+    .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
       .then((response) => {
         // Handle successful response
         console.log(response.data);
