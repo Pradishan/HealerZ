@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
     "@mui/icons-material": "^5.14.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,6 +19,7 @@
     "feather-icons-react": "^0.6.2",
     "mdb-react-ui-kit": "^6.1.0",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.1",
     "react-bootstrap": "^2.8.0",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
