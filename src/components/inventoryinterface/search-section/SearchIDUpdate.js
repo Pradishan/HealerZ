@@ -62,8 +62,6 @@ function SearchIDUpdate(props) {
                         </form>
                     </div>
                 </div>
-
-                
                 {showModal && <UpdateModal show={showModal} onHide={UpdateModal1} inputs={inputs} />}
                 <ToastContainer />
             </Modal.Body>

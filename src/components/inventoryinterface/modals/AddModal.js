@@ -23,21 +23,21 @@ function AddModal(props) {
         } else if (drug_name.length === 0) {
             // alert("Pls Enter the Drug_Name");
             toast.error("Pls Enter the Drug_Name");
-    
+
         }
         else if (category.length === 0) {
             // alert("Pls Enter the Category");
             toast.error("Pls Enter the Category");
-            
+
         }
         else if (dosage.length === 0) {
             // alert("Pls Enter the Dosage");
             toast.error("Pls Enter the Dosage");
-           
+
         } else if (description.length === 0) {
             // alert("Pls Enter the Descrption");
             toast.error("Pls Enter the Descrption");
-            
+
         }
         else {
             const url = "http://localhost/HealerZ/PHP/add.php";
@@ -91,23 +91,68 @@ function AddModal(props) {
                     <table className={"ADDTable"}>
                         <tr>
                             <th>Drug_ID</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_ID"} placeholder={"DRUGXXXXX"} className={"inputt"} onChange={(e) => setID(e.target.value)} /><br /></th>
+                            <th className={"inputfield"}>
+                                <input
+                                    type={"text"}
+                                    name={"Drug_ID"}
+                                    placeholder={"DRUGXXXXX"}
+                                    className={"inputt"}
+                                    onChange={(e) => setID(e.target.value)}
+                                />
+                                <br />
+                            </th>
                         </tr>
                         <tr>
                             <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setName(e.target.value)} /><br /></th>
+                            <th className={"inputfield"}>
+                                <input
+                                    type={"text"}
+                                    name={"Drug_Name"}
+                                    placeholder={"XXXXXXXXXX"}
+                                    className={"inputt"}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                <br />
+                            </th>
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={"inputfield1"}><input type={"text"} name={"Category"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={(e) => setCat(e.target.value)} /><br /></th>
+                            <th className={"inputfield1"}>
+                                <input
+                                    type={"text"}
+                                    name={"Category"}
+                                    placeholder={"XXXXXXXXXX"}
+                                    className={"inputt"}
+                                    onChange={(e) => setCat(e.target.value)}
+                                />
+                                <br />
+                            </th>
                         </tr>
                         <tr>
                             <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"} placeholder={"XXXmg"} className={"inputt"} onChange={(e) => setDos(e.target.value)} /><br /></th>
+                            <th className={"inputfield"}>
+                                <input
+                                    type={"text"}
+                                    name={"Drug_dosage"}
+                                    placeholder={"XXXmg"}
+                                    className={"inputt"}
+                                    onChange={(e) => setDos(e.target.value)}
+                                />
+                                <br />
+                            </th>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <th className={"inputfield"}><textarea name={"Descriptions"} placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={(e) => setDes(e.target.value)} /><br /></th>
+                            <th className={"inputfield"}>
+                                <textarea
+                                    name={"Descriptions"}
+                                    placeholder={"Type description here..."}
+                                    className={"inputt"}
+                                    rows={3}
+                                    onChange={(e) => setDes(e.target.value)}
+                                />
+                                <br />
+                            </th>
                         </tr>
                     </table>
                 </form>
