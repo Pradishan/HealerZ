@@ -4,119 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClubAdmin</title>
-    <link rel="stylesheet" href="styles.css" />
     <style>
       @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap);
     </style>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/Application-Form.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <style>
-      .bacckground {
-        margin: 0;
-        padding: 0;
-      }
-
-      .background {
-        font-family: "Poppins", sans-serif;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to bottom right, #462596, #d338f6, #89379c);
-      }
-
-      .cont {
-        width: 690px !important;
-        height: 70vh;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-areas: "login";
-        box-shadow: 0 0 17px 10px rgb(0 0 0 / 30%);
-        border-radius: 20px;
-        background: white;
-        overflow: hidden;
-      }
-
-      .design {
-        grid-area: design;
-        display: none;
-        position: relative;
-      }
-
-      .rotate-45 {
-        transform: rotate(-45deg);
-      }
-
-      .design .pill-1 {
-        bottom: 0;
-        left: -40px;
-        position: absolute;
-        width: 60px;
-        height: 200px;
-        background: linear-gradient(#462596, #d338f6, #89379c);
-        border-radius: 40px;
-      }
-
-      .design .pill-2 {
-        /*Center */
-        top: -100px;
-        left: -80px;
-        position: absolute;
-        height: 450px;
-        width: 200px;
-        background: linear-gradient(#89379c, #d338f6, #462596);
-        border-radius: 200px;
-        border: 30px solid #e2c5e2;
-      }
-
-      /* Top right*/
-      .design .pill-3 {
-        top: -100px;
-        left: 110px;
-        position: absolute;
-        width: 60px;
-        height: 250px;
-        background: linear-gradient(#462596, #d338f6, #89379c);
-        border-radius: 70px;
-      }
-
-      .design .pill-4 {
-        /* Bottom pill*/
-        bottom: -180px;
-        left: 220px;
-        position: absolute;
-        height: 300px;
-        width: 100px;
-        background: linear-gradient(#462596, #d338f6);
-        border-radius: 70px;
-      }
-
-      .login {
-        grid-area: login;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        background: white;
-      }
-
-      .login h3.title {
-        margin: 15px 0;
-      }
-
-      .text-input {
-        background: #e6e6e6;
-        height: 40px;
-        display: flex;
-        width: 60%;
-        align-items: center;
-        border-radius: 10px;
-        padding: 0 15px;
-        margin: 5px 0;
-      }
-
       .text-input input {
         background: none;
         border: none;
@@ -134,17 +31,6 @@
         color: #9a9a9a;
       }
 
-      .login-btn {
-        width: 60%;
-        padding: 10px;
-        color: white;
-        background: linear-gradient(to right, #d338f6, #462596, #4d1290);
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-
       a {
         font-size: 12px;
         color: #9a9a9a;
@@ -152,166 +38,133 @@
         text-decoration: none;
       }
 
-      a.forgot {
-        margin-top: 15px;
-      }
-
-      .create {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        bottom: 30px;
-      }
-
       .create i {
         color: #9a9a9a;
         margin-left: 10px;
       }
 
-      @media (min-width: 768px) {
-        .cont {
-          grid-template-columns: 50% 50%;
-          grid-template-areas: "design login";
-        }
-
-        .design {
-          display: block;
-        }
-      }
-      /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL2xvZ2luL0xvZ2luLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtJQUNJLFNBQVM7SUFDVCxVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxrQ0FBa0M7SUFDbEMsYUFBYTtJQUNiLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHVFQUF1RTtBQUMzRTs7QUFFQTtJQUNJLHdCQUF3QjtJQUN4QixZQUFZO0lBQ1osYUFBYTtJQUNiLDJCQUEyQjtJQUMzQiw0QkFBNEI7SUFDNUIsMENBQTBDO0lBQzFDLG1CQUFtQjtJQUNuQixpQkFBaUI7SUFDakIsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLGFBQWE7SUFDYixrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSx5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSxTQUFTO0lBQ1QsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsYUFBYTtJQUNiLHFEQUFxRDtJQUNyRCxtQkFBbUI7QUFDdkI7O0FBRUEsa0JBQWtCLFVBQVU7SUFDeEIsV0FBVztJQUNYLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLFlBQVk7SUFDWixzREFBc0Q7SUFDdEQsb0JBQW9CO0lBQ3BCLDBCQUEwQjtBQUM5Qjs7Q0FFQyxhQUFhO0FBQ2Q7SUFDSSxXQUFXO0lBQ1gsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsYUFBYTtJQUNiLHFEQUFxRDtJQUNyRCxtQkFBbUI7QUFDdkI7Ozs7QUFJQSxzQkFBc0IsZUFBZTtJQUNqQyxjQUFjO0lBQ2QsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsWUFBWTtJQUNaLDZDQUE2QztJQUM3QyxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxnQkFBZ0I7SUFDaEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixtQkFBbUI7SUFDbkIsdUJBQXVCO0lBQ3ZCLGtCQUFrQjtJQUNsQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixhQUFhO0lBQ2IsVUFBVTtJQUNWLG1CQUFtQjtJQUNuQixtQkFBbUI7SUFDbkIsZUFBZTtJQUNmLGFBQWE7QUFDakI7O0FBRUE7SUFDSSxnQkFBZ0I7SUFDaEIsWUFBWTtJQUNaLGFBQWE7SUFDYixXQUFXO0lBQ1gsWUFBWTtJQUNaLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksVUFBVTtJQUNWLGFBQWE7SUFDYixZQUFZO0lBQ1osZ0VBQWdFO0lBQ2hFLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsZUFBZTtJQUNmLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLGVBQWU7SUFDZixjQUFjO0lBQ2QsZUFBZTtJQUNmLHFCQUFxQjtBQUN6Qjs7QUFFQTtJQUNJLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxjQUFjO0lBQ2QsaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0k7UUFDSSw4QkFBOEI7UUFDOUIsbUNBQW1DO0lBQ3ZDOztJQUVBO1FBQ0ksY0FBYztJQUNsQjtBQUNKIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9UG9wcGluczp3Z2h0QDQwMDs2MDAmZGlzcGxheT1zd2FwJyk7XHJcblxyXG4uYmFjY2tncm91bmQge1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgcGFkZGluZzogMDtcclxufVxyXG5cclxuLmJhY2tncm91bmR7XHJcbiAgICBmb250LWZhbWlseTogJ1BvcHBpbnMnLCBzYW5zLXNlcmlmO1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tIHJpZ2h0LCAjNDYyNTk2LCAjRDMzOEY2LCAjODkzNzljKTtcclxufVxyXG5cclxuLmNvbnQge1xyXG4gICAgd2lkdGg6IDY5MHB4ICAhaW1wb3J0YW50O1xyXG4gICAgaGVpZ2h0OiA3MHZoO1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMTAwJTtcclxuICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFwibG9naW5cIjtcclxuICAgIGJveC1zaGFkb3c6IDAgMCAxN3B4IDEwcHggcmdiKDAgMCAwIC8gMzAlKTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuXHJcbi5kZXNpZ24ge1xyXG4gICAgZ3JpZC1hcmVhOiBkZXNpZ247XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4ucm90YXRlLTQ1IHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XHJcbn1cclxuXHJcbi5kZXNpZ24gLnBpbGwtMSB7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBsZWZ0OiAtNDBweDtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiA2MHB4O1xyXG4gICAgaGVpZ2h0OiAyMDBweDtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgjNDYyNTk2LCNEMzM4RjYsICM4OTM3OWMpO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNDBweDtcclxufVxyXG5cclxuLmRlc2lnbiAucGlsbC0yIHsgLypDZW50ZXIgKi9cclxuICAgIHRvcDogLTEwMHB4O1xyXG4gICAgbGVmdDogLTgwcHg7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBoZWlnaHQ6IDQ1MHB4O1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KCM4OTM3OWMsICNEMzM4RjYsICM0NjI1OTYpO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjAwcHg7XHJcbiAgICBib3JkZXI6IDMwcHggc29saWQgI2UyYzVlMjtcclxufVxyXG5cclxuIC8qIFRvcCByaWdodCovXHJcbi5kZXNpZ24gLnBpbGwtMyB7XHJcbiAgICB0b3A6IC0xMDBweDtcclxuICAgIGxlZnQ6IDExMHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgd2lkdGg6IDYwcHg7XHJcbiAgICBoZWlnaHQ6IDI1MHB4O1xyXG4gICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KCM0NjI1OTYsI0QzMzhGNiwgIzg5Mzc5Yyk7XHJcbiAgICBib3JkZXItcmFkaXVzOiA3MHB4O1xyXG59XHJcblxyXG5cclxuXHJcbi5kZXNpZ24gLnBpbGwtNCB7ICAgICAvKiBCb3R0b20gcGlsbCovXHJcbiAgICBib3R0b206IC0xODBweDtcclxuICAgIGxlZnQ6IDIyMHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgaGVpZ2h0OiAzMDBweDtcclxuICAgIHdpZHRoOiAxMDBweDtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgjNDYyNTk2LCAjRDMzOEY2KTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDcwcHg7XHJcbn1cclxuXHJcbi5sb2dpbiB7XHJcbiAgICBncmlkLWFyZWE6IGxvZ2luO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxufVxyXG5cclxuLmxvZ2luIGgzLnRpdGxlIHtcclxuICAgIG1hcmdpbjogMTVweCAwO1xyXG59XHJcblxyXG4udGV4dC1pbnB1dCB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjZTZlNmU2O1xyXG4gICAgaGVpZ2h0OiA0MHB4O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiA2MCU7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICAgIHBhZGRpbmc6IDAgMTVweDtcclxuICAgIG1hcmdpbjogNXB4IDA7XHJcbn1cclxuXHJcbi50ZXh0LWlucHV0IGlucHV0IHtcclxuICAgIGJhY2tncm91bmQ6IG5vbmU7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBvdXRsaW5lOiBub25lO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcclxufVxyXG5cclxuLnRleHQtaW5wdXQgaSB7XHJcbiAgICBjb2xvcjogIzY4Njg2ODtcclxufVxyXG5cclxuOjpwbGFjZWhvbGRlciB7XHJcbiAgICBjb2xvcjogIzlhOWE5YTtcclxufVxyXG5cclxuLmxvZ2luLWJ0biB7XHJcbiAgICB3aWR0aDogNjAlO1xyXG4gICAgcGFkZGluZzogMTBweDtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwjRDMzOEY2LCAjNDYyNTk2LCAjNEQxMjkwKSA7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxufVxyXG5cclxuYSB7XHJcbiAgICBmb250LXNpemU6IDEycHg7XHJcbiAgICBjb2xvcjogIzlhOWE5YTtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxuYS5mb3Jnb3Qge1xyXG4gICAgbWFyZ2luLXRvcDogMTVweDtcclxufVxyXG5cclxuLmNyZWF0ZSB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGJvdHRvbTogMzBweDtcclxufVxyXG5cclxuLmNyZWF0ZSBpIHtcclxuICAgIGNvbG9yOiAjOWE5YTlhO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbn1cclxuXHJcbkBtZWRpYSAobWluLXdpZHRoOiA3NjhweCkge1xyXG4gICAgLmNvbnQge1xyXG4gICAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogNTAlIDUwJTtcclxuICAgICAgICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcImRlc2lnbiBsb2dpblwiO1xyXG4gICAgfVxyXG5cclxuICAgIC5kZXNpZ24ge1xyXG4gICAgICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgfVxyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
-    </style>
-    <style>
       .navbarh {
         background-color: white;
       }
+
       .navbar-brand1 {
         margin-left: 60px;
       }
+
       .navbar-collapse1 {
         justify-content: right !important;
         margin-right: 100px;
       }
+
       .navbar-nav li a {
         margin-right: 15px !important;
       }
 
-      /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL2hvbWUvSG5hdi5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx1QkFBdUI7QUFDM0I7QUFDQTtJQUNJLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksaUNBQWlDO0lBQ2pDLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksNkJBQTZCO0FBQ2pDIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhcmh7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG4ubmF2YmFyLWJyYW5kMXtcclxuICAgIG1hcmdpbi1sZWZ0OiA2MHB4O1xyXG59XHJcbi5uYXZiYXItY29sbGFwc2Uxe1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodCAhaW1wb3J0YW50O1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxMDBweDtcclxufVxyXG4ubmF2YmFyLW5hdiBsaSBhe1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxNXB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbiJdLCJzb3VyY2VSb290IjoiIn0= */
-    </style>
-    <style>
-      .cardhome {
-        background-color: #fff;
-        padding: 20px;
-        border: none; /* Set border to none to remove the border line */
-        border-radius: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 25px auto;
+      .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
       }
 
-      /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL2hvbWUvY2FyZC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLFlBQVksRUFBRSxpREFBaUQ7SUFDL0QsbUJBQW1CO0lBQ25CLHdDQUF3QztJQUN4QyxpQkFBaUI7RUFDbkIiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZGhvbWUge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICAgIHBhZGRpbmc6IDIwcHg7XHJcbiAgICBib3JkZXI6IG5vbmU7IC8qIFNldCBib3JkZXIgdG8gbm9uZSB0byByZW1vdmUgdGhlIGJvcmRlciBsaW5lICovXHJcbiAgICBib3JkZXItcmFkaXVzOiAxNXB4O1xyXG4gICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcclxuICAgIG1hcmdpbjogMjVweCBhdXRvO1xyXG4gIH1cclxuIl0sInNvdXJjZVJvb3QiOiIifQ== */
-    </style>
-    <style>
-      .img {
-        border-radius: 80px;
+      /* Full-width input fields */
+      .form-container input[type="text"],
+      .form-container input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+      }
 
-        margin-left: 26px;
+      /* When the inputs get focus, do something */
+      .form-container input[type="text"]:focus,
+      .form-container input[type="password"]:focus {
+        background-color: #ddd;
+        outline: none;
       }
-      .teamele {
-        justify-content: center;
-      }
-      .title {
-        margin-bottom: 26px;
-      }
-      /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL2hvbWUvSHRlYW0uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUJBQW1COztJQUVuQixpQkFBaUI7O0FBRXJCO0FBQ0E7SUFDSSx1QkFBdUI7QUFDM0I7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QiIsInNvdXJjZXNDb250ZW50IjpbIi5pbWd7XHJcbiAgICBib3JkZXItcmFkaXVzOiA4MHB4O1xyXG4gICAgXHJcbiAgICBtYXJnaW4tbGVmdDogMjZweDtcclxuICAgXHJcbn1cclxuLnRlYW1lbGV7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG4udGl0bGV7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAyNnB4O1xyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */
-    </style>
-    <style>
-    .form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
 
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+      /* Set a style for the submit/login button */
+      .form-container .btn {
+        background-color: #04aa6d;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+
+      /* Add some hover effects to buttons */
+      .form-container .btn:hover,
+      .open-button:hover {
+        opacity: 1;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* The popup form - hidden by default */
+      .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+      }
+
+      /* Add styles to the form container */
+      .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+      }
+
+      /* Full-width input fields */
+      .form-container input[type="text"],
+      .form-container input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+      }
+
+      /* When the inputs get focus, do something */
+      .form-container input[type="text"]:focus,
+      .form-container input[type="password"]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+
+      /* Add some hover effects to buttons */
+      .form-container .btn:hover,
+      .open-button:hover {
+        opacity: 1;
+      }
+      #open-button {
+  background-color: #524cc0;
   border: none;
-  background: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit/login button */
-.form-container .btn {
-  background-color: #04AA6D;
   color: white;
-  padding: 16px 20px;
-  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
   cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
 }
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-</style>
-
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-
-
-
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-</style>
+.button:hover {opacity: 1}
+    </style>
   </head>
   <body>
     <div class="navigationH">
@@ -323,8 +176,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
             ><img
               src="./HealerZnav_files/logo.7628defad21ba4a4668c.png"
               alt="HealerZ"
-              height="48px" /></a
-          ><button
+              height="48px"
+          /></a>
+          <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -373,7 +227,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <a
                   class="nav-link nav-hover"
                   href="http://localhost:3000/#profile"
-                  ><svg
+                >
+                  <svg
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -389,7 +244,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
                         d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
                       ></path>
                       <circle cx="12" cy="7" r="4"></circle>
-                    </g></svg></a>
+                    </g>
+                  </svg>
+                </a>
               </li>
             </ul>
           </div>
@@ -397,10 +254,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
       </nav>
     </div>
     <!--Container body-->
-   <button class="open-button" onclick="openForm()">Vaccination</button>
-   <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-     <section>
+    <!-- repeat-->
+    <button class="open-button" onclick="openForm()">Vaccination</button>
+    <div class="form-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+         <section>
         <h1 class="text-center text-capitalize">Vaccination Application&nbsp;</h1>
         <div class="container">
             <form id="application-form">
@@ -481,43 +339,321 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <h3 id="success-1" class="text-center text-success d-none"><br>Form Submitted Successfully&nbsp;<a href="contact.html">Send Another Response</a><br><br></h3>
         </div>
     </section>
-    </form>
-    </div>
-    <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
- <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/Application-Form-Bootstrap-Image-Uploader.js"></script>
     <script src="assets/js/Application-Form-submit-form.js"></script>
-
-
-    
-
-</div>
-      </div>
     </div>
+    <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
 
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+    </script>
+    <!--repeat-->
+
+    <!-- repeat-->
+    <button class="open-button" onclick="openForm()">Blood Donation</button>
+    <div class="form-popup" id="myForm1">
+      <form action="/action_page.php" class="form-container">
+        <section>
+          <h1 class="text-center text-capitalize">
+            Blood Donation Application&nbsp;
+          </h1>
+          <div class="container">
+            <form id="application-form">
+              <div class="form-group mb-3">
+                <div class="row">
+                  <div class="col">
+                    <p>
+                      <strong>Patient ID</strong
+                      ><span class="text-danger">*</span>
+                    </p>
+                    <input
+                      class="form-control"
+                      type="text"
+                      required=""
+                      name=""
+                      placeholder="Ex. P001"
+                    />
+                  </div>
+                  <div class="col">
+                    <p>
+                      <strong>Patient Name</strong
+                      ><span class="text-danger">*</span>
+                    </p>
+                    <input
+                      class="form-control"
+                      type="text"
+                      required=""
+                      name=""
+                      placeholder="Ex. Joe"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="row">
+                  <div class="col">
+                    <p>
+                      <strong>Date Of Birth</strong>&nbsp;<span
+                        class="text-danger"
+                        >*</span
+                      >
+                    </p>
+                    <input
+                      class="form-control"
+                      type="date"
+                      required=""
+                      name=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <p><strong>Email</strong><span class="text-danger">*</span></p>
+                <input
+                  class="form-control"
+                  type="email"
+                  name=""
+                  placeholder="joe@gmail.com"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <p>
+                  <strong>How many times have you donated before?&nbsp;</strong
+                  ><span class="text-danger">*</span>
+                </p>
+                <input
+                  class="form-control"
+                  type="number"
+                  name=""
+                  placeholder="0"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <p>
+                  <strong>Address&nbsp;</strong
+                  ><span class="text-danger">*</span>
+                </p>
+                <input
+                  class="form-control"
+                  type="text"
+                  required=""
+                  name=""
+                  placeholder="Ex. No.36, Lower road"
+                />
+                <p>City<br /></p>
+                <input
+                  class="form-control"
+                  type="text"
+                  required=""
+                  name=""
+                  placeholder="Badulla"
+                />
+                <p>Do you have any allergies?<br /></p>
+              </div>
+              <div class="form-group mb-3">
+                <div class="row">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      type="text"
+                      required=""
+                      name=""
+                      placeholder="wheezing"
+                    />
+                    <p>Gender</p>
+                    <input
+                      class="form-control"
+                      type="text"
+                      required=""
+                      name=""
+                      placeholder="Female"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="row">
+                  <div class="col">
+                    <p>Blood Group</p>
+                    <textarea
+                      class="form-control"
+                      type="text"
+                      required=""
+                      placeholder="Ex. O+"
+                      name="Blood"
+                    ></textarea>
+                  </div>
+                  <div class="col">
+                    <p>Whatsapp Number</p>
+                    <input
+                      class="form-control"
+                      type="text"
+                      required=""
+                      name=""
+                      placeholder="Ex. 077 7777587"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="justify-content-center d-flex form-group mb-3">
+                <div id="submit-btn">
+                  <div class="row">
+                    <button
+                      class="btn btn-primary btn-light m-0 rounded-pill px-4"
+                      type="button"
+                      style="min-width: 500px"
+                      action
+                      method="POST"
+                      target="hidden_iframe"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col">
+            <h3 id="fail" class="text-center text-danger d-none">
+              <br />Form not Submitted&nbsp;<a href="contact.html">Try Again</a
+              ><br /><br />
+            </h3>
+            <h3 id="success-1" class="text-center text-success d-none">
+              <br />Form Submitted Successfully&nbsp;<a href="contact.html"
+                >Send Another Response</a
+              ><br /><br />
+            </h3>
+          </div>
+        </section>
+      </form>
+    </div>
+    <script>
+      function openForm() {
+        document.getElementById("myForm1").style.display = "block";
+      }
+
+      function closeForm() {
+        document.getElementById("myForm1").style.display = "none";
+      }
+    </script>
+    <!--repeat-->
+
+     <button class="open-button" onclick="openForm()">Blood Donation</button>
+    <div class="form-popup" id="myForm2">
+      <form action="/action_page.php" class="form-container">
     <div class="container">
-      <div class="card" onclick="flipCard(2)">
-        <div class="front">Blood Donation</div>
-        <div class="back">Form</div>
-      </div>
-    </div>
+            <div class="card" onclick="flipCard(3)">
+                <div class="front">Event</div>
+                <div class="back">
+                    <section>
+                        <h1 class="text-center text-capitalize">Blood Donation Application&nbsp;</h1>
+                        <div class="container">
+                            <form id="application-form">
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p><strong>Patient ID</strong><span class="text-danger">*</span></p><input
+                                                class="form-control" type="text" required="" name=""
+                                                placeholder="Ex. P001">
+                                        </div>
+                                        <div class="col">
+                                            <p><strong>Patient Name</strong><span class="text-danger">*</span></p><input
+                                                class="form-control" type="text" required="" name=""
+                                                placeholder="Ex. Joe">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p><strong>Date Of Birth</strong>&nbsp;<span class="text-danger">*</span>
+                                            </p><input class="form-control" type="date" required="" name="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <p><strong>Email</strong><span class="text-danger">*</span></p><input
+                                        class="form-control" type="email" name="" placeholder="joe@gmail.com">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <p><strong>How many times have you donated before?&nbsp;</strong><span
+                                            class="text-danger">*</span></p><input class="form-control" type="number"
+                                                                                   name="" placeholder="0">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <p><strong>Address&nbsp;</strong><span class="text-danger">*</span></p><input
+                                        class="form-control" type="text" required="" name=""
+                                        placeholder="Ex. No.36, Lower road">
+                                    <p>City<br></p><input class="form-control" type="text" required="" name=""
+                                                          placeholder="Badulla">
+                                    <p>Do you have any allergies?<br></p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col"><input class="form-control" type="text" required="" name=""
+                                                                placeholder="wheezing">
+                                            <p>Gender</p><input class="form-control" type="text" required="" name=""
+                                                                placeholder="Female">
+                                        </div>
 
-    <div class="container">
-      <div class="card" onclick="flipCard(3)">
-        <div class="front">Event</div>
-        <div class="back">Form</div>
-      </div>
-    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Blood Group</p><textarea class="form-control" type="text" required=""
+                                                                        placeholder="Ex. O+" name="Blood"></textarea>
+                                        </div>
+                                        <div class="col">
+                                            <p>Whatsapp Number</p><input class="form-control" type="text" required=""
+                                                                         name="" placeholder="Ex. 077 7777587">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="justify-content-center d-flex form-group mb-3">
+                                    <div id="submit-btn">
+                                        <div class="row">
+                                            <button class="btn btn-primary btn-light m-0 rounded-pill px-4"
+                                                    type="button" style="min-width: 500px;" action method="POST"
+                                                    target="hidden_iframe">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <h3 id="fail" class="text-center text-danger d-none"><br>Form not Submitted&nbsp;<a
+                                    href="contact.html">Try Again</a><br><br></h3>
+                            <h3 id="success-1" class="text-center text-success d-none"><br>Form Submitted Successfully&nbsp;<a
+                                    href="contact.html">Send Another Response</a><br><br></h3>
+                        </div>
+                    </section>
+                  </form>
+                </div>
+                  <script>
+      function openForm() {
+        document.getElementById("myForm2").style.display = "block";
+      }
+
+      function closeForm() {
+        document.getElementById("myForm2").style.display = "none";
+      }
+    </script>
+            </div>
+        </div>
 
     <script src="script.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Application-Form-Bootstrap-Image-Uploader.js"></script>
+    <script src="assets/js/Application-Form-submit-form.js"></script>
   </body>
 </html>
