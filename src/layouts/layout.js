@@ -25,6 +25,11 @@ function Layout({children}) {
 
     console.log(open);
 
+    const logoutt = ()=>{
+        sessionStorage.setItem('Pharmacist',false);
+ 
+    }
+
    
 
     return (
@@ -112,7 +117,7 @@ function Layout({children}) {
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
                                 to={"/loginInventory"}>
-                                <div className={'d-flex'}>
+                                <div className={'d-flex'} onClick={logoutt}>
                                     <FeatherIcon icon="log-out" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Logout</div>}
                                 </div>

@@ -1,94 +1,181 @@
-  import React,{useState,useEffect} from "react";
+import React, { useState, useMemo } from "react";
 import { Modal, Button } from "react-bootstrap";
-import '../inventory.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "../inventory.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateModal(props) {
-    // const notify = () => toast("Item Updated Successfully!");
-    const notify1 = () => toast("Item Deleted Successfully!");
+  
 
+  // const [inputs, setInputs] = useState(props.inputs);
+  const [newData, setNewData] = useState({});
 
- const navigate = useNavigate();
-    const [inputs, setInputs] = useState([]);
+  const updateNewData = (e, field) => {
+    setNewData({
+      ...newData,
+      [field]: e.target.value,
+    });
+  };
 
-    const {Drug_ID} = useParams();
+  const { show, onHide } = props;
 
-    useEffect(() => {
-        getUser();
-    }, []);
+  const items = props.inputs; // Assuming props.inputs is an array of objects
 
-    function getUser() {
-        axios.get(`http://localhost/HealerZ/PHP/edit.php/${Drug_ID}`).then(function(response) {
-            console.log(response.data);
-            setInputs(response.data);
+  const handleUpdate = () => {
+    // Check if there is any data to update
+    if (Object.keys(newData).length === 0) {
+      toast.error("No data to update!");
+      return;
+    }
+  
+    // Check if Drug_ID is present in newData
+    if (!newData.Drug_ID) {
+      toast.error("Drug ID is missing in the update data!");
+      return;
+    }
+  
+    // Perform the update operation
+    axios
+    .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
+      .then((response) => {
+        // Handle successful response
+        console.log(response.data);
+        toast.success("Drug updated successfully!");
+      })
+      .catch((error) => {
+        // Handle error response
+        toast.error("Failed to update drug!");
+        console.error(error);
+      });
+  };
+  
+  
+  
+  const handleDelete = () => {
+    const drugIdToDelete = newData.Drug_ID || (items.length && items[0].Drug_ID);
+
+    if (!drugIdToDelete) {
+      toast.error("Drug ID not found!");
+      return;
+    }
+
+      axios
+        .delete(`http://localhost/HealerZ/PHP/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
+        .then((response) => {
+          // Handle successful response
+          console.log(response.data);
+          toast.success("Drug deleted successfully!");
+        })
+        .catch((error) => {
+          // Handle error response
+          toast.error("Failed to delete drug!");
+          console.error(error);
         });
-    }
+  };
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}));
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  return (
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>Drug UPDATE</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <hr />
+        <form>
+          <table className={"ADDTable"}>
+            <tbody>
+              {items.map((item) => (
+                <React.Fragment key={item.Drug_ID}>
+                  <tr>
+                    <th>Drug_ID</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_ID"}
+                        defaultValue={item.Drug_ID}
+                        placeholder={"DRUGXXXXXX"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_ID")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
 
-        axios.put(`http://localhost/HealerZ/PHP/edit.php/${Drug_ID}/edit`, inputs).then(function(response){
-            console.log(response.data);
-            navigate('/');
-        });
-        
-    }
-    
+                  <tr>
+                    <th>Drug_Name</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_Name"}
+                        defaultValue={item.Drug_Name}
+                        placeholder={"XXXXXXXXXX"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_Name")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Category</th>
+                    <th className={"inputfield1"}>
+                      <input
+                        type={"text"}
+                        name={"Category"}
+                        defaultValue={item.Category}
+                        placeholder={"XXXXXXXXXX"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Category")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Dosage</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_dosage"}
+                        defaultValue={item.Drug_dosage}
+                        placeholder={"XXXmg"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_dosage")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Description</th>
+                    <th className={"inputfield"}>
+                      <textarea
+                        name={"Descriptions"}
+                        defaultValue={item.Descriptions}
+                        placeholder={"Type description here..."}
+                        className={"inputt"}
+                        rows={3}
+                        onChange={(e) => updateNewData(e, "Descriptions")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </form>
+        <hr />
+      </Modal.Body>
 
-    const { show, onHide } = props;
-    return (
-        <Modal show={show} onHide={onHide}>
-            <Modal.Header closeButton>
-                <Modal.Title>Drug UPDATE</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <hr/>
-                <form>
-                    <table className={"ADDTable"}>
-                        <tr>
-                            <th>Drug_ID</th>
-                            <th className={"inputfield"}> <p value={Drug_ID}></p><br/></th>
-                        </tr>
-                        <tr>
-                            <th>Drug_Name</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_Name"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleChange} /><br/></th>
-                        </tr>
-                        <tr>
-                            <th>Category</th>
-                            <th className={"inputfield1"}><input type={"text"} name={"Category"} placeholder={"XXXXXXXXXX"} className={"inputt"} onChange={handleChange} /><br/></th>
-                        </tr>
-                        <tr>
-                            <th>Dosage</th>
-                            <th className={"inputfield"}><input type={"text"} name={"Drug_dosage"}  placeholder={"XXXmg"} className={"inputt"} onChange={handleChange} /><br/></th>
-                        </tr>
-                        <tr>
-                            <th>Description</th>
-                            <th className={"inputfield"}><textarea name={"Descriptions"}  placeholder={"Type description here..."} className={"inputt"} rows={3} onChange={handleChange} /><br/></th>
-                        </tr>
-                    </table>
-                </form>
-
-
-                <hr/>
-
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={handleSubmit} >Update</Button>
-                <ToastContainer/>
-                <Button variant="primary" onClick={notify1} >Delete</Button>
-                <ToastContainer/>
-            </Modal.Footer>
-        </Modal>
-
-    );
+      <Modal.Footer>
+        <Button variant="primary" onClick={handleUpdate}>
+          Update
+        </Button>
+        <Button variant="primary" onClick={handleDelete}>
+          Delete
+        </Button>
+        <ToastContainer />
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
 export default UpdateModal;

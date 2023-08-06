@@ -12,7 +12,7 @@ function AddPatient(props) {
     const [patient_id, setID] = useState('');
     const [patient_name, setName] = useState('');
     const [dob, setDob] = useState('');
-    // const [gender, setGen] = useState('');
+    const [gender, setGender] = useState('');
     const [phoneNo, setphoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -20,7 +20,7 @@ function AddPatient(props) {
     const [pass, setPass] = useState('');
 
 
-
+    
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {
@@ -32,8 +32,10 @@ function AddPatient(props) {
         else if (dob.length === 0) {
             toast.error("Please Enter the DOB");
 
-        }
-        else if (phoneNo.length === 0) {
+        }else  if (gender.length === 0) {
+            toast.error("Please select the Gender");
+
+        }else if (phoneNo.length === 0) {
             toast.error("Please Enter the PhoneNo");
 
         } else if (email.length === 0) {
@@ -53,7 +55,8 @@ function AddPatient(props) {
             let fdata = new FormData();
             fdata.append('Patient_ID', patient_id);
             fdata.append('Patient_Name', patient_name);
-            // fdata.append('DateOfBirth', dob);
+            fdata.append('DateOfBirth', dob);
+            fdata.append('Gender', gender);
             fdata.append('PhoneNo', phoneNo);
             fdata.append('Email', email);
             fdata.append('Address', address);
@@ -116,7 +119,7 @@ function AddPatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Male"
-
+                                                        onChange={(e) => setGender(e.target.value)}
                                                     />
                                                     <label className="form-check-label">Male</label>
                                                 </div>
@@ -126,6 +129,7 @@ function AddPatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Female"
+                                                        onChange={(e) => setGender(e.target.value)}
 
                                                     />
                                                     <label className="form-check-label">Female</label>
@@ -136,6 +140,7 @@ function AddPatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Other"
+                                                        onChange={(e) => setGender(e.target.value)}
 
                                                     />
                                                     <label className="form-check-label">Other</label>

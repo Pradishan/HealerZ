@@ -11,7 +11,7 @@ export default function InventoryLogin() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    let login = sessionStorage.getItem('login');
+    let login = sessionStorage.getItem('Pharmacist');
  
     if(login === true){
       navigate('/inventory-interface/dashboard')
@@ -34,7 +34,7 @@ export default function InventoryLogin() {
         setMessage(response.data.message);
         if(response.data.message === "Login successful."){
           setTimeout(()=>{
-            sessionStorage.setItem('login',true);
+            sessionStorage.setItem('Pharmacist',true);
             navigate('/inventory-interface/dashboard');
           },100) ;
         }

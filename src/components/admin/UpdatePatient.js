@@ -4,7 +4,7 @@ import AdminLayout from '../../layouts/AdminLayout'
 export default function UpdatePatient() {
   return (
     <AdminLayout>
-        UpdatePatient
+      UpdatePatient
     </AdminLayout>
   )
 }
