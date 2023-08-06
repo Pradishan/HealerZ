@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import './Admin.css';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminLayout from '../../layouts/AdminLayout';
-import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 
 function UpdatePatient(props) {
-    const MySwal = withReactContent(Swal);
+
+    
+
     const [patient_id, setID] = useState('');
     const [patient_name, setName] = useState('');
     const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
     const [phoneNo, setphoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -22,70 +20,40 @@ function UpdatePatient(props) {
 
 
 
-    const handleSubmit = () => {
+    const handleADD = () => {
         if (patient_id.length === 0) {
-            toast.error("Please Enter the Patient_ID");
+            toast.error("Pls Enter the Patient_ID");
         } else if (patient_name.length === 0) {
-            toast.error("Please Enter the Patient_Name");
+            toast.error("Pls Enter the Patient_Name");
 
         }
         else if (dob.length === 0) {
-            toast.error("Please Enter the DOB");
-
-        }else  if (gender.length === 0) {
-            toast.error("Please select the Gender");
-
-        }else if (phoneNo.length === 0) {
-            toast.error("Please Enter the PhoneNo");
-
-        } else if (email.length === 0) {
-            toast.error("Please Enter the Email");
-
-        } else if (address.length === 0) {
-            toast.error("Please Enter the Address");
-
-        } else if (bg.length === 0) {
-            toast.error("Please Enter the BloodGroup");
-
-        } else if (pass.length === 0) {
-            toast.error("Please Enter the Password");
-
-        } else {
-            const url = "http://localhost/HealerZ/PHP/addpatient.php";
-            let fdata = new FormData();
-            fdata.append('Patient_ID', patient_id);
-            fdata.append('Patient_Name', patient_name);
-            fdata.append('DateOfBirth', dob);
-            fdata.append('Gender', gender);
-            fdata.append('PhoneNo', phoneNo);
-            fdata.append('Email', email);
-            fdata.append('Address', address);
-            fdata.append('BloodGroup', bg);
-            fdata.append('Password', pass);
-            axios.post(url, fdata)
-            .then((response) => {
-                // Show success swal notification
-                MySwal.fire({
-                    icon: "success",
-                    title: response.data,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
-            })
-            .catch((error) => {
-                // Show error swal notification
-                MySwal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: error.message,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
-            });
+            toast.error("Pls Enter the DOB");
 
         }
+        else if (phoneNo.length === 0) {
+            toast.error("Pls Enter the PhoneNo");
+
+        } else if (email.length === 0) {
+            toast.error("Pls Enter the Email");
+
+        } else if (address.length === 0) {
+            toast.error("Pls Enter the Address");
+
+        }else if (bg.length === 0) {
+            toast.error("Pls Enter the BloodGroup");
+
+        }else if (pass.length === 0) {
+            toast.error("Pls Enter the Password");
+
+        } else{
+            toast.success("Update successfull");
+
+        }
+    }
+    
+    const notify1 = () => {
+        toast.error("Delete successfull");
     }
     return (
         <AdminLayout>
@@ -119,7 +87,7 @@ function UpdatePatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Male"
-                                                        onChange={(e) => setGender(e.target.value)}
+                                                        // onChange={(e) => setGender(e.target.value)}
                                                     />
                                                     <label className="form-check-label">Male</label>
                                                 </div>
@@ -129,7 +97,7 @@ function UpdatePatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Female"
-                                                        onChange={(e) => setGender(e.target.value)}
+                                                        //onChange={(e) => setGender(e.target.value)}
 
                                                     />
                                                     <label className="form-check-label">Female</label>
@@ -140,7 +108,7 @@ function UpdatePatient(props) {
                                                         type="radio"
                                                         name="gender"
                                                         value="Other"
-                                                        onChange={(e) => setGender(e.target.value)}
+                                                        //onChange={(e) => setGender(e.target.value)}
 
                                                     />
                                                     <label className="form-check-label">Other</label>
@@ -190,14 +158,19 @@ function UpdatePatient(props) {
                         </table>
                         <hr />
                     </form>
-                    <button className="btn btn-primary done-button" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>ADD</button>
+                    <div className='Adddelbutt'> 
+                    <button className="btn btn-primary done-button3" type="submit" name={"add"} value={"SEND"} onClick={handleADD}>ADD</button>
+                    <button className="btn btn-primary done-button3" type="submit" name={"delete"} value={"SEND"} >Delete</button>
+                    
+
+                    </div>
                     
                 </div>
                 <ToastContainer />
             </div>
 
         </AdminLayout>
-
+        
 
     );
 }

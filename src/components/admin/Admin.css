@@ -30,6 +30,42 @@
     background-color: #6a0dad !important;
     cursor: pointer;
   }
+
+  .done-buttonn1 {
+    margin-left: 170px;
+    position: relative;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    display: flex;
+    gap:40px;
+    align-items: center;
+  }
+  
+  .btn-primary {
+    background-color: purple;
+    padding: 10px 80px !important;
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color:blueviolet;
+  }
+  
+  .btn-danger {
+    background-color: #8f0e0e !important;
+    color: #fff;
+    padding: 10px 80px !important;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d41225 !important;
+  }
+  
   
   .inputfieldd{
     padding: 15px;
@@ -71,7 +107,21 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-
+.Adddelbutt{
+  margin-left: 10px;
+}
+.done-button3 {
+  position: relative;
+  left: 420px;
+  background-color: purple !important;
+  color: #fff;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
 
 /* Responsive styles */
 
