@@ -1,11 +1,11 @@
-// ViewModal.js
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import '../inventory.css';
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import "../inventory.css";
 
 function StockUpdateModal(props) {
     const MySwal = withReactContent(Swal);
@@ -17,24 +17,25 @@ function StockUpdateModal(props) {
     const [ExpiredDate, setDate] = useState('');
     const [Drug_ID, setID] = useState('');
 
-
-    const handleAdd= ()=>{
-        if (Stock_IN.length === 0) {
-            toast.error("Pls Enter the StockCount");
-
-        } else if (ExpiredDate.length === 0) {
-            toast.error("Pls Enter the Expired Date");
-
+    useEffect(() => {
+        if (items.length > 0) {
+            setID(items[0].Drug_ID); // Set the Drug_ID automatically
         }
-        else {
+    }, [items]);
+
+    const handleAdd = () => {
+        if (Drug_ID === '') {
+            toast.error("Please select a drug.");
+        } else if (Stock_IN.length === 0) {
+            toast.error("Please enter the Stock Count.");
+        } else if (ExpiredDate.length === 0) {
+            toast.error("Please enter the Expired Date.");
+        } else {
             const url = "http://localhost/HealerZ/PHP/stockupdate.php";
             let fdata = new FormData();
             fdata.append('Drug_ID', Drug_ID);
             fdata.append('StockCount', Stock_IN);
             fdata.append('ExpiredDate', ExpiredDate);
-            // axios.post(url,fdata)
-            // .then(response=>alert(response.data))
-            // .catch(error=>alert(error));
 
             axios.post(url, fdata)
                 .then((response) => {
@@ -58,13 +59,8 @@ function StockUpdateModal(props) {
                         },
                     });
                 });
-
         }
-
-    }
-
-
-
+    };
 
     return (
         <Modal show={show} onHide={onHide}>
@@ -80,7 +76,9 @@ function StockUpdateModal(props) {
                                 <tr>
                                     <th>Drug_ID</th>
                                     <th>:</th>
-                                    <th className={"detaildet"} name={"Drug_ID"}>{item.Drug_ID}</th>
+                                    <th className={"detaildet"} name={"Drug_ID"}>
+                                        {item.Drug_ID}
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th>Drug_Name</th>
@@ -92,49 +90,46 @@ function StockUpdateModal(props) {
                                     <th>:</th>
                                     <th className={"detaildet"}>500</th>
                                 </tr>
+                                {/* Add more rows for other details as needed */}
                             </React.Fragment>
                         ))}
                     </tbody>
-
                 </table>
-
                 <hr />
                 <div>
                     <form>
                         <table>
-                            <tr>
-                                <th>Stock_In</th>
-                                <th className={"inputfield"}>
-                                    <input
-                                        type={"number"}
-                                        name={"StockCount"}
-                                        className={"inputt"}
-                                        onChange={(e) => setStk(e.target.value)}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Expired_Date</th>
-                                <th className={"inputfield"}>
-                                    <input
-                                        type={"date"}
-                                        name={"ExpiredDate"}
-                                        className={"inputt"}
-                                        onChange={(e) => setDate(e.target.value)}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>Stock_In</th>
+                                    <td className={"inputfield"}>
+                                        <input
+                                            type={"number"}
+                                            name={"StockCount"}
+                                            className={"inputt"}
+                                            onChange={(e) => setStk(e.target.value)}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Expired_Date</th>
+                                    <td className={"inputfield"}>
+                                        <input
+                                            type={"date"}
+                                            name={"ExpiredDate"}
+                                            className={"inputt"}
+                                            onChange={(e) => setDate(e.target.value)}
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </form>
                 </div>
-
                 <hr />
-
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleAdd} >Update</Button>
+                <Button variant="primary" onClick={handleAdd}>Update</Button>
                 <ToastContainer />
                 <Button variant="secondary" onClick={onHide}>Cancel</Button>
             </Modal.Footer>
