@@ -23,19 +23,30 @@ function Inventory(props) {
         setSearchTerm2(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSearchSubmit = (event) => {
         event.preventDefault();
-        console.log(`Searching for ${searchTerm3}...`);
+        const searchedDrug = drugList.find(drug => drug.Drug_ID === searchTerm3); // Search for the drug by ID
+        if (searchedDrug) {
+            setSelectedDrug(searchedDrug);
+            setShowModal(true);
+        } else {
+            alert('Drug not found');
+        }
+    };
+    const handleSearchSubmit2 = (event) => {
+        event.preventDefault();
+        const searchedDrug = drugList.find(drug => drug.Drug_Name === searchTerm4); // Search for the drug by Name
+        if (searchedDrug) {
+            setSelectedDrug(searchedDrug);
+            setShowModal(true);
+        } else {
+            alert('Drug not found');
+        }
     };
 
-    const handleSubmit2 = (event) => {
-        event.preventDefault();
-        console.log(`Searching for ${searchTerm4}...`);
-    };
-
-    const toggleModal = () => {
-        setShowModal(!showModal);
-    };
+    // const toggleModal = () => {
+    //     setShowModal(!showModal);
+    // };
 
     const openModal = (drug) => {
         setSelectedDrug(drug);
@@ -74,13 +85,25 @@ function Inventory(props) {
                     <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
                         <div><h3 className={"content-heading"}>Filter the Results : </h3></div>
                         <div className={"SearchSection2"}>
-                            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row' }}>
-                                <input className={"SearchBox1"} type="text" placeholder="DRUG_ID " value={searchTerm3} onChange={handleChange3} />
-                                <button type="submit" className="filterbutt" onClick={toggleModal}>Filter</button>
+                            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', flexDirection: 'row' }}>
+                                <input
+                                    className={"SearchBox1"}
+                                    type="text"
+                                    placeholder="DRUG_ID"
+                                    value={searchTerm3}
+                                    onChange={handleChange3}
+                                />
+                                <button type="submit" className="filterbutt">Filter</button>
                             </form>
-                            <form onSubmit={handleSubmit2} style={{ display: 'flex', flexDirection: 'row' }}>
-                                <input className={"SearchBox1"} type="text" placeholder="DRUG_NAME" value={searchTerm4} onChange={handleChange4} />
-                                <button type="submit" className="filterbutt" onClick={toggleModal}>Filter</button>
+                            <form onSubmit={handleSearchSubmit2} style={{ display: 'flex', flexDirection: 'row' }}>
+                                <input
+                                    className={"SearchBox1"}
+                                    type="text"
+                                    placeholder="DRUG_Name"
+                                    value={searchTerm4}
+                                    onChange={handleChange4}
+                                />
+                                <button type="submit" className="filterbutt">Filter</button>
                             </form>
                         </div>
                     </div>
