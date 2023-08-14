@@ -50,7 +50,7 @@
     font-weight: 1000 !important;
     line-height: normal;
     position: absolute;
-    right: 95px;
+    right: 75px;
     bottom: 30px;
 }
 
@@ -173,8 +173,19 @@
 .detaildet {
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 10px;
+}
+
+.detailhed {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.detailspac {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .Managebutt {

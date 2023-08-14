@@ -1,61 +1,62 @@
-// ViewModal.js
-import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import '../inventory.css';
 
 function ViewModal(props) {
-    const { show, onHide } = props;
+    const { show, onHide, drugDetails } = props;
+
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
                 <Modal.Title>Drug Detail</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <hr/>
+                <hr />
                 <table>
-                    <tr>
-                        <th>Drug_ID</th>
-                        <th>:</th>
-                        <th className={"detaildet"}>DRUG0001</th>
-                    </tr>
-                    <tr>
-                        <th>Drug_Name</th>
-                        <th>:</th>
-                        <th className={"detaildet"}>Aspirin</th>
-                    </tr>
-                    <tr>
-                        <th>Category</th>
-                        <th>:</th>
-                        <th className={"detaildet"}>Category 1</th>
-                    </tr>
-                    <tr>
-                        <th>Dosage</th>
-                        <th>:</th>
-                        <th className={"detaildet"}>500mg</th>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <th>:</th>
-                        <th className={"detaildet"}>Aspirin is a commonly used medication classified as a nonsteroidal anti-inflammatory drug (NSAID). It is widely known for its pain-relieving, anti-inflammatory, and fever-reducing properties.</th>
-                    </tr>
-
+                    <tbody>
+                        <tr>
+                            <th className={'detailhed'}>Drug_ID</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{drugDetails && drugDetails.Drug_ID}</td>
+                        </tr>
+                        <tr>
+                            <th className={'detailhed'}>Drug_Name</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{drugDetails && drugDetails.Drug_Name}</td>
+                        </tr>
+                        <tr>
+                            <th className={'detailhed'}>Category</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{drugDetails && drugDetails.Category}</td>
+                        </tr>
+                        <tr>
+                            <th className={'detailhed'}>Dosage</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{drugDetails && drugDetails.Drug_dosage}</td>
+                        </tr>
+                        <tr>
+                            <th className={'detailhed'}>Description</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{drugDetails && drugDetails.Descriptions}</td>
+                        </tr>
+                        {/* Add more attributes here */}
+                    </tbody>
                 </table>
-
-                <hr/>
+                <hr />
                 <div>
-                    <div style={{display:"flex",flexDirection:'row'}}>
-                        <p style={{marginRight:"120px"}}>StockIn:</p>
-                        <p style={{marginRight:"120px"}}>StockOut:</p>
-                        <p>Expired:</p>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <p style={{ marginRight: '70px' }} className={'detailhed'}>StockIn :<span className={'detaildet'}>300</span></p>
+                        <p style={{ marginRight: '60px' }} className={'detailhed'}>StockOut :<span className={'detaildet'}>400</span></p>
+                        <p className={'detailhed'}>Expired :<span className={'detaildet'}>25</span></p>
                     </div>
-                    <div style={{marginLeft:"174px"}}>Stock_Count:</div>
+                    <div style={{ marginLeft: '150px' }} className={'detailhed'}>Stock_Count :<span className={'detaildet'}>{drugDetails && drugDetails.StockCount}</span></div>
                 </div>
-
-                <hr/>
-
+                <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={onHide}>Close</Button>
+                <Button variant="primary" onClick={onHide}>
+                    Close
+                </Button>
             </Modal.Footer>
         </Modal>
     );
