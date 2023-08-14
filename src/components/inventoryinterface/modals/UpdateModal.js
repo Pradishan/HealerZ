@@ -115,20 +115,28 @@ function UpdateModal(props) {
                       <br />
                     </th>
                   </tr>
+              
                   <tr>
-                    <th>Category</th>
-                    <th className={"inputfield1"}>
-                      <input
-                        type={"text"}
-                        name={"Category"}
-                        defaultValue={item.Category}
-                        placeholder={"XXXXXXXXXX"}
-                        className={"inputt"}
-                        onChange={(e) => updateNewData(e, "Category")}
-                      />
-                      <br />
-                    </th>
-                  </tr>
+                            <th>Category</th>
+                            <th className={'inputfield1'}>
+                                <select
+                                    name={'Category'}
+                                    defaultValue={item.Category}
+                                    className={'inputt'}
+                                    onChange={(e) => updateNewData(e, "Category")}
+                                >
+                                    <option value={''}>Select Category</option>
+                                    <option value={'Category 1'}>Category 1</option>
+                                    <option value={'Category 2'}>Category 2</option>
+                                    <option value={'Category 3'}>Category 3</option>
+                                    <option value={'Category 4'}>Category 4</option>
+                                    <option value={'Category 5'}>Category 5</option>
+                                    <option value={'Category 6'}>Category 6</option>
+                                    <option value={'Category 7'}>Category 7</option>
+                                </select>
+                                <br />
+                            </th>
+                        </tr>
                   <tr>
                     <th>Dosage</th>
                     <th className={"inputfield"}>

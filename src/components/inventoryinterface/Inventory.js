@@ -7,6 +7,8 @@ import FeatherIcon from 'feather-icons-react';
 import './inventory.css';
 import ViewModal from './modals/ViewModal';
 import Layout from '../../layouts/layout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Inventory(props) {
     const [showModal, setShowModal] = useState(false);
@@ -30,7 +32,7 @@ function Inventory(props) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
         } else {
-            alert('Drug not found');
+            toast.error('Invalid Drug ID');
         }
     };
     const handleSearchSubmit2 = (event) => {
@@ -40,13 +42,9 @@ function Inventory(props) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
         } else {
-            alert('Drug not found');
+            toast.error('Invalid Drug Name');
         }
     };
-
-    // const toggleModal = () => {
-    //     setShowModal(!showModal);
-    // };
 
     const openModal = (drug) => {
         setSelectedDrug(drug);
@@ -144,6 +142,7 @@ function Inventory(props) {
                         </table>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
             <ViewModal
                 show={showModal}

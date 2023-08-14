@@ -272,6 +272,14 @@
     border-radius: 5px;
 }
 
+.inputt::placeholder {
+    opacity: 0.3;
+}
+
+.SearchBox1::placeholder {
+    opacity: 0.5;
+}
+
 .content-heading1 {
     color: #000000;
     font-size: 15px;
