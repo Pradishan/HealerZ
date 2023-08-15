@@ -112,7 +112,7 @@ function Inventory(props) {
                                     <th scope="col">NO</th>
                                     <th scope="col">DRUG_ID</th>
                                     <th scope="col">DRUG_NAME</th>
-                                    <th scope="col">STOCK_IN</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">STOCK_OUT</th>
                                     <th scope="col">EXPIRED_COUNT</th>
                                     <th scope="col">AVAILABLE_COUNT</th>
@@ -125,7 +125,7 @@ function Inventory(props) {
                                         <th scope="row">{index + 1}</th>
                                         <td>{data.Drug_ID}</td>
                                         <td>{data.Drug_Name}</td>
-                                        <td>{data.stock_in}</td>
+                                        <td>{data.Category}</td>
                                         <td>{data.stock_out}</td>
                                         <td>{data.expire}</td>
                                         <td>{data.StockCount}</td>

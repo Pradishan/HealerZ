@@ -125,13 +125,14 @@ function AddModal(props) {
                                     onChange={(e) => setCat(e.target.value)}
                                 >
                                     <option value={''}>Select Category</option>
-                                    <option value={'Category 1'}>Category 1</option>
-                                    <option value={'Category 2'}>Category 2</option>
-                                    <option value={'Category 3'}>Category 3</option>
-                                    <option value={'Category 4'}>Category 4</option>
-                                    <option value={'Category 5'}>Category 5</option>
-                                    <option value={'Category 6'}>Category 6</option>
-                                    <option value={'Category 7'}>Category 7</option>
+                                    <option value={'Liquid'}>Liquid</option>
+                                    <option value={'Tablet'}>Tablet</option>
+                                    <option value={'Capsules'}>Capsules</option>
+                                    <option value={'Topical'}>Topical</option>
+                                    <option value={'Suppositories'}>Suppositories</option>
+                                    <option value={'Drops'}>Drops</option>
+                                    <option value={'Injections'}>Injections</option>
+                                    <option value={'Implants'}>Implants</option>
                                 </select>
                                 <br />
                             </th>

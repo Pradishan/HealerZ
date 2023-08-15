@@ -37,7 +37,7 @@ function ViewModal(props) {
                         <tr>
                             <th className={'detailhed'}>Description</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{drugDetails && drugDetails.Descriptions}</td>
+                            <td className={'detaildet3'}>{drugDetails && drugDetails.Descriptions}</td>
                         </tr>
                         {/* Add more attributes here */}
                     </tbody>

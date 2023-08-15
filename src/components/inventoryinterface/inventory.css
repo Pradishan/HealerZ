@@ -177,6 +177,15 @@
     padding-left: 10px;
 }
 
+.detaildet3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    padding-left: 10px;
+    text-align: justify;
+    justify-content: left;
+}
+
 .detailhed {
     font-size: 18px;
     font-style: normal;
