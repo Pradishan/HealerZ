@@ -20,7 +20,7 @@ function AddPatient(props) {
     const [pass, setPass] = useState('');
 
 
-
+    
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {

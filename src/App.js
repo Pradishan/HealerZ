@@ -1,7 +1,6 @@
 import "./App.css";
 import "./index.css"
 import { Route, Routes } from "react-router-dom";
-import Admin from "./components/admin/Admin";
 import Doctorinterface from "./components/doctorinterface/Doctorinterface";
 import Dashboard from "./components/inventoryinterface/Dashboard";
 import Inventory from "./components/inventoryinterface/Inventory";
@@ -20,10 +19,13 @@ import Protected1 from "./components/login/Protected1";
 import InventoryLogin from "./components/login/InventoryLogin";
 import MedicalRequest from "./components/profile/MedicalRequest";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
+import AddDoctor from "./components/admin/AddDoctor";
+import DoctorList from "./components/admin/DoctorList";
 import AddPatient from "./components/admin/AddPatient";
 import UpdatePatient from "./components/admin/UpdatePatient";
 import PatientList from "./components/admin/PatientList";
-import HumanResource from "./components/admin/HumanResource";
+import AddEmployee from "./components/admin/AddEmployee";
+import EmployeeList from "./components/admin/EmployeeList";
 import MedicalReport from "./components/admin/MedicalReport";
 
 function App() {
@@ -39,7 +41,6 @@ function App() {
         <Route path="/clubs" element={ <Clubs /> } />
         <Route path="/profile" element={ <Profile /> } />
         <Route path="/login" element={ <Login /> } />
-        <Route path="/admin" element={ <Admin /> } />
         <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } roll={'Pharmacist'}/> } />
         <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply }roll={'Pharmacist'} /> } />
@@ -48,11 +49,15 @@ function App() {
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
         <Route path="/MedicalRequest" element={ <MedicalRequest /> } />
         <Route path="/admin/dashboard" element={ <DashboardAdmin /> } />
+        <Route path="/admin/adddoctor" element={ <AddDoctor /> } />
+        <Route path="/admin/doctorlist" element={ <DoctorList /> } />
         <Route path="/admin/addpatient" element={ <AddPatient /> } />
         <Route path="/admin/editpatient" element={ <UpdatePatient /> } />
         <Route path="/admin/patientlist" element={ <PatientList /> } />
-        <Route path="/admin/humanresource" element={ <HumanResource /> } />
+        <Route path="/admin/addemployee" element={ <AddEmployee /> } />
+        <Route path="/admin/employeelist" element={ <EmployeeList /> } />
         <Route path="/admin/medicalreports" element={ <MedicalReport /> } />
+        
       </Routes>
       </div>
     // </Router>

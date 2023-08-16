@@ -19,7 +19,7 @@
 
 .card1 {
     height: 144px !important;
-    width: 334px !important;
+    width: 300px !important;
     border-radius: 29px;
     background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
     box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
@@ -50,7 +50,7 @@
     font-weight: 1000 !important;
     line-height: normal;
     position: absolute;
-    right: 95px;
+    right: 75px;
     bottom: 30px;
 }
 
@@ -173,8 +173,28 @@
 .detaildet {
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 10px;
+}
+
+.detaildet3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    padding-left: 10px;
+    text-align: justify;
+    justify-content: left;
+}
+
+.detailhed {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.detailspac {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .Managebutt {
@@ -259,6 +279,14 @@
 .inputt {
     width: 300px;
     border-radius: 5px;
+}
+
+.inputt::placeholder {
+    opacity: 0.3;
+}
+
+.SearchBox1::placeholder {
+    opacity: 0.5;
 }
 
 .content-heading1 {

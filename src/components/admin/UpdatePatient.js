@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React,{useState} from 'react';
 import './Admin.css';
 import {ToastContainer,toast} from 'react-toastify';
@@ -173,6 +174,17 @@ function UpdatePatient(props) {
         
 
     );
+=======
+import React from 'react'
+import AdminLayout from '../../layouts/AdminLayout'
+
+export default function UpdatePatient() {
+  return (
+    <AdminLayout>
+      UpdatePatient
+    </AdminLayout>
+  )
+>>>>>>> b268f1e002f6fcc689d5898c190d542279121c00
 }
 
 export default UpdatePatient;
