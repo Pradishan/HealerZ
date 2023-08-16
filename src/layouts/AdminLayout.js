@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
-import SideClose from "../assets/carbon_side-panel-close.svg";
-import FeatherIcon from 'feather-icons-react';
-import logo from '../assets/logo.png';
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { changeToggle } from "../redux/actions";
-import Card from 'react-bootstrap/Card';
 import { ProSidebarProvider } from "react-pro-sidebar";
-import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar, sidebarClasses } from "react-pro-sidebar";
 import './AdminLayout.css';
+import Bell from "../assets/bell.svg";
+import logo from "../assets/logo.png";
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
@@ -22,161 +17,95 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
+import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 
 
 
-function AdminLayout({ children }) {
+function Layout({children}) {
 
-    
     const [collapsed, setCollapsed] = React.useState(false);
-
+   
 
     return (
-        
-        <div className="container-fluid ">
-            
-                
-                {/**  Nav bar */}
-                <div className=" p-0">
-                    <nav className="navbar navbar-expand-lg bg-white shadow fixed-top py-0">
-                <div className="container-fluid d-flex align-items-center">
-                <a
-                    href="/"
-                    className="text-decoration-none color-gradident text-dark fs-5 nav-hover ms-5">
-                </a>
-                <div className="d-flex align-items-center justify-content-center">
-                    {/* logo */}
-                    <img src={logo} alt="HealerZ" height="48px" />
-                </div>
-                {/* right */}
-                <div className="d-flex align-items-center me-3">
-                    {/* notification */}
-                    <div
-                    className="position-relative me-2"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#medicalNotification"
-                    aria-controls="offcanvasExample"
-                    >
-                    <FeatherIcon
-                        icon="bell"
-                        className="icon-hover p-2 fs-1"
-                        height="38px"
-                        width="38px"
-                    />
+        <div className="container-fluid">
+            <div className="row flex-nowrap">
+            <Sidebar className="sidebar  " collapsed={collapsed} 
+             rootStyles={{
+                [`.${sidebarClasses.container}`]: {
+                    width: !collapsed ? '240px' : '85px',
+                    backgroundColor:  'rgba(255, 255, 255, 0)',
+                },
+              }}>
+                    <Menu>
+                    <MenuItem >
+                        <button className="sb-button" onClick={() => setCollapsed(!collapsed)}>
+                        {<MenuRoundedIcon  />}
+                        </button>
+                        
+                    </MenuItem>
 
-                    <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger fs-7 p-1 mt-1">
-                        99+
-                        <span className="visually-hidden">unread messages</span>
-                    </span>
-                    </div>
-                    {/* profile */}
-                    <div className="dropdown me-5">
-                    <div
-                        className="d-flex align-items-center icon-hover rounded p-2"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        <img
-                        src="https://source.unsplash.com/random/1"
-                        alt="avatar"
-                        height="38px"
-                        width="38px"
-                        className="rounded-circle me-2"
-                        />
-                        <p className="mb-0">Janarthanan</p>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-            </nav>
-                    <div>
-                        {children}
-                    </div>
-                </div>
-
-
-            <div className='col mt-5' style={{ display: "", height: "100vh", backgroundColor: "#00000000"}}>
-            <div  className='row  mt-5  d-flex  flex-start'>
-                            <div className='col m3'>
-
-                            {!collapsed ?<div className="logodashboard ms-5 mt-5">
-                                    <Card className=" usercard shadow">
-                                    <Card.Body>   
+                    <div className='card mt-5 mb-2 shadow  border-0'>
+                    <div class="card-body p-1">
+                        {!collapsed ?<div className=" ms-2 ">
+                                   
                                         
                                             <div className='d-flex align-items-center justify-content-center mb-2'>
-                                                <div className='d-flex align-items-center justify-content-center ms-2'>
+                                                <div className='d-flex align-items-center justify-content-center ms-1'>
                                                     <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
                                                 </div>
                 
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     <div>
                                                         <h5 className='m-0'>Janarthanan</h5>
-                                                        <p className='m-0 text-muted'>emp20345</p>
-                                                        <p className='m-0 text-muted'>admin@std.uwu.ac.lk</p>
-                                                        <p className='m-0 text-muted'>0771234567</p>
+                                                        <p className='txt  m-0 text-muted'>emp20345</p>
+                                                        <p className='txt m-0 text-muted'>admin@std.uwu.ac.lk</p>
+                                                        <p className='txt m-0 text-muted'>0771234567</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         
-                                    </Card.Body>
-                                </Card>
+                                
                                         </div>:
-                                        <div className="logodashboard ms-5 mt-5">
-                                            <Card className="w-100px shadow">
-                                            <Card.Body> 
-                                            <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='50px' height='50px' />
+                                        <div className="w-100px shadow">
                                             
-                                            </Card.Body>
-                                            </Card>
+                                            <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='50px' height='50px' />
+                                           
                                         </div>}
-                            </div>
-                            </div>
-                <Sidebar className="sidebar ms-5 mt-3 row flex-nowarp " collapsed={collapsed}>
-                    <Menu>
-                    <MenuItem>
-                        <button className="sb-button" onClick={() => setCollapsed(!collapsed)}>
-                        {<MenuRoundedIcon  />}
-                        </button>
-                    
-                    
-                    </MenuItem>
-                    
+                        </div>
+                    </div>
+                    <div className='mt-5'>
                     <MenuItem className="menu-item"
                         component={<Link to="/admin/dashboard"  />}
                         icon={<GridViewRoundedIcon />}> Dashboard</MenuItem>
                     
                     <SubMenu selected className="subline menu-item" label="Doctor" icon={<HealthAndSafetyIcon />} sx={{fontSize:'16px'}} >
-                        <MenuItem  className="menu-item ms-5" sx={{ pl: 0 }}
+                        <MenuItem  className="menu-item" sx={{ pl: 0 }}
                         component={<Link to="/admin/adddoctor"  />}
                         icon={<PersonAddIcon />}>Add Doctor</MenuItem>
-                        <MenuItem className="menu-item ms-5" sx={{ pl: 0 }}
+                        <MenuItem className="menu-item " sx={{ pl: 0 }}
                         component={<Link to="/admin/doctorlist"  />}
                         icon={<ListIcon />}>Doctor List</MenuItem>
                     </SubMenu>
                     
                     <SubMenu className="subline menu-item" label="Patient" icon={<WheelchairPickupIcon />}>
-                        <MenuItem className="menu-item ms-5"
+                        <MenuItem className="menu-item "
                         component={<Link to="/admin/addpatient"  />}
                         icon={<PersonAddAlt1Icon />}>Add Patient</MenuItem>
-                        <MenuItem className="menu-item ms-5"
+                        <MenuItem className="menu-item "
                         component={<Link to="/admin/editpatient"  />}
                         icon={<EditNoteIcon />}>Edit Patient</MenuItem>
-                        <MenuItem className="menu-item ms-5"
+                        <MenuItem className="menu-item "
                         component={<Link to="/admin/patientlist"  />}
                         icon={<ListIcon />}>Patient List</MenuItem>
                     </SubMenu>
 
                     <SubMenu className="subline menu-item" label="Human Resource" icon={<Diversity3Icon />}>
-                        <MenuItem className="menu-item ms-5"
+                        <MenuItem className="menu-item "
                         component={<Link to="/admin/addemployee" />}
                         icon={<PersonAddAlt1Icon />}>Add Employee</MenuItem>
-                        <MenuItem className="menu-item ms-5"
+                        <MenuItem className="menu-item "
                         component={<Link to="/admin/employeelist"  />}
                         icon={<ListIcon />}>Employee List</MenuItem>
                     </SubMenu>
@@ -189,20 +118,52 @@ function AdminLayout({ children }) {
                     component={<Link to="/admin/medicalreports"  />}
                     icon={<SummarizeIcon />}>Medical Reports </MenuItem>
 
-                    
+                    <MenuItem className="menu-item"
+                    component={<Link to="/admin/settings"  />}
+                    icon={<SettingsIcon />}>Settings </MenuItem>
+  
                     <MenuItem className="menu-item" icon={<LogoutRoundedIcon />}> Logout </MenuItem>
+                    </div>
                     </Menu>
                 </Sidebar>
-                <section>
-                    
-                </section>
+
+                <div className="col p-0">
+                    <nav className="navbar navbar-expand-lg bg-white  border-bottom-d1d1d1 px-4 naavbar ">
+                        <div className="container-fluid">
+                       
+                        <div className="d-flex align-items-center justify-content-center"> 
+                            <img src={logo} alt="HealerZ" height="48px" />
+                        </div>
+                            <div className="collapse navbar-collapse" id="navbarNav">
+                                <ul className="navbar-nav ms-auto align-items-center">
+                                    <li className="nav-item">
+                                        <a className="nav-link active position-relative px-2" aria-current="page"
+                                           href="#">
+                                            <div className="red-dot"/>
+                                            <img src={Bell} alt={""}/>
+                                        </a>
+                                    </li>
+                                    <li className="nav-item px-2">
+                                        <a className="nav-link  position-relative p-0" aria-current="page" href="#">
+
+                                            <img src={'https://source.unsplash.com/random/1'} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div>
+                        {children}
+                    </div>
                 </div>
-       
-
+            </div>
+           
         </div>
-    
 
+        
     );
 }
 
-export default AdminLayout;
+export default Layout;
