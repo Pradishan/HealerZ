@@ -10,8 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-
-
+{/*gnidgdhd */}
+{/*gnidgdhd */}
 const columns = [
     
     { id: 'doctor_id', label: 'Doctor ID', minWidth: 100 },
