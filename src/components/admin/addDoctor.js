@@ -9,14 +9,11 @@ import withReactContent from "sweetalert2-react-content";
 
 function AddDoctor(props) {
     const MySwal = withReactContent(Swal);
-    const [patient_id, setID] = useState('');
-    const [patient_name, setName] = useState('');
-    const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
+    const [doctor_id, setID] = useState('');
+    const [doctor_name, setName] = useState('');
     const [phoneNo, setphoneNo] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
-    const [bg, setBgroup] = useState('');
     const [pass, setPass] = useState('');
     const [image, setImage] = useState('');
     const [regNo, setReg] = useState('');
@@ -50,9 +47,8 @@ function AddDoctor(props) {
         } else {
             const url = "http://localhost/HealerZ/PHP/addpatient.php";
             let fdata = new FormData();
-            fdata.append('doctor_ID', patient_id);
-            fdata.append('doctor_Name', patient_name);
-            fdata.append('DateOfBirth', dob);
+            fdata.append('doctor_ID', doctor_id);
+            fdata.append('doctor_Name', doctor_name);
             fdata.append('PhoneNo', phoneNo);
             fdata.append('Email', email);
             fdata.append('Address', address);
@@ -86,10 +82,15 @@ function AddDoctor(props) {
     }
     return (
         <AdminLayout>
-            <div className={"Addcontt"}>
-                   
-                
-                <div className={"addboxx"}>
+
+                <div className={"addboxx mt-4"}  style={{ display: "flex", justifyContent: "center", alignItems: "center" }}  >
+                <div className={"Addcontt "}>
+                    <div class="card-body">
+                    <a  class="btn btn-primary">Add Doctor</a>
+                    </div>
+                    
+                    <hr/>
+
                     <form>
                         <table>
                             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -138,8 +139,9 @@ function AddDoctor(props) {
                             </div>
                         </table>
                         <hr />
+                        <button className="btn btn-primary done-button"  style={{left: '280px'}} type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>ADD</button>
                     </form>
-                    <button className="btn btn-primary done-button" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>ADD</button>
+                   
                     
                 </div>
                 
