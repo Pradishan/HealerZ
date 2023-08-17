@@ -117,14 +117,23 @@ function AddModal(props) {
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={"inputfield1"}>
-                                <input
-                                    type={"text"}
-                                    name={"Category"}
-                                    placeholder={"XXXXXXXXXX"}
-                                    className={"inputt"}
+                            <th className={'inputfield1'}>
+                                <select
+                                    name={'Category'}
+                                    
+                                    className={'inputt'}
                                     onChange={(e) => setCat(e.target.value)}
-                                />
+                                >
+                                    <option value={''}>Select Category</option>
+                                    <option value={'Liquid'}>Liquid</option>
+                                    <option value={'Tablet'}>Tablet</option>
+                                    <option value={'Capsules'}>Capsules</option>
+                                    <option value={'Topical'}>Topical</option>
+                                    <option value={'Suppositories'}>Suppositories</option>
+                                    <option value={'Drops'}>Drops</option>
+                                    <option value={'Injections'}>Injections</option>
+                                    <option value={'Implants'}>Implants</option>
+                                </select>
                                 <br />
                             </th>
                         </tr>
