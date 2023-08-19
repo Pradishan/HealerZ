@@ -22,16 +22,17 @@ function AddDoctor(props) {
 
 
     const handleSubmit = () => {
-        if (patient_id.length === 0) {
-            toast.error("Please Enter the Patient_ID");
-        } else if (patient_name.length === 0) {
-            toast.error("Please Enter the Patient_Name");
+        // if (patient_id.length === 0) {
+        //     toast.error("Please Enter the Patient_ID");
+        // } else if (patient_name.length === 0) {
+        //     toast.error("Please Enter the Patient_Name");
 
-        }
-        else if (dob.length === 0) {
-            toast.error("Please Enter the DOB");
+        // }
+        // else if (dob.length === 0) {
+        //     toast.error("Please Enter the DOB");
 
-        }else if (phoneNo.length === 0) {
+        // }else 
+        if (phoneNo.length === 0) {
             toast.error("Please Enter the PhoneNo");
 
         } else if (email.length === 0) {
@@ -109,7 +110,7 @@ function AddDoctor(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Email:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"email"} onChange={(e) => setDob(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"email"} onChange={(e) => setEmail(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th> <label>Phone  No:</label></th>
