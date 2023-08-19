@@ -110,7 +110,9 @@ function AddDoctor(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Email:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"email"} onChange={(e) => setEmail(e.target.value)} /></th>
+
+                                        {/* <th className={"addinputt"}> <input type="text" className="form-control2" name={"email"} onChange={(e) => setDob(e.target.value)} /></th> */}
+
                                     </tr>
                                     <tr>
                                         <th> <label>Phone  No:</label></th>
