@@ -31,7 +31,7 @@ function StockUpdateModal(props) {
         } else if (ExpiredDate.length === 0) {
             toast.error("Please enter the Expired Date.");
         } else {
-            const url = "http://localhost/HealerZ/PHP/stockupdate.php";
+            const url = "http://localhost/HealerZ/PHP/Inventory/stockupdate.php";
             let fdata = new FormData();
             fdata.append('Drug_ID', Drug_ID);
             fdata.append('StockCount', Stock_IN);

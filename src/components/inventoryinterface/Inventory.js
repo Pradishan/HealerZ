@@ -57,7 +57,7 @@ function Inventory(props) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost/Healerz/PHP/displaydrugs.php');
+            const response = await axios.get('http://localhost/Healerz/PHP/Inventory/displaydrugs.php');
             setDrugList(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);

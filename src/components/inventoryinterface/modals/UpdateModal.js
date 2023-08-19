@@ -37,7 +37,7 @@ function UpdateModal(props) {
   
     // Perform the update operation
     axios
-    .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
+    .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
         // Handle successful response
         console.log(response.data);
@@ -61,7 +61,7 @@ function UpdateModal(props) {
     }
 
       axios
-        .delete(`http://localhost/HealerZ/PHP/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
+        .delete(`http://localhost/HealerZ/PHP/Inventory/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
         .then((response) => {
           // Handle successful response
           console.log(response.data);
