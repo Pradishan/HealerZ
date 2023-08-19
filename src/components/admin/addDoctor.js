@@ -35,7 +35,7 @@ function AddDoctor ( props )
         // else if (dob.length === 0) {
         //     toast.error("Please Enter the DOB");
 
-        } else if ( address.length === 0 )
+         if ( address.length === 0 )
         {
             toast.error( "Please Enter the Address" );
 
