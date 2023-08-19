@@ -63,7 +63,7 @@ function Inventory(props) {
             console.error('Error fetching data:', error);
         }
     };
-
+    
     return (
         <Layout>
             <Container>
