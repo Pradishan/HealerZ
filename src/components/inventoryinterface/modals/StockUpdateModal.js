@@ -40,13 +40,8 @@ function StockUpdateModal(props) {
             axios.post(url, fdata)
                 .then((response) => {
                     // Show success swal notification
-                    MySwal.fire({
-                        icon: "success",
-                        title: response.data,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    toast.success("Stock Updated Successfully.!")
+                   
                 })
                 .catch((error) => {
                     // Show error swal notification
