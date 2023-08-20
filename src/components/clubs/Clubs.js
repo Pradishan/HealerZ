@@ -1,8 +1,12 @@
 import React from 'react';
-
+import ClubLayout from '../../layouts/ClubLayout'
 
 export default function Clubs() {
   return (
-    <div>Clubs</div>
+     <ClubLayout>
+
+    
+      </ClubLayout>
+
   )
 }
