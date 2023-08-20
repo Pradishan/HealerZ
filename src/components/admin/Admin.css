@@ -2,19 +2,22 @@
 
 .Addcontt {
     margin-left: 30px;
-  }
-  .App-header{
+}
+
+.App-header {
     margin-left: 30px;
-  }
-  .heading-purple {
+}
+
+.heading-purple {
     color: purple;
     font-size: 3rem;
     font-weight: 700!important;
-  }
-  
-  /* Done button styles */
-  
-  .done-button {
+}
+
+
+/* Done button styles */
+
+.done-button {
     position: relative;
     left: 620px;
     background-color: purple !important;
@@ -24,14 +27,14 @@
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 10px;
-  }
-  
-  .done-button:hover {
+}
+
+.done-button:hover {
     background-color: #6a0dad !important;
     cursor: pointer;
-  }
+}
 
-  .done-buttonn1 {
+.done-buttonn1 {
     margin-left: 170px;
     position: relative;
     margin-right: 20px;
@@ -40,34 +43,22 @@
     margin-top: 0px;
     margin-bottom: 10px;
     display: flex;
-    gap:40px;
+    gap: 40px;
     align-items: center;
-  }
-  
-  .btn-primary {
-    background-color: purple;
-    padding: 10px 80px !important;
-    color: #fff;
-    border: none;
-  }
-  
-  .btn-primary:hover {
-    background-color:blueviolet;
-  }
-  
-  .btn-danger {
+}
+
+.btn-danger {
     background-color: #8f0e0e !important;
     color: #fff;
     padding: 10px 80px !important;
     border: none;
-  }
-  
-  .btn-danger:hover {
+}
+
+.btn-danger:hover {
     background-color: #d41225 !important;
-  }
-  
-  
-  .inputfieldd{
+}
+
+.inputfieldd {
     padding: 15px;
 }
 
@@ -80,23 +71,28 @@
     padding: 20px;
     margin-bottom: 20px;
     width: fit-content;
-  }
-  .cont1{
+}
+
+.cont1 {
     text-align: left;
-  }
-  .cont2{
+}
+
+.cont2 {
     text-align: left;
     padding-left: 80px;
-  }
-  .addinputt{
+}
+
+.addinputt {
     padding: 15px;
-  }
-  .form-control{
+}
+
+.form-control {
     width: 220px;
     height: 20px;
     border-radius: 5px;
-  }
-  .form-control1{
+}
+
+.form-control1 {
     width: 220px;
     border-radius: 5px;
 }
@@ -108,22 +104,23 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-.Adddelbutt{
-  margin-left: 10px;
-}
-.done-button3 {
-  position: relative;
-  left: 420px;
-  background-color: purple !important;
-  color: #fff;
-  padding: 10px 80px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+
+.Adddelbutt {
+    margin-left: 10px;
 }
 
+.done-button3 {
+    position: relative;
+    left: 420px;
+    background-color: purple !important;
+    color: #fff;
+    padding: 10px 80px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
 
 
 /* Responsive styles */
@@ -134,8 +131,8 @@
         flex-direction: column;
     }
     .done-button {
-      position: static;
-      margin-top: 20px;
-      width: 100%;
+        position: static;
+        margin-top: 20px;
+        width: 100%;
     }
 }

@@ -92,6 +92,7 @@ const errorMessgae =(message) => {
                       placeholder="D0001"
                       value={doctorID}
                       onChange={(e) => setDoctorID(e.target.value)}
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingInput">Doctor ID</label>
                   </div>
@@ -103,6 +104,7 @@ const errorMessgae =(message) => {
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
