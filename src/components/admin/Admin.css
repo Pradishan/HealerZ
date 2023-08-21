@@ -19,7 +19,7 @@
 
 .done-button {
     position: relative;
-    left: 620px;
+    left: 650px;
     background-color: purple !important;
     color: #fff;
     padding: 10px 80px;
@@ -120,6 +120,42 @@
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 10px;
+}
+
+.done-button5 {
+    position: relative;
+    left: 400px;
+    color: #fff;
+    padding: 10px 80px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.SearchBox4 {
+    border-radius: 5px;
+    background: #ffffff;
+    width: 250px;
+}
+
+.SearchBox4::placeholder {
+    opacity: 0.5;
+}
+
+.done-button4 {
+    background-color: rgb(13, 0, 128) !important;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 30px;
+    width: 120px;
+    margin-top: -3px;
+}
+
+.form-control1::placeholder {
+    opacity: 0.4;
 }
 
 
