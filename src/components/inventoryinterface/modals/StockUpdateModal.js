@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import "../inventory.css";
 
 function StockUpdateModal(props) {
-    const MySwal = withReactContent(Swal);
+   
     const { show, onHide } = props;
 
     const items = props.inputs;
@@ -46,14 +44,7 @@ function StockUpdateModal(props) {
                 })
                 .catch((error) => {
                     // Show error swal notification
-                    MySwal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: error.message,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    toast.error(error.message);
                 });
         }
     };

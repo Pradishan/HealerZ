@@ -4,8 +4,7 @@ import '../inventory.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+
 
 function AddModal(props) {
     const [drug_id, setID] = useState('');

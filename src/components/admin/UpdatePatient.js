@@ -37,6 +37,9 @@ function UpdatePatient(props) {
             .catch(error => {
                 console.error('Error:', error);
                 toast.error('An error occurred');
+            }).finally(() => {
+                // Reset the Drug_ID state after a successful search
+                setID('');
             });
     };
 

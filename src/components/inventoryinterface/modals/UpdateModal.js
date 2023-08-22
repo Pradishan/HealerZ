@@ -25,13 +25,13 @@ function UpdateModal(props) {
   const handleUpdate = () => {
     // Check if there is any data to update
     if (Object.keys(newData).length === 0) {
-      toast.error("No data to update!");
+      toast.info("No data to update!");
       return;
     }
   
     // Check if Drug_ID is present in newData
     if (!newData.Drug_ID) {
-      toast.error("Drug ID is missing in the update data!");
+      toast.info("Drug ID is missing in the update data!");
       return;
     }
   
