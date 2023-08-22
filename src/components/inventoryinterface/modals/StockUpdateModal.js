@@ -40,7 +40,8 @@ function StockUpdateModal(props) {
             axios.post(url, fdata)
                 .then((response) => {
                     // Show success swal notification
-                    toast.success("Stock Updated Successfully.!")
+                    toast.success("Stock Updated Successfully.!");
+                    onHide();
                    
                 })
                 .catch((error) => {

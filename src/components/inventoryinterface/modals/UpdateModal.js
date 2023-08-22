@@ -42,6 +42,7 @@ function UpdateModal(props) {
         // Handle successful response
         console.log(response.data);
         toast.success("Drug updated successfully!");
+        onHide();
       })
       .catch((error) => {
         // Handle error response
@@ -66,6 +67,7 @@ function UpdateModal(props) {
           // Handle successful response
           console.log(response.data);
           toast.success("Drug deleted successfully!");
+          onHide();
         })
         .catch((error) => {
           // Handle error response

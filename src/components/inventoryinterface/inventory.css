@@ -145,22 +145,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background: #7D0080 !important;
-    font-size: 12px;
+    background: #610261 !important;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 800;
+    /* font-weight: 800; */
     line-height: normal;
     color: white;
+    border: none !important;
 }
 
 .filterbutt:hover {
-    background: #560256 !important;
+    background: #7D0080 !important;
 }
 
 .SearchBox1 {
     border-radius: 5px;
-    background: #D9D9D9;
-    height: 33px;
+    background: #ebe8e8;
+    border-color: rgb(0, 0, 24);
+    height: 35px;
 }
 
 @media (max-width: 768px) {

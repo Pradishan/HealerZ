@@ -33,6 +33,9 @@ function SearchIDUpdate(props) {
             })
             .catch(function (error) {
                 console.error(error);
+            }).finally(() => {
+                // Reset the Drug_ID state after a successful search
+                setSearchTerm('');
             });
     }
 
