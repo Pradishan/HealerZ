@@ -22,7 +22,7 @@ function UpdatePatient(props) {
         e.preventDefault();
 
         // Send a GET request to your PHP search script
-        axios.get(`http://localhost/HealerZ/PHP/searchpatient.php?patient_id=${patient_id}`)
+        axios.get(`http://localhost/HealerZ/PHP/admin/searchpatient.php?patient_id=${patient_id}`)
             .then(response => {
                 const data = response.data;
                 console.log(response.data);
@@ -59,7 +59,7 @@ function UpdatePatient(props) {
         }
     
         axios
-        .put("http://localhost/HealerZ/PHP/updatepatient.php", newData)
+        .put("http://localhost/HealerZ/PHP/admin/updatepatient.php", newData)
           .then((response) => {
             // Handle successful response
             console.log(response.data);
@@ -83,7 +83,7 @@ function UpdatePatient(props) {
         }
     
         axios
-            .delete(`http://localhost/HealerZ/PHP/deletepatient.php?Patient_ID=${patientIdToDelete}`)
+            .delete(`http://localhost/HealerZ/PHP/admin/deletepatient.php?Patient_ID=${patientIdToDelete}`)
             .then((response) => {
                 // Handle successful response
                 console.log(response.data);

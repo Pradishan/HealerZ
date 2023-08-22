@@ -54,7 +54,7 @@ function PatientList(props) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost/Healerz/PHP/displaypatientlist.php');
+            const response = await axios.get('http://localhost/Healerz/PHP/admin/displaypatientlist.php');
             setpatientList(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);

@@ -51,7 +51,7 @@ function AddPatient(props) {
             toast.warning("Please Enter the Password");
 
         } else {
-            const url = "http://localhost/HealerZ/PHP/addpatient.php";
+            const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
             let fdata = new FormData();
             fdata.append('Patient_ID', patient_id);
             fdata.append('Patient_Name', patient_name);
