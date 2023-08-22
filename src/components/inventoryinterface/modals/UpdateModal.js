@@ -175,10 +175,10 @@ function UpdateModal(props) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="primary" onClick={handleUpdate}>
+        <Button variant="primary uptbut" onClick={handleUpdate} style={{backgroundColor:'green'}}>
           Update
         </Button>
-        <Button variant="primary" onClick={handleDelete}>
+        <Button variant="primary uptbut" onClick={handleDelete} style={{backgroundColor:'red'}}>
           Delete
         </Button>
         <ToastContainer />
