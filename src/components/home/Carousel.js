@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.png';
+import slider1 from '../../assets/slider1.png';
+import slider2 from '../../assets/slider2.png';
 
 
 
@@ -14,15 +16,15 @@ const Carousel = () => {
     </div>
     <div className="carousel-inner ">
       <div className="carousel-item">
-      <img src={logo} alt="HealerZ" height={450} width="100%" />
+      <img src={slider1} alt="HealerZ"  width="100%" />
         
       </div>
       <div className="carousel-item">
-      <img src={logo} alt="HealerZ" height={450} width="100%" />
+      <img src={slider2} alt="HealerZ"  width="100%" />
         
       </div>
       <div className="carousel-item active">
-      <img src={logo} alt="HealerZ" height={450} width="100%" />
+      <img src={slider1} alt="HealerZ"  width="100%" />
        
       </div>
     </div>
