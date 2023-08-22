@@ -72,21 +72,45 @@ function UpdatePatient(props) {
             });
     };
 
+    // const handleDelete = () => {
+    //     // Send a POST request to your PHP delete script
+    //     axios.delete('http://localhost/HealerZ/PHP/deletepatient.php', { patient_id })
+    //         .then(response => {
+    //             const data = response.data;
+    //             if (data.success) {
+    //                 toast.success('Patient deleted successfully');
+    //                 setPatientData(null); // Clear patientData after deletion
+    //             } else {
+    //                 toast.error('Failed to delete patient');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //             toast.error('An error occurred');
+    //         });
+    // };
+
     const handleDelete = () => {
-        // Send a POST request to your PHP delete script
-        axios.post('/delete-patient.php', { patient_id })
-            .then(response => {
-                const data = response.data;
-                if (data.success) {
-                    toast.success('Patient deleted successfully');
-                    setPatientData(null); // Clear patientData after deletion
-                } else {
-                    toast.error('Failed to delete patient');
-                }
+        const patientIdToDelete = patientData.Patient_ID;
+    
+        if (!patientIdToDelete) {
+            toast.error("Patient ID not found!");
+            return;
+        }
+    
+        axios
+            .delete(`http://localhost/HealerZ/PHP/deletepatient.php?Patient_ID=${patientIdToDelete}`)
+            .then((response) => {
+                // Handle successful response
+                console.log(response.data);
+                toast.success("Patient deleted successfully!");
+                // Clear patientData after deletion
+                setPatientData(null);
             })
-            .catch(error => {
-                console.error('Error:', error);
-                toast.error('An error occurred');
+            .catch((error) => {
+                // Handle error response
+                toast.error("Failed to delete patient!");
+                console.error(error);
             });
     };
 
