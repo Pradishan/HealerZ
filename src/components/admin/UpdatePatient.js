@@ -42,53 +42,34 @@ function UpdatePatient(props) {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-
-        // Collect updated data from form fields
-        const updatedData = {
-            Patient_ID: patient_id,
-            PatientName: newData.PatientName,
-            DateOfBirth: newData.DateOfBirth,
-            Gender: newData.Gender,
-            PhoneNo: newData.PhoneNo,
-            Email: newData.Email,
-            Address: newData.Address,
-            BloodGroup: newData.BloodGroup,
-            Password: newData.Password,
-        };
-
-        // Send a POST request to your PHP update script
-        axios.post('http://localhost/HealerZ/PHP/updatepatient.php', updatedData)
-            .then(response => {
-                const data = response.data;
-                if (data.success) {
-                    toast.success('Patient updated successfully');
-                } else {
-                    toast.error('Failed to update patient');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                toast.error('An error occurred');
-            });
+    
+        // Check if there is any data to update
+        if (Object.keys(newData).length === 0) {
+            toast.error("No data to update!");
+            return;
+        }
+    
+        // Check if Patient_ID is present in newData
+        if (!newData.Patient_ID) {
+            toast.error("Patient_ID is missing in the update data!");
+            return;
+        }
+    
+        axios
+        .put("http://localhost/HealerZ/PHP/updatepatient.php", newData)
+          .then((response) => {
+            // Handle successful response
+            console.log(response.data);
+            toast.success("Patient updated successfully!");
+          })
+          .catch((error) => {
+            // Handle error response
+            toast.error("Failed to update Patient!");
+            console.error(error);
+          });
     };
+    
 
-    // const handleDelete = () => {
-    //     // Send a POST request to your PHP delete script
-    //     axios.delete('http://localhost/HealerZ/PHP/deletepatient.php', { patient_id })
-    //         .then(response => {
-    //             const data = response.data;
-    //             if (data.success) {
-    //                 toast.success('Patient deleted successfully');
-    //                 setPatientData(null); // Clear patientData after deletion
-    //             } else {
-    //                 toast.error('Failed to delete patient');
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error('Error:', error);
-    //             toast.error('An error occurred');
-    //         });
-    // };
 
     const handleDelete = () => {
         const patientIdToDelete = patientData.Patient_ID;
