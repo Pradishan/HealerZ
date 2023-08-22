@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function AddPatient(props) {
-    const MySwal = withReactContent(Swal);
+    
     const [patient_id, setID] = useState('');
     const [patient_name, setName] = useState('');
     const [dob, setDob] = useState('');

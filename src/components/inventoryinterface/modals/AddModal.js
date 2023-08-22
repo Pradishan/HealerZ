@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function AddModal(props) {
-    const MySwal = withReactContent(Swal);
+   
 
     const [drug_id, setID] = useState('');
     const [drug_name, setName] = useState('');
