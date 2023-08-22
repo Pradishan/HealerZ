@@ -19,24 +19,24 @@ function AddModal(props) {
     const handleSubmit = () => {
         if (drug_id.length === 0) {
             // alert("Pls Enter the Drug_ID");
-            toast.error("Pls Enter the Drug_ID");
+            toast.warning("Pls Enter the Drug_ID");
         } else if (drug_name.length === 0) {
             // alert("Pls Enter the Drug_Name");
-            toast.error("Pls Enter the Drug_Name");
+            toast.warning("Pls Enter the Drug_Name");
 
         }
         else if (category.length === 0) {
             // alert("Pls Enter the Category");
-            toast.error("Pls Enter the Category");
+            toast.warning("Pls Enter the Category");
 
         }
         else if (dosage.length === 0) {
             // alert("Pls Enter the Dosage");
-            toast.error("Pls Enter the Dosage");
+            toast.warning("Pls Enter the Dosage");
 
         } else if (description.length === 0) {
             // alert("Pls Enter the Descrption");
-            toast.error("Pls Enter the Descrption");
+            toast.warning("Pls Enter the Descrption");
 
         }
         else {
@@ -54,25 +54,16 @@ function AddModal(props) {
 
             axios.post(url, fdata)
                 .then((response) => {
-                    // Show success swal notification
-                    MySwal.fire({
-                        icon: "success",
-                        title: response.data,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    if (response.data.message === "Drug Added Successfully") {
+                        // Show success message
+                        toast.success(response.data.message);
+                    } else {
+                        // Show error message
+                        toast.error("Drug Already Added");
+                    }
                 })
                 .catch((error) => {
-                    // Show error swal notification
-                    MySwal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: error.message,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    toast.error(error.message);
                 });
 
         }

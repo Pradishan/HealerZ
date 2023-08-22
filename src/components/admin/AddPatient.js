@@ -24,31 +24,31 @@ function AddPatient(props) {
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {
-            toast.error("Please Enter the Patient_ID");
+            toast.warning("Please Enter the Patient_ID");
         } else if (patient_name.length === 0) {
-            toast.error("Please Enter the Patient_Name");
+            toast.warning("Please Enter the Patient_Name");
 
         }
         else if (dob.length === 0) {
-            toast.error("Please Enter the DOB");
+            toast.warning("Please Enter the DOB");
 
         }else  if (gender.length === 0) {
-            toast.error("Please select the Gender");
+            toast.warning("Please select the Gender");
 
         }else if (phoneNo.length === 0) {
-            toast.error("Please Enter the PhoneNo");
+            toast.warning("Please Enter the PhoneNo");
 
         } else if (email.length === 0) {
-            toast.error("Please Enter the Email");
+            toast.warning("Please Enter the Email");
 
         } else if (address.length === 0) {
-            toast.error("Please Enter the Address");
+            toast.warning("Please Enter the Address");
 
         } else if (bg.length === 0) {
-            toast.error("Please Enter the BloodGroup");
+            toast.warning("Please Enter the BloodGroup");
 
         } else if (pass.length === 0) {
-            toast.error("Please Enter the Password");
+            toast.warning("Please Enter the Password");
 
         } else {
             const url = "http://localhost/HealerZ/PHP/addpatient.php";
@@ -64,25 +64,16 @@ function AddPatient(props) {
             fdata.append('Password', pass);
             axios.post(url, fdata)
             .then((response) => {
-                // Show success swal notification
-                MySwal.fire({
-                    icon: "success",
-                    title: response.data,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
+                if (response.data.message === "Patient Added Successfully") {
+                    // Show success message
+                    toast.success(response.data.message);
+                } else {
+                    // Show error message
+                    toast.error("Patient Already Added");
+                }
             })
             .catch((error) => {
-                // Show error swal notification
-                MySwal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: error.message,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
+                toast.error(error.message);
             });
 
         }
