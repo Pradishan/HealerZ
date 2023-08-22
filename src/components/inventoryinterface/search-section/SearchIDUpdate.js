@@ -20,7 +20,7 @@ function SearchIDUpdate(props) {
         getUser();
     };
     function getUser() {
-        axios.get(`http://localhost/HealerZ/PHP/display.php?Drug_ID=${Drug_ID}`)
+        axios.get(`http://localhost/HealerZ/PHP/Inventory/display.php?Drug_ID=${Drug_ID}`)
             .then(function (response) {
                 console.log(response.data);
                 setInputs(response.data);

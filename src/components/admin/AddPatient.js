@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function AddPatient(props) {
-    const MySwal = withReactContent(Swal);
+    
     const [patient_id, setID] = useState('');
     const [patient_name, setName] = useState('');
     const [dob, setDob] = useState('');
@@ -24,31 +24,31 @@ function AddPatient(props) {
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {
-            toast.error("Please Enter the Patient_ID");
+            toast.warning("Please Enter the Patient_ID");
         } else if (patient_name.length === 0) {
-            toast.error("Please Enter the Patient_Name");
+            toast.warning("Please Enter the Patient_Name");
 
         }
         else if (dob.length === 0) {
-            toast.error("Please Enter the DOB");
+            toast.warning("Please Enter the DOB");
 
         }else  if (gender.length === 0) {
-            toast.error("Please select the Gender");
+            toast.warning("Please select the Gender");
 
         }else if (phoneNo.length === 0) {
-            toast.error("Please Enter the PhoneNo");
+            toast.warning("Please Enter the PhoneNo");
 
         } else if (email.length === 0) {
-            toast.error("Please Enter the Email");
+            toast.warning("Please Enter the Email");
 
         } else if (address.length === 0) {
-            toast.error("Please Enter the Address");
+            toast.warning("Please Enter the Address");
 
         } else if (bg.length === 0) {
-            toast.error("Please Enter the BloodGroup");
+            toast.warning("Please Enter the BloodGroup");
 
         } else if (pass.length === 0) {
-            toast.error("Please Enter the Password");
+            toast.warning("Please Enter the Password");
 
         } else {
             const url = "http://localhost/HealerZ/PHP/addpatient.php";
@@ -64,25 +64,16 @@ function AddPatient(props) {
             fdata.append('Password', pass);
             axios.post(url, fdata)
             .then((response) => {
-                // Show success swal notification
-                MySwal.fire({
-                    icon: "success",
-                    title: response.data,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
+                if (response.data.message === "Patient Added Successfully") {
+                    // Show success message
+                    toast.success(response.data.message);
+                } else {
+                    // Show error message
+                    toast.error("Patient Already Added");
+                }
             })
             .catch((error) => {
-                // Show error swal notification
-                MySwal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: error.message,
-                    customClass: {
-                        container: "sweetalert-container",
-                    },
-                });
+                toast.error(error.message);
             });
 
         }
@@ -99,15 +90,15 @@ function AddPatient(props) {
                                 <div className='cont1'>
                                     <tr>
                                         <th><label>Patient_ID:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"Patient_ID"} placeholder={"CSTXXXXX"} onChange={(e) => setID(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="text" className="form-control1" name={"Patient_ID"} placeholder={"CSTXXXXX"} onChange={(e) => setID(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th> <label>Patient_Name:</label></th>
-                                        <th className={"addinputt"}><input type="text" className="form-control2" name={"Patient_Name"} placeholder={"Thanu"} onChange={(e) => setName(e.target.value)} /></th>
+                                        <th className={"addinputt"}><input type="text" className="form-control1" name={"Patient_Name"} placeholder={"Thanu"} onChange={(e) => setName(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th> <label>Date of Birth:</label></th>
-                                        <th className={"addinputt"}> <input type="date" className="form-control2" name={"DateOfBirth"} onChange={(e) => setDob(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="date" className="form-control1" name={"DateOfBirth"} onChange={(e) => setDob(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th><label>Gender:</label></th>
@@ -150,7 +141,7 @@ function AddPatient(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Phone_No:</label></th>
-                                        <th className={"addinputt"}> <input type="text" className="form-control2" name={"PhoneNo"} placeholder={"076XXXXXXX"} onChange={(e) => setphoneNo(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="text" className="form-control1" name={"PhoneNo"} placeholder={"076XXXXXXX"} onChange={(e) => setphoneNo(e.target.value)} /></th>
                                     </tr>
                                 </div>
 
@@ -158,7 +149,7 @@ function AddPatient(props) {
                                 <div className='cont2'>
                                     <tr>
                                         <th><label>Email:</label></th>
-                                        <th className={"addinputt"}> <input type="email" className="form-control2" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="email" className="form-control1" name={"Email"} placeholder={"Thanush11@gmail.com"} onChange={(e) => setEmail(e.target.value)} /></th>
                                     </tr>
                                     <tr>
                                         <th><label>Address:</label></th>
@@ -167,7 +158,7 @@ function AddPatient(props) {
 
                                     <tr>
                                         <th><label>Blood Group:</label></th>
-                                        <th className={"addinputt"}> <select className="form-control2" name={"BloodGroup"} onChange={(e) => setBgroup(e.target.value)}>
+                                        <th className={"addinputt"}> <select className="form-control1" name={"BloodGroup"} onChange={(e) => setBgroup(e.target.value)}>
                                             <option value="" >
                                                 Choose Blood Group
                                             </option>
@@ -183,7 +174,7 @@ function AddPatient(props) {
                                     </tr>
                                     <tr>
                                         <th> <label>Password:</label></th>
-                                        <th className={"addinputt"}> <input type="password" className="form-control2" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
+                                        <th className={"addinputt"}> <input type="password" className="form-control1" name={"Password"} placeholder={"Type here"} onChange={(e) => setPass(e.target.value)} /></th>
                                     </tr>
                                 </div>
                             </div>

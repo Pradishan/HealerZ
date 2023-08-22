@@ -37,7 +37,7 @@ function UpdateModal(props) {
   
     // Perform the update operation
     axios
-    .put("http://localhost/HealerZ/PHP/updateDrug.php", newData)
+    .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
         // Handle successful response
         console.log(response.data);
@@ -61,7 +61,7 @@ function UpdateModal(props) {
     }
 
       axios
-        .delete(`http://localhost/HealerZ/PHP/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
+        .delete(`http://localhost/HealerZ/PHP/Inventory/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
         .then((response) => {
           // Handle successful response
           console.log(response.data);
@@ -125,14 +125,15 @@ function UpdateModal(props) {
                                     className={'inputt'}
                                     onChange={(e) => updateNewData(e, "Category")}
                                 >
-                                    <option value={''}>Select Category</option>
-                                    <option value={'Category 1'}>Category 1</option>
-                                    <option value={'Category 2'}>Category 2</option>
-                                    <option value={'Category 3'}>Category 3</option>
-                                    <option value={'Category 4'}>Category 4</option>
-                                    <option value={'Category 5'}>Category 5</option>
-                                    <option value={'Category 6'}>Category 6</option>
-                                    <option value={'Category 7'}>Category 7</option>
+                                   <option value={''}>Select Category</option>
+                                    <option value={'Liquid'}>Liquid</option>
+                                    <option value={'Tablet'}>Tablet</option>
+                                    <option value={'Capsules'}>Capsules</option>
+                                    <option value={'Topical'}>Topical</option>
+                                    <option value={'Suppositories'}>Suppositories</option>
+                                    <option value={'Drops'}>Drops</option>
+                                    <option value={'Injections'}>Injections</option>
+                                    <option value={'Implants'}>Implants</option>
                                 </select>
                                 <br />
                             </th>
@@ -174,10 +175,10 @@ function UpdateModal(props) {
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="primary" onClick={handleUpdate}>
+        <Button variant="primary uptbut" onClick={handleUpdate} style={{backgroundColor:'green'}}>
           Update
         </Button>
-        <Button variant="primary" onClick={handleDelete}>
+        <Button variant="primary uptbut" onClick={handleDelete} style={{backgroundColor:'red'}}>
           Delete
         </Button>
         <ToastContainer />
