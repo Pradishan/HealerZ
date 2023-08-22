@@ -8,36 +8,33 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 function AddModal(props) {
-    const MySwal = withReactContent(Swal);
-
     const [drug_id, setID] = useState('');
     const [drug_name, setName] = useState('');
     const [category, setCat] = useState('');
     const [dosage, setDos] = useState('');
     const [description, setDes] = useState('');
 
+    const resetForm = () => {
+        setID('');
+        setName('');
+        setCat('');
+        setDos('');
+        setDes('');
+    }
+
     const handleSubmit = () => {
         if (drug_id.length === 0) {
-            // alert("Pls Enter the Drug_ID");
-            toast.error("Pls Enter the Drug_ID");
+            toast.warning("Pls Enter the Drug_ID");
         } else if (drug_name.length === 0) {
-            // alert("Pls Enter the Drug_Name");
-            toast.error("Pls Enter the Drug_Name");
-
+            toast.warning("Pls Enter the Drug_Name");
         }
         else if (category.length === 0) {
-            // alert("Pls Enter the Category");
-            toast.error("Pls Enter the Category");
-
+            toast.warning("Pls Enter the Category");
         }
         else if (dosage.length === 0) {
-            // alert("Pls Enter the Dosage");
-            toast.error("Pls Enter the Dosage");
-
+            toast.warning("Pls Enter the Dosage");
         } else if (description.length === 0) {
-            // alert("Pls Enter the Descrption");
-            toast.error("Pls Enter the Descrption");
-
+            toast.warning("Pls Enter the Descrption");
         }
         else {
             const url = "http://localhost/HealerZ/PHP/Inventory/addDrug.php";
@@ -48,33 +45,18 @@ function AddModal(props) {
             fdata.append('Drug_dosage', dosage);
             fdata.append('Descriptions', description);
 
-            // axios.post(url,fdata)
-            // .then(response=>alert(response.data))
-            // .catch(error=>alert(error));
-
             axios.post(url, fdata)
                 .then((response) => {
-                    // Show success swal notification
-                    MySwal.fire({
-                        icon: "success",
-                        title: response.data,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    if (response.data.message === "Drug Added Successfully") {
+                        toast.success(response.data.message);
+                        resetForm(); // Reset the form after successful submission
+                    } else {
+                        toast.error("Drug Already Added");
+                    }
                 })
                 .catch((error) => {
-                    // Show error swal notification
-                    MySwal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: error.message,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    toast.error(error.message);
                 });
-
         }
     }
 
@@ -98,6 +80,7 @@ function AddModal(props) {
                                     placeholder={"DRUGXXXXX"}
                                     className={"inputt"}
                                     onChange={(e) => setID(e.target.value)}
+                                    value={drug_id}
                                 />
                                 <br />
                             </th>
@@ -111,6 +94,7 @@ function AddModal(props) {
                                     placeholder={"XXXXXXXXXX"}
                                     className={"inputt"}
                                     onChange={(e) => setName(e.target.value)}
+                                    value={drug_name}
                                 />
                                 <br />
                             </th>
@@ -120,9 +104,9 @@ function AddModal(props) {
                             <th className={'inputfield1'}>
                                 <select
                                     name={'Category'}
-                                    
                                     className={'inputt'}
                                     onChange={(e) => setCat(e.target.value)}
+                                    value={category}
                                 >
                                     <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>
@@ -146,6 +130,7 @@ function AddModal(props) {
                                     placeholder={"XXXmg"}
                                     className={"inputt"}
                                     onChange={(e) => setDos(e.target.value)}
+                                    value={dosage}
                                 />
                                 <br />
                             </th>
@@ -159,24 +144,21 @@ function AddModal(props) {
                                     className={"inputt"}
                                     rows={3}
                                     onChange={(e) => setDes(e.target.value)}
+                                    value={description}
                                 />
                                 <br />
                             </th>
                         </tr>
                     </table>
                 </form>
-
-
                 <hr />
-
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit}>Add</Button>
+                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green'}}>Add</Button>
                 <ToastContainer />
-                <Button variant="secondary" onClick={onHide}>Close</Button>
+                <Button variant="secondary uptbut"  style={{backgroundColor:'blue'}} onClick={resetForm}>Reset</Button>
             </Modal.Footer>
         </Modal>
-
     );
 }
 
