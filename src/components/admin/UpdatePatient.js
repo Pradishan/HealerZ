@@ -48,13 +48,13 @@ function UpdatePatient(props) {
     
         // Check if there is any data to update
         if (Object.keys(newData).length === 0) {
-            toast.error("No data to update!");
+            toast.info("No data to update!");
             return;
         }
     
         // Check if Patient_ID is present in newData
         if (!newData.Patient_ID) {
-            toast.error("Patient_ID is missing in the update data!");
+            toast.info("Patient_ID is missing in the update data!");
             return;
         }
     
