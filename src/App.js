@@ -5,6 +5,7 @@ import Doctorinterface from "./components/doctorinterface/Doctorinterface";
 import Dashboard from "./components/inventoryinterface/Dashboard";
 import Inventory from "./components/inventoryinterface/Inventory";
 import Clubs from "./components/clubs/Clubs";
+import Eventresponse from "./components/clubs/Eventresponse";
 import Profile from "./components/profile/Profile";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
         <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } roll={'Pharmacist'} /> } />
         <Route path="/clubs" element={ <Clubs /> } />
+        <Route path="/clubs/Eventresponse" element={ <Eventresponse /> } />
         <Route path="/profile" element={ <Profile /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />

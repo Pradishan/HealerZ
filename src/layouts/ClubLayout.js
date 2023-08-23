@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import Bell from "../assets/bell.svg";
 // import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
@@ -106,8 +106,7 @@ function ClubLayout({children}){
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav ms-auto align-items-center">
                                     <li className="nav-item">
-                                        <a className="nav-link active position-relative px-2" aria-current="page"
-                                           href="#">
+                                        <a className="nav-link active position-relative px-2" aria-current="page" href="#">
                                             <div className="red-dot"/>
                                             <img src={Bell} alt={""}/>
                                         </a>
