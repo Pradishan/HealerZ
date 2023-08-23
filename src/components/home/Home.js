@@ -25,9 +25,12 @@ export default function Home() {
         <Carousel />
       </div>
 
-
-      <div className='Services' id='services'>
+      
+      <div className='services' id='services'>
+      <h1 className='serhed'>Healerz</h1>
+     
         <div className="container text-center mt-2">
+          
           <h1 className='serhed'>OUR SERVICES</h1>
           <div className="container text-center mt-2 contgap1">
             <div className="row  cardcontainer1">
@@ -49,10 +52,14 @@ export default function Home() {
                   <h4> Doctor-Patient Collaboration </h4>
                 </div>
               </div>
+             
             </div>
+           
           </div>
         </div>
       </div>
+      
+     
 
       <div className="container" id='aboutus'>
         <div class="row mt-5 p-5 row1">
