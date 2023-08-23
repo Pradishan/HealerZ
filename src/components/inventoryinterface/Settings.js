@@ -28,10 +28,10 @@ export default function Settings(props) {
                             </h2>
                             <div id="profile" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <div className="input-group mb-3">
-                                        <input type="file" className="form-control" id="inputGroupFile02" />
+                                    <div className="form-floating mb-3">
+                                    <input type="file" className="form-control" id="inputGroupFile02" />
                                     </div>
-                                    <button className='btn w-100 text-white shadow btn-gr'>Save</button>
+                                    <button className='btn w-100 text-white shadow btn-gr'>Update Profile</button>
                                 </div>
                             </div>
                             <h2 className="accordion-header">
