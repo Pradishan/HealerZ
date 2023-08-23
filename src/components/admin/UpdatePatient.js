@@ -22,7 +22,7 @@ function UpdatePatient(props) {
         e.preventDefault();
 
         // Send a GET request to your PHP search script
-        axios.get(`http://localhost/HealerZ/PHP/searchpatient.php?patient_id=${patient_id}`)
+        axios.get(`http://localhost/HealerZ/PHP/admin/searchpatient.php?patient_id=${patient_id}`)
             .then(response => {
                 const data = response.data;
                 console.log(response.data);
@@ -37,6 +37,9 @@ function UpdatePatient(props) {
             .catch(error => {
                 console.error('Error:', error);
                 toast.error('An error occurred');
+            }).finally(() => {
+                // Reset the Drug_ID state after a successful search
+                setID('');
             });
     };
 
@@ -45,18 +48,18 @@ function UpdatePatient(props) {
     
         // Check if there is any data to update
         if (Object.keys(newData).length === 0) {
-            toast.error("No data to update!");
+            toast.info("No data to update!");
             return;
         }
     
         // Check if Patient_ID is present in newData
         if (!newData.Patient_ID) {
-            toast.error("Patient_ID is missing in the update data!");
+            toast.info("Patient_ID is missing in the update data!");
             return;
         }
     
         axios
-        .put("http://localhost/HealerZ/PHP/updatepatient.php", newData)
+        .put("http://localhost/HealerZ/PHP/admin/updatepatient.php", newData)
           .then((response) => {
             // Handle successful response
             console.log(response.data);
@@ -80,7 +83,7 @@ function UpdatePatient(props) {
         }
     
         axios
-            .delete(`http://localhost/HealerZ/PHP/deletepatient.php?Patient_ID=${patientIdToDelete}`)
+            .delete(`http://localhost/HealerZ/PHP/admin/deletepatient.php?Patient_ID=${patientIdToDelete}`)
             .then((response) => {
                 // Handle successful response
                 console.log(response.data);

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import './Home.css';
 
 export default function HbloodReg() {
   const [show, setShow] = useState(false);
@@ -10,13 +11,13 @@ export default function HbloodReg() {
 
   return (
     <>
-      <Button className='btn bg-outline-white'  onClick={handleShow}>
+      <Button className='btn btn-primary regbutt' onClick={handleShow}>
         Register
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Blood Donation Registration</Modal.Title>
+          <Modal.Title>Registration Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -24,6 +25,7 @@ export default function HbloodReg() {
 
               <Form.Label>Email:</Form.Label>
               <Form.Control
+                className='forrminputt'
                 type="email"
                 placeholder="Name@example.com"
                 autoFocus
@@ -34,45 +36,50 @@ export default function HbloodReg() {
               className="mb-3"
               controlId="">
               <Form.Label>Name:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='Name'/>
-              </Form.Group>
+              <Form.Control
+                className='forrminputt'
+                type='text'
+                placeholder='Name' />
+            </Form.Group>
 
-              <Form.Group
+            <Form.Group
               className="mb-3"
               controlId="">
               <Form.Label>Nic No:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='99#######v'/>
-             </Form.Group>
+              <Form.Control
+                className='forrminputt'
+                type='text'
+                placeholder='99#######v' />
+            </Form.Group>
 
-             <Form.Group
+            <Form.Group
               className="mb-3"
               controlId="">
               <Form.Label>Name:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='0767777777'/>
+              <Form.Control
+                className='forrminputt'
+                type='text'
+                placeholder='0767777777' />
             </Form.Group>
 
-              <Form.Group
+            <Form.Group
               className="mb-3"
               controlId="">
               <Form.Label>Phone no:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='Address'/>
+              <Form.Control
+                className='forrminputt'
+                type='text'
+                placeholder='Address' />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className='btn d-md-block text-white my-3 btn-gr'  onClick={handleClose}>
-            Close
-          </Button>
-          <Button className='btn d-md-block text-white my-3 btn-gr'   onClick={handleClose}>
+
+          <Button className='btn btn-bg-primary btn-gr' onClick={handleClose} style={{ backgroundColor: 'green' }}>
             Register
+          </Button>
+          <Button className='btn btn-bg-primary' onClick={handleClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
