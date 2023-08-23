@@ -25,13 +25,13 @@ function StockUpdateModal(props) {
 
     const handleAdd = () => {
         if (Drug_ID === '') {
-            toast.error("Please select a drug.");
+            toast.warning("Please select a drug.");
         } else if (Stock_IN.length === 0) {
-            toast.error("Please enter the Stock Count.");
+            toast.warning("Please enter the Stock Count.");
         } else if (ExpiredDate.length === 0) {
-            toast.error("Please enter the Expired Date.");
+            toast.warning("Please enter the Expired Date.");
         } else {
-            const url = "http://localhost/HealerZ/PHP/stockupdate.php";
+            const url = "http://localhost/HealerZ/PHP/Inventory/stockupdate.php";
             let fdata = new FormData();
             fdata.append('Drug_ID', Drug_ID);
             fdata.append('StockCount', Stock_IN);
@@ -40,13 +40,8 @@ function StockUpdateModal(props) {
             axios.post(url, fdata)
                 .then((response) => {
                     // Show success swal notification
-                    MySwal.fire({
-                        icon: "success",
-                        title: response.data,
-                        customClass: {
-                            container: "sweetalert-container",
-                        },
-                    });
+                    toast.success("Stock Updated Successfully.!")
+                   
                 })
                 .catch((error) => {
                     // Show error swal notification
@@ -129,9 +124,9 @@ function StockUpdateModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleAdd}>Update</Button>
+                <Button variant="primary uptbut" onClick={handleAdd} style={{backgroundColor:'green'}}>Update</Button>
                 <ToastContainer />
-                <Button variant="secondary" onClick={onHide}>Cancel</Button>
+                <Button variant="primary uptbut" onClick={onHide} style={{backgroundColor:'blue'}}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );

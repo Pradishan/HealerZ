@@ -29,8 +29,13 @@ if (mysqli_connect_error()) {
     $res = mysqli_query($conn, $sql);
 
     if ($res) {
-        echo "Item Added Succesfully";
+        echo json_encode(array("message" => "Patient Added Successfully"));
     } else {
-        echo "error";
+        // Check if the error is due to a duplicate primary key
+        if (mysqli_errno($conn) == 1062) {
+            echo json_encode(array("message" => "Patient with the same Patient_ID already exists. Please use a different Patient_ID."));
+        } else {
+            echo json_encode(array("message" => "Error: " . mysqli_error($conn)));
+        }
     }
 }
