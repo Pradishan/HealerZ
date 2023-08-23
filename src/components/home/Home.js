@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Hnav from './Hnav';
-import Hfooter from './Hfooter';
 import Carousel from './Carousel';
 import Hcard from './Hcard';
 import Hteam from './Hteam';
@@ -82,16 +81,22 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <div className="team">
-        <Hteam />
-      </div> */}
+    
 
       <div className="events">
         <Hcard />
       </div>
 
       <div className="Hfooter bottom">
-        <Hfooter />
+      <footer bgColor='light' className='text-center text-lg-left'>
+          <div className='text-center p-3' style={{ backgroundColor: '#fff' }}>
+          <a className='text-dark' href='https://HealerZ.com/'>
+          <img src={logo} alt="HealerZ" height='30px' />
+           </a>
+            &copy; {new Date().getFullYear()} Copyright. All rights reserved.{' '}
+            
+          </div>
+        </footer>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Icon } from '@iconify/react';
-import './card.css';
+import './Home.css';
 import { useState } from 'react';
 
 import HbloodReg from './HbloodReg';
