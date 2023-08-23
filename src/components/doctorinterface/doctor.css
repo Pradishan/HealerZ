@@ -48,22 +48,16 @@ body {
 }
 
 .icon-hover:hover {
-
     color: var(--maincolor) !important;
     background-color: #F1F0F0;
     border-radius: 50%;
 }
 
-.btn-gr {
-    background: var(--maincolor);
-    color: white;
-}
-
-.btn:hover{
+.btn:hover {
     opacity: 0.8;
 }
 
-.icon-btn:hover{
+.icon-btn:hover {
     transform: scale(1.2);
     transition: 0.2s ease-out;
 }

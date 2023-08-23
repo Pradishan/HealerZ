@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hnav from './Hnav';
 import Hfooter from './Hfooter';
 import Carousel from './Carousel';
@@ -11,6 +11,11 @@ import './Home.css';
 
 
 export default function Home() {
+  const [showTeam, setShowTeam] = useState(false);
+
+  const Teammem = () => {
+    setShowTeam(!showTeam); // Toggle the visibility of the team section
+  }
   return (
     <div>
       <div className='navigationH'>
@@ -20,7 +25,7 @@ export default function Home() {
         <Carousel />
       </div>
 
-    
+
       <div className='Services' id='services'>
         <div className="container text-center mt-2">
           <h1 className='serhed'>OUR SERVICES</h1>
@@ -52,26 +57,32 @@ export default function Home() {
       <div className="container" id='aboutus'>
         <div class="row mt-5 p-5 row1">
           <div class="col">
-            <img src={logo} alt="HealerZ" height='200px' style={{marginTop:'180px'}}/>
+            <img src={logo} alt="HealerZ" height='200px' style={{ marginTop: '180px' }} />
           </div>
           <div class="col">
-            <h2 className='serhed'> About us</h2>
+            <h2 className='serhed'> ABOUT US</h2>
             <p> The mission is to create a user-friendly University medical system that connects individuals with care,
               streamlines medical requests, enhances communication, and fosters community.
               The team focuses on healthcare accessibility and efficiency through technology-assisted systems.
               Connecting Health and Care offers a platform for medical services,
               allowing users to request and download approved reports, doctors to access patient details, and administrators to manage events and donations</p>
+            <hr />
+            <button className='btn btn-primary w-100' onClick={Teammem}>Meet Our Team</button>
+          </div>
+
+          <div className="team">
+            {showTeam && <Hteam onClose={Teammem} />}
           </div>
         </div>
       </div>
-      <div className="team">
+      {/* <div className="team">
         <Hteam />
-      </div>
+      </div> */}
 
       <div className="events">
         <Hcard />
       </div>
-      
+
       <div className="Hfooter bottom">
         <Hfooter />
       </div>
