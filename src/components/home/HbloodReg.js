@@ -10,7 +10,7 @@ export default function HbloodReg() {
 
   return (
     <>
-      <Button className='btn bg-outline-white'  onClick={handleShow}>
+      <Button className='btn btn-primary regbutt'  onClick={handleShow}>
         Register
       </Button>
 
