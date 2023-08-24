@@ -64,14 +64,36 @@ function ClubLayout({children}){
                             </NavLink>
                         </div>
 
+                        <div className={"w-100 px-sm-2"}>
+                            <NavLink
+                                className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
+                                to={"/"}>
+                                <div className={'d-flex'}>
+                                    <FeatherIcon icon="clipboard" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={'trans-1'}>Event Response</div>}
+                                </div>
+                            </NavLink>
+                        </div>
+
+                        <div className={"w-100 px-sm-2"}>
+                            <NavLink
+                                className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
+                                to={"/"}>
+                                <div className={'d-flex'}>
+                                    <FeatherIcon icon="edit-2" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={'trans-1'}>Blood Donation</div>}
+                                </div>
+                            </NavLink>
+                        </div>
+
 
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
                                 to={"/"}>
                                 <div className={'d-flex'}>
-                                    <FeatherIcon icon="clipboard" className={!open ? 'me-2' : "ms-1"}/>
-                                    {!open && <div className={''}>Event Response</div>}
+                                    <FeatherIcon icon="folder-plus" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={''}>Vaccination</div>}
                                 </div>
                             </NavLink>
                         </div>
