@@ -14,7 +14,7 @@ export default function Hnav() {
       <div className="navbar-collapse navbar-collapse1 collapse " id="navbarTogglerDemo02">
         <ul className="navbar-nav">
           <li className="nav-item ">
-            <a className="nav-link mt-2 nav-hover" aria-current="page" href="Home.js">HOME</a>
+            <a className="nav-link mt-2 nav-hover" aria-current="page" href="#">HOME</a>
           </li>
           <li className="nav-item">
             <a className="nav-link mt-2 nav-hover" href="#services">SERVICES</a>

@@ -4,8 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminLayout from '../../layouts/AdminLayout';
 import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+
 
 function AddPatient(props) {
     
@@ -51,7 +50,7 @@ function AddPatient(props) {
             toast.warning("Please Enter the Password");
 
         } else {
-            const url = "http://localhost/HealerZ/PHP/addpatient.php";
+            const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
             let fdata = new FormData();
             fdata.append('Patient_ID', patient_id);
             fdata.append('Patient_Name', patient_name);
