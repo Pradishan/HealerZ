@@ -9,7 +9,7 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {changeToggle} from "../redux/actions";
 import '../layouts/layout.css';
-import nusnan from "../assets/nusnan.jpeg";
+import nusnan from "../assets/nusnan.jpg";
 
 
 function ClubLayout({children}){

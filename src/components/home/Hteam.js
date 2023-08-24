@@ -1,5 +1,5 @@
 import React from 'react';
-import './Hteam.css';
+import './Home.css';
 import nusnan from '../../assets/nusnan.jpg';
 import powsi from '../../assets/Powsi.jpg';
 import thanu from '../../assets/thanu.jpg';

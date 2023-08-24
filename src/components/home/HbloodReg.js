@@ -75,10 +75,10 @@ export default function HbloodReg() {
         </Modal.Body>
         <Modal.Footer>
 
-          <Button className='btn btn-bg-primary btn-gr' onClick={handleClose} style={{ backgroundColor: 'green' }}>
+          <Button className='btn btn-primary' onClick={handleClose} style={{ backgroundColor: 'green',border:'none' }}>
             Register
           </Button>
-          <Button className='btn btn-bg-primary' onClick={handleClose}>
+          <Button className='btn btn-primary' onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

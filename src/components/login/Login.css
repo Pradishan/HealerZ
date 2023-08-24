@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
 .bacckground {
     margin: 0;
     padding: 0;
 }
 
-.background{
+.background {
     font-family: 'Poppins', sans-serif;
     height: 100vh;
     display: flex;
@@ -15,7 +14,7 @@
 }
 
 .cont {
-    width: 690px  !important;
+    width: 690px !important;
     height: 70vh;
     display: grid;
     grid-template-columns: 100%;
@@ -42,11 +41,12 @@
     position: absolute;
     width: 60px;
     height: 200px;
-    background: linear-gradient(#462596,#D338F6, #89379c);
+    background: linear-gradient(#462596, #D338F6, #89379c);
     border-radius: 40px;
 }
 
-.design .pill-2 { /*Center */
+.design .pill-2 {
+    /*Center */
     top: -100px;
     left: -80px;
     position: absolute;
@@ -57,20 +57,21 @@
     border: 30px solid #e2c5e2;
 }
 
- /* Top right*/
+
+/* Top right*/
+
 .design .pill-3 {
     top: -100px;
     left: 110px;
     position: absolute;
     width: 60px;
     height: 250px;
-    background: linear-gradient(#462596,#D338F6, #89379c);
+    background: linear-gradient(#462596, #D338F6, #89379c);
     border-radius: 70px;
 }
 
-
-
-.design .pill-4 {     /* Bottom pill*/
+.design .pill-4 {
+    /* Bottom pill*/
     bottom: -180px;
     left: 220px;
     position: absolute;
@@ -126,7 +127,7 @@
     width: 60%;
     padding: 10px;
     color: white;
-    background: linear-gradient(to right,#D338F6, #462596, #4D1290) ;
+    background: linear-gradient(to right, #D338F6, #462596, #4D1290);
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -161,7 +162,6 @@ a.forgot {
         grid-template-columns: 50% 50%;
         grid-template-areas: "design login";
     }
-
     .design {
         display: block;
     }
