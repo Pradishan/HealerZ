@@ -4,11 +4,11 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Logosmall from '../../assets/logo-small.png';
 import FeatherIcon from 'feather-icons-react';
-import './inventory.css';
 import ViewModal from './modals/ViewModal';
 import Layout from '../../layouts/layout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './inventory.css';
 
 function Inventory(props) {
     const [showModal, setShowModal] = useState(false);
@@ -105,8 +105,8 @@ function Inventory(props) {
                             </form>
                         </div>
                     </div>
-                    <div className={"table-container "}>
-                        <table className={"table table-hover table-striped "}>
+                    <div className={"table-container w-100 p-0"}>
+                        <table className={"table table-hover table-striped "} style={{minWidth: '0px',}}>
                             <thead className={"top-0 position-sticky h-45"}>
                                 <tr>
                                     <th scope="col">NO</th>
@@ -119,7 +119,7 @@ function Inventory(props) {
                                     <th scope="col">VIEW</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='h-50'>
                                 {drugList.map((data, index) => (
                                     <tr key={index}>
                                         <th scope="row">{index + 1}</th>
