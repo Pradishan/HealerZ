@@ -18,8 +18,17 @@ function AddPatient(props) {
     const [bg, setBgroup] = useState('');
     const [pass, setPass] = useState('');
 
-
-    
+    const resetForm = () => {
+        setID('');
+        setName('');
+        setDob('');
+        setGender('');
+        setphoneNo('');
+        setEmail('');
+        setAddress('');
+        setBgroup('');
+        setPass('');
+    };
 
     const handleSubmit = () => {
         if (patient_id.length === 0) {
@@ -66,6 +75,7 @@ function AddPatient(props) {
                 if (response.data.message === "Patient Added Successfully") {
                     // Show success message
                     toast.success(response.data.message);
+                    resetForm();
                 } else {
                     // Show error message
                     toast.error("Patient Already Added");
