@@ -31,6 +31,7 @@ function Inventory(props) {
         if (searchedDrug) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
+            setSearchTerm('');
         } else {
             toast.error('Invalid Drug ID');
         }
@@ -41,6 +42,7 @@ function Inventory(props) {
         if (searchedDrug) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
+            setSearchTerm2('');
         } else {
             toast.error('Invalid Drug Name');
         }
