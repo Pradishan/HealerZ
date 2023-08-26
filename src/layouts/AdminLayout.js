@@ -31,16 +31,16 @@ function Layout({children}) {
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
-            <Sidebar className="sidebar  " collapsed={collapsed} 
+            <Sidebar className="sidebar  " collapsed={collapsed} style={{backgroundColor:'white'}}
              rootStyles={{
                 [`.${sidebarClasses.container}`]: {
                     width: !collapsed ? '240px' : '85px',
-                    backgroundColor:  'rgba(255, 255, 255, 0)',
+                    backgroundColor:  'rgba(255, 255, 255)',
                 },
               }}>
                     <Menu>
                     <MenuItem >
-                        <button className="sb-button" onClick={() => setCollapsed(!collapsed)}>
+                        <button className="sb-button" style={{backgroundColor:'white'}} onClick={() => setCollapsed(!collapsed)}>
                         {<MenuRoundedIcon  />}
                         </button>
                         
@@ -111,7 +111,7 @@ function Layout({children}) {
                     </SubMenu>
 
                     <MenuItem className="menu-item"
-                    component={<Link to="/admin/inventory"  />}
+                    component={<Link to="/logininventory"  />}
                     icon={<VaccinesIcon />}>Inventory</MenuItem>
 
                     <MenuItem className="menu-item"
