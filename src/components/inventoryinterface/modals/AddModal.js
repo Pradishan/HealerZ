@@ -48,7 +48,7 @@ function AddModal(props) {
                 .then((response) => {
                     if (response.data.message === "Drug Added Successfully") {
                         toast.success(response.data.message);
-                        resetForm(); // Reset the form after successful submission
+                        resetForm(); 
                     } else {
                         toast.error("Drug Already Added");
                     }

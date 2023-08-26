@@ -11,7 +11,7 @@ export default function Settings(props) {
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    // Function to handle image upload
+
     const handleImageUpload = async () => {
         if (!image) {
             setErrorMessage('Please select an image.');
@@ -38,7 +38,7 @@ export default function Settings(props) {
         }
     };
 
-    // Function to handle password change
+
     const handleChangePassword = async () => {
         if (!newPassword) {
             setErrorMessage('Password cannot be empty.');
@@ -48,7 +48,7 @@ export default function Settings(props) {
         try {
             console.log("New Password:", newPassword);
             const response = await axios.post('http://localhost/Healerz/PHP/Inventory/changepassword.php', {
-                Pharmacist_ID: 'new', // Replace with the actual Pharmacist_ID
+                Pharmacist_ID: 'new', 
                 newPassword,
                 
             }, {
@@ -65,7 +65,7 @@ export default function Settings(props) {
         }
     };
 
-    // Function to handle file input change
+
     const handleFileInputChange = (e) => {
         setImage(e.target.files[0]);
     };
@@ -95,7 +95,7 @@ export default function Settings(props) {
                         </h2>
                         <div id="profile" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                {/* Image Upload */}
+                               
                                 <div className="form-floating mb-3">
                                     <input type="file" className="form-control" id="inputGroupFile02" onChange={handleFileInputChange} />
                                 </div>

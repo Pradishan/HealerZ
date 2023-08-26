@@ -39,7 +39,6 @@ function ViewModal(props) {
                             <th className={'detailspac'}>:</th>
                             <td className={'detaildet3'}>{drugDetails && drugDetails.Descriptions}</td>
                         </tr>
-                        {/* Add more attributes here */}
                     </tbody>
                 </table>
                 <hr />

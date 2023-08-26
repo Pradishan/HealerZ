@@ -6,7 +6,6 @@ import Logosmall from "../../assets/logo-small.png";
 import AddModal from "./modals/AddModal";
 import SearchModal from "./search-section/SearchIDStkUpdate";
 import SearchIDUpdate from "./search-section/SearchIDUpdate";
-// import ViewModal from "./ViewModal";
 
 function Manage(props) {
     const [showModal, setShowModal] = useState(false);

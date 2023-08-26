@@ -33,7 +33,6 @@ function SearchIDstkUpdate(props) {
                    
                 }else{
                     setShowModal(true);
-                   // Show the modal after getting the response
                 }
                    
                 
@@ -43,7 +42,6 @@ function SearchIDstkUpdate(props) {
                 console.error(error);
             })
             .finally(() => {
-                // Reset the Drug_ID state after a successful search
                 setSearchTerm('');
             });
     }
