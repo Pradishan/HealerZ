@@ -5,8 +5,6 @@ import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
 import './inventory.css';
 import DoughnutChart from './additional/DoughnutChart';
-
-// Import react-circular-progressbar module and styles
 import {
     CircularProgressbar,
     buildStyles
@@ -21,7 +19,6 @@ import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 function Dashboard(props) {
     return (
        <Layout>
-           {/*<div style={{ backgroundColor: '#DCDCDC', height:'570px'}}>*/}
            <Container>
                <Row>
                    <Col>
@@ -146,24 +143,12 @@ function Dashboard(props) {
                                        )}
                                    </ChangingProgressProvider>
                                </div>
-
-
-
-
-
-
-
                            </Card.Body>
                        </Card>
                    </Col>
 
                </Row>
            </Container>
-
-           {/*</div>*/}
-
-
-
        </Layout>
     );
 }

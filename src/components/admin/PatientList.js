@@ -28,6 +28,7 @@ function PatientList(props) {
         if (searchedPatient) {
             setSelectedPatient(searchedPatient);
             setShowModal(true);
+            setSearchTerm('');
         } else {
             toast.error('Invalid Patient ID');
         }
@@ -38,6 +39,7 @@ function PatientList(props) {
         if (searchedPatient) {
             setSelectedPatient(searchedPatient);
             setShowModal(true);
+            setSearchTerm2('');
         } else {
             toast.error('Invalid Patient Name');
         }

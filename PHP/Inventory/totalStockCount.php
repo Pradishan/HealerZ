@@ -1,14 +1,12 @@
 <?php
-// Include the database connection code here (from step 1).
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "Healerz";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -27,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $row = $result->fetch_assoc();
             $totalStockCount = $row['TotalStockCount'];
 
-            // Calculate the total available count for all drugs
+          
             $sqlTotalAvailable = "SELECT SUM(StockCount) as TotalAvailableCount FROM druginventory";
             $resultTotalAvailable = $conn->query($sqlTotalAvailable);
             $rowTotalAvailable = $resultTotalAvailable->fetch_assoc();

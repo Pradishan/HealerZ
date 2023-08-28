@@ -48,7 +48,7 @@ function AddModal(props) {
                 .then((response) => {
                     if (response.data.message === "Drug Added Successfully") {
                         toast.success(response.data.message);
-                        resetForm(); // Reset the form after successful submission
+                        resetForm(); 
                     } else {
                         toast.error("Drug Already Added");
                     }
@@ -155,7 +155,7 @@ function AddModal(props) {
             <Modal.Footer>
                 <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green'}}>Add</Button>
                 <ToastContainer />
-                <Button variant="secondary uptbut"  style={{backgroundColor:'blue'}} onClick={resetForm}>Reset</Button>
+                <Button variant="secondary uptbut"  style={{backgroundColor:'blue' ,color:'white'}} onClick={resetForm}>Reset</Button>
             </Modal.Footer>
         </Modal>
     );

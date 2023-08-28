@@ -25,7 +25,6 @@ else{
     if ($res) {
         echo json_encode(array("message" => "Drug Added Successfully"));
     } else {
-        // Check if the error is due to a duplicate primary key
         if (mysqli_errno($conn) == 1062) {
             echo json_encode(array("message" => "Drug with the same Drug_ID already exists. Please use a different Drug_ID."));
         } else {

@@ -26,12 +26,10 @@ function Supply(props) {
 
     const handleSubmit3 = (event) => {
         event.preventDefault();
-        // handle search logic here
         console.log(`Searching for ${searchTerm3}...`);
     }
     const handleSubmit4 = (event) => {
         event.preventDefault();
-        // handle search logic here
         console.log(`Searching for ${searchTerm4}...`);
     }
 
