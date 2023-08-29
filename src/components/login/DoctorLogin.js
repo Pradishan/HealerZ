@@ -2,6 +2,7 @@ import React, { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import axios from "axios";
+import pradee from "../../assets/pradi.jpg";
 
 export default function DoctorLogin() {
   const [doctorID, setDoctorID] = useState("");
@@ -74,7 +75,11 @@ const errorMessgae =(message) => {
   return (
     <>
       <div className="container mt-5 text-center">
+      <div style={{display:'flex',flexDirection:'row',marginLeft:'400px'}}>
+        <img src={pradee} alt="avatar" height="100px" className="mb-3" style={{borderRadius:'50%'}}/>
+        <div style={{height:'80px', width:'2px',backgroundColor:'black',margin:'10px'}}></div>
         <img src={logo} alt="avatar" height="100px" className="mb-3" />
+        </div>
         <div className="row justify-content-center">
           <div className="col-md-4">
             <p>{logmessage}</p>
