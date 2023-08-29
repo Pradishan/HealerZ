@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import Layout from "../../layouts/layout";
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import Logosmall from "../../assets/logo-small.png";
 import AddModal from "./modals/AddModal";
 import SearchModal from "./search-section/SearchIDStkUpdate";
 import SearchIDUpdate from "./search-section/SearchIDUpdate";
@@ -24,22 +23,7 @@ function Manage(props) {
 
     return (
         <Layout>
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="Sliderr" style={{width: '1070px', marginTop: '10px', marginLeft: '20px'}}>
-
-                            <Card.Body style={{display: 'flex', flexDirection: 'row'}}>
-                                <Card.Title className="cardText1">Manage</Card.Title>
-                                <Card.Img variant="top" src={Logosmall}
-                                          style={{width: '150px', height: '150px', marginLeft: '450px'}}/>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-
-
+             <h3 className='serhedd'>Access</h3>
             <Container className="Managebutt">
                 <div style={{display:"flex",flexDirection:'row'}}>
                         <Card className="Managebutt1" onClick={addModal} >

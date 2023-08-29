@@ -1,8 +1,4 @@
-.Sliderr {
-    border-radius: 44px;
-    background: linear-gradient(130deg, #FFF 0%, #D1BBFF 100%);
-    box-shadow: 8px 11px 13px 0px rgba(0, 0, 0, 0.25);
-}
+
 
 .cardText {
     color: #000;
@@ -86,14 +82,7 @@
 
 /*--------------------------------------------------*/
 
-.cardText1 {
-    color: #000;
-    font-family: Poppins, serif;
-    font-size: 88px !important;
-    font-style: normal !important;
-    font-weight: 1000 !important;
-    line-height: normal !important;
-}
+
 
 .action-icons {
     color: #000000;
@@ -124,7 +113,7 @@
     overflow-y: scroll;
     /* overflow-x: hidden; */
     /* width: 100% !important; */
-    max-height: calc(100vh - 270px);
+    max-height: calc(100vh - 240px);
     border-radius: 9px;
     border: .75px solid rgba(63, 68, 81, .12156862745098039);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -398,3 +387,39 @@
 .uptbut {
     border: none !important;
 }
+
+.serhedd {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin: 50px auto;
+    margin-top: 40px;
+    color: #000536;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+    max-width: 600px;
+    position: relative;
+}
+
+.serhedd:before {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute;
+}
+
+.serhedd:after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: #000;
+    right: 0;
+    top: 50%;
+    position: absolute;
+}
+

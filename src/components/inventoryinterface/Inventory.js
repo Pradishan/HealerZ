@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Col, Container, Row } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Logosmall from '../../assets/logo-small.png';
 import FeatherIcon from 'feather-icons-react';
 import ViewModal from './modals/ViewModal';
 import Layout from '../../layouts/layout';
@@ -68,18 +65,6 @@ function Inventory(props) {
     
     return (
         <Layout>
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
-                            <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Inventory</Card.Title>
-                                <Card.Img variant="top" src={Logosmall} style={{ width: '150px', height: '150px', marginLeft: '400px' }} />
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
             <div className={"container"}>
                 <div className={"p-5"}>
                     <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
