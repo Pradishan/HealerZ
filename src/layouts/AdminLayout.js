@@ -5,6 +5,7 @@ import './AdminLayout.css';
 import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
 import jana from "../assets/jana.jpg";
+// import CloseButton from 'react-bootstrap/CloseButton';
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
@@ -19,6 +20,7 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 
 
@@ -40,11 +42,14 @@ function Layout({children}) {
               }}>
                     <Menu>
                     <MenuItem >
-                        <button className="sb-button" style={{backgroundColor:'white'}} onClick={() => setCollapsed(!collapsed)}>
-                        {<MenuRoundedIcon  />}
-                        </button>
+                     <button className="sb-button" style={{backgroundColor:'white',borderRadius:'5px'}} onClick={() => setCollapsed(!collapsed)}>
+                     {!collapsed?<MenuOpenIcon />:
+                        <MenuOpenIcon style={{ transform: 'rotate(180deg)' }}/>}
+                        </button>:
+                      
                         
                     </MenuItem>
+                    <hr/>
 
                     <div className='card mt-5 mb-2 shadow  border-0'>
                     <div class="card-body p-1">
@@ -75,6 +80,7 @@ function Layout({children}) {
                                         </div>}
                         </div>
                     </div>
+                    <hr/>
                     <div className='mt-5'>
                     <MenuItem className="menu-item"
                         component={<Link to="/admin/dashboard"  />}
@@ -117,7 +123,9 @@ function Layout({children}) {
                     <MenuItem className="menu-item"
                     component={<Link to="/admin/medicalreports"  />}
                     icon={<SummarizeIcon />}>Medical Reports </MenuItem>
-
+                     <br/>
+                    <hr/>
+                    <br/>
                     <MenuItem className="menu-item"
                     component={<Link to="/admin/settings"  />}
                     icon={<SettingsIcon />}>Settings </MenuItem>
