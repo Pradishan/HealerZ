@@ -6,8 +6,6 @@ import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
 import jana from "../assets/jana.jpg";
 // import CloseButton from 'react-bootstrap/CloseButton';
-
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -29,7 +27,10 @@ function Layout({children}) {
 
     const [collapsed, setCollapsed] = React.useState(false);
    
-
+    const logoutt = ()=>{
+        sessionStorage.setItem('admin',false);
+ 
+    }
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -130,7 +131,7 @@ function Layout({children}) {
                     component={<Link to="/admin/settings"  />}
                     icon={<SettingsIcon />}>Settings </MenuItem>
   
-                    <MenuItem className="menu-item" icon={<LogoutRoundedIcon />}> Logout </MenuItem>
+                    <MenuItem className="menu-item" component={<Link to="/loginAdmin"  />} onClick={logoutt} icon={<LogoutRoundedIcon />}> Logout </MenuItem>
                     </div>
                     </Menu>
                 </Sidebar>
