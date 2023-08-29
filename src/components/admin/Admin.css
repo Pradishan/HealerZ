@@ -230,3 +230,73 @@
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
+/* Center the calendar */
+.calenderrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin-top: -80px;
+   margin-bottom: 100px;
+  }
+  
+  /* Style the calendar container */
+  .fc {
+    padding: 20px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style the calendar event content */
+  .fc-event {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    
+  }
+  
+  /* Style the calendar event title */
+  .fc-title {
+    font-weight: bold;
+  }
+  
+  /* Style the calendar event time */
+  .fc-time {
+    font-style: italic;
+  }
+  
+  /* Style the calendar header (month, week, day navigation) */
+  .fc-header-toolbar {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+  }
+  
+  /* Style the calendar buttons in the header */
+  .fc-button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    margin: 2px;
+    border-radius: 5px;
+  }
+  
+  /* Style the today button differently */
+  .fc-button-today {
+    background-color: #ff5722;
+  }
+  
+  /* Style the calendar footer (list view) */
+  .fc-list {
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .teaaaaam{
+    margin-bottom: 100px;
+  }
+  

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
-import { ProSidebarProvider } from "react-pro-sidebar";
+import {Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar, sidebarClasses } from "react-pro-sidebar";
 import './AdminLayout.css';
 import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
+import jana from "../assets/jana.jpg";
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
@@ -53,15 +53,15 @@ function Layout({children}) {
                                         
                                             <div className='d-flex align-items-center justify-content-center mb-2'>
                                                 <div className='d-flex align-items-center justify-content-center ms-1'>
-                                                    <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
+                                                    <img src={jana} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
                                                 </div>
                 
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     <div>
                                                         <h5 className='m-0'>Janarthanan</h5>
-                                                        <p className='txt  m-0 text-muted'>emp20345</p>
-                                                        <p className='txt m-0 text-muted'>admin@std.uwu.ac.lk</p>
-                                                        <p className='txt m-0 text-muted'>0771234567</p>
+                                                        {/* <p className='txt  m-0 text-muted'>emp20345</p> */}
+                                                        <p className='txt m-0 text-muted'>jana@std.uwu.ac.lk</p>
+                                                        {/* <p className='txt m-0 text-muted'>0771234567</p> */}
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@ function Layout({children}) {
                                         </div>:
                                         <div className="w-100px shadow">
                                             
-                                            <img src={'https://source.unsplash.com/random/2'} alt='avatar' className='rounded-circle me-2' width='50px' height='50px' />
+                                            <img src={jana} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
                                            
                                         </div>}
                         </div>
