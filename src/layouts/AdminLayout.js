@@ -146,7 +146,7 @@ function Layout({children}) {
                                     <li className="nav-item px-2">
                                         <a className="nav-link  position-relative p-0" aria-current="page" href="#">
 
-                                            <img src={'https://source.unsplash.com/random/1'} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
+                                            <img src={jana} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
                                         </a>
                                     </li>
 

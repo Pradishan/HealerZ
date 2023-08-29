@@ -248,50 +248,36 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Style the calendar event content */
-  .fc-event {
+ .fc-event {
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     
   }
-  
-  /* Style the calendar event title */
-  .fc-title {
-    font-weight: bold;
-  }
-  
-  /* Style the calendar event time */
-  .fc-time {
+  .fc.fc-time {
     font-style: italic;
   }
   
-  /* Style the calendar header (month, week, day navigation) */
   .fc-header-toolbar {
     background-color: #007bff;
     color: #fff;
     border-radius: 10px 10px 0 0;
     padding: 10px;
   }
-  
-  /* Style the calendar buttons in the header */
-  .fc-button {
-    background-color: #0056b3;
-    color: #fff;
-    border: none;
+
+  .fc .fc-button-primary {
+    background-color:  #010024;
+    border-color:  #ffffff;
+    color: white;
     margin: 2px;
     border-radius: 5px;
-  }
-  
-  /* Style the today button differently */
-  .fc-button-today {
-    background-color: #ff5722;
-  }
+    text-transform: uppercase;
+}
+ 
   
   /* Style the calendar footer (list view) */
-  .fc-list {
+  .fc.fc-list {
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
