@@ -101,12 +101,12 @@ function UpdatePatient(props) {
     return (
         <AdminLayout>
             <div className={"Addcontt"}>
-                <h2 className="heading-purple">Update Patient</h2>
+              <h3 className='serhett'>Update patient</h3>
 
                 <div className={"addboxx"}>
                     <form onSubmit={handleSearch}>
-                        <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row', marginLeft: '150px' }}>
-                            <div><h3 className={"content-heading"}>Search Patient_ID:</h3></div>
+                        <div className={"SearchSection searrrchbox"} style={{ display: 'flex', flexDirection: 'row', marginLeft: '150px' }}>
+                            <div><h3 className={"content-heading serachhett"}>Search Patient_ID:</h3></div>
                             <div className={"SearchSection3"}>
                                 <input
                                     className="SearchBox4"
