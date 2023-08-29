@@ -65,8 +65,9 @@ function PatientList(props) {
 
     return (
         <AdminLayout>
-            <h2 className="heading-purple" style={{paddingLeft:'50px' , paddingTop:'20px'}}>Patient List</h2>
-            <div className={"container"}>
+            <h3 className='serhett'>Patient List</h3>
+            {/* <h2 className="heading-purple" style={{paddingLeft:'50px' , paddingTop:'20px'}}>Patient List</h2> */}
+            <div className={"container patientlisttable"}>
                 <div className={"p-5"}>
                     <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
                         <div><h3 className={"content-heading"}>Filter the Results : </h3></div>
@@ -93,7 +94,7 @@ function PatientList(props) {
                             </form>
                         </div>
                     </div>
-                    <div className={"table-container "}>
+                    <div className={"table-container"}>
                         <table className={"table table-hover table-striped "}>
                             <thead className={"top-0 position-sticky h-45"}>
                                 <tr>
