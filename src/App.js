@@ -9,7 +9,7 @@ import Eventresponse from "./components/clubs/Eventresponse";
 import Profile from "./components/profile/Profile";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
-import Loader from "./components/Loader";
+// import Loader from "./components/Loader";
 import Manage from "./components/inventoryinterface/Manage";
 import Supply from "./components/inventoryinterface/Supply";
 import Page404 from "./components/page404/Page404";
@@ -28,6 +28,8 @@ import PatientList from "./components/admin/PatientList";
 import AddEmployee from "./components/admin/AddEmployee";
 import EmployeeList from "./components/admin/EmployeeList";
 import MedicalReport from "./components/admin/MedicalReport";
+import AdminLogin from "./components/login/AdminLogin";
+import Protected2 from "./components/login/Protected2";
 
 function App() {
   return (
@@ -49,16 +51,17 @@ function App() {
         <Route path="/loginDoctor" element={ <DoctorLogin /> } />
         <Route path="/LoginInventory" element={ <InventoryLogin /> } />
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
-        <Route path="/MedicalRequest" element={ <MedicalRequest /> } />
-        <Route path="/admin/dashboard" element={ <DashboardAdmin /> } />
-        <Route path="/admin/adddoctor" element={ <AddDoctor /> } />
-        <Route path="/admin/doctorlist" element={ <DoctorList /> } />
-        <Route path="/admin/addpatient" element={ <AddPatient /> } />
-        <Route path="/admin/editpatient" element={ <UpdatePatient /> } />
-        <Route path="/admin/patientlist" element={ <PatientList /> } />
-        <Route path="/admin/addemployee" element={ <AddEmployee /> } />
-        <Route path="/admin/employeelist" element={ <EmployeeList /> } />
-        <Route path="/admin/medicalreports" element={ <MedicalReport /> } />
+        <Route path="/MedicalRequest" element={ <Protected2 Component={ MedicalRequest  } roll={'admin'} />} />
+        <Route path="/admin/dashboard" element={<Protected2 Component={ DashboardAdmin  } roll={'admin'} /> } />
+        <Route path="/admin/adddoctor" element={ <Protected2 Component={ AddDoctor } roll={'admin'} /> } />
+        <Route path="/admin/doctorlist" element={ <Protected2 Component={ DoctorList } roll={'admin'} />} />
+        <Route path="/admin/addpatient" element={ <Protected2 Component={ AddPatient} roll={'admin'} /> } />
+        <Route path="/admin/editpatient" element={ <Protected2 Component={ UpdatePatient } roll={'admin'} /> } />
+        <Route path="/admin/patientlist" element={ <Protected2 Component={ PatientList} roll={'admin'} />} />
+        <Route path="/admin/addemployee" element={ <Protected2 Component={ AddEmployee } roll={'admin'} /> } />
+        <Route path="/admin/employeelist" element={ <Protected2 Component={ EmployeeList } roll={'admin'} /> } />
+        <Route path="/admin/medicalreports" element={ <Protected2 Component={ MedicalReport } roll={'admin'} /> } />
+        <Route path="/loginAdmin" element={<AdminLogin/>}/>
         
       </Routes>
       </div>

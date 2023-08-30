@@ -101,9 +101,9 @@ function PatientList(props) {
                                     <th scope="col">NO</th>
                                     <th scope="col">Patient_ID</th>
                                     <th scope="col">PatientName</th>
+                                    <th scope="col">Gender</th>
                                     <th scope="col">DateOfBirth</th>
                                     <th scope="col">PhoneNo</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col">BloodGroup</th>
                                     <th scope="col">VIEW</th>
                                 </tr>
@@ -114,9 +114,9 @@ function PatientList(props) {
                                         <th scope="row">{index + 1}</th>
                                         <td>{data.Patient_ID}</td>
                                         <td>{data.PatientName}</td>
+                                        <td>{data.Gender}</td>
                                         <td>{data.DateOfBirth}</td>
                                         <td>{data.PhoneNo}</td>
-                                        <td>{data.Email}</td>
                                         <td>{data.BloodGroup}</td>
                                         <td>
                                             <FeatherIcon
