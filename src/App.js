@@ -51,7 +51,7 @@ function App() {
         <Route path="/loginDoctor" element={ <DoctorLogin /> } />
         <Route path="/LoginInventory" element={ <InventoryLogin /> } />
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
-        <Route path="/MedicalRequest" element={ <Protected2 Component={ MedicalRequest  } roll={'admin'} />} />
+        <Route path="/MedicalRequest" element={ < MedicalRequest/>} />
         <Route path="/admin/dashboard" element={<Protected2 Component={ DashboardAdmin  } roll={'admin'} /> } />
         <Route path="/admin/adddoctor" element={ <Protected2 Component={ AddDoctor } roll={'admin'} /> } />
         <Route path="/admin/doctorlist" element={ <Protected2 Component={ DoctorList } roll={'admin'} />} />

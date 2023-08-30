@@ -7,14 +7,14 @@ export default function Hnav() {
   return (
     <nav className="navbar navbar-expand-lg shadow top navbarh">
       <div className="container-fluid">
-        <a className="navbar-brand navbar-brand1" href="#"><img src={logo} alt="HealerZ" height='48px' /></a>
+        <a className="navbar-brand navbar-brand1" href="/"><img src={logo} alt="HealerZ" height='48px' /></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="navbar-collapse navbar-collapse1 collapse " id="navbarTogglerDemo02">
           <ul className="navbar-nav">
             <li className="nav-item nav-link nav-hover navicoon">
-              <a className="nav-link"  href="#">
+              <a className="nav-link"  href="/">
                 <FeatherIcon icon="home" className='me-2 naviccon2 nav-hover' />
                 <span className='lettnav'>HOME</span>
               </a>
@@ -38,7 +38,7 @@ export default function Hnav() {
               </a>
             </li>
             <li className="nav-item" style={{ paddingLeft: '30px'}}>
-              <a className="nav-link nav-hover " href="#profile">
+              <a className="nav-link nav-hover " href="/login">
                 <FeatherIcon icon="user" className='me-2 loginiccon' />
               </a>
             </li>
