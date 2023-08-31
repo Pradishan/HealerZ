@@ -1,10 +1,10 @@
 import React from 'react'
 import ClubLayout from '../../layouts/ClubLayout'
 
-export default function Blooddonation() {
+export default function Registration() {
   return (
     <ClubLayout>
-        BloodDonation
+        Registration
     </ClubLayout>
   )
 }

@@ -29,6 +29,10 @@ import EmployeeList from "./components/admin/EmployeeList";
 import MedicalReport from "./components/admin/MedicalReport";
 import AdminLogin from "./components/login/AdminLogin";
 import Protected2 from "./components/login/Protected2";
+import BloodDonation from "./components/clubs/Blooddonation";
+import Vaccination from "./components/clubs/Vaccination";
+import Registration from "./components/clubs/Registration";
+
 
 function App() {
   return (
@@ -40,7 +44,7 @@ function App() {
         <Route path="/" element={ <Home /> } />
         <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
         <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } roll={'Pharmacist'} /> } />
-        <Route path="/clubs" element={ <Clubs /> } />
+        <Route path="/clubs/dashboard" element={ <Clubs /> } />
         <Route path="/clubs/Eventresponse" element={ <Eventresponse /> } />
         <Route path="/profile" element={ <Profile /> } />
         <Route path="/login" element={ <Login /> } />
@@ -60,6 +64,9 @@ function App() {
         <Route path="/admin/employeelist" element={ <Protected2 Component={ EmployeeList } roll={'admin'} /> } />
         <Route path="/admin/medicalreports" element={ <Protected2 Component={ MedicalReport } roll={'admin'} /> } />
         <Route path="/loginAdmin" element={<AdminLogin/>}/>
+        <Route path="/clubs/blooddonation" element={<BloodDonation />}/>
+        <Route path="/clubs/vacination" element={<Vaccination />}/>
+        <Route path="/clubs/registration" element={<Registration/>}/>
         
       </Routes>
       </div>

@@ -27,7 +27,7 @@ export default function Hnav() {
             </li>
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link"  href="#aboutus">
-                <FeatherIcon icon="wind" className='me-2 naviccon2 nav-hover' />
+                <FeatherIcon icon="activity" className='me-2 naviccon2 nav-hover' />
                 <span className='lettnav'>ABOUT US</span>
               </a>
             </li>
