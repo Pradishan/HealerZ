@@ -100,12 +100,13 @@ function AddModal(props) {
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={'inputfield1'}>
+                            <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
                                     className={'inputt'}
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
+                                    style={{height:'30px '}}
                                 >
                                     <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>
