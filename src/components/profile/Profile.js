@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
@@ -8,12 +8,12 @@ import farhath from "../../assets/farhath.jpg";
 
 const Profile = () => {
   const [medicallist, setmedicallist] = useState([
-    { No: 1, date: "07-07-2023"},
-    { No: 2, date: "07-04-2023"},
-    { No: 3, date: "07-06-2022"},
-    { No: 4, date: "07-04-2022"},
-    { No: 5, date: "07-11-2021"},
-  ])
+    { No: 1, date: "07-07-2023" },
+    { No: 2, date: "07-04-2023" },
+    { No: 3, date: "07-06-2022" },
+    { No: 4, date: "07-04-2022" },
+    { No: 5, date: "07-11-2021" },
+  ]);
   return (
     <div>
       <nav
@@ -118,11 +118,11 @@ const Profile = () => {
               </p>
             </div>
             <hr />
-            <br/>
-            
+            <br />
+
             <div>
-            <h3 className="serhed7">Medical</h3>
-            <hr />
+              <h3 className="serhed7">Medical</h3>
+              <hr />
               <table className={"table table-hover table-striped "}>
                 <thead className={"top-0 position-sticky h-45"}>
                   <th>No</th>
@@ -130,20 +130,22 @@ const Profile = () => {
                   <th>Download</th>
                 </thead>
                 <tbody>
-                {medicallist.map((data, index) => ( <tr>
-                  <th scope="row">{data.No}</th>
-                    <td style={{fontSize:'12px'}}>{data.date}</td>
-                    <td>
-                      {" "}
-                      <Link to="/profile">
-                        <div className="button">
-                          <button className="btn shadow gradient-buttonnn">
-                            Download
-                          </button>
-                        </div>
-                      </Link>
-                    </td>
-                  </tr>))}
+                  {medicallist.map((data, index) => (
+                    <tr>
+                      <th scope="row">{data.No}</th>
+                      <td style={{ fontSize: "12px" }}>{data.date}</td>
+                      <td>
+                        {" "}
+                        <Link to="/profile">
+                          <div className="button">
+                            <button className="btn shadow gradient-buttonnn">
+                              Download
+                            </button>
+                          </div>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
               <hr />
@@ -189,14 +191,16 @@ const Profile = () => {
                   </div>
                   <hr />
                   <div className="button">
-                    <button className="btn shadow gradient-button">Submit Request</button>
+                    <button className="btn shadow gradient-button">
+                      Submit Request
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
-            <br/>
-            <hr/>
-<br/>
+            <br />
+            <hr />
+            <br />
             <div className="form-container">
               <h3 className="serhed6">Edit Profile Details</h3>
               <form id="editProfileForm">
@@ -335,10 +339,11 @@ const Profile = () => {
                   </div>
                   <hr />
                   <div className="button">
-                    <button className="btn shadow gradient-button">Save Changes</button>
+                    <button className="btn shadow gradient-button">
+                      Save Changes
+                    </button>
                   </div>
-                  <hr/>
-                  
+                  <hr />
                 </div>
               </form>
             </div>
