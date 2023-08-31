@@ -194,7 +194,9 @@ const Profile = () => {
                 </form>
               </div>
             </div>
-
+            <br/>
+            <hr/>
+<br/>
             <div className="form-container">
               <h3 className="serhed6">Edit Profile Details</h3>
               <form id="editProfileForm">
@@ -335,6 +337,8 @@ const Profile = () => {
                   <div className="button">
                     <button className="btn shadow gradient-button">Save Changes</button>
                   </div>
+                  <hr/>
+                  
                 </div>
               </form>
             </div>
