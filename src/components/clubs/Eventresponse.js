@@ -5,6 +5,7 @@ import Logosmall from "../../assets/logo-small.png";
 import Card from "react-bootstrap/Card";
 import HbloodReg from "../home/HbloodReg";
 import '../inventoryinterface/inventory.css'
+import { Bold } from "feather-icons-react/build/IconComponents";
 
 function Eventresponse(props) {
     const [searchTerm3, setSearchTerm] = useState('');
@@ -40,9 +41,9 @@ function Eventresponse(props) {
                     <Col>
                         <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
                             <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Registration</Card.Title>
+                                <Card.Title className="cardText1"><h1>Event Registration</h1></Card.Title>
                                 <Card.Img variant="top" src={Logosmall}
-                                    style={{ width: '150px', height: '150px', marginLeft: '300px' }} />
+                                    style={{ width: '130px', height: '130px', marginLeft: '500px' }} />
                             </Card.Body>
                         </Card>
                     </Col>

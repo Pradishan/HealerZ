@@ -55,7 +55,7 @@ export default function HbloodReg() {
             <Form.Group
               className="mb-3"
               controlId="">
-              <Form.Label>Name:</Form.Label>
+              <Form.Label>Phone No:</Form.Label>
               <Form.Control
                 className='forrminputt'
                 type='text'
@@ -65,7 +65,7 @@ export default function HbloodReg() {
             <Form.Group
               className="mb-3"
               controlId="">
-              <Form.Label>Phone no:</Form.Label>
+              <Form.Label>Address:</Form.Label>
               <Form.Control
                 className='forrminputt'
                 type='text'
