@@ -5,28 +5,20 @@ import Logosmall from "../../assets/logo-small.png";
 import Card from "react-bootstrap/Card";
 import HbloodReg from "../home/HbloodReg";
 import '../inventoryinterface/inventory.css'
-import { Bold } from "feather-icons-react/build/IconComponents";
+
 
 function Eventresponse(props) {
     const [searchTerm3, setSearchTerm] = useState('');
-    const [searchTerm4, setSearchTerm2] = useState('');
-
+  
     const handleChange3 = (event) => {
         setSearchTerm(event.target.value);
     };
-    const handleChange4 = (event) => {
-        setSearchTerm2(event.target.value);
-    };
+
 
     const handleSubmit3 = (event) => {
         event.preventDefault();
         // handle search logic here
         console.log(`Searching for ${searchTerm3}...`);
-    }
-    const handleSubmit4 = (event) => {
-        event.preventDefault();
-        // handle search logic here
-        console.log(`Searching for ${searchTerm4}...`);
     }
 
     const [Registrationlist] = useState([
