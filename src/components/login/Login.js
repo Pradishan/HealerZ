@@ -3,8 +3,13 @@ import React from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const profileopen=()=>{
+    navigate('/profile');
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow top navbarh">
@@ -80,6 +85,7 @@ function Login() {
                     background:
                       "linear-gradient(90deg, rgba(75, 20, 141, 1) 0%, rgba(224, 64, 253, 1) 100%)",
                   }}
+                  onClick={profileopen}
                 >
                   Login
                 </button>

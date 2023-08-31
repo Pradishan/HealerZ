@@ -4,11 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
+import zIndex from "@mui/material/styles/zIndex";
 
 const Profile = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg shadow top navbarh">
+      <nav
+        className="navbar navbar-expand-lg shadow top navbarh"
+        style={{ zIndex: 1000 }}
+      >
         <div className="container-fluid">
           <a className="navbar-brand navbar-brand1" href="/">
             <img src={logo} alt="HealerZ" height="48px" />
@@ -47,20 +51,22 @@ const Profile = () => {
           </div>
         </div>
       </nav>
-<br/>
+      <br />
       <div className="profile">
         <div className="card-container cardprof">
           <div className="card card-1 cardproff">
-            <h2>Profile</h2>
+            <h3 className="serhed7">Profile</h3>
+            <hr />
             <div className="card sub-card cardproff">
               <div className="info">
-                <h6>Pradheeshan Sharoon</h6>
+                <h6>Farhath</h6>
                 <p className="info">cst20001</p>
                 <p className="info"> N0:31, Kandy, Sri Lanka</p>
                 <p className="info">0771234567</p>
               </div>
               <div></div>
             </div>
+            <hr />
             <div className="info-2">
               <p info-2>
                 Age <span className="green">22 years</span>
@@ -84,105 +90,173 @@ const Profile = () => {
                 modern devices and advancements.
               </p>
             </div>
-
-            <Link to="http://localhost:3000/MedicalRequest">
+            <hr />
+            <Link to="/profile">
               <div className="button">
-                <button className="gradient-button">Request Medical</button>
+                <button className="gradient-button">Download Medical</button>
               </div>
             </Link>
           </div>
 
           <div className="card card-2 cardproff">
-            <form id="editProfileForm">
-              <div className="container">
-                <div className="column-container">
-                  <div className="column-1">
-                    <div className="sub-row">
-                      <h5>Edit Profile</h5>
+            <div className="">
+              <div className="form-container">
+                <h3 className="serhed6">Request Medical</h3>
+                <form id="medical-request-form">
+                  <div className="form-floating">
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Consulatation Date</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Duration (In Days)</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <textarea
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Message</label>
+                  </div>
+                  <hr />
+                  <div className="button">
+                    <button className="gradient-button">Submit Request</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div className="form-container">
+              <h3 className="serhed6">Edit Profile Details</h3>
+              <form id="editProfileForm">
+                <div className="container">
+                  <div className="column-container">
+                    <div className="column-1">
+                      <div className="sub-row">
+                        <h5>Edit Profile</h5>
+                      </div>
+
+                      <div className="personalInfo">
+                        <div className="form-floating">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="New Password"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">
+                            Change PhoneNo
+                          </label>
+                        </div>
+                        <br />
+                        <div className="form-floating">
+                          <textarea
+                            type="text"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="New Password"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">
+                            Change Address
+                          </label>
+                        </div>
+                        <br />
+                        <div className="form-floating">
+                          <input
+                            type="file"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="Change Profile pic"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">
+                            Change profile pic
+                          </label>
+                        </div>
+                        <hr />
+                        <div className="button">
+                          <button className="gradient-button">
+                            Save changes{" "}
+                          </button>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="personalInfo">
-                      <div className="form-group">
-                        <label for="age">Age:</label>
-                        <input
-                          type="number"
-                          className="form-input"
-                          id="age"
-                          name="age"
-                          required
-                        ></input>
+                    <div className="column-2">
+                      <div className="sub-row">
+                        <h5>Change Password</h5>
                       </div>
 
-                      <div className="form-group">
-                        <label for="phoneNumber">Phone Number:</label>
-                        <input
-                          type="tel"
-                          className="form-input"
-                          id="phoneNumber"
-                          name="phoneNumber"
-                          required
-                        ></input>
-                      </div>
-
-                      <div className="form-group">
-                        <label for="address">Address:</label>
-                        <input
-                          type="text"
-                          className="form-input"
-                          id="address"
-                          name="address"
-                          required
-                        ></input>
+                      <div className="personalInfo">
+                        <div className="form-floating">
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="Current Password"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">
+                            Current Password
+                          </label>
+                        </div>
+                        <br />
+                        <div className="form-floating">
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="New Password"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">New Password</label>
+                        </div>
+                        <br />
+                        <div className="form-floating">
+                          <input
+                            type="password"
+                            className="form-control"
+                            id="floatingPassword"
+                            placeholder="Confirm Password"
+                            style={{ width: "100%" }}
+                          />
+                          <label htmlFor="floatingPassword">
+                            Confirm Password
+                          </label>
+                        </div>
+                        <hr />
+                        <div className="button">
+                          <button className="gradient-button">
+                            Save changes{" "}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="column-2">
-                    <div className="sub-row">
-                      <h5>Change Password</h5>
-                    </div>
+                  <h5>Allergies and Diseases</h5>
 
-                    <div className="personalInfo">
-                      <div className="form-group">
-                        <label for="oldPassword">Old Password:</label>
-                        <input
-                          type="password"
-                          className="form-input"
-                          id="oldPassword"
-                          name="oldPassword"
-                          required
-                        ></input>
-                      </div>
-
-                      <div className="form-group">
-                        <label for="newPassword">New Password:</label>
-                        <input
-                          type="password"
-                          className="form-input"
-                          id="newPassword"
-                          name="newPassword"
-                          required
-                        ></input>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="confirmPassword">Confirm Password:</label>
-                        <input
-                          type="password"
-                          className="form-input"
-                          id="confirmPassword"
-                          name="confirmPassword"
-                          required
-                        ></input>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <h5>Allergies and Diseases</h5>
-
-                <div className="allergies">
-                  <div className="form-group">
+                  <div className="allergies">
+                    {/* <div className="form-group">
                     <label for="allergies">Allergies:</label>
                     <input
                       type="text"
@@ -190,24 +264,28 @@ const Profile = () => {
                       id="allergies"
                       name="allergies"
                     ></input>
-                  </div>
+                  </div> */}
 
-                  <div className="form-group">
-                    <label for="diseases">Specific Diseases:</label>
-                    <input
-                      type="text"
-                      className="form-input"
-                      id="diseases"
-                      name="diseases"
-                    ></input>
+                    <div className="form-floating">
+                      <textarea
+                        className="form-control"
+                        id="diseases"
+                        placeholder="Confirm Password"
+                        // style={{ width: "100%" }}
+                        rows={7}
+                      ></textarea>
+                      <label htmlFor="floatingPassword">
+                        Specific Diseases
+                      </label>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="button">
+                    <button className="gradient-button">Save Changes</button>
                   </div>
                 </div>
-
-                <div className="button">
-                  <button className="gradient-button">Save Changes</button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
