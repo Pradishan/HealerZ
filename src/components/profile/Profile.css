@@ -77,13 +77,27 @@
 
 .gradient-button {
     width: 100%;
-    height: 40px;
+    /* height: 40px; */
     flex-shrink: 0;
     border-radius: 5px;
     background: linear-gradient(to right, #462596, #D338F6);
     border: none;
-    color: rgb(235, 233, 233);
-    font-size: 18px;
+    color: rgb(235, 233, 233) !important;
+    font-size: 16px !important;
+    /* font-weight: 600 !important; */
+}
+
+.gradient-buttonnn {
+    width: 100%;
+    /* height: 30px; */
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: linear-gradient(225deg, #E040FD 0%, #4B148D 100%);
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    color: rgb(235, 233, 233) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
 }
 
 .form-input1 {
@@ -204,7 +218,7 @@ h6 {
 .serhed7:before {
     content: "";
     display: block;
-    width: 50px;
+    width: 40px;
     height: 2px;
     background: #000;
     left: 0;
@@ -215,7 +229,7 @@ h6 {
 .serhed7:after {
     content: "";
     display: block;
-    width: 50px;
+    width: 40px;
     height: 2px;
     background: #000;
     right: 0;

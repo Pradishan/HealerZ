@@ -1,12 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
-import zIndex from "@mui/material/styles/zIndex";
+import farhath from "../../assets/farhath.jpg";
 
 const Profile = () => {
+  const [medicallist, setmedicallist] = useState([
+    { No: 1, date: "07-07-2023"},
+    { No: 2, date: "07-04-2023"},
+    { No: 3, date: "07-06-2022"},
+    { No: 4, date: "07-04-2022"},
+    { No: 5, date: "07-11-2021"},
+  ])
   return (
     <div>
       <nav
@@ -57,7 +64,7 @@ const Profile = () => {
           <div className="card card-1 cardproff">
             <h3 className="serhed7">Profile</h3>
             <hr />
-            <div className="card sub-card cardproff">
+            {/* <div className="card sub-card cardproff">
               <div className="info">
                 <h6>Farhath</h6>
                 <p className="info">cst20001</p>
@@ -65,6 +72,26 @@ const Profile = () => {
                 <p className="info">0771234567</p>
               </div>
               <div></div>
+            </div> */}
+            <div className="d-flex  justify-content-center mb-2">
+              <div className="d-flex align-items-center justify-content-center ms-2">
+                <img
+                  src={farhath}
+                  alt="avatar"
+                  className="rounded-circle me-2"
+                  width="100px"
+                  height="100px"
+                />
+              </div>
+
+              <div className="d-flex align-items-center justify-content-center">
+                <div>
+                  <h4 className="m-0">Farhath</h4>
+                  <p className="fs-5 m-0">cst20035</p>
+                  <p className="fs-9 m-0"> N0:31, Kandy, Sri Lanka</p>
+                  <p className="fs-10 m-0">0771234567</p>
+                </div>
+              </div>
             </div>
             <hr />
             <div className="info-2">
@@ -91,11 +118,36 @@ const Profile = () => {
               </p>
             </div>
             <hr />
-            <Link to="/profile">
-              <div className="button">
-                <button className="gradient-button">Download Medical</button>
-              </div>
-            </Link>
+            <br/>
+            
+            <div>
+            <h3 className="serhed7">Medical</h3>
+            <hr />
+              <table className={"table table-hover table-striped "}>
+                <thead className={"top-0 position-sticky h-45"}>
+                  <th>No</th>
+                  <th>Date</th>
+                  <th>Download</th>
+                </thead>
+                <tbody>
+                {medicallist.map((data, index) => ( <tr>
+                  <th scope="row">{data.No}</th>
+                    <td style={{fontSize:'12px'}}>{data.date}</td>
+                    <td>
+                      {" "}
+                      <Link to="/profile">
+                        <div className="button">
+                          <button className="btn shadow gradient-buttonnn">
+                            Download
+                          </button>
+                        </div>
+                      </Link>
+                    </td>
+                  </tr>))}
+                </tbody>
+              </table>
+              <hr />
+            </div>
           </div>
 
           <div className="card card-2 cardproff">
@@ -137,7 +189,7 @@ const Profile = () => {
                   </div>
                   <hr />
                   <div className="button">
-                    <button className="gradient-button">Submit Request</button>
+                    <button className="btn shadow gradient-button">Submit Request</button>
                   </div>
                 </form>
               </div>
@@ -194,7 +246,7 @@ const Profile = () => {
                         </div>
                         <hr />
                         <div className="button">
-                          <button className="gradient-button">
+                          <button className="btn shadow gradient-button">
                             Save changes{" "}
                           </button>
                         </div>
@@ -245,7 +297,7 @@ const Profile = () => {
                         </div>
                         <hr />
                         <div className="button">
-                          <button className="gradient-button">
+                          <button className="btn shadow gradient-button">
                             Save changes{" "}
                           </button>
                         </div>
@@ -281,7 +333,7 @@ const Profile = () => {
                   </div>
                   <hr />
                   <div className="button">
-                    <button className="gradient-button">Save Changes</button>
+                    <button className="btn shadow gradient-button">Save Changes</button>
                   </div>
                 </div>
               </form>
