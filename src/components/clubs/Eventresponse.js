@@ -88,7 +88,7 @@ function Eventresponse(props) {
                                     <th scope="col">Email</th>
                                     <th scope="col">Nic</th>
                                     <th scope="col">Phone_No</th>
-                                    <th scope="col">Address</th>
+                                    {/* <th scope="col">Address</th> */}
                                     <th scope="col">Event</th>
                                     <th scope="col">ACTION</th>
                                 </tr>
@@ -101,7 +101,7 @@ function Eventresponse(props) {
                                     <td>{data.Email}</td>
                                     <td>{data.Nic}</td>
                                     <td>{data.Phone_No}</td>
-                                    <td>{data.Address}</td>
+                                    {/* <td>{data.Address}</td> */}
                                     <td>{data.Event}</td>
                                      
                                      <td>
