@@ -3,6 +3,7 @@ import slider1 from '../../assets/slider1.png';
 import slider2 from '../../assets/slider2.png';
 import slider3 from '../../assets/slider3.png';
 import slider4 from '../../assets/slider4.png';
+import FeatherIcon from 'feather-icons-react';
 
 
 
@@ -35,11 +36,11 @@ const Carousel = () => {
       </div>
     </div>
     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <FeatherIcon icon="chevron-left" className="carousel-control-iconnn"/>
       <span className="visually-hidden">Previous</span>
     </button>
     <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+      <FeatherIcon icon="chevron-right"  className="carousel-control-iconnn"/>
       <span className="visually-hidden">Next</span>
     </button>
   </div>

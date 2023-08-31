@@ -127,6 +127,17 @@ export default function Settings(props) {
                                     />
                                     <label for="floatingPassword">New Password</label>
                                 </div>
+                                <div className="form-floating mb-3">
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        id="floatingPassword"
+                                        placeholder="New Password"
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        value={newPassword}
+                                    />
+                                    <label for="floatingPassword">Confirm Password</label>
+                                </div>
                                 <button className='btn w-100 text-white shadow my-3 btn-gr' onClick={handleChangePassword}>
                                     Change Password
                                 </button>
