@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import {Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar, sidebarClasses } from "react-pro-sidebar";
 import './AdminLayout.css';
@@ -19,11 +19,25 @@ import Diversity3Icon from '@mui/icons-material/Diversity3';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import thanu from "../assets/thanu.jpg";
 
 
 
 
 function Layout({children}) {
+    const [currentImage, setCurrentImage] = useState(jana); 
+    useEffect(() => {
+        const imageInterval = setInterval(() => {
+          if (currentImage === jana) {
+            setCurrentImage(thanu);
+          } else {
+            setCurrentImage(jana);
+          }
+        }, 5000);
+    
+        // Clear the interval when the component unmounts
+        return () => clearInterval(imageInterval);
+      }, [currentImage]);
 
     const [collapsed, setCollapsed] = React.useState(false);
    
@@ -59,7 +73,7 @@ function Layout({children}) {
                                         
                                             <div className='d-flex align-items-center justify-content-center mb-2'>
                                                 <div className='d-flex align-items-center justify-content-center ms-1'>
-                                                    <img src={jana} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
+                                                    <img src={currentImage} alt='avatar' className='rounded-circle me-2' width='80px' height='80px' />
                                                 </div>
                 
                                                 <div className='d-flex align-items-center justify-content-center'>
@@ -155,7 +169,7 @@ function Layout({children}) {
                                     <li className="nav-item px-2">
                                         <a className="nav-link  position-relative p-0" aria-current="page" href="#">
 
-                                            <img src={jana} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
+                                            <img src={currentImage} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
                                         </a>
                                     </li>
 
