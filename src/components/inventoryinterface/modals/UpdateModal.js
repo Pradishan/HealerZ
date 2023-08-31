@@ -108,12 +108,13 @@ function UpdateModal(props) {
               
                   <tr>
                             <th>Category</th>
-                            <th className={'inputfield1'}>
+                            <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
                                     defaultValue={item.Category}
                                     className={'inputt'}
                                     onChange={(e) => updateNewData(e, "Category")}
+                                    style={{height:'30px '}}
                                 >
                                    <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>
