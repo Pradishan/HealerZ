@@ -18,7 +18,6 @@ import Settings from "./components/inventoryinterface/Settings";
 import Protected from "./components/login/Protected";
 import Protected1 from "./components/login/Protected1";
 import InventoryLogin from "./components/login/InventoryLogin";
-import MedicalRequest from "./components/profile/MedicalRequest";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
 import AddDoctor from "./components/admin/AddDoctor";
 import DoctorList from "./components/admin/DoctorList";
@@ -51,7 +50,6 @@ function App() {
         <Route path="/loginDoctor" element={ <DoctorLogin /> } />
         <Route path="/LoginInventory" element={ <InventoryLogin /> } />
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
-        <Route path="/MedicalRequest" element={ <Protected2 Component={ MedicalRequest  } roll={'admin'} />} />
         <Route path="/admin/dashboard" element={<Protected2 Component={ DashboardAdmin  } roll={'admin'} /> } />
         <Route path="/admin/adddoctor" element={ <Protected2 Component={ AddDoctor } roll={'admin'} /> } />
         <Route path="/admin/doctorlist" element={ <Protected2 Component={ DoctorList } roll={'admin'} />} />

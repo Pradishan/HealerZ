@@ -206,3 +206,9 @@
     cursor: pointer;
     opacity: 1;
 }
+
+.carousel-control-iconnn{
+    height: 50px;
+    width: 50px;
+    color: black;
+}

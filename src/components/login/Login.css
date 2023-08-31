@@ -10,12 +10,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, #462596, #D338F6, #89379c);
+    /* background: linear-gradient(to bottom right, #462596, #D338F6, #89379c); */
+    background-image: url("../../assets/loginback.jpg");
 }
 
 .cont {
     width: 690px !important;
-    height: 70vh;
+    height: 400px;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";
@@ -92,6 +93,8 @@
 }
 
 .login h3.title {
+    font-size: 2rem;
+    font-weight: 800;
     margin: 15px 0;
 }
 
