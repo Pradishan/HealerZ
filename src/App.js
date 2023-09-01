@@ -21,7 +21,7 @@ import InventoryLogin from "./components/login/InventoryLogin";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
 import AddDoctor from "./components/admin/AddDoctor";
 import DoctorList from "./components/admin/DoctorList";
-import AddPatient from "./components/admin/AddDoctor";
+import AddPatient from "./components/admin/AddPatient";
 import UpdatePatient from "./components/admin/UpdatePatient";
 import PatientList from "./components/admin/PatientList";
 import AddEmployee from "./components/admin/AddEmployee";
