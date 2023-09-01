@@ -84,10 +84,8 @@ const errorMessgae =(message) => {
           <div className="col-md-4">
             <p>{logmessage}</p>
             <div className="card border-0 shadow">
-              <div className="card-header bg-white text-center">
-                <h3>Login As Doctor</h3>
-              </div>
               <div className="card-body">
+              <h3>Login As Doctor</h3>
                 <form action="" className="py-2">
                   <div className="form-floating mb-3">
                     <input

@@ -7,9 +7,6 @@ export default function MedRequestModal(props) {
 
   const{status,setStaus} = useState(data.status);
 
-  console.log(status)
-  console.log(data.status)
-
   return (
     <>
       <Modal size='lg' show={show} onHide={onHide} backdrop="static" keyboard={false}>

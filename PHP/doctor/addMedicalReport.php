@@ -27,7 +27,7 @@ if ($method === "POST") {
         $conn = $dbcon->getConnection();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Assume your front-end sends data as JSON
+        //front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
 
         $patient_ID = $data['patient_ID'];
@@ -61,7 +61,7 @@ if ($method === "POST") {
 
     } catch (PDOException $e) {
         // Return an error response if something goes wrong
-        echo json_encode(['success' => false, 'message' => 'Error adding data','error' => $e]);
+        echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e]);
     }
 }
 

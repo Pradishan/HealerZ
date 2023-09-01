@@ -20,7 +20,7 @@ export default function HbloodReg() {
           <Modal.Title>Registration Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-       
+            
               <div className="form-container">
                 <form id="medical-request-form">
                   <div className="form-floating">
@@ -82,6 +82,7 @@ export default function HbloodReg() {
                 </form>
               
             </div>
+
         </Modal.Body>
         <Modal.Footer>
 

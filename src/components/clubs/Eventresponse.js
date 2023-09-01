@@ -6,26 +6,19 @@ import Card from "react-bootstrap/Card";
 import HbloodReg from "../home/HbloodReg";
 import '../inventoryinterface/inventory.css'
 
+
 function Eventresponse(props) {
     const [searchTerm3, setSearchTerm] = useState('');
-    const [searchTerm4, setSearchTerm2] = useState('');
-
+  
     const handleChange3 = (event) => {
         setSearchTerm(event.target.value);
     };
-    const handleChange4 = (event) => {
-        setSearchTerm2(event.target.value);
-    };
+
 
     const handleSubmit3 = (event) => {
         event.preventDefault();
         // handle search logic here
         console.log(`Searching for ${searchTerm3}...`);
-    }
-    const handleSubmit4 = (event) => {
-        event.preventDefault();
-        // handle search logic here
-        console.log(`Searching for ${searchTerm4}...`);
     }
 
     const [Registrationlist] = useState([
@@ -50,9 +43,9 @@ function Eventresponse(props) {
                     <Col>
                         <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
                             <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Registration</Card.Title>
+                                <Card.Title className="cardText1"><h1>Event Registration</h1></Card.Title>
                                 <Card.Img variant="top" src={Logosmall}
-                                    style={{ width: '150px', height: '150px', marginLeft: '300px' }} />
+                                    style={{ width: '130px', height: '130px', marginLeft: '500px' }} />
                             </Card.Body>
                         </Card>
                     </Col>
