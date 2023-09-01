@@ -1,0 +1,33 @@
+.serhett9 {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-top: -0px;
+    color: #000536;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    max-width: 500px;
+    position: relative;
+}
+
+.serhett9:before {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute;
+}
+
+.serhett9:after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    background: #000;
+    right: 0;
+    top: 50%;
+    position: absolute;
+}
