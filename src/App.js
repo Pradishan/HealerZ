@@ -22,7 +22,7 @@ import MedicalRequest from "./components/profile/MedicalRequest";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
 import AddDoctor from "./components/admin/AddDoctor";
 import DoctorList from "./components/admin/DoctorList";
-import AddPatient from "./components/admin/AddPatient";
+import AddPatient from "./components/admin/AddDoctor";
 import UpdatePatient from "./components/admin/UpdatePatient";
 import PatientList from "./components/admin/PatientList";
 import AddEmployee from "./components/admin/AddEmployee";

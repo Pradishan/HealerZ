@@ -3,7 +3,8 @@ import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
-const Profile = () => {
+const Profile = () =>
+{
   return (
     <div className="profile">
       <div className="card-container cardprof">
@@ -24,7 +25,7 @@ const Profile = () => {
             </p>
             <p info-2>Gender Male</p>
             <p info-2>
-              Blood Group <span className="red">B+</span>{" "}
+              Blood Group <span className="red">B+</span>{ " " }
             </p>
             <p info-2>
               Allergies <span className="blue">No</span>
@@ -60,17 +61,6 @@ const Profile = () => {
 
                   <div className="personalInfo">
                     <div className="form-group">
-                      <label for="age">Age:</label>
-                      <input
-                        type="number"
-                        className="form-input"
-                        id="age"
-                        name="age"
-                        required
-                      ></input>
-                    </div>
-
-                    <div className="form-group">
                       <label for="phoneNumber">Phone Number:</label>
                       <input
                         type="tel"
@@ -81,8 +71,14 @@ const Profile = () => {
                       ></input>
                     </div>
 
-                    <div className="form-group">
-                      <label for="address">Address:</label>
+                    <label for="address">Address:</label>
+                    <div className="form-floating">
+                      <textarea className="form-control" placeholder="Address here" name='address' id="address" style={ { height: '100px' } }></textarea>
+                      <label htmlFor="floatingTextarea2">Tests</label>
+                    </div>
+
+                    {/* <div className="form-group">
+                    
                       <input
                         type="text"
                         className="form-input"
@@ -90,7 +86,7 @@ const Profile = () => {
                         name="address"
                         required
                       ></input>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -132,6 +128,9 @@ const Profile = () => {
                         required
                       ></input>
                     </div>
+                    <div className="button">
+                      <button className="gradient-button">Changes password</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -139,16 +138,6 @@ const Profile = () => {
               <h5>Allergies and Diseases</h5>
 
               <div className="allergies">
-                <div className="form-group">
-                  <label for="allergies">Allergies:</label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    id="allergies"
-                    name="allergies"
-                  ></input>
-                </div>
-
                 <div className="form-group">
                   <label for="diseases">Specific Diseases:</label>
                   <input

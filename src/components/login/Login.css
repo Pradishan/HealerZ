@@ -11,12 +11,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, #462596, #D338F6, #89379c);
+    background-color: #F1F0F0;
+    /* background: linear-gradient(to bottom right, #462596, #D338F6, #89379c); */
 }
 
 .cont {
-    width: 690px  !important;
-    height: 70vh;
+    width: 600px  !important;
+    height: 25rem ;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";

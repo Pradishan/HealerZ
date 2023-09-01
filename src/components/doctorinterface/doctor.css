@@ -25,7 +25,11 @@ body {
 }
 
 .bg-gradident {
-    background-color: var(--maincolor);
+    background-color: var(--maincolor) !important;
+}
+
+.btn-gr {
+    background: linear-gradient(225deg, #E040FD 0%, #4B148D 100%);
 }
 
 .nav-hover {
