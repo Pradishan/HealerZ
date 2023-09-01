@@ -8,18 +8,14 @@ src/Admin.css
     margin-left: 30px;
 }
 
-.heading-purple {
-    color: purple;
-    font-size: 3rem;
-    font-weight: 700!important;
-}
 
 
 /* Done button styles */
 
 .done-button {
     position: relative;
-    left: 650px;
+    left: 720px;
+    width: 100px;
     background-color: purple !important;
     color: #fff;
     padding: 10px 80px;
@@ -124,7 +120,7 @@ src/Admin.css
 
 .done-button5 {
     position: relative;
-    left: 400px;
+    left: 700px;
     color: #fff;
     padding: 10px 80px;
     border: none;
@@ -137,7 +133,7 @@ src/Admin.css
 .SearchBox4 {
     border-radius: 5px;
     background: #ffffff;
-    width: 250px;
+    width: 280px;
 }
 
 .SearchBox4::placeholder {
@@ -172,3 +168,121 @@ src/Admin.css
         width: 100%;
     }
 }
+
+.serhett {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin: 50px auto;
+    margin-top: 40px;
+    color: purple;
+    font-weight: 700!important;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    max-width: 700px;
+    position: relative;
+}
+
+.serhett:before {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute;
+}
+
+.serhett:after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: #000;
+    right: 0;
+    top: 50%;
+    position: absolute;
+}
+
+.addboxx{
+    margin: 50px auto;
+}
+
+.searrrchbox{
+    width: 800px;
+}
+
+.serachhett{
+    font-size: 20px;
+    margin-top: 5px;
+}
+.patientlisttable{
+    margin-top: -50px;
+}
+.table-container {
+    overflow-y: scroll;
+    /* overflow-x: hidden; */
+    /* width: 100% !important; */
+    max-height: calc(100vh - 240px);
+    border-radius: 9px;
+    border: .75px solid rgba(63, 68, 81, .12156862745098039);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+/* Center the calendar */
+.calenderrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin-top: -80px;
+   margin-bottom: 100px;
+  }
+  
+  /* Style the calendar container */
+  .fc {
+    padding: 20px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+ .fc-event {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    
+  }
+  .fc.fc-time {
+    font-style: italic;
+  }
+  
+  .fc-header-toolbar {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+  }
+
+  .fc .fc-button-primary {
+    background-color:  #010024;
+    border-color:  #ffffff;
+    color: white;
+    margin: 2px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+ 
+  
+  /* Style the calendar footer (list view) */
+  .fc.fc-list {
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .teaaaaam{
+    margin-bottom: 100px;
+  }
+  

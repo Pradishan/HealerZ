@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Protected1(props) {
+export default function Protected2(props) {
   const navigate = useNavigate();
   const { Component,roll } = props;
   useEffect(() => {
@@ -11,9 +11,9 @@ export default function Protected1(props) {
     if (login === 'false'|| login === null) {
       sessionStorage.setItem(
         "loginStatus",
-        "Please login to access the Pharmacist interface!"
+        "Please login to access the Admin interface!"
       );
-      navigate("/loginInventory");
+      navigate("/loginAdmin");
       return;
     }
   });

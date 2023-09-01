@@ -6,31 +6,34 @@ import Card from "react-bootstrap/Card";
 import HbloodReg from "../home/HbloodReg";
 import '../inventoryinterface/inventory.css'
 
+
 function Eventresponse(props) {
     const [searchTerm3, setSearchTerm] = useState('');
-    const [searchTerm4, setSearchTerm2] = useState('');
-
+  
     const handleChange3 = (event) => {
         setSearchTerm(event.target.value);
     };
-    const handleChange4 = (event) => {
-        setSearchTerm2(event.target.value);
-    };
+
 
     const handleSubmit3 = (event) => {
         event.preventDefault();
         // handle search logic here
         console.log(`Searching for ${searchTerm3}...`);
     }
-    const handleSubmit4 = (event) => {
-        event.preventDefault();
-        // handle search logic here
-        console.log(`Searching for ${searchTerm4}...`);
-    }
 
     const [Registrationlist] = useState([
         { No: 1, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
-        
+        { No: 2, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 3, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 4, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 5, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 6, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 7, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 8, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 9, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 10, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 11, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
+        { No: 12, Registration_ID: "CST20083", Name: "nusnan", Email:"nusnanam12@gmail.com", Nic:"990000029v", Phone_No:"0767777123", Address:"05,main street,ampara" ,Event:"Blood Donation"},
     ])
 
     return (
@@ -40,9 +43,9 @@ function Eventresponse(props) {
                     <Col>
                         <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
                             <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Registration</Card.Title>
+                                <Card.Title className="cardText1"><h1>Event Registration</h1></Card.Title>
                                 <Card.Img variant="top" src={Logosmall}
-                                    style={{ width: '150px', height: '150px', marginLeft: '300px' }} />
+                                    style={{ width: '130px', height: '130px', marginLeft: '500px' }} />
                             </Card.Body>
                         </Card>
                     </Col>
@@ -78,7 +81,7 @@ function Eventresponse(props) {
                                     <th scope="col">Email</th>
                                     <th scope="col">Nic</th>
                                     <th scope="col">Phone_No</th>
-                                    <th scope="col">Address</th>
+                                    {/* <th scope="col">Address</th> */}
                                     <th scope="col">Event</th>
                                     <th scope="col">ACTION</th>
                                 </tr>
@@ -91,7 +94,7 @@ function Eventresponse(props) {
                                     <td>{data.Email}</td>
                                     <td>{data.Nic}</td>
                                     <td>{data.Phone_No}</td>
-                                    <td>{data.Address}</td>
+                                    {/* <td>{data.Address}</td> */}
                                     <td>{data.Event}</td>
                                      
                                      <td>

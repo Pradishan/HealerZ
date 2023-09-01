@@ -1,6 +1,5 @@
 import React from 'react';
 import Bell from "../assets/bell.svg";
-// import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from 'feather-icons-react';
 import logo from '../assets/logo.png';
@@ -56,10 +55,44 @@ function ClubLayout({children}){
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
-                                to={"/"}>
+
+                                to={"/clubs/dashboard"}>
+
                                 <div className={'d-flex'}>
                                     <FeatherIcon icon="layout" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={'trans-1'}>Dashboard</div>}
+                                </div>
+                            </NavLink>
+                        </div>
+
+                        <div className={"w-100 px-sm-2"}>
+                            <NavLink
+                                className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
+                                to={"/clubs/Eventresponse"}>
+                                <div className={'d-flex'}>
+                                    <FeatherIcon icon="filter" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={'trans-1'}>Event Response</div>}
+                                </div>
+                            </NavLink>
+                        </div>
+                        <div className={"w-100 px-sm-2"}>
+                            <NavLink
+                                className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
+                                to={"/clubs/registration"}>
+                                <div className={'d-flex'}>
+                                    <FeatherIcon icon="edit" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={'trans-1'}>Registration</div>}
+                                </div>
+                            </NavLink>
+                        </div>
+
+                        <div className={"w-100 px-sm-2"}>
+                            <NavLink
+                                className={({isActive}) => isActive ? "side-menu-item side-menu-active " : "side-menu-item "}
+                                to={"/clubs/blooddonation"}>
+                                <div className={'d-flex'}>
+                                    <FeatherIcon icon="thermometer" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={'trans-1'}>Blood Donation</div>}
                                 </div>
                             </NavLink>
                         </div>
@@ -68,10 +101,10 @@ function ClubLayout({children}){
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={"/"}>
+                                to={"/clubs/vacination"}>
                                 <div className={'d-flex'}>
-                                    <FeatherIcon icon="clipboard" className={!open ? 'me-2' : "ms-1"}/>
-                                    {!open && <div className={''}>Event Response</div>}
+                                    <FeatherIcon icon="activity" className={!open ? 'me-2' : "ms-1"}/>
+                                    {!open && <div className={''}>Vaccination</div>}
                                 </div>
                             </NavLink>
                         </div>
@@ -81,7 +114,7 @@ function ClubLayout({children}){
                         <div className={"w-100 px-sm-2"}>
                             <NavLink
                                 className={({isActive}) => isActive ? "side-menu-item side-menu-active" : "side-menu-item"}
-                                to={""}>
+                                to={"/"}>
                                 <div className={'d-flex'} onClick={logoutt}>
                                     <FeatherIcon icon="log-out" className={!open ? 'me-2' : "ms-1"}/>
                                     {!open && <div className={''}>Logout</div>}

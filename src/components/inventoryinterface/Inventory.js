@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Col, Container, Row } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Logosmall from '../../assets/logo-small.png';
 import FeatherIcon from 'feather-icons-react';
-import './inventory.css';
 import ViewModal from './modals/ViewModal';
 import Layout from '../../layouts/layout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './inventory.css';
 
 function Inventory(props) {
     const [showModal, setShowModal] = useState(false);
@@ -31,6 +28,7 @@ function Inventory(props) {
         if (searchedDrug) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
+            setSearchTerm('');
         } else {
             toast.error('Invalid Drug ID');
         }
@@ -41,6 +39,7 @@ function Inventory(props) {
         if (searchedDrug) {
             setSelectedDrug(searchedDrug);
             setShowModal(true);
+            setSearchTerm2('');
         } else {
             toast.error('Invalid Drug Name');
         }
@@ -66,18 +65,6 @@ function Inventory(props) {
     
     return (
         <Layout>
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
-                            <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Inventory</Card.Title>
-                                <Card.Img variant="top" src={Logosmall} style={{ width: '150px', height: '150px', marginLeft: '400px' }} />
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
             <div className={"container"}>
                 <div className={"p-5"}>
                     <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
@@ -105,29 +92,29 @@ function Inventory(props) {
                             </form>
                         </div>
                     </div>
-                    <div className={"table-container "}>
-                        <table className={"table table-hover table-striped "}>
+                    <div className={"table-container w-100 p-0"}>
+                        <table className={"table table-hover table-striped "} style={{minWidth: '0px',}}>
                             <thead className={"top-0 position-sticky h-45"}>
                                 <tr>
                                     <th scope="col">NO</th>
                                     <th scope="col">DRUG_ID</th>
                                     <th scope="col">DRUG_NAME</th>
                                     <th scope="col">Category</th>
-                                    <th scope="col">STOCK_OUT</th>
+                                    <th scope="col">Drug_Dosage</th>
                                     <th scope="col">EXPIRED_COUNT</th>
                                     <th scope="col">AVAILABLE_COUNT</th>
                                     <th scope="col">VIEW</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='h-50'>
                                 {drugList.map((data, index) => (
                                     <tr key={index}>
                                         <th scope="row">{index + 1}</th>
                                         <td>{data.Drug_ID}</td>
                                         <td>{data.Drug_Name}</td>
                                         <td>{data.Category}</td>
-                                        <td>{data.stock_out}</td>
-                                        <td>{data.expire}</td>
+                                        <td>{data.Drug_dosage}</td>
+                                        <td>{index *5 + 10}</td>
                                         <td>{data.StockCount}</td>
                                         <td>
                                             <FeatherIcon

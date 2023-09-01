@@ -6,9 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 function UpdateModal(props) {
-  
-
-  // const [inputs, setInputs] = useState(props.inputs);
   const [newData, setNewData] = useState({});
 
   const updateNewData = (e, field) => {
@@ -20,32 +17,25 @@ function UpdateModal(props) {
 
   const { show, onHide } = props;
 
-  const items = props.inputs; // Assuming props.inputs is an array of objects
+  const items = props.inputs; 
 
   const handleUpdate = () => {
-    // Check if there is any data to update
     if (Object.keys(newData).length === 0) {
       toast.info("No data to update!");
       return;
     }
-  
-    // Check if Drug_ID is present in newData
     if (!newData.Drug_ID) {
       toast.info("Drug ID is missing in the update data!");
       return;
     }
-  
-    // Perform the update operation
     axios
     .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
-        // Handle successful response
         console.log(response.data);
         toast.success("Drug updated successfully!");
         onHide();
       })
       .catch((error) => {
-        // Handle error response
         toast.error("Failed to update drug!");
         console.error(error);
       });
@@ -64,13 +54,11 @@ function UpdateModal(props) {
       axios
         .delete(`http://localhost/HealerZ/PHP/Inventory/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
         .then((response) => {
-          // Handle successful response
           console.log(response.data);
           toast.success("Drug deleted successfully!");
           onHide();
         })
         .catch((error) => {
-          // Handle error response
           toast.error("Failed to delete drug!");
           console.error(error);
         });
@@ -120,12 +108,13 @@ function UpdateModal(props) {
               
                   <tr>
                             <th>Category</th>
-                            <th className={'inputfield1'}>
+                            <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
                                     defaultValue={item.Category}
                                     className={'inputt'}
                                     onChange={(e) => updateNewData(e, "Category")}
+                                    style={{height:'30px '}}
                                 >
                                    <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>

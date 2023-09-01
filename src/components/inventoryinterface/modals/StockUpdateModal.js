@@ -17,7 +17,7 @@ function StockUpdateModal(props) {
 
     useEffect(() => {
         if (items.length > 0) {
-            setID(items[0].Drug_ID); // Set the Drug_ID automatically
+            setID(items[0].Drug_ID);
         }
     }, [items]);
 
@@ -37,13 +37,11 @@ function StockUpdateModal(props) {
 
             axios.post(url, fdata)
                 .then((response) => {
-                    // Show success swal notification
                     toast.success("Stock Updated Successfully.!");
                     onHide();
                    
                 })
                 .catch((error) => {
-                    // Show error swal notification
                     toast.error(error.message);
                 });
         }
@@ -77,7 +75,6 @@ function StockUpdateModal(props) {
                                     <th>:</th>
                                     <th className={"detaildet"}>500</th>
                                 </tr>
-                                {/* Add more rows for other details as needed */}
                             </React.Fragment>
                         ))}
                     </tbody>

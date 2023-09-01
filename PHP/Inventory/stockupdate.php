@@ -17,7 +17,6 @@ else{
     $drug_stk = $_POST["StockCount"];
     $expired_date = $_POST["ExpiredDate"];
     
-
     $sql="INSERT INTO druginventory(Drug_ID, StockCount, ExpiredDate) VALUES ('$drug_id', '$drug_stk','$expired_date');";
     $res=mysqli_query($conn,$sql);
 

@@ -15,25 +15,25 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (empty($data['pharmacistID']) || empty($data['password'])) {
-        echo json_encode(array("message" => "Pharmacist ID and Password are required."));
+    if (empty($data['adminID']) || empty($data['password'])) {
+        echo json_encode(array("message" => "Admin ID and Password are required."));
         exit();
     }
 
-    $pharmacistID = $data['pharmacistID'];
+    $pharmacistID = $data['adminID'];
     $password = $data['password'];
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
-    $sql = "SELECT * FROM pharmacist WHERE Pharmacist_ID = :pharmacistID LIMIT 1"; 
+    $sql = "SELECT * FROM admin WHERE Admin_ID = :adminID LIMIT 1"; 
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":pharmacistID", $pharmacistID);
+    $stmt->bindParam(":adminID", $pharmacistID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user || $password !== $user["Password"]) {
-        echo json_encode(array("message" => "Invalid Pharmacist ID or Password."));
+        echo json_encode(array("message" => "Invalid Admin ID or Password."));
         exit();
     }
 
