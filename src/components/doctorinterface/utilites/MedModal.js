@@ -26,7 +26,7 @@ export default function MedModal ( props )
     return (
         <Modal size='xl' show={ show } onHide={ onHide } backdrop="static" keyboard={ false }>
             <Modal.Header closeButton>
-                <Modal.Title>Medical Records</Modal.Title>
+                <Modal.Title>Medical Records | {id}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="row">

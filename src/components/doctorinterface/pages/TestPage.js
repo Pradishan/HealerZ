@@ -14,7 +14,7 @@ export default function TestPage ()
 {
 
   const [ formData, setFormData ] = useState( {
-    patient_ID: 'cst20001',
+    patient_ID: 'cst20008',
     doctor_ID: 'D001',
     dateandTime: formattedDate,
     patientcomplaint: '',
@@ -62,7 +62,7 @@ export default function TestPage ()
           {
             toast.success( response.data.message );
             setFormData( {
-              patient_ID: 'cst20001',
+              patient_ID: 'cst20008',
               doctor_ID: 'D001',
               dateandTime: formattedDate,
               patientcomplaint: '',
