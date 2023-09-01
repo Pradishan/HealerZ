@@ -16,28 +16,38 @@ try {
 
     // Check if the request method is POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
         // Assume your front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
-        // Get the user ID from the request
-        $patientID = $data['patient_ID'];
 
+        // Check if 'patient_ID' is provided in the JSON data
+        if (isset($data['patient_ID'])) {
+            // Get the patient ID from the request
+            $patientID = $data['patient_ID'];
 
-        // Prepare and execute the SQL query using named placeholders
-        $stmt = $conn->prepare("SELECT * FROM medicalrecord WHERE Patient_ID = :patient_ID");
-        $stmt->bindParam(':patient_ID', $patientID, PDO::PARAM_INT);
-        $stmt->execute();
+            // Prepare and execute the SQL query using positional parameter
+            $stmt = $conn->prepare("SELECT * FROM medicalrecord WHERE Patient_ID = ?");
+            $stmt->execute([$patientID]); // Use execute with an array of parameters
 
-        // Fetch the filtered data as an associative array
-        $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Fetch the filtered data as an associative array
+            $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Return the filtered data as JSON
-        header('Content-Type: application/json');
-        echo json_encode($filteredData);
+            // Check if any data was found for the given Patient_ID
+            if ($filteredData) {
+                // Return the filtered data as JSON
+                header('Content-Type: application/json');
+                echo json_encode($filteredData);
+            } else {
+                // If no data found for the given Patient_ID, return an error message or appropriate response
+                echo json_encode(['message' => 'Patient not found']);
+            }
+        } else {
+            // If 'patient_ID' is not provided in the JSON data, return an error message or appropriate response
+            echo json_encode(['message' => 'Missing patient_ID in the request']);
+        }
     }
 } catch (Exception $e) {
     // Return an error response with the specific error message to the front-end
+    header('HTTP/1.1 500 Internal Server Error');
     echo json_encode(['success' => false, 'message' => 'Error fetching data: ' . $e->getMessage()]);
 }
-
 ?>
