@@ -20,6 +20,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import thanu from "../assets/thanu.jpg";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 
@@ -134,6 +135,10 @@ function Layout({children}) {
                     <MenuItem className="menu-item"
                     component={<Link to="/logininventory"  />}
                     icon={<VaccinesIcon />}>Inventory</MenuItem>
+
+                     <MenuItem className="menu-item"
+                    component={<Link to="/clubs/dashboard"  />}
+                    icon={<AdminPanelSettingsIcon />}>Club Admin</MenuItem>
 
                     <MenuItem className="menu-item"
                     component={<Link to="/admin/medicalreports"  />}
