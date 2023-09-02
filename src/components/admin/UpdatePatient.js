@@ -64,6 +64,7 @@ function UpdatePatient(props) {
             // Handle successful response
             console.log(response.data);
             toast.success("Patient updated successfully!");
+            setPatientData(null);
           })
           .catch((error) => {
             // Handle error response
@@ -88,7 +89,6 @@ function UpdatePatient(props) {
                 // Handle successful response
                 console.log(response.data);
                 toast.success("Patient deleted successfully!");
-                // Clear patientData after deletion
                 setPatientData(null);
             })
             .catch((error) => {
