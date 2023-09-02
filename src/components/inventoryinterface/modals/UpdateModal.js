@@ -26,7 +26,11 @@ function UpdateModal(props) {
   }, [drug_id, drug_name, category, dosage, description]);
 
   const handleUpdate = () => {
-   
+    if (JSON.stringify(newData) === JSON.stringify(item)) {
+      toast.info("No data to update!");
+      return;
+    }
+  
     axios
       .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
