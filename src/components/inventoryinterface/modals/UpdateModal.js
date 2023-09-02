@@ -7,7 +7,7 @@ import axios from "axios";
 function UpdateModal(props) {
   const { show, onHide, inputs } = props;
   const [newData, setNewData] = useState({});
-  const item = inputs[0] || {}; // Access the first item in the array or an empty object
+  const item = inputs[0] || {}; 
 
   const [drug_id, setID] = useState(item.Drug_ID);
   const [drug_name, setName] = useState(item.Drug_Name);
