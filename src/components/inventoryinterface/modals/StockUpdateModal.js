@@ -73,7 +73,7 @@ function StockUpdateModal(props) {
                                 <tr>
                                     <th>Availability</th>
                                     <th>:</th>
-                                    <th className={"detaildet"}>500</th>
+                                    <th className={"detaildet"}>{item.StockCount}</th>
                                 </tr>
                             </React.Fragment>
                         ))}

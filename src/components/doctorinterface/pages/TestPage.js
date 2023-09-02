@@ -8,13 +8,13 @@ import { ToastContainer, toast } from 'react-toastify';
 const currentDate = new Date();
 
 // Format the date (YYYY-MM-DD HH:mm:ss format)
-const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+const formattedDate = currentDate.toISOString().slice( 0, 19 ).replace( 'T', ' ' );
 
 export default function TestPage ()
 {
 
   const [ formData, setFormData ] = useState( {
-    patient_ID: 'cst20001',
+    patient_ID: 'cst20008',
     doctor_ID: 'D001',
     dateandTime: formattedDate,
     patientcomplaint: '',
@@ -31,23 +31,23 @@ export default function TestPage ()
 
     if ( formData.patientcomplaint === '' || formData.patientcomplaint === null )
     {
-      
+
       toast.error( "Pls Enter the patient complaint" );
     } else if ( formData.onExamination === '' || formData.onExamination === null )
     {
-      
+
       toast.error( "Pls Enter the on Examination" );
 
     }
     else if ( formData.tests === '' || formData.tests === null )
     {
-     
+
       toast.error( "Pls Enter the tests" );
 
     }
     else if ( formData.confirmeddiagnosis === '' || formData.confirmeddiagnosis === null )
     {
-      
+
       toast.error( "Pls Enter the confirmed diagnosis" );
 
     } else
@@ -57,11 +57,12 @@ export default function TestPage ()
         .then( ( response ) =>
         {
           console.log( 'Data send successfully!', response.data );
-          console.log(formData);
-          if(response.data.success){
-            toast.success(response.data.message);
+          console.log( formData );
+          if ( response.data.success )
+          {
+            toast.success( response.data.message );
             setFormData( {
-              patient_ID: 'cst20001',
+              patient_ID: 'cst20008',
               doctor_ID: 'D001',
               dateandTime: formattedDate,
               patientcomplaint: '',
@@ -70,10 +71,11 @@ export default function TestPage ()
               confirmeddiagnosis: '',
               prescription_ID: null,
             } );
-          }else{
-            toast.error(response.data.message);
+          } else
+          {
+            toast.error( response.data.message );
           }
-          
+
           // You can do further actions or show success messages here.
         } )
         .catch( ( error ) =>
@@ -119,7 +121,7 @@ export default function TestPage ()
               <div className="form-floating">
                 <textarea className="form-control" placeholder="Leave a comment here" name='tests' value={ formData.tests } onChange={ handleChange } id="floatingTextarea3" style={ { height: '100px' } }></textarea>
                 <label htmlFor="floatingTextarea2">Tests</label>
-              </div>
+              </div>  
             </div>
             <div className='col-6'>
               <div className="form-floating">
@@ -137,10 +139,21 @@ export default function TestPage ()
             <div className='d-flex align-items-center justify-content-between'>
               <h5 className='mt-2'>Prescription</h5>
               <div className='d-flex align-items-center'>
-                <div className='input-group-text bg-gray border-0 rounded-pill'>
-                  <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Drug' id='searchDrug' />
-                  <FeatherIcon icon="plus-circle" className='mx-2 text-success icon-btn' type='button' />
-                </div>
+
+                <form className="d-flex" role="search">
+                  <div className='input-group-text bg-gray border-0 rounded-pill'>
+                    <input className='form-control rounded-pill border-0 bg-gray' list="datalistOptions" id="medDataList" type="search" aria-label="Search" placeholder='Search Drug' />
+                    <FeatherIcon icon="plus-circle" className='mx-2 text-success icon-btn' type="submit" />
+                  </div>
+                  <datalist id="datalistOptions" className="bg-white text-muted">
+                    <option value="Software Engeneer" />
+                    <option value="Data Scientist" />
+                    <option value="QA Engeneer" />
+                    <option value="HR" />
+                    <option value="Developer" />
+                  </datalist>
+                </form>
+                
               </div>
               <div className='d-md-none d-lg-flex align-items-center'>
                 <p className='m-0 fw-bold mx-1'>Sharoon</p>|<p className='text-success m-0 fw-bold mx-1'>22 years</p> | <p className='text-primary m-0 fw-bold mx-1'>Male</p> | <div className='mx-1'><CurrentTime /></div>

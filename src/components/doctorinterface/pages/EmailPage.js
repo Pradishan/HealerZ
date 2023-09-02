@@ -5,8 +5,6 @@ import Demail from '../Demail';
 import MedicalRecords from '../utilites/MedicalRecords';
 
 
-let drugList = [];
-drugList.length = 10;
 export default function EmailPage ()
 {
 
@@ -21,7 +19,7 @@ export default function EmailPage ()
       {
         const response = await axios.post( 'http://localhost/HealerZ/PHP/doctor/loadMedicalReport.php', id );
         setRecords( response.data );
-        console.log( response.data );
+        // console.log( response.data );
         // console.log(data);
       } catch ( error )
       {
@@ -31,7 +29,7 @@ export default function EmailPage ()
 
     fetchData();
   } );
-  ;
+  
 
   return (
     <>
@@ -60,11 +58,13 @@ export default function EmailPage ()
               </tr>
             </thead>
             <tbody >
-              {
+              {Array.isArray(records) ? (
                 records.map( ( records ) =>
                 {
                   return <MedicalRecords date={ records.DateandTime } complain={ records.Patientcomplaint } examination={ records.OnExamination } tests={ records.Tests } diagnosis={ records.Confirmeddiagnosis } prescription={ records.Prescription_ID } />;
-                } )
+                } )) : (
+                  <p>No records to display.</p>
+                )
               }
             </tbody>
           </table>

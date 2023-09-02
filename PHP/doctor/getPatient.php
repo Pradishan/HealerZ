@@ -25,7 +25,7 @@ try {
             $patientID = $data['patient_ID'];
 
             // Prepare and execute the SQL query using positional parameter
-            $stmt = $conn->prepare("SELECT * FROM medicalrecord WHERE Patient_ID = ?");
+            $stmt = $conn->prepare("SELECT * FROM patient WHERE Patient_ID = ?");
             $stmt->execute([$patientID]); // Use execute with an array of parameters
 
             // Fetch the filtered data as an associative array
