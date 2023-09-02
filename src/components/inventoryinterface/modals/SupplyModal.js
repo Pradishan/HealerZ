@@ -20,7 +20,7 @@ function SupplyPopup(props) {
     return (
         <Modal show={show} onHide={onHide} >
             <Modal.Header closeButton>
-                <Modal.Title>Drug Supply</Modal.Title>
+                <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
