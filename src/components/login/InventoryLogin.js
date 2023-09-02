@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import powsi from "../../assets/Powsi.jpg";
@@ -11,17 +11,17 @@ export default function InventoryLogin() {
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    let login = sessionStorage.getItem('Pharmacist');
- 
-    if(login === true){
-      navigate('/inventory-interface/dashboard')
+  useEffect(() => {
+    let login = sessionStorage.getItem("Pharmacist");
+
+    if (login === true) {
+      navigate("/inventory-interface/dashboard");
     }
-    let loginStatus = sessionStorage.getItem('loginStatus');
+    let loginStatus = sessionStorage.getItem("loginStatus");
     if (loginStatus) {
-      setLogmessage(loginStatus)
+      setLogmessage(loginStatus);
     }
-  },[])
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -33,56 +33,69 @@ export default function InventoryLogin() {
       .then((response) => {
         console.log(response.data);
         setMessage(response.data.message);
-        if(response.data.message === "Login successful."){
-          setTimeout(()=>{
-            sessionStorage.setItem('Pharmacist',true);
-            navigate('/inventory-interface/dashboard');
-          },100) ;
+        if (response.data.message === "Login successful.") {
+          setTimeout(() => {
+            sessionStorage.setItem("Pharmacist", true);
+            navigate("/inventory-interface/dashboard");
+          }, 100);
         }
-
       })
       .catch((error) => {
         setMessage("Login failed.");
       });
   };
-const errorMessgae =(message) => {
-  let color
+  const errorMessgae = (message) => {
+    let color;
     switch (message) {
       case "Pharmacist ID and Password are required.":
-        color = 'warning';
+        color = "warning";
         break;
       case "Login failed.":
-        color = 'danger';
+        color = "danger";
         break;
       case "Invalid Pharmacist ID or Password.":
-        color = 'danger';
+        color = "danger";
         break;
       case "Method not allowed.":
-        color = 'warning'; 
+        color = "warning";
         break;
       case "Login successful.":
-        color = 'success';
+        color = "success";
         break;
       default:
         break;
     }
-    return <div className={'alert alert-'+color+' mt-3'} role="alert">
-    {message}
-  </div>
+    return (
+      <div className={"alert alert-" + color + " mt-3"} role="alert">
+        {message}
+      </div>
+    );
   };
 
   return (
     <>
-    
-
-    
       <div className="container mt-5 text-center">
-        <div style={{display:'flex',flexDirection:'row',marginLeft:'400px'}}>
-        <img src={powsi} alt="avatar" height="100px" className="mb-3" style={{borderRadius:'50%'}}/>
-        <div style={{height:'80px', width:'2px',backgroundColor:'black',margin:'10px'}}></div>
-        <img src={logo} alt="avatar" height="100px" className="mb-3" />
+        <div
+          style={{ display: "flex", flexDirection: "row",alignItems:'center',justifyContent:'center'}}
+        >
+          <img
+            src={powsi}
+            alt="avatar"
+            height="100px"
+            className="mb-3"
+            style={{ borderRadius: "50%" }}
+          />
+          <div
+            style={{
+              height: "80px",
+              width: "2px",
+              backgroundColor: "black",
+              margin: "10px",
+            }}
+          ></div>
+          <img src={logo} alt="avatar" height="100px" className="mb-3" />
         </div>
-      
+
         <div className="row justify-content-center">
           <div className="col-md-4">
             <p>{logmessage}</p>
@@ -100,7 +113,7 @@ const errorMessgae =(message) => {
                       placeholder="D0001"
                       value={pharmacistID}
                       onChange={(e) => setPharmacistID(e.target.value)}
-                      style={{width:"100%"}}
+                      style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingInput">Pharmasict ID</label>
                   </div>
@@ -111,8 +124,8 @@ const errorMessgae =(message) => {
                       id="floatingPassword"
                       placeholder="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)} 
-                      style={{width:"100%"}}
+                      onChange={(e) => setPassword(e.target.value)}
+                      style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
@@ -137,7 +150,6 @@ const errorMessgae =(message) => {
           </div>
         </div>
       </div>
-    
     </>
   );
 }
