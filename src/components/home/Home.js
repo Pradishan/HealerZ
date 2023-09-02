@@ -163,7 +163,7 @@ export default function Home() {
             <img src={logo} alt="HealerZ" height='50px' />
           </a>
           <hr />
-        <div className='text-center ' style={{ backgroundColor: '#fff', marginBottom: '10px' }}>
+        <div className='text-center ' style={{ backgroundColor: '#fff', marginBottom: '10px'}}>
          
           &copy; {new Date().getFullYear()} Copyright. All rights reserved for UWU{' '}
 
