@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './Admin.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +17,9 @@ function UpdatePatient(props) {
             [field]: e.target.value,
         });
     };
+    const closee = ()=>{
+        setPatientData(null);
+    }
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -149,7 +152,7 @@ function UpdatePatient(props) {
                                                             type="radio"
                                                             name="Gender"
                                                             value="Male"
-                                                            checked={newData.Gender === 'Male'}
+                                                            checked={newData.gender === "Male"}
                                                             onChange={(e) => updateNewData(e, "Gender")}
                                                         />
                                                         <label className="form-check-label">Male</label>
@@ -160,7 +163,7 @@ function UpdatePatient(props) {
                                                             type="radio"
                                                             name="Gender"
                                                             value="Female"
-                                                            checked={newData.Gender === 'Female'}
+                                                            checked={newData.gender === "Female"}
                                                             onChange={(e) => updateNewData(e, "Gender")}
                                                         />
                                                         <label className="form-check-label">Female</label>
@@ -171,7 +174,7 @@ function UpdatePatient(props) {
                                                             type="radio"
                                                             name="Gender"
                                                             value="Other"
-                                                            checked={newData.Gender === 'Other'}
+                                                            checked={newData.gender === "Other"}
                                                             onChange={(e) => updateNewData(e, "Gender")}
                                                         />
                                                         <label className="form-check-label">Other</label>
@@ -224,6 +227,7 @@ function UpdatePatient(props) {
                             <div className='Adddelbutt'>
                                 <button className="btn btn-primary done-button5" type="submit" style={{ backgroundColor: 'green' }}>Update</button>
                                 <button className="btn btn-primary done-button5" type="button" onClick={handleDelete} style={{ backgroundColor: 'red' }}>Delete</button>
+                                <button className="btn btn-primary done-button5" type="button" onClick={closee} style={{ backgroundColor: 'blue' }}>Cancel</button>
                             </div>
                         </form>
 

@@ -20,12 +20,16 @@ function AddPatient(props) {
     setID("");
     setName("");
     setDob("");
-    setGender("");
+    resetGender();
     setphoneNo("");
     setEmail("");
     setAddress("");
     setBgroup("");
     setPass("");
+  };
+  
+  const resetGender = () => {
+    setGender("");
   };
 
   const handleSubmit = () => {
@@ -146,6 +150,7 @@ function AddPatient(props) {
                             name="gender"
                             value="Male"
                             onChange={(e) => setGender(e.target.value)}
+                            checked={gender === "Male"}
                            
                           />
                           <label className="form-check-label">Male</label>
@@ -157,6 +162,7 @@ function AddPatient(props) {
                             name="gender"
                             value="Female"
                             onChange={(e) => setGender(e.target.value)}
+                            checked={gender === "Female"}
                            
                           />
                           <label className="form-check-label">Female</label>
@@ -168,6 +174,7 @@ function AddPatient(props) {
                             name="gender"
                             value="Other"
                             onChange={(e) => setGender(e.target.value)}
+                            checked={gender === "Other"}
                             
                           />
                           <label className="form-check-label">Other</label>
