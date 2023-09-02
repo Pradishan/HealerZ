@@ -8,7 +8,7 @@ export default function Protected1(props) {
     let login = sessionStorage.getItem(roll);
     console.log(login);
     console.log(sessionStorage.getItem('loginStatus'));
-    if (login === 'false') {
+    if (login === 'false'|| login === null) {
       sessionStorage.setItem(
         "loginStatus",
         "Please login to access the Pharmacist interface!"

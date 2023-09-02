@@ -2,6 +2,7 @@ import React, { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import axios from "axios";
+import pradee from "../../assets/pradi.jpg";
 
 export default function DoctorLogin() {
   const [doctorID, setDoctorID] = useState("");
@@ -74,15 +75,17 @@ const errorMessgae =(message) => {
   return (
     <>
       <div className="container mt-5 text-center">
+      <div style={{display:'flex',flexDirection:'row',marginLeft:'400px'}}>
+        <img src={pradee} alt="avatar" height="100px" className="mb-3" style={{borderRadius:'50%'}}/>
+        <div style={{height:'80px', width:'2px',backgroundColor:'black',margin:'10px'}}></div>
         <img src={logo} alt="avatar" height="100px" className="mb-3" />
+        </div>
         <div className="row justify-content-center">
           <div className="col-md-4">
             <p>{logmessage}</p>
             <div className="card border-0 shadow">
-              <div className="card-header bg-white text-center">
-                <h3>Login As Doctor</h3>
-              </div>
               <div className="card-body">
+              <h3>Login As Doctor</h3>
                 <form action="" className="py-2">
                   <div className="form-floating mb-3">
                     <input
@@ -92,6 +95,7 @@ const errorMessgae =(message) => {
                       placeholder="D0001"
                       value={doctorID}
                       onChange={(e) => setDoctorID(e.target.value)}
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingInput">Doctor ID</label>
                   </div>
@@ -103,6 +107,7 @@ const errorMessgae =(message) => {
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>

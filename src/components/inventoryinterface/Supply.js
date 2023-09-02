@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../layouts/layout";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
-import Logosmall from "../../assets/logo-small.png";
+import { Button} from "react-bootstrap";
 import './inventory.css';
 import SupplyModal from "./modals/SupplyModal";
 
@@ -26,12 +24,10 @@ function Supply(props) {
 
     const handleSubmit3 = (event) => {
         event.preventDefault();
-        // handle search logic here
         console.log(`Searching for ${searchTerm3}...`);
     }
     const handleSubmit4 = (event) => {
         event.preventDefault();
-        // handle search logic here
         console.log(`Searching for ${searchTerm4}...`);
     }
 
@@ -52,19 +48,6 @@ function Supply(props) {
 
     return (
         <Layout>
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
-                            <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1">Supply</Card.Title>
-                                <Card.Img variant="top" src={Logosmall}
-                                    style={{ width: '150px', height: '150px', marginLeft: '500px' }} />
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
             <div className={"container"}>
                 <div className={"p-5"}>
                     <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>

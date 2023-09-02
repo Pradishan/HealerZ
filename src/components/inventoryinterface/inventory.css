@@ -1,8 +1,4 @@
-.Sliderr {
-    border-radius: 44px;
-    background: linear-gradient(130deg, #FFF 0%, #D1BBFF 100%);
-    box-shadow: 8px 11px 13px 0px rgba(0, 0, 0, 0.25);
-}
+
 
 .cardText {
     color: #000;
@@ -19,17 +15,17 @@
 
 .card1 {
     height: 144px !important;
-    width: 334px !important;
+    width: 300px !important;
     border-radius: 29px;
     background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
-    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
 }
 
 .card1 .CardTitle {
     color: #000;
     text-align: center;
     font-family: Poppins, serif;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -50,7 +46,7 @@
     font-weight: 1000 !important;
     line-height: normal;
     position: absolute;
-    right: 95px;
+    right: 75px;
     bottom: 30px;
 }
 
@@ -86,14 +82,7 @@
 
 /*--------------------------------------------------*/
 
-.cardText1 {
-    color: #000;
-    font-family: Poppins, serif;
-    font-size: 88px !important;
-    font-style: normal !important;
-    font-weight: 1000 !important;
-    line-height: normal !important;
-}
+
 
 .action-icons {
     color: #000000;
@@ -122,7 +111,9 @@
 
 .table-container {
     overflow-y: scroll;
-    max-height: calc(100vh - 270px);
+    /* overflow-x: hidden; */
+    /* width: 100% !important; */
+    max-height: calc(100vh - 240px);
     border-radius: 9px;
     border: .75px solid rgba(63, 68, 81, .12156862745098039);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -131,6 +122,21 @@
 
 .h-45 {
     height: 45px !important;
+    background-color: white;
+}
+
+.h-45 th {
+    font-weight: 700 !important;
+    padding: 20px !important;
+}
+
+.h-50 td {
+    padding: 20px !important;
+}
+
+.h-50 th {
+    font-size: 16px;
+    font-weight: 700 !important;
 }
 
 .top-0 {
@@ -145,22 +151,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background: #7D0080 !important;
-    font-size: 12px;
+    background: #610261 !important;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 800;
+    /* font-weight: 800; */
     line-height: normal;
     color: white;
+    border: none !important;
 }
 
 .filterbutt:hover {
-    background: #560256 !important;
+    background: #7D0080 !important;
 }
 
 .SearchBox1 {
     border-radius: 5px;
-    background: #D9D9D9;
-    height: 33px;
+    background: #ebe8e8;
+    border-color: rgb(0, 0, 24);
+    height: 35px;
 }
 
 @media (max-width: 768px) {
@@ -173,8 +181,28 @@
 .detaildet {
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 10px;
+}
+
+.detaildet3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    padding-left: 10px;
+    text-align: justify;
+    justify-content: left;
+}
+
+.detailhed {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.detailspac {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .Managebutt {
@@ -187,7 +215,10 @@
     width: 300px !important;
     border-radius: 29px;
     background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
-    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
+    
+
+    
 }
 
 .Managebutt1:hover {
@@ -236,7 +267,7 @@
 }
 
 .doughnutindicator p {
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 800;
     margin-left: 10px;
     margin-top: 2px;
@@ -259,6 +290,14 @@
 .inputt {
     width: 300px;
     border-radius: 5px;
+}
+
+.inputt::placeholder {
+    opacity: 0.3;
+}
+
+.SearchBox1::placeholder {
+    opacity: 0.5;
 }
 
 .content-heading1 {
@@ -327,6 +366,7 @@
 .UpdtButt {
     border-radius: 10px !important;
     background: #110DC7 !important;
+    margin-top: -10px;
 }
 
 .table-container-popup {
@@ -346,3 +386,43 @@
     width: 700px;
     background-color: white !important;
 }
+
+.uptbut {
+    border: none !important;
+}
+
+.serhedd {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin: 50px auto;
+    margin-top: 40px;
+    color: #000536;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+    max-width: 600px;
+    position: relative;
+}
+
+.serhedd:before {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute;
+}
+
+.serhedd:after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: #000;
+    right: 0;
+    top: 50%;
+    position: absolute;
+}
+

@@ -22,7 +22,7 @@ function SearchIDstkUpdate(props) {
     };
 
     function getUser() {
-        axios.get(`http://localhost/HealerZ/PHP/display.php?Drug_ID=${Drug_ID}`)
+        axios.get(`http://localhost/HealerZ/PHP/Inventory/display.php?Drug_ID=${Drug_ID}`)
             .then(function(response) {
                 console.log(response.data);
                 setInputs(response.data);
@@ -32,7 +32,7 @@ function SearchIDstkUpdate(props) {
                     
                    
                 }else{
-                    setShowModal(true); // Show the modal after getting the response
+                    setShowModal(true);
                 }
                    
                 
@@ -40,6 +40,9 @@ function SearchIDstkUpdate(props) {
             })
             .catch(function(error) {
                 console.error(error);
+            })
+            .finally(() => {
+                setSearchTerm('');
             });
     }
 
@@ -51,7 +54,7 @@ function SearchIDstkUpdate(props) {
     return (
         <Modal show={show} onHide={onHide} className={"moddd"}>
             <Modal.Header closeButton>
-                <Modal.Title>Search</Modal.Title>
+                <Modal.Title>Stock Update</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>

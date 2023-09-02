@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import './Home.css';
 
 export default function HbloodReg() {
   const [show, setShow] = useState(false);
@@ -10,69 +11,86 @@ export default function HbloodReg() {
 
   return (
     <>
-      <Button className='btn bg-outline-white'  onClick={handleShow}>
+      <Button className='btn btn-primary regbutt' onClick={handleShow}>
         Register
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Blood Donation Registration</Modal.Title>
+          <Modal.Title>Registration Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="">
+            
+              <div className="form-container">
+                <form id="medical-request-form">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Email</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Name</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">NIC No</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Phone</label>
+                  </div>
+                  <br />
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingPassword"
+                      placeholder="New Password"
+                      style={{ width: "100%" }}
+                    />
+                    <label htmlFor="floatingPassword">Address</label>
+                  </div>
+                  <br />
+                 
+                </form>
+              
+            </div>
 
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-
-            <Form.Group
-              className="mb-3"
-              controlId="">
-              <Form.Label>Name:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='Name'/>
-              </Form.Group>
-
-              <Form.Group
-              className="mb-3"
-              controlId="">
-              <Form.Label>Nic No:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='99#######v'/>
-             </Form.Group>
-
-             <Form.Group
-              className="mb-3"
-              controlId="">
-              <Form.Label>Name:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='0767777777'/>
-            </Form.Group>
-
-              <Form.Group
-              className="mb-3"
-              controlId="">
-              <Form.Label>Phone no:</Form.Label>
-              <Form.Control 
-              type='text'
-              placeholder='Address'/>
-            </Form.Group>
-          </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className='btn d-md-block text-white my-3 btn-gr'  onClick={handleClose}>
-            Close
-          </Button>
-          <Button className='btn d-md-block text-white my-3 btn-gr'   onClick={handleClose}>
+
+          <Button className='btn btn-primary' onClick={handleClose} style={{ backgroundColor: 'green',border:'none' }}>
             Register
+          </Button>
+          <Button className='btn btn-primary' onClick={handleClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

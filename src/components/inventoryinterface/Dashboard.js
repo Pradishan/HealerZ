@@ -1,12 +1,9 @@
 import React from 'react';
 import Layout from "../../layouts/layout";
 import Card from 'react-bootstrap/Card';
-import Logosmall from '../../assets/logo-small.png';
 import {Col, Container, Row} from "react-bootstrap";
 import './inventory.css';
 import DoughnutChart from './additional/DoughnutChart';
-
-// Import react-circular-progressbar module and styles
 import {
     CircularProgressbar,
     buildStyles
@@ -21,23 +18,7 @@ import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 function Dashboard(props) {
     return (
        <Layout>
-           {/*<div style={{ backgroundColor: '#DCDCDC', height:'570px'}}>*/}
-           <Container>
-               <Row>
-                   <Col>
-                       <Card className="Sliderr" style={{ width: '1070px', marginTop:'10px' ,marginLeft:'20px'}}>
-
-                           <Card.Body style={{display:'flex',flexDirection:'row' }}>
-                               <Card.Title className="cardText">Never Worry About <br/>Your Inventory</Card.Title>
-                               <Card.Img variant="top" src={Logosmall}  style={{ width: '150px',height:'150px' ,marginLeft:'250px'}}/>
-                           </Card.Body>
-                       </Card>
-                   </Col>
-               </Row>
-           </Container>
-
-
-
+           
            <Container className="StockIndicator">
                <Row>
                    <Col>
@@ -146,24 +127,12 @@ function Dashboard(props) {
                                        )}
                                    </ChangingProgressProvider>
                                </div>
-
-
-
-
-
-
-
                            </Card.Body>
                        </Card>
                    </Col>
 
                </Row>
            </Container>
-
-           {/*</div>*/}
-
-
-
        </Layout>
     );
 }

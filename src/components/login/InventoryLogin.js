@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import powsi from "../../assets/Powsi.jpg";
 import axios from "axios";
 
 export default function InventoryLogin() {
@@ -72,14 +73,22 @@ const errorMessgae =(message) => {
 
   return (
     <>
+    
+
+    
       <div className="container mt-5 text-center">
+        <div style={{display:'flex',flexDirection:'row',marginLeft:'400px'}}>
+        <img src={powsi} alt="avatar" height="100px" className="mb-3" style={{borderRadius:'50%'}}/>
+        <div style={{height:'80px', width:'2px',backgroundColor:'black',margin:'10px'}}></div>
         <img src={logo} alt="avatar" height="100px" className="mb-3" />
+        </div>
+      
         <div className="row justify-content-center">
           <div className="col-md-4">
             <p>{logmessage}</p>
             <div className="card border-0 shadow">
               <div className="card-header bg-white text-center">
-                <h3>Login As Pharmacist</h3>
+                <h3>Login | Pharmacist</h3>
               </div>
               <div className="card-body">
                 <form action="" className="py-2">
@@ -91,6 +100,7 @@ const errorMessgae =(message) => {
                       placeholder="D0001"
                       value={pharmacistID}
                       onChange={(e) => setPharmacistID(e.target.value)}
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingInput">Pharmasict ID</label>
                   </div>
@@ -101,7 +111,8 @@ const errorMessgae =(message) => {
                       id="floatingPassword"
                       placeholder="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)} 
+                      style={{width:"100%"}}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
@@ -126,6 +137,7 @@ const errorMessgae =(message) => {
           </div>
         </div>
       </div>
+    
     </>
   );
 }

@@ -6,29 +6,33 @@ import "./doctor.css";
 import { useNavigate } from "react-router-dom";
 import Dsettings from "./Dsettings";
 
-export default function Dnav() {
+export default function Dnav ()
+{
   const navigate = useNavigate();
   const notificationsData = [];
 
-  for (let i = 0; i < 20; i++) {
-    notificationsData.push({
-      src: `https://source.unsplash.com/random/${i}`,
-      name: `User ${i + 1}`,
-      id: `cst2000${i + 1}`,
-      status: Math.floor(Math.random() * 3) + 1, // Random status between 1 and 3
-    });
+  for ( let i = 0; i < 20; i++ )
+  {
+    notificationsData.push( {
+      src: `https://source.unsplash.com/random/${ i }`,
+      name: `User ${ i + 1 }`,
+      id: `cst2000${ i + 1 }`,
+      status: Math.floor( Math.random() * 3 ) + 1, // Random status between 1 and 3
+    } );
   }
 
-  const logout = () => {
-    sessionStorage.setItem('Doctor','false');
-    sessionStorage.setItem('loginStatus','Logged out successfully!');
-    navigate("/loginDoctor");
+  const logout = () =>
+  {
+    sessionStorage.setItem( 'Doctor', 'false' );
+    sessionStorage.setItem( 'loginStatus', 'Logged out successfully!' );
+    navigate( "/loginDoctor" );
   };
 
-  const [showModal, setShowModal] = useState(false);
+  const [ showModal, setShowModal ] = useState( false );
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
+  const toggleModal = () =>
+  {
+    setShowModal( !showModal );
   };
 
   return (
@@ -42,12 +46,12 @@ export default function Dnav() {
             Home
           </a>
           <div className="d-flex align-items-center justify-content-center">
-            {/* logo */}
-            <img src={logo} alt="HealerZ" height="48px" />
+            {/* logo */ }
+            <img src={ logo } alt="HealerZ" height="48px" />
           </div>
-          {/* right */}
+          {/* right */ }
           <div className="d-flex align-items-center me-3">
-            {/* notification */}
+            {/* notification */ }
             <div
               className="position-relative me-2"
               type="button"
@@ -67,7 +71,7 @@ export default function Dnav() {
                 <span className="visually-hidden">unread messages</span>
               </span>
             </div>
-            {/* profile */}
+            {/* profile */ }
             <div className="dropdown me-5">
               <div
                 className="d-flex align-items-center icon-hover rounded p-2"
@@ -87,7 +91,7 @@ export default function Dnav() {
 
               <ul className="dropdown-menu">
                 <li>
-                  <div className="dropdown-item" type="button" onClick={logout}>
+                  <div className="dropdown-item" type="button" onClick={ logout }>
                     <div className="d-flex">
                       <FeatherIcon icon="log-out" className="me-2" />
                       <p className="fs-7 mb-0">Logout</p>
@@ -95,28 +99,23 @@ export default function Dnav() {
                   </div>
                 </li>
                 <li>
-                  <div className="dropdown-item" type="button" onClick={toggleModal}>
+                  <div className="dropdown-item" type="button" onClick={ toggleModal }>
                     <div className="d-flex">
                       <FeatherIcon icon="settings" className="me-2" />
                       <p className="fs-7 mb-0">Settings</p>
                     </div>
                   </div>
                 </li>
-                <Dsettings show={showModal} onHide={toggleModal} />
+                <Dsettings show={ showModal } onHide={ toggleModal } />
               </ul>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* notificaton body */}
+      {/* notificaton body */ }
 
-      <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="medicalNotification"
-        aria-labelledby="offcanvasExampleLabel"
-      >
+      <div className="offcanvas offcanvas-end" tabIndex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">
             Medical Request
@@ -129,15 +128,19 @@ export default function Dnav() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          {notificationsData.map((notification) => (
-            <Notifiaction
-              key={notification.id}
-              src={notification.src}
-              name={notification.name}
-              id={notification.id}
-              status={notification.status}
-            />
-          ))}
+          { notificationsData.length > 0 ? (
+            notificationsData.map( ( notification ) => (
+              <Notifiaction
+                key={ notification.id }
+                src={ notification.src }
+                name={ notification.name }
+                id={ notification.id }
+                status={ notification.status }
+              />
+            ) )
+          ) : (
+            <p>No notifications available.</p>
+          ) }
         </div>
       </div>
     </>

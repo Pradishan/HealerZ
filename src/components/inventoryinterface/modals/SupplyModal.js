@@ -1,4 +1,4 @@
-// ViewModal.js
+
 import React, {useState} from "react";
 import { Modal, Button } from "react-bootstrap";
 import {toast, ToastContainer} from "react-toastify";
@@ -18,7 +18,7 @@ function SupplyPopup(props) {
     const notify = () => toast("Drug Supply Successfully!");
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} >
             <Modal.Header closeButton>
                 <Modal.Title>Drug Supply</Modal.Title>
             </Modal.Header>
@@ -50,7 +50,7 @@ function SupplyPopup(props) {
 
                 <hr/>
                 <div className={"table-container-popup "}>
-                    <table className={"table table-hover table-striped"}>
+                    <table className={"table table-hover table-striped"} style={{minWidth: '0px',}}>
                         <thead className={"top-0 position-sticky h-45"}>
                         <tr>
                             <th scope="col">NO</th>
@@ -61,7 +61,7 @@ function SupplyPopup(props) {
                             <th scope="col">COUNT</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                         {supplyList.map((data, index) => (<tr>
                             <th scope="row">{data.No}</th>
                             <td>{data.ID}</td>
@@ -89,9 +89,9 @@ function SupplyPopup(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={notify} >Update</Button>
+                <Button variant="primary" onClick={notify} style={{backgroundColor:'green'}}>Update</Button>
                 <ToastContainer/>
-                <Button variant="secondary" onClick={onHide}>Cancel</Button>
+                <Button variant="primary" style={{backgroundColor:'blue'}}onClick={onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );

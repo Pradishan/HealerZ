@@ -1,158 +1,181 @@
-import React, { useState, useMemo  } from "react";
+import React, { useState, useMemo } from "react";
 import { Modal, Button } from "react-bootstrap";
-import '../inventory.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "../inventory.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 function UpdateModal(props) {
-    const notify1 = () => toast("Item Deleted Successfully!");
-    const notify2 = () => toast("Item Updated Successfully!");
+  const [newData, setNewData] = useState({});
 
-    const [inputs, setInputs] = useState(props.inputs);
-    const memoizedInputs = useMemo(() => props.inputs, [props.inputs]);
+  const updateNewData = (e, field) => {
+    setNewData({
+      ...newData,
+      [field]: e.target.value,
+    });
+  };
 
-    // Update the inputs state only when it changes
-    if (memoizedInputs !== inputs) {
-      setInputs(memoizedInputs);
+  const { show, onHide } = props;
+
+  const items = props.inputs; 
+
+  const handleUpdate = () => {
+    if (Object.keys(newData).length === 0) {
+      toast.info("No data to update!");
+      return;
     }
-  
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setInputs({
-        ...inputs,
-        [name]: value,
+    if (!newData.Drug_ID) {
+      toast.info("Drug ID is missing in the update data!");
+      return;
+    }
+    axios
+    .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Drug updated successfully!");
+        onHide();
+      })
+      .catch((error) => {
+        toast.error("Failed to update drug!");
+        console.error(error);
       });
-    };
-    
+  };
+  
+  
+  
+  const handleDelete = () => {
+    const drugIdToDelete = newData.Drug_ID || (items.length && items[0].Drug_ID);
 
+    if (!drugIdToDelete) {
+      toast.error("Drug ID not found!");
+      return;
+    }
 
+      axios
+        .delete(`http://localhost/HealerZ/PHP/Inventory/deleteDrug.php?Drug_ID=${drugIdToDelete}`)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Drug deleted successfully!");
+          onHide();
+        })
+        .catch((error) => {
+          toast.error("Failed to delete drug!");
+          console.error(error);
+        });
+  };
 
-    const handleUpdate = () => {
-        // Perform the update action here using the inputs state
-        // Example: You can use axios to send a POST request to your backend PHP script with the updated data.
-        axios.post(`http://localhost/HealerZ/PHP/update.php`, inputs)
-            .then(function (response) {
-                console.log(response.data);
-                // Handle the success notification here
-                notify2();
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-    };
+  return (
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>Drug UPDATE</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <hr />
+        <form>
+          <table className={"ADDTable"}>
+            <tbody>
+              {items.map((item) => (
+                <React.Fragment key={item.Drug_ID}>
+                  <tr>
+                    <th>Drug_ID</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_ID"}
+                        defaultValue={item.Drug_ID}
+                        placeholder={"DRUGXXXXXX"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_ID")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
 
-    const handleDelete = () => {
-        // Perform the delete action here using the inputs.Drug_ID
-        // Example: You can use axios to send a DELETE request to your backend PHP script.
-        axios.delete(`http://localhost/HealerZ/PHP/delete.php?Drug_ID=${inputs.Drug_ID}`)
-            .then(function (response) {
-                console.log(response.data);
-                // Handle the success notification here
-                notify1();
-                // Handle any other logic after successful deletion
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-    };
+                  <tr>
+                    <th>Drug_Name</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_Name"}
+                        defaultValue={item.Drug_Name}
+                        placeholder={"XXXXXXXXXX"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_Name")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+              
+                  <tr>
+                            <th>Category</th>
+                            <th className={'inputfield'}>
+                                <select
+                                    name={'Category'}
+                                    defaultValue={item.Category}
+                                    className={'inputt'}
+                                    onChange={(e) => updateNewData(e, "Category")}
+                                    style={{height:'30px '}}
+                                >
+                                   <option value={''}>Select Category</option>
+                                    <option value={'Liquid'}>Liquid</option>
+                                    <option value={'Tablet'}>Tablet</option>
+                                    <option value={'Capsules'}>Capsules</option>
+                                    <option value={'Topical'}>Topical</option>
+                                    <option value={'Suppositories'}>Suppositories</option>
+                                    <option value={'Drops'}>Drops</option>
+                                    <option value={'Injections'}>Injections</option>
+                                    <option value={'Implants'}>Implants</option>
+                                </select>
+                                <br />
+                            </th>
+                        </tr>
+                  <tr>
+                    <th>Dosage</th>
+                    <th className={"inputfield"}>
+                      <input
+                        type={"text"}
+                        name={"Drug_dosage"}
+                        defaultValue={item.Drug_dosage}
+                        placeholder={"XXXmg"}
+                        className={"inputt"}
+                        onChange={(e) => updateNewData(e, "Drug_dosage")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>Description</th>
+                    <th className={"inputfield"}>
+                      <textarea
+                        name={"Descriptions"}
+                        defaultValue={item.Descriptions}
+                        placeholder={"Type description here..."}
+                        className={"inputt"}
+                        rows={3}
+                        onChange={(e) => updateNewData(e, "Descriptions")}
+                      />
+                      <br />
+                    </th>
+                  </tr>
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </form>
+        <hr />
+      </Modal.Body>
 
-    const { show, onHide } = props;
-    return (
-        <Modal show={show} onHide={onHide}>
-            <Modal.Header closeButton>
-                <Modal.Title>Drug UPDATE</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                
-                <hr />
-                <form>
-                    <table className={"ADDTable"}>
-                        <tbody>
-                            <tr>
-                                <th>Drug_ID</th>
-                                <th className={"inputfield"}>
-                                    <input
-                                        type={"text"}
-                                        name={"Drug_ID"}
-                                        value={inputs.Drug_ID}
-                                        placeholder={"DRUGXXXXXX"}
-                                        className={"inputt"}
-                                        onChange={handleChange}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Drug_Name</th>
-                                <th className={"inputfield"}>
-                                    <input
-                                        type={"text"}
-                                        name={"Drug_Name"}
-                                        value={inputs.Drug_Name}
-                                        placeholder={"XXXXXXXXXX"}
-                                        className={"inputt"}
-                                        onChange={handleChange}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Category</th>
-                                <th className={"inputfield1"}>
-                                    <input
-                                        type={"text"}
-                                        name={"Category"}
-                                        value={inputs.Category}
-                                        placeholder={"XXXXXXXXXX"}
-                                        className={"inputt"}
-                                        onChange={handleChange}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Dosage</th>
-                                <th className={"inputfield"}>
-                                    <input
-                                        type={"text"}
-                                        name={"Drug_dosage"}
-                                        value={inputs.Drug_dosage}
-                                        placeholder={"XXXmg"}
-                                        className={"inputt"}
-                                        onChange={handleChange}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Description</th>
-                                <th className={"inputfield"}>
-                                    <textarea
-                                        name={"Descriptions"}
-                                        value={inputs.Descriptions}
-                                        placeholder={"Type description here..."}
-                                        className={"inputt"}
-                                        rows={3}
-                                        onChange={handleChange}
-                                    />
-                                    <br />
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-                <hr />
-            </Modal.Body>
-
-            <Modal.Footer>
-                <Button variant="primary" onClick={handleUpdate}>Update</Button>
-                <ToastContainer />
-                <Button variant="primary" onClick={handleDelete}>Delete</Button>
-                <ToastContainer />
-            </Modal.Footer>
-        </Modal>
-    );
+      <Modal.Footer>
+        <Button variant="primary uptbut" onClick={handleUpdate} style={{backgroundColor:'green'}}>
+          Update
+        </Button>
+        <Button variant="primary uptbut" onClick={handleDelete} style={{backgroundColor:'red'}}>
+          Delete
+        </Button>
+        <ToastContainer />
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
 export default UpdateModal;
