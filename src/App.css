@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+body {
+    background-color: #f8f7f7 !important;
+    overflow-x: hidden;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

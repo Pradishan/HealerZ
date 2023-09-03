@@ -15,8 +15,17 @@
     height: 144px !important;
     width: 300px !important;
     border-radius: 29px;
-    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
-    box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
+    /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
+    background: rgb(255, 255, 255) !important;
+    /* box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important; */
+    box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+    /* box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important; */
 }
 
 .card1 .CardTitle {
@@ -57,8 +66,17 @@
     height: 250px !important;
     width: 510px;
     border-radius: 29px;
-    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
-    box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25);
+    /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
+    background-color: white;
+    /* box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25); */
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+    /* box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important; */
 }
 
 .card3 .CardTitle {
@@ -212,15 +230,24 @@
     height: 180px !important;
     width: 300px !important;
     border-radius: 29px;
-    background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%);
-    box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
-    
+    /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
+    /* box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important; */
+    background-color: white;
+    /* box-shadow: 6px 10px 8px 0px rgba(0, 0, 0, 0.25); */
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
 
     
 }
 
 .Managebutt1:hover {
-    background: linear-gradient(204deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 60.94%, #FFF 100%, #000 100%);
+    transform: scale(1.05);
+    /* background: linear-gradient(204deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 60.94%, #FFF 100%, #000 100%); */
     cursor: pointer;
 }
 

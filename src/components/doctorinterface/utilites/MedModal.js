@@ -21,7 +21,7 @@ export default function MedModal ( props )
             }
         };
         fetchData();
-    }, [ id ] ); // Include 'id' as a dependency to trigger the effect when 'id' changes
+    }, [ id ] ); 
 
     return (
         <Modal size='xl' show={ show } onHide={ onHide } backdrop="static" keyboard={ false }>

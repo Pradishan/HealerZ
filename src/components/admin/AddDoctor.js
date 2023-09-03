@@ -46,9 +46,7 @@ function AddDoctor(props) {
       toast.warning("Please Enter the Password");
     } else if (regNo.length === 0) {
       toast.warning("Please Enter the SLMC Registration No");
-    } else if (image.length === 0) {
-      toast.warning("Please Import the Image");
-    } else {
+    }else {
       const url = "http://localhost/HealerZ/PHP/admin/addDoctor.php";
       let fdata = new FormData();
             fdata.append('doctor_ID', doctor_id);

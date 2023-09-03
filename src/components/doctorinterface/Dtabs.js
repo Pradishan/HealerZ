@@ -3,7 +3,8 @@ import TestPage from './pages/TestPage.js';
 import EmailPage from './pages/EmailPage.js';
 import MedicalPage from './pages/MedicalPage.js';
 
-export default function Dtabs() {
+export default function Dtabs(props) {
+    const { selectedId } = props;
     return (
         <>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -18,8 +19,8 @@ export default function Dtabs() {
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabIndex="0"><TestPage /></div>
-                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabIndex="0"><EmailPage /></div>
+                <div className="tab-pane fade show active" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab" tabIndex="0"><TestPage selectedId = {selectedId} /></div>
+                <div className="tab-pane fade" id="email-tab-pane" role="tabpanel" aria-labelledby="email-tab" tabIndex="0"><EmailPage selectedId = {selectedId}/></div>
                 <div className="tab-pane fade" id="medical-tab-pane" role="tabpanel" aria-labelledby="medical-tab" tabIndex="0"><MedicalPage /></div>
             </div>
         </>
