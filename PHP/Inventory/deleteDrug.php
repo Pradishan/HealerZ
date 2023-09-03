@@ -19,11 +19,14 @@ try {
     }
     $drugId = $_GET['Drug_ID'];
 
-    $stmt = $conn->prepare("DELETE FROM drug WHERE Drug_ID = :drugId");
+    $stmt = $conn->prepare("DELETE FROM druginventory WHERE Drug_ID = :drugId");
     $stmt->bindParam(':drugId', $drugId);
-    
     $stmt->execute();
 
+    // Then, delete the record from the drug table
+    $stmt = $conn->prepare("DELETE FROM drug WHERE Drug_ID = :drugId");
+    $stmt->bindParam(':drugId', $drugId);
+    $stmt->execute();
     $rowCount = $stmt->rowCount();
     if ($rowCount > 0) {
         echo json_encode(array('message' => 'Drug deleted successfully'));
