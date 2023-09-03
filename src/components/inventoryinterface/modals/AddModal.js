@@ -64,7 +64,7 @@ function AddModal(props) {
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Drug ADD</Modal.Title>
+                <Modal.Title className="modaltitleee">Drug ADD</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr />

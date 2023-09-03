@@ -106,7 +106,7 @@ export default function Dnav ()
                     </div>
                   </div>
                 </li>
-                <Dsettings show={ showModal } onHide={ toggleModal } />
+                <Dsettings show={showModal} onHide={toggleModal} />
               </ul>
             </div>
           </div>

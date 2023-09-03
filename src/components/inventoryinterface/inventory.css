@@ -1,5 +1,3 @@
-
-
 .cardText {
     color: #000;
     font-family: Poppins, serif;
@@ -297,7 +295,7 @@
 }
 
 .SearchBox1::placeholder {
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .content-heading1 {
@@ -424,5 +422,12 @@
     right: 0;
     top: 50%;
     position: absolute;
+}
+
+.modaltitleee{
+    font-size: 30px !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+    color: #000425 !important;
 }
 

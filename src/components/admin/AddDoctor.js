@@ -4,40 +4,49 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import { Password } from "@mui/icons-material";
 
 function AddDoctor(props) {
-  const [doctor_id, setID] = useState("");
-  const [doctor_name, setName] = useState("");
-  const [phoneNo, setphoneNo] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [pass, setPass] = useState("");
-  const [image, setImage] = useState("");
-  const [regNo, setReg] = useState("");
-  const [designation, setDesignation] = useState("");
+  const [doctor_id, setID] = useState('');
+  const [doctor_name, setName] = useState('');
+  const [phoneNo, setphoneNo] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [pass, setPass] = useState('');
+  const [image, setImage] = useState('');
+  const [regNo, setReg] = useState('');
+  const [designation, setDesignation] = useState('');
+
+  const resetForm = () => {
+    setID('');
+    setName('');
+    setphoneNo('');
+    setEmail('');
+    setAddress('');
+    setPass('');
+    setImage('');
+    setReg('');
+    setDesignation('');
+}
 
   const handleSubmit = () => {
     if (doctor_id.length === 0) {
-      toast.error("Please Enter the Doctor_ID");
+      toast.warning("Please Enter the Doctor_ID");
     } else if (doctor_name.length === 0) {
-      toast.error("Please Enter the Doctor_Name");
+      toast.warning("Please Enter the Doctor_Name");
     } else if (designation.length === 0) {
-      toast.error("Please Enter the Designation");
+      toast.warning("Please Enter the Designation");
     } else if (email.length === 0) {
-      toast.error("Please Enter the Email");
+      toast.warning("Please Enter the Email");
     } else if (phoneNo.length === 0) {
-      toast.error("Please Enter the PhoneNo");
+      toast.warning("Please Enter the PhoneNo");
     } else if (address.length === 0) {
-      toast.error("Please Enter the Address");
+      toast.warning("Please Enter the Address");
     } else if (pass.length === 0) {
-      toast.error("Please Enter the Password");
+      toast.warning("Please Enter the Password");
     } else if (regNo.length === 0) {
-      toast.error("Please Enter the SLMC Registration No");
-    } else if (image.length === 0) {
-      toast.error("Please Import the Image");
-    } else {
+      toast.warning("Please Enter the SLMC Registration No");
+    }else {
       const url = "http://localhost/HealerZ/PHP/admin/addDoctor.php";
       let fdata = new FormData();
             fdata.append('doctor_ID', doctor_id);
@@ -54,6 +63,7 @@ function AddDoctor(props) {
                 if (response.data.message === "Doctor Added Successfully") {
                     // Show success message
                     toast.success(response.data.message);
+                    resetForm(); 
                 } else {
                     // Show error message
                     toast.error("Doctor Already Added");
@@ -93,6 +103,7 @@ function AddDoctor(props) {
                         name={"doctor_ID"}
                         placeholder={"DocXXXXX"}
                         onChange={(e) => setID(e.target.value)}
+                        value={doctor_id}
                       />
                     </th>
                   </tr>
@@ -108,6 +119,7 @@ function AddDoctor(props) {
                         name={"doctor_name"}
                         placeholder={"Janarthanan"}
                         onChange={(e) => setName(e.target.value)}
+                        value={doctor_name}
                       />
                     </th>
                   </tr>
@@ -123,6 +135,7 @@ function AddDoctor(props) {
                         name={"designation"}
                         placeholder={"XXXXXX"}
                         onChange={(e) => setDesignation(e.target.value)}
+                        value={designation}
                       />
                     </th>
                   </tr>
@@ -140,6 +153,7 @@ function AddDoctor(props) {
                         name={"email"}
                         placeholder={"Jana343@gmail.com"}
                         onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                       />
                     </th>
                   </tr>
@@ -156,6 +170,7 @@ function AddDoctor(props) {
                         name={"phoneNo"}
                         placeholder={"076XXXXXXX"}
                         onChange={(e) => setphoneNo(e.target.value)}
+                        value={phoneNo}
                       />
                     </th>
                   </tr>
@@ -173,6 +188,7 @@ function AddDoctor(props) {
                         name={"address"}
                         placeholder={"Type here...."}
                         onChange={(e) => setAddress(e.target.value)}
+                        value={address}
                       />
                     </th>
                   </tr>
@@ -190,6 +206,7 @@ function AddDoctor(props) {
                         name={"password"}
                         placeholder={"Type password here"}
                         onChange={(e) => setPass(e.target.value)}
+                        value={pass}
                       />
                     </th>
                   </tr>
@@ -207,6 +224,7 @@ function AddDoctor(props) {
                         name={"regNo"}
                         placeholder={"SMDXXXXX"}
                         onChange={(e) => setReg(e.target.value)}
+                        value={regNo}
                       />
                     </th>
                   </tr>
@@ -223,6 +241,7 @@ function AddDoctor(props) {
                         name={"imageUpload"}
                         placeholder={"choose file"}
                         onChange={(e) => setImage(e.target.files)}
+                        value={image}
                       />
                     </th>
                   </tr>
@@ -233,7 +252,6 @@ function AddDoctor(props) {
           </form>
           <button
             className="btn btn-primary done-button"
-            style={{ left: "700px" }}
             type="submit"
             name={"send"}
             value={"SEND"}
@@ -241,6 +259,7 @@ function AddDoctor(props) {
           >
             ADD
           </button>
+          <button className="btn btn-secondary done-buttontt3" onClick={resetForm}>Reset</button>
         </div>
         <ToastContainer />
       </div>

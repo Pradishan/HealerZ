@@ -8,7 +8,7 @@ function ViewModal(props) {
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Drug Detail</Modal.Title>
+                <Modal.Title className="modaltitleee">Drug Detail</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr />

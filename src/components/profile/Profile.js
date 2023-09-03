@@ -14,6 +14,21 @@ const Profile = () => {
     { No: 4, date: "07-04-2022" },
     { No: 5, date: "07-11-2021" },
   ]);
+
+  const onPDFdownload = () => {
+    // using Java Script method to get PDF file
+    fetch('sample.pdf').then(response => {
+        response.blob().then(blob => {
+            // Creating new object of PDF file
+            const fileURL = window.URL.createObjectURL(blob);
+            // Setting various property values
+            let alink = document.createElement('a');
+            alink.href = fileURL;
+            alink.download = 'CST20008.pdf';
+            alink.click();
+        })
+    })
+}
   return (
     <div>
       <nav
@@ -51,7 +66,7 @@ const Profile = () => {
               </li>
               <li className="nav-item" style={{ paddingLeft: "30px" }}>
                 <a className="nav-link nav-hover " href="/login">
-                  <FeatherIcon icon="user" className="me-2 loginiccon" />
+                  <FeatherIcon icon="user" className="me-2 loginiccontt" />
                 </a>
               </li>
             </ul>
@@ -138,7 +153,7 @@ const Profile = () => {
                         {" "}
                         <Link to="/profile">
                           <div className="button">
-                            <button className="btn shadow gradient-buttonnn">
+                            <button className="btn shadow gradient-buttonnn" onClick={onPDFdownload}>
                               Download
                             </button>
                           </div>

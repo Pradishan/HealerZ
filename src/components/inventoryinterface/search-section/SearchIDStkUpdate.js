@@ -54,7 +54,7 @@ function SearchIDstkUpdate(props) {
     return (
         <Modal show={show} onHide={onHide} className={"moddd"}>
             <Modal.Header closeButton>
-                <Modal.Title>Stock Update</Modal.Title>
+                <Modal.Title className="modaltitleee">Update Stock</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
