@@ -31,3 +31,100 @@
     top: 50%;
     position: absolute;
 }
+
+
+
+/* styles.css */
+
+.BloodDonate container {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 0 auto;
+}
+
+.BloodDonate h1 {
+  color: purple;
+}
+
+.BloodDonate label {
+  display: block;
+  margin-bottom: 5px;
+  color: purple;
+}
+
+.BloodDonate input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.BloodDonate button {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.BloodDonate button:hover {
+  background-color: blue;
+}
+
+.BloodDonate strong {
+  color: blue;
+}
+
+
+/* styles.css */
+
+.Vaccination container {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 0 auto;
+}
+
+.Vaccination h1 {
+  color: purple;
+}
+
+.Vaccination label {
+  display: block;
+  margin-bottom: 5px;
+  color: purple;
+}
+
+.Vaccination input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.Vaccination button {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.Vaccination button:hover {
+  background-color: blue;
+}
+
+.Vaccination strong {
+  color: blue;
+}
+
