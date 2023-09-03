@@ -18,7 +18,7 @@ function SupplyPopup(props) {
     const notify = () => toast("Drug Supply Successfully!");
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} >
+        <Modal show={show} onHide={onHide} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
             </Modal.Header>
@@ -75,18 +75,13 @@ function SupplyPopup(props) {
                     </table>
                 </div>
                 <div>
-                    <hr style={{width:'180px', marginLeft:'250px'}}/>
-                    <div style={{display:'flex',flexDirection:'row', marginLeft:'275px'}}>
+                    <hr style={{width:'180px', marginLeft:'550px'}}/>
+                    <div style={{display:'flex',flexDirection:'row', marginLeft:'575px'}}>
                         <p>Total Count</p>
                         <p style={{paddingLeft:'30px'}}>85</p>
                     </div>
-                    <hr style={{width:'180px', marginLeft:'250px'}}/>
+                    <hr style={{width:'180px', marginLeft:'550px'}}/>
                 </div>
-
-
-
-
-
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" onClick={notify} style={{backgroundColor:'green'}}>Update</Button>
