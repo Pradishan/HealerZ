@@ -113,7 +113,7 @@ function UpdateModal(props) {
                     defaultValue={category}
                     className={"inputt"}
                     onChange={(e) => setCat(e.target.value)}
-                    style={{ height: "30px " }}
+                    style={{height:'37px '}}
                   >
                     <option value={""}>Select Category</option>
                     <option value={"Liquid"}>Liquid</option>
