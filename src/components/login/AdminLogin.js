@@ -90,11 +90,7 @@ export default function AdminLogin() {
     <>
       <div className="container mt-5 text-center">
         <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            marginLeft: '400px',
-          }}
+         style={{ display: "flex", flexDirection: "row",alignItems:'center',justifyContent:'center'}}
         >
           <img
             src={currentImage} // Display the currently selected image
