@@ -10,45 +10,44 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-{/*gnidgdhd */}
-{/*gnidgdhd */}
+
 const columns = [
     
     { id: 'doctor_id', label: 'Doctor ID', minWidth: 100 },
-    { id: 'name', label: 'Name', minWidth: 170 },
+    { id: 'doctor_name', label: 'Name', minWidth: 160 },
     {
       id: 'designation',
       label: 'Designation',
-      minWidth: 170,
+      minWidth: 160,
       align: 'left',
      
     },
     {
       id: 'email',
       label: 'Email',
-      minWidth: 170,
+      minWidth: 160,
       align: 'left',
       
     },
     {
       id: 'phoneNo',
       label: 'Phone No',
-      minWidth: 170,
+      minWidth: 160,
       align: 'left',
-      format: (value) => value.toLocaleString('en-US'),
+      
       
     },
     {
         id: 'address',
         label: 'Adress',
-        minWidth: 170,
+        minWidth: 160,
         align: 'left',
         
       },
       {
         id: 'regNo',
         label: 'SLMC RegNo',
-        minWidth: 170,
+        minWidth: 160,
         align: 'left',
         
       },
@@ -61,6 +60,16 @@ const columns = [
   
   const rows = [
     createData('001', 'Jana JR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('002', 'Rcdsgd', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('003', 'fgdgd', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('004', 'gdfg', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('005', 'JgdgR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('005', 'JanhjR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('006', 'JjjkJR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('007', 'kuR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('008', 'sgnnJR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('009', 'vfbfjkR', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
+    createData('010', 'btrtjg,', 'Medical officer', 'jana@gmail.com', 0o770427773, '05, mainroad, Trincomalee',  14780),
     
     
   ];
@@ -91,9 +100,9 @@ export default function DoctorList() {
         };
   return (
     <AdminLayout>
-         <div className={"addboxx mt-4"}  style={{ display: "flex", justifyContent: "center", alignItems: "center" }}  >
+         <div className={"mt-4"}  style={{ display: "flex", justifyContent: "center", alignItems: "center" }}  >
          <div className={"Addcontt "}>
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <Paper sx={{ width: '100%', overflow: 'auto' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

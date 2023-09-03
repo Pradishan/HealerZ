@@ -47,12 +47,16 @@ export default function Dsettings(props) {
                             <div id="password" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
                                     <div className="form-floating mb-3">
-                                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                        <label for="floatingInput">Email address</label>
+                                        <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                                        <label for="floatingInput">Current password</label>
+                                    </div>
+                                    <div className="form-floating mb-3">
+                                        <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                                        <label for="floatingInput">New password</label>
                                     </div>
                                     <div className="form-floating">
                                         <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                        <label for="floatingPassword">Password</label>
+                                        <label for="floatingPassword">Confirm Password</label>
                                     </div>
                                     <button className='btn w-100 text-white shadow my-3 btn-gr'  >Change Password</button>
                                 </div>
