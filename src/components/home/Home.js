@@ -94,7 +94,7 @@ export default function Home() {
         <Hcard />
       </div>
 
-      <MDBFooter className='bg-light text-center'>
+      <MDBFooter className='bg-light text-center' style={{backgroundColor:'white', boxShadow: '20px 6px 10px 0px rgba(0, 0, 0, 0.25)'}}>
         <MDBContainer className='p-4 pb-0'>
           <section className='mb-4'>
             <MDBBtn

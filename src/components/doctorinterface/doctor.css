@@ -2,11 +2,6 @@
     --maincolor: linear-gradient(90deg, rgba(75, 20, 141, 1) 0%, rgba(224, 64, 253, 1) 100%);
 }
 
-body {
-    background-color: #F1F0F0 !important;
-    overflow-x: hidden;
-}
-
 .scrollable-column {
     max-height: 70vh;
     overflow-y: auto;
