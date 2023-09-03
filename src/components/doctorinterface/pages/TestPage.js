@@ -3,7 +3,6 @@ import axios from "axios";
 import FeatherIcon from 'feather-icons-react';
 import CurrentTime from '../CurrentTime';
 import { ToastContainer, toast } from 'react-toastify';
-import { maxHeight } from '@mui/system';
 
 // Get the current date and time
 const currentDate = new Date();
@@ -11,11 +10,12 @@ const currentDate = new Date();
 // Format the date (YYYY-MM-DD HH:mm:ss format)
 const formattedDate = currentDate.toISOString().slice( 0, 19 ).replace( 'T', ' ' );
 
-export default function TestPage ()
+export default function TestPage (props)
 {
-
+  const { selectedId } = props;
+  
   const [ formData, setFormData ] = useState( {
-    patient_ID: 'cst20008',
+    patient_ID: selectedId,
     doctor_ID: 'D001',
     dateandTime: formattedDate,
     patientcomplaint: '',
@@ -24,6 +24,10 @@ export default function TestPage ()
     confirmeddiagnosis: '',
     prescription_ID: null,
   } );
+
+  console.log(selectedId);
+  formData.patient_ID = selectedId;
+  // console.log(formData.patient_ID);
 
   const handleSubmit = ( e ) =>
   {
@@ -63,7 +67,7 @@ export default function TestPage ()
           {
             toast.success( response.data.message );
             setFormData( {
-              patient_ID: 'cst20008',
+              patient_ID: selectedId,
               doctor_ID: 'D001',
               dateandTime: formattedDate,
               patientcomplaint: '',
@@ -127,6 +131,7 @@ export default function TestPage ()
           <div className='row p-2'>
             <div className='col-6'>
               <div className="form-floating">
+              <input type="hidden" name="patient_ID" value={selectedId} onChange={handleChange} />
                 <textarea className="form-control" placeholder="Leave a comment here" name='patientcomplaint' value={ formData.patientcomplaint } onChange={ handleChange } id="floatingTextarea1" style={ { height: '100px' } }></textarea>
                 <label htmlFor="floatingTextarea2">Patient complain</label>
               </div>

@@ -5,11 +5,12 @@ import Demail from '../Demail';
 import MedicalRecords from '../utilites/MedicalRecords';
 
 
-export default function EmailPage ()
+export default function EmailPage (props)
 {
 
   const [ records, setRecords ] = useState( [] );
-  const id = { patient_ID: 'cst20001' };
+  const { selectedId } = props;
+  const id = { patient_ID: selectedId };
 
   useEffect( () =>
   {

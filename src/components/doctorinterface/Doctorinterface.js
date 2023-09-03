@@ -71,7 +71,7 @@ export default function Doctorinterface ()
 
         <div className="col-8 m-3 mt-5">
           <div style={ timeLeft }><CurrentTime /></div>
-          <Dtabs />
+          <Dtabs selectedId = {selectedId} />
         </div>
       </div>
     </>
