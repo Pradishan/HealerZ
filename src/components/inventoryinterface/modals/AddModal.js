@@ -46,12 +46,15 @@ function AddModal(props) {
 
             axios.post(url, fdata)
                 .then((response) => {
-                    if (response.data.message === "Drug Added Successfully") {
+                    console.log(response.data);
+                    //toast.success(response.data.message);
+                    if(response.data.message==="Drug Added Successfully"){
                         toast.success(response.data.message);
-                        resetForm(); 
-                    } else {
+                        resetForm();
+                    }else{
                         toast.error("Drug Already Added");
                     }
+                    
                 })
                 .catch((error) => {
                     toast.error(error.message);
