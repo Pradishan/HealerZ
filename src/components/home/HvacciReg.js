@@ -17,7 +17,7 @@ export default function HbloodReg() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Blood Registration</Modal.Title>
+          <Modal.Title> Vaccination Registration</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             
@@ -28,7 +28,7 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Email"
+                      placeholder="New Password"
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Email</label>
@@ -39,7 +39,7 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Name"
+                      placeholder="New Password"
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Name</label>
@@ -50,7 +50,7 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Nic NO"
+                      placeholder="New Password"
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">NIC No</label>
@@ -61,7 +61,7 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Phone No"
+                      placeholder="New Password"
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Phone</label>
@@ -72,7 +72,7 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Address"
+                      placeholder="New Password"
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Address</label>
@@ -85,10 +85,10 @@ export default function HbloodReg() {
                       type="text"
                       className="form-control"
                       id="floatingPassword"
-                      placeholder="Blood group"
+                      placeholder="Vaccine name"
                       style={{ width: "100%" }}
                     />
-                    <label htmlFor="floatingPassword">Blood group</label>
+                    <label htmlFor="floatingPassword">Vaccine Name:</label>
                   </div>
                   <br />
                  
