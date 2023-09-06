@@ -74,7 +74,7 @@ function AddModal(props) {
                 <form>
                     <table className={"ADDTable"}>
                         <tr>
-                            <th>Drug_ID</th>
+                            <th>NDC Number</th>
                             <th className={"inputfield"}>
                                 <input
                                     type={"text"}

@@ -74,7 +74,7 @@ function Inventory(props) {
                                 <input
                                     className={"SearchBox1"}
                                     type="text"
-                                    placeholder="DRUG_ID"
+                                    placeholder="NDC Number"
                                     value={searchTerm3}
                                     onChange={handleChange3}
                                 />
@@ -97,7 +97,7 @@ function Inventory(props) {
                             <thead className={"top-0 position-sticky h-45"}>
                                 <tr>
                                     <th scope="col">NO</th>
-                                    <th scope="col">DRUG_ID</th>
+                                    <th scope="col">NDC No</th>
                                     <th scope="col">DRUG_NAME</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Drug_Dosage</th>

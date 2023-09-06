@@ -76,7 +76,7 @@ function UpdateModal(props) {
           <table className={"ADDTable"}>
             <tbody>
               <tr>
-                <th>Drug_ID</th>
+                <th>NDC Number</th>
                 <th className={"inputfield"}>
                   <input
                     type={"text"}

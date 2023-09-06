@@ -52,21 +52,22 @@ function SearchIDstkUpdate(props) {
 
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} className={"moddd"}>
+        <Modal show={show} onHide={onHide} className={"moddd"} size="lg" centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Update Stock</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div><h3 className={"content-heading1"}>Search DRUG ID:</h3></div>
+                    <div><h3 className={"content-heading1"}>Search by National Drug Code(NDC) Number:</h3></div>
                     <div className={"SearchSection3"}>
                         <form onSubmit={handleSubmit2}>
                             <input
                                 className="SearchBox1"
                                 type="text"
-                                placeholder="DRUG_ID"
+                                placeholder="NDC Number"
                                 value={Drug_ID}
                                 onChange={handleChange2}
+                                style={{width:'250px'}}
                             />
                             <button type="submit" className="filterbutt">Search</button>
                         </form>
