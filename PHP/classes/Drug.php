@@ -110,6 +110,26 @@ class Drug
            return false;
         }
     }
+
+    public function updateDrug(){
+        try {
+            $dbcon=new DBconnector();
+            $conn=$dbcon->getConnection();
+            $query="UPDATE drug SET Drug_Name = :Drug_Name, Category = :Category, Drug_dosage = :Drug_dosage, Descriptions = :Descriptions WHERE Drug_ID = :Drug_ID";
+            $stmt=$conn->prepare($query);
+            $stmt->bindValue(':Drug_Name', $this->Drug_Name);
+            $stmt->bindValue(':Category', $this->Category);
+            $stmt->bindValue(':Drug_dosage', $this->Drug_dosage);
+            $stmt->bindValue(':Descriptions', $this->Descriptions);
+            $stmt->bindValue(':Drug_ID', $this->Drug_ID);
+            $res = $stmt->execute();
+
+            return $res;
+
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
     
 
 }
