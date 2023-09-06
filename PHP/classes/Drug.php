@@ -73,17 +73,13 @@ class Drug
             $conn = $dbcon->getConnection();
             
             $query = "INSERT INTO drug (Drug_ID, Drug_Name, Category, Drug_dosage, Descriptions) VALUES (:Drug_ID, :Drug_Name, :Category, :Drug_dosage, :Descriptions)";
-            
+           
             $stmt = $conn->prepare($query);
-            
-            // Bind values to placeholders
             $stmt->bindValue(':Drug_ID', $this->Drug_ID);
             $stmt->bindValue(':Drug_Name', $this->Drug_Name);
             $stmt->bindValue(':Category', $this->Category);
             $stmt->bindValue(':Drug_dosage', $this->Drug_dosage);
             $stmt->bindValue(':Descriptions', $this->Descriptions);
-            
-            // Execute the query
             $res = $stmt->execute();
             
             if ($res) {
@@ -92,10 +88,26 @@ class Drug
                 return false;
             }
         } catch (PDOException $e) {
-            // Handle any database errors here
-            // You can log the error or return false to indicate failure
-            // Example: error_log($e->getMessage());
             return false;
+        }
+    }
+
+    public function deleteDrug(){
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query="DELETE FROM drug WHERE Drug_ID = :Drug_ID";
+            $stmt=$conn->prepare($query);
+            $stmt->bindValue(':Drug_ID', $this->Drug_ID);
+            $res = $stmt->execute();
+            if ($res) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+           return false;
         }
     }
     
