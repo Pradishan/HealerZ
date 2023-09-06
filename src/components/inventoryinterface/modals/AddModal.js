@@ -106,7 +106,7 @@ function AddModal(props) {
                             <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
-                                    className={'inputt'}
+                                    className="inputt"
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
                                     style={{height:'30px '}}
