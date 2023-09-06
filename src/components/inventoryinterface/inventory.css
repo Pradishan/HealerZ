@@ -179,12 +179,41 @@
 .filterbutt:hover {
     background: #7D0080 !important;
 }
+.searchbuttt {
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #610261 !important;
+    font-size: 20px;
+    font-style: normal;
+    /* font-weight: 800; */
+    line-height: normal;
+    color: white;
+    border: none !important;
+}
+
+.searchbuttt:hover {
+    background: #7D0080 !important;
+}
 
 .SearchBox1 {
     border-radius: 5px;
     background: #ebe8e8;
     border-color: rgb(0, 0, 24);
     height: 35px;
+}
+
+.form-contttt {
+    width: 450px !important;
+    height: 40px !important;
+    border-radius: 5px;
+    margin-left: -12px;
+}
+.flotingtexxtt{
+    font-size: 18px;
+    margin-left: 15px !important;
 }
 
 @media (max-width: 768px) {

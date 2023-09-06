@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, ModalFooter } from "react-bootstrap";
 import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
 import StockUpdateModal from "../modals/StockUpdateModal";
@@ -52,30 +52,36 @@ function SearchIDstkUpdate(props) {
 
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} className={"moddd"} size="lg" centered>
+        <Modal show={show} onHide={onHide} className={"moddd"} centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Update Stock</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div><h3 className={"content-heading1"}>Search by National Drug Code(NDC) Number:</h3></div>
+                   
                     <div className={"SearchSection3"}>
                         <form onSubmit={handleSubmit2}>
+                        <div className="form-floating mb-3">
                             <input
-                                className="SearchBox1"
+                                className="form-control form-contttt"
+                                id="floatingInput"
                                 type="text"
                                 placeholder="NDC Number"
                                 value={Drug_ID}
                                 onChange={handleChange2}
-                                style={{width:'250px'}}
                             />
-                            <button type="submit" className="filterbutt">Search</button>
+                            <label htmlFor="floatingInput" className="flotingtexxtt">Search by National Drug Code(NDC) Number</label>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>
                 {showModal && <StockUpdateModal show={showModal} onHide={UpdateModal2} inputs={inputs} />}
                 <ToastContainer/>
             </Modal.Body>
+            <ModalFooter>
+               <button type="submit" className="searchbuttt">Search</button>
+            </ModalFooter>
         </Modal>
        
     );
