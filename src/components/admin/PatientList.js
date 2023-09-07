@@ -18,7 +18,7 @@ function PatientList(props) {
   const [patientList, setPatientList] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [patientToDelete, setPatientToDelete] = useState(null);
+  const [setPatientToDelete,setSelectedPatientToDelete] = useState(null);
   const [filteredPatientList, setFilteredPatientList] = useState([]);
 
   const handleChange3 = (event) => {
@@ -93,35 +93,24 @@ function PatientList(props) {
   };
 
   const handleDelete = (patient) => {
-    setPatientToDelete(patient);
     setConfirmModalVisible(true);
+    setSelectedPatientToDelete(patient);
+   
   };
 
   const handleConfirmDelete = async () => {
+    setConfirmModalVisible(false);
+    const patientToDelete = setPatientToDelete;
+    setSelectedPatientToDelete(null);
     try {
-      if (patientToDelete) {
-        const response = await axios.delete(
-          `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
-        );
-
-        if (response.status === 200) {
-          toast.success("Patient deleted successfully");
-          // Update the patient list by filtering out the deleted patient
-          setPatientList((prevList) =>
-            prevList.filter(
-              (patient) => patient.Patient_ID !== patientToDelete.Patient_ID
-            )
-          );
-        } else {
-          toast.error("Error deleting patient");
-        }
-      }
+      await axios.delete(
+        `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
+      );
+      toast.success("Patient deleted successfully");
+      fetchData();
     } catch (error) {
-      console.error("Error deleting patient:", error);
-      toast.error("Error deleting patient");
-    } finally {
-      setPatientToDelete(null);
-      setConfirmModalVisible(false);
+      console.error("Error deleting Patient:", error);
+      toast.error("Error deleting Patient");
     }
   };
 
