@@ -8,13 +8,14 @@ import "./inventory.css";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import CustomConfirmModal from "./modals/CustomConfirmModal"; // Import the custom confirm modal
+import CustomConfirmModal from "./modals/CustomConfirmModal";
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm3, setSearchTerm] = useState("");
   const [searchTerm4, setSearchTerm2] = useState("");
   const [drugList, setDrugList] = useState([]);
+  const [filteredDrugList, setFilteredDrugList] = useState([]); // State for filtered data
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedDrugToDelete, setSelectedDrugToDelete] = useState(null);
@@ -60,6 +61,13 @@ function Inventory(props) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const filteredData = drugList.filter(
+      (drug) => drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase())
+    );
+    setFilteredDrugList(filteredData);
+  }, [searchTerm4, drugList]);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -96,18 +104,12 @@ function Inventory(props) {
     <Layout>
       <div className={"container"}>
         <div className={"p-5"}>
-          <div
-            className={"SearchSection"}
-            style={{ display: "flex", flexDirection: "row" }}
-          >
+          <div className={"SearchSection"} style={{ display: "flex", flexDirection: "row" }}>
             <div>
               <h3 className={"content-heading"}>Filter the Results : </h3>
             </div>
             <div className={"SearchSection2"}>
-              <form
-                onSubmit={handleSearchSubmit}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              <form onSubmit={handleSearchSubmit} style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -119,10 +121,7 @@ function Inventory(props) {
                   Filter
                 </button>
               </form>
-              <form
-                onSubmit={handleSearchSubmit2}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              <form onSubmit={handleSearchSubmit2} style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -137,11 +136,8 @@ function Inventory(props) {
             </div>
           </div>
           <div className={"table-container w-100 p-0"}>
-            <table
-              className={"table table-hover table-striped "}
-              style={{ minWidth: "0px" }}
-            >
-              <thead className={"top-0 position-sticky h-45"} style={{zIndex:100}}>
+            <table className={"table table-hover table-striped "} style={{ minWidth: "0px" }}>
+              <thead className={"top-0 position-sticky h-45"} style={{ zIndex: 100 }}>
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">NDC No</th>
@@ -153,35 +149,41 @@ function Inventory(props) {
                 </tr>
               </thead>
               <tbody className="h-50">
-                {drugList.map((data, index) => (
-                  <tr key={index}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{data.Drug_ID}</td>
-                    <td>{data.Drug_Name}</td>
-                    <td>{data.Category}</td>
-                    <td>{data.Drug_dosage}</td>
-                    <td>{data.StockCount}</td>
-                    <td>
-                       <IconButton
-                        aria-label="delete"
-                        className="viewbutt"
-                        onClick={() => openModal(data)}
-                        style={{color:'green'}}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
+                {filteredDrugList.length > 0 ? ( 
+                  filteredDrugList.map((data, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{data.Drug_ID}</td>
+                      <td>{data.Drug_Name}</td>
+                      <td>{data.Category}</td>
+                      <td>{data.Drug_dosage}</td>
+                      <td>{data.StockCount}</td>
+                      <td>
+                        <IconButton
+                          aria-label="delete"
+                          className="viewbutt"
+                          onClick={() => openModal(data)}
+                          style={{ color: 'green' }}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
 
-                      <IconButton
-                        aria-label="delete"
-                        className="viewbutt"
-                        onClick={() => handleDelete(data)}
-                        style={{color:'red'}}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </td>
+                        <IconButton
+                          aria-label="delete"
+                          className="viewbutt"
+                          onClick={() => handleDelete(data)}
+                          style={{ color: 'red' }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="7">No results found</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
