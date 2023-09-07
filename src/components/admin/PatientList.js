@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import FeatherIcon from "feather-icons-react";
 import ViewModal from "./ViewPatientModal";
 import AdminLayout from "../../layouts/AdminLayout";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,6 +8,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +37,7 @@ function PatientList(props) {
     event.preventDefault();
     const searchedPatient = patientList.find(
       (patient) => patient.Patient_ID === searchTerm3
-    ); // Search for the patient by ID
+    );
     if (searchedPatient) {
       setSelectedPatient(searchedPatient);
       setShowModal(true);
@@ -51,7 +51,7 @@ function PatientList(props) {
     event.preventDefault();
     const searchedPatient = patientList.find(
       (patient) => patient.PatientName === searchTerm4
-    ); // Search for the patient by Name
+    );
     if (searchedPatient) {
       setSelectedPatient(searchedPatient);
       setShowModal(true);
@@ -118,7 +118,7 @@ function PatientList(props) {
       <h3 className="serhett">Patient List</h3>
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
-          <hr/>
+          <hr />
           <div
             className={"SearchSection"}
             style={{ display: "flex", flexDirection: "row" }}
@@ -127,22 +127,25 @@ function PatientList(props) {
               <h3 className={"content-heading"}>Filter the Results : </h3>
             </div> */}
             <div className="SearchSection2">
-              <form
-                onSubmit={handleSearchSubmit}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                <input
-                  className={"SearchBox1"}
-                  type="text"
-                  placeholder="PATIENT_ID"
-                  value={searchTerm3}
-                  onChange={handleChange3}
-                  style={{ width: "250px" }}
-                />
-                <button type="submit" className="filterbutt">
-                  Filter
-                </button>
-              </form>
+              <div className="search-input-container">
+                <form
+                  onSubmit={handleSearchSubmit}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
+                  <input
+                    className={"SearchBox1"}
+                    type="text"
+                    placeholder="PATIENT_ID"
+                    value={searchTerm3}
+                    onChange={handleChange3}
+                    style={{ width: "300px" }}
+                  />
+                  <div className="search-icon" onClick={handleSearchSubmit}>
+                    <SearchIcon />
+                  </div>
+                </form>
+              </div>
+              <div className="search-input-container">
               <form
                 onSubmit={handleSearchSubmit2}
                 style={{ display: "flex", flexDirection: "row" }}
@@ -153,12 +156,13 @@ function PatientList(props) {
                   placeholder="PATIENT_Name"
                   value={searchTerm4}
                   onChange={handleChange4}
-                  style={{ width: "250px" }}
+                  style={{ width: "300px" }}
                 />
-                <button type="submit" className="filterbutt">
-                  Filter
-                </button>
+                 <div className="search-icon" onClick={handleSearchSubmit2}>
+                    <SearchIcon />
+                  </div>
               </form>
+              </div>
               <select
                 className={"SearchBox1"}
                 value={selectedBloodGroup}
@@ -177,7 +181,7 @@ function PatientList(props) {
               </select>
             </div>
           </div>
-          <hr/>
+          <hr />
           <div className={"table-container"}>
             <table className={"table table-hover table-striped "}>
               <thead

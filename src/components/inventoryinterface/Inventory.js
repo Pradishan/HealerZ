@@ -9,6 +9,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +21,7 @@ function Inventory(props) {
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedDrugToDelete, setSelectedDrugToDelete] = useState(null);
+
 
   const handleChange3 = (event) => {
     setSearchTerm3(event.target.value);
@@ -33,8 +35,11 @@ function Inventory(props) {
     setSelectedCategory(event.target.value);
   };
 
-  const handleSearchByDrugID = () => {
-    const searchedDrug = drugList.find((drug) => drug.Drug_ID === searchTerm3);
+  const handleSearchByDrugID = (event) => {
+    event.preventDefault();
+    const searchedDrug = drugList.find(
+      (drug) => drug.Drug_ID === searchTerm3
+    );
     if (searchedDrug) {
       setSelectedDrug(searchedDrug);
       setShowModal(true);
@@ -44,8 +49,12 @@ function Inventory(props) {
     }
   };
 
-  const handleSearchByDrugName = () => {
-    const searchedDrug1 = drugList.find((drug) => drug.Drug_Name === searchTerm4);
+  const handleSearchByDrugName = (event) => {
+    // const searchedDrug1 = drugList.find((drug) => drug.Drug_Name === searchTerm4);
+    event.preventDefault();
+    const searchedDrug1 = drugList.find(
+      (drug) => drug.Drug_Name === searchTerm4
+    ); 
     if (searchedDrug1) {
       setSelectedDrug(searchedDrug1);
       setShowModal(true);
@@ -119,39 +128,39 @@ function Inventory(props) {
               <h3 className="content-heading">Filter the Results : </h3>
             </div> */}
             <div className="SearchSection2">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <input
-                  className="SearchBox1"
-                  type="text"
-                  placeholder="NDC Number"
-                  value={searchTerm3}
-                  onChange={handleChange3}
-                  style={{width:'250px'}}
-                />
-                <button
-                  type="button"
-                  className="filterbutt"
-                  onClick={handleSearchByDrugID}
-                >
-                  Filter
-                </button>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+                <div className="search-input-container">
+                  <form onSubmit={handleSearchByDrugID}>
+                  <input
+                    className="SearchBox1"
+                    type="text"
+                    placeholder="NDC Number"
+                    value={searchTerm3}
+                    onChange={handleChange3}
+                    style={{ width: "300px" }}
+                  />
+                  <div className="search-icon" onClick={handleSearchByDrugID}>
+                    <SearchIcon />
+                  </div>
+                  </form>
+                </div>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <input
-                  className={"SearchBox1"}
-                  type="text"
-                  placeholder="DRUG_Name"
-                  value={searchTerm4}
-                  onChange={handleChange4}
-                  style={{width:'250px'}}
-                />
-                <button
-                  type="button"
-                  className="filterbutt"
-                  onClick={handleSearchByDrugName}
-                >
-                  Filter
-                </button>
+                <div className="search-input-container">
+                  <form onSubmit={handleSearchByDrugName}>
+                  <input
+                    className={"SearchBox1"}
+                    type="text"
+                    placeholder="DRUG_Name"
+                    value={searchTerm4}
+                    onChange={handleChange4}
+                    style={{ width: "300px" }}
+                  />
+                  <div className="search-icon" onClick={handleSearchByDrugName}>
+                    <SearchIcon />
+                  </div>
+                  </form>
+                </div>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <select
@@ -181,7 +190,6 @@ function Inventory(props) {
             >
               <thead
                 className={"top-0 position-sticky h-45"}
-                style={{ zIndex: 100 }}
               >
                 <tr>
                   <th scope="col">NO</th>
