@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, ModalFooter } from "react-bootstrap";
 import '../inventory.css';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdateModal from "../modals/UpdateModal";
@@ -29,6 +29,7 @@ function SearchIDUpdate(props) {
                     setShowModal(false);
                 } else {
                     setShowModal(true);
+                   
                 }
             })
             .catch(function (error) {
@@ -44,29 +45,34 @@ function SearchIDUpdate(props) {
 
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} className={"moddd"}>
+        <Modal show={show} onHide={onHide} className={"moddd"} centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Update</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div><h3 className={"content-heading1"}>Search DRUG ID:</h3></div>
                     <div className={"SearchSection3"}>
                         <form onSubmit={handleSubmit}>
+                        <div className="form-floating mb-3">
                             <input
-                                className="SearchBox1"
+                                className="form-control form-contttt"
+                                id="floatingInput"
                                 type="text"
-                                placeholder="DRUG_ID"
+                                placeholder="NDC Number"
                                 value={Drug_ID}
                                 onChange={handleChange}
                             />
-                            <button type="submit" className="filterbutt">Search</button>
+                             <label htmlFor="floatingInput" className="flotingtexxtt">Search by National Drug Code(NDC) Number</label>
+                            </div>
                         </form>
                     </div>
                 </div>
                 {showModal && <UpdateModal show={showModal} onHide={UpdateModal1} inputs={inputs} />}
                 <ToastContainer />
             </Modal.Body>
+            <ModalFooter>
+            <button type="submit" className="searchbuttt">Search</button>
+            </ModalFooter>
             
         </Modal>
     );

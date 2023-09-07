@@ -46,12 +46,15 @@ function AddModal(props) {
 
             axios.post(url, fdata)
                 .then((response) => {
-                    if (response.data.message === "Drug Added Successfully") {
+                    console.log(response.data);
+                    //toast.success(response.data.message);
+                    if(response.data.message==="Drug Added Successfully"){
                         toast.success(response.data.message);
-                        resetForm(); 
-                    } else {
+                        resetForm();
+                    }else{
                         toast.error("Drug Already Added");
                     }
+                    
                 })
                 .catch((error) => {
                     toast.error(error.message);
@@ -71,7 +74,7 @@ function AddModal(props) {
                 <form>
                     <table className={"ADDTable"}>
                         <tr>
-                            <th>Drug_ID</th>
+                            <th>NDC Number</th>
                             <th className={"inputfield"}>
                                 <input
                                     type={"text"}
@@ -103,7 +106,7 @@ function AddModal(props) {
                             <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
-                                    className={'inputt'}
+                                    className="inputt"
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
                                     style={{height:'30px '}}

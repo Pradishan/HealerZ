@@ -127,7 +127,6 @@ export default function AdminLogin() {
                       placeholder="D0001"
                       value={adminID}
                       onChange={(e) => setAdminID(e.target.value)}
-                      style={{ width: '100%' }}
                     />
                     <label htmlFor="floatingInput">Admin ID</label>
                   </div>

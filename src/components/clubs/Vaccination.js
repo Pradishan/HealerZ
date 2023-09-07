@@ -35,7 +35,7 @@ export default function Vaccination() {
         </div>
         <div>
           <label>Vaccination Type:</label>
-          <select
+          <select  className="select1"
             value={vaccinationType}
             onChange={handleVaccinationTypeChange}
           >
@@ -45,7 +45,7 @@ export default function Vaccination() {
             <option value="Type C">Type C</option>
           </select>
         </div>
-        <button onClick={checkVaccinationStatus}>
+        <button onClick={checkVaccinationStatus} className="button1">
           Check Vaccination Status
         </button>
         <div>

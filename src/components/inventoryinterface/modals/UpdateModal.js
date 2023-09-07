@@ -76,7 +76,7 @@ function UpdateModal(props) {
           <table className={"ADDTable"}>
             <tbody>
               <tr>
-                <th>Drug_ID</th>
+                <th>NDC Number</th>
                 <th className={"inputfield"}>
                   <input
                     type={"text"}
@@ -113,7 +113,7 @@ function UpdateModal(props) {
                     defaultValue={category}
                     className={"inputt"}
                     onChange={(e) => setCat(e.target.value)}
-                    style={{ height: "30px " }}
+                    style={{height:'30px '}}
                   >
                     <option value={""}>Select Category</option>
                     <option value={"Liquid"}>Liquid</option>

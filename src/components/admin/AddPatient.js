@@ -66,12 +66,11 @@ function AddPatient(props) {
       axios
         .post(url, fdata)
         .then((response) => {
+          console.log(response.data);
           if (response.data.message === "Patient Added Successfully") {
-            // Show success message
             toast.success(response.data.message);
             resetForm();
           } else {
-            // Show error message
             toast.error("Patient Already Added");
           }
         })
@@ -147,7 +146,7 @@ function AddPatient(props) {
                           <input
                             className="form-check-input"
                             type="radio"
-                            name="gender"
+                            name="Gender"
                             value="Male"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Male"}
@@ -159,7 +158,7 @@ function AddPatient(props) {
                           <input
                             className="form-check-input"
                             type="radio"
-                            name="gender"
+                            name="Gender"
                             value="Female"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Female"}
@@ -171,7 +170,7 @@ function AddPatient(props) {
                           <input
                             className="form-check-input"
                             type="radio"
-                            name="gender"
+                            name="Gender"
                             value="Other"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Other"}

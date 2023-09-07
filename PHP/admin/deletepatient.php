@@ -1,53 +1,36 @@
+
 <?php
-// Replace these credentials with your actual database connection details
-// Allow cross-origin requests
-header("Access-Control-Allow-Origin: http://localhost:3000"); // Replace with the URL of your React application
-
-// Allow specific HTTP methods (in this case, only DELETE)
+header("Access-Control-Allow-Origin: http://localhost:3000"); 
 header("Access-Control-Allow-Methods: DELETE");
-
-// Allow the following headers to be sent with the request
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-// Set the response content type to JSON
 header("Content-Type: application/json");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
 
+require_once "../classes/Patient.php";
+
+use classes\Patient;
+
+if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Check if Drug_ID is provided in the query parameters
     if (!isset($_GET['Patient_ID'])) {
-        throw new Exception('Drug_ID is not provided in the request.');
+        throw new Exception('Patient_ID is not provided in the request.');
     }
-
-    // Get the Drug_ID from the query parameters
-    $drugId = $_GET['Patient_ID'];
-
-    // Prepare the SQL statement to delete the drug record
-    $stmt = $conn->prepare("DELETE FROM patient WHERE Patient_ID = :Patient_ID");
-    $stmt->bindParam(':Patient_ID', $drugId);
-    
-    // Execute the SQL statement
+    $patientid = $_GET['Patient_ID']; 
+    $patient=new Patient($patientid, null, null, null, null,null,null,null,null);
+    $res = $patient->deletePatient();
     $stmt->execute();
-
-    // Check if any rows were affected (i.e., if the drug was deleted successfully)
     $rowCount = $stmt->rowCount();
     if ($rowCount > 0) {
-        // Drug deleted successfully
-        echo json_encode(array('message' => 'Drug deleted successfully'));
+        echo json_encode(array('message' => 'Patient deleted successfully'));
     } else {
-        // Drug with the provided Drug_ID was not found
-        echo json_encode(array('error' => 'Drug not found'));
+        echo json_encode(array('error' => 'Patient not found'));
     }
 } catch (PDOException $e) {
-    // Handle database connection and query errors
     echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
 } catch (Exception $e) {
-    // Handle other errors
     echo json_encode(array('error' => $e->getMessage()));
+}
+} else {
+    $response = array("message" => "Invalid request method.");
+    echo json_encode($response);
+  
 }
