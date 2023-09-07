@@ -14,6 +14,7 @@ function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm3, setSearchTerm] = useState("");
   const [searchTerm4, setSearchTerm2] = useState("");
+  const [selectedBloodGroup, setSelectedBloodGroup] = useState("");
   const [patientList, setPatientList] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -26,6 +27,10 @@ function PatientList(props) {
 
   const handleChange4 = (event) => {
     setSearchTerm2(event.target.value);
+  };
+
+  const handleBloodGroupChange = (event) => {
+    setSelectedBloodGroup(event.target.value);
   };
 
   const handleSearchSubmit = (event) => {
@@ -66,14 +71,15 @@ function PatientList(props) {
   }, []);
 
   useEffect(() => {
-    // Filter the patient list based on both ID and Name filters
+    // Filter the patient list based on ID, Name, and Blood Group filters
     const filteredList = patientList.filter(
       (patient) =>
         patient.Patient_ID.includes(searchTerm3) &&
-        patient.PatientName.toLowerCase().includes(searchTerm4.toLowerCase())
+        patient.PatientName.toLowerCase().includes(searchTerm4.toLowerCase()) &&
+        (selectedBloodGroup === "" || patient.BloodGroup === selectedBloodGroup)
     );
     setFilteredPatientList(filteredList);
-  }, [searchTerm3, searchTerm4, patientList]);
+  }, [searchTerm3, searchTerm4, selectedBloodGroup, patientList]);
 
   const fetchData = async () => {
     try {
@@ -124,18 +130,12 @@ function PatientList(props) {
       <h3 className="serhett">Patient List</h3>
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
-          <div
-            className={"SearchSection"}
-            style={{ display: "flex", flexDirection: "row" }}
-          >
+          <div className={"SearchSection"} style={{ display: "flex", flexDirection: "row" }}>
             <div>
               <h3 className={"content-heading"}>Filter the Results : </h3>
             </div>
             <div className={"SearchSection2"}>
-              <form
-                onSubmit={handleSearchSubmit}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              <form onSubmit={handleSearchSubmit} style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -147,10 +147,7 @@ function PatientList(props) {
                   Filter
                 </button>
               </form>
-              <form
-                onSubmit={handleSearchSubmit2}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              <form onSubmit={handleSearchSubmit2} style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -162,14 +159,27 @@ function PatientList(props) {
                   Filter
                 </button>
               </form>
+              <select
+                className={"SearchBox1"}
+                value={selectedBloodGroup}
+                onChange={handleBloodGroupChange}
+                style={{width:'250px'}}
+              >
+                <option value="">Choose Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
             </div>
           </div>
           <div className={"table-container"}>
             <table className={"table table-hover table-striped "}>
-              <thead
-                className={"top-0 position-sticky h-45"}
-                style={{ zIndex: 100 }}
-              >
+              <thead className={"top-0 position-sticky h-45"} style={{ zIndex: 100 }}>
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">Patient_ID</th>
