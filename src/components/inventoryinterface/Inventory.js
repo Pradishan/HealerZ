@@ -7,48 +7,47 @@ import "react-toastify/dist/ReactToastify.css";
 import "./inventory.css";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import CustomConfirmModal from "./modals/CustomConfirmModal"; // Import the custom confirm modal
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import CustomConfirmModal from "./modals/CustomConfirmModal";
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
-  const [searchTerm3, setSearchTerm] = useState("");
-  const [searchTerm4, setSearchTerm2] = useState("");
+  const [searchTerm3, setSearchTerm3] = useState("");
+  const [searchTerm4, setSearchTerm4] = useState("");
   const [drugList, setDrugList] = useState([]);
+  const [filteredDrugList, setFilteredDrugList] = useState([]);
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedDrugToDelete, setSelectedDrugToDelete] = useState(null);
 
   const handleChange3 = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm3(event.target.value);
   };
 
   const handleChange4 = (event) => {
-    setSearchTerm2(event.target.value);
+    setSearchTerm4(event.target.value);
   };
 
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
+  const handleSearchByDrugID = () => {
     const searchedDrug = drugList.find((drug) => drug.Drug_ID === searchTerm3);
     if (searchedDrug) {
       setSelectedDrug(searchedDrug);
       setShowModal(true);
-      setSearchTerm("");
+      setSearchTerm3("");
     } else {
       toast.error("Invalid Drug ID");
     }
   };
 
-  const handleSearchSubmit2 = (event) => {
-    event.preventDefault();
-    const searchedDrug = drugList.find((drug) => drug.Drug_Name === searchTerm4);
-    if (searchedDrug) {
-      setSelectedDrug(searchedDrug);
+  const handleSearchByDrugName = () => {
+    const searchedDrug1 = drugList.find((drug) => drug.Drug_Name === searchTerm4);
+    if (searchedDrug1) {
+      setSelectedDrug(searchedDrug1);
       setShowModal(true);
-      setSearchTerm2("");
+      setSearchTerm4("");
     } else {
       toast.error("Invalid Drug Name");
-    }
+    } 
   };
 
   const openModal = (drug) => {
@@ -59,6 +58,14 @@ function Inventory(props) {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const filteredData = drugList.filter((drug) =>
+      drug.Drug_ID.includes(searchTerm3) &&
+      drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase())
+    );
+    setFilteredDrugList(filteredData);
+  }, [searchTerm3,searchTerm4, drugList]);
 
   const fetchData = async () => {
     try {
@@ -104,10 +111,7 @@ function Inventory(props) {
               <h3 className={"content-heading"}>Filter the Results : </h3>
             </div>
             <div className={"SearchSection2"}>
-              <form
-                onSubmit={handleSearchSubmit}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              <div style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -115,14 +119,15 @@ function Inventory(props) {
                   value={searchTerm3}
                   onChange={handleChange3}
                 />
-                <button type="submit" className="filterbutt">
+                <button
+                  type="button"
+                  className="filterbutt"
+                  onClick={handleSearchByDrugID}
+                >
                   Filter
                 </button>
-              </form>
-              <form
-                onSubmit={handleSearchSubmit2}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
+              </div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
                   type="text"
@@ -130,10 +135,14 @@ function Inventory(props) {
                   value={searchTerm4}
                   onChange={handleChange4}
                 />
-                <button type="submit" className="filterbutt">
+                <button
+                  type="button"
+                  className="filterbutt"
+                  onClick={handleSearchByDrugName}
+                >
                   Filter
                 </button>
-              </form>
+              </div>
             </div>
           </div>
           <div className={"table-container w-100 p-0"}>
@@ -141,7 +150,10 @@ function Inventory(props) {
               className={"table table-hover table-striped "}
               style={{ minWidth: "0px" }}
             >
-              <thead className={"top-0 position-sticky h-45"} style={{zIndex:100}}>
+              <thead
+                className={"top-0 position-sticky h-45"}
+                style={{ zIndex: 100 }}
+              >
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">NDC No</th>
@@ -153,35 +165,41 @@ function Inventory(props) {
                 </tr>
               </thead>
               <tbody className="h-50">
-                {drugList.map((data, index) => (
-                  <tr key={index}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{data.Drug_ID}</td>
-                    <td>{data.Drug_Name}</td>
-                    <td>{data.Category}</td>
-                    <td>{data.Drug_dosage}</td>
-                    <td>{data.StockCount}</td>
-                    <td>
-                       <IconButton
-                        aria-label="delete"
-                        className="viewbutt"
-                        onClick={() => openModal(data)}
-                        style={{color:'green'}}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
+                {filteredDrugList.length > 0 ? (
+                  filteredDrugList.map((data, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{data.Drug_ID}</td>
+                      <td>{data.Drug_Name}</td>
+                      <td>{data.Category}</td>
+                      <td>{data.Drug_dosage}</td>
+                      <td>{data.StockCount}</td>
+                      <td>
+                        <IconButton
+                          aria-label="delete"
+                          className="viewbutt"
+                          onClick={() => openModal(data)}
+                          style={{ color: "green" }}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
 
-                      <IconButton
-                        aria-label="delete"
-                        className="viewbutt"
-                        onClick={() => handleDelete(data)}
-                        style={{color:'red'}}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </td>
+                        <IconButton
+                          aria-label="delete"
+                          className="viewbutt"
+                          onClick={() => handleDelete(data)}
+                          style={{ color: "red" }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="7">No results found</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
