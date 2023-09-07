@@ -12,7 +12,7 @@
 }
 
 .card1 {
-    height: 144px !important;
+    height: 150px !important;
     width: 300px !important;
     border-radius: 29px;
     /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
@@ -63,7 +63,7 @@
 }
 
 .card3 {
-    height: 250px !important;
+    height: 280px !important;
     width: 510px;
     border-radius: 29px;
     /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
@@ -90,6 +90,7 @@
 }
 
 .percentagebarr {
+    margin-top: 15px !important;
     margin-left: 150px;
     height: 150px;
     width: 150px;
@@ -111,10 +112,15 @@
     margin-bottom: 10px;
 }
 
+.tabconttt{
+    margin-top: -50px;
+}
+
 .SearchSection2 {
-    padding-left: 100px;
+    padding-left: 10px;
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
 .content-heading {
@@ -313,7 +319,7 @@
 }
 
 .doughnutindicator {
-    margin-top: 5px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
 }

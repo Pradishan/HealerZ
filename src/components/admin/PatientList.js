@@ -18,7 +18,7 @@ function PatientList(props) {
   const [patientList, setPatientList] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [setPatientToDelete,setSelectedPatientToDelete] = useState(null);
+  const [setPatientToDelete, setSelectedPatientToDelete] = useState(null);
   const [filteredPatientList, setFilteredPatientList] = useState([]);
 
   const handleChange3 = (event) => {
@@ -95,7 +95,6 @@ function PatientList(props) {
   const handleDelete = (patient) => {
     setConfirmModalVisible(true);
     setSelectedPatientToDelete(patient);
-   
   };
 
   const handleConfirmDelete = async () => {
@@ -119,30 +118,42 @@ function PatientList(props) {
       <h3 className="serhett">Patient List</h3>
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
-          <div className={"SearchSection"} style={{ display: "flex", flexDirection: "row" }}>
-            <div>
+          <hr/>
+          <div
+            className={"SearchSection"}
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            {/* <div>
               <h3 className={"content-heading"}>Filter the Results : </h3>
-            </div>
-            <div className={"SearchSection2"}>
-              <form onSubmit={handleSearchSubmit} style={{ display: "flex", flexDirection: "row" }}>
+            </div> */}
+            <div className="SearchSection2">
+              <form
+                onSubmit={handleSearchSubmit}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
                 <input
                   className={"SearchBox1"}
                   type="text"
                   placeholder="PATIENT_ID"
                   value={searchTerm3}
                   onChange={handleChange3}
+                  style={{ width: "250px" }}
                 />
                 <button type="submit" className="filterbutt">
                   Filter
                 </button>
               </form>
-              <form onSubmit={handleSearchSubmit2} style={{ display: "flex", flexDirection: "row" }}>
+              <form
+                onSubmit={handleSearchSubmit2}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
                 <input
                   className={"SearchBox1"}
                   type="text"
                   placeholder="PATIENT_Name"
                   value={searchTerm4}
                   onChange={handleChange4}
+                  style={{ width: "250px" }}
                 />
                 <button type="submit" className="filterbutt">
                   Filter
@@ -152,7 +163,7 @@ function PatientList(props) {
                 className={"SearchBox1"}
                 value={selectedBloodGroup}
                 onChange={handleBloodGroupChange}
-                style={{width:'250px'}}
+                style={{ width: "300px" }}
               >
                 <option value="">Choose Blood Group</option>
                 <option value="A+">A+</option>
@@ -166,9 +177,13 @@ function PatientList(props) {
               </select>
             </div>
           </div>
+          <hr/>
           <div className={"table-container"}>
             <table className={"table table-hover table-striped "}>
-              <thead className={"top-0 position-sticky h-45"} style={{ zIndex: 100 }}>
+              <thead
+                className={"top-0 position-sticky h-45"}
+                style={{ zIndex: 100 }}
+              >
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">Patient_ID</th>
@@ -213,7 +228,7 @@ function PatientList(props) {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="7">No results found</td>
+                    <td colSpan="8">No results found</td>
                   </tr>
                 )}
               </tbody>

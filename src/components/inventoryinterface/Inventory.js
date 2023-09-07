@@ -107,23 +107,26 @@ function Inventory(props) {
 
   return (
     <Layout>
-      <div className={"container"}>
-        <div className={"p-5"}>
+      <h3 className='serhedd'>Drug Detail</h3>
+      <div className="container tabconttt">
+        <div className="p-5">
+        <hr/>
           <div
-            className={"SearchSection"}
+            className="SearchSection"
             style={{ display: "flex", flexDirection: "row" }}
           >
-            <div>
+            {/* <div>
               <h3 className="content-heading">Filter the Results : </h3>
-            </div>
+            </div> */}
             <div className="SearchSection2">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <input
-                  className={"SearchBox1"}
+                  className="SearchBox1"
                   type="text"
                   placeholder="NDC Number"
                   value={searchTerm3}
                   onChange={handleChange3}
+                  style={{width:'250px'}}
                 />
                 <button
                   type="button"
@@ -140,6 +143,7 @@ function Inventory(props) {
                   placeholder="DRUG_Name"
                   value={searchTerm4}
                   onChange={handleChange4}
+                  style={{width:'250px'}}
                 />
                 <button
                   type="button"
@@ -154,7 +158,7 @@ function Inventory(props) {
                   className="SearchBox1" 
                   value={selectedCategory}
                   onChange={handleCategoryChange}
-                  style={{width:'250px'}}
+                  style={{width:'300px'}}
                 >
                   <option value={''}>Select Category</option>
                   <option value={'Liquid'}>Liquid</option>
@@ -169,6 +173,7 @@ function Inventory(props) {
               </div>
             </div>
           </div>
+          <hr/>
           <div className={"table-container w-100 p-0"}>
             <table
               className={"table table-hover table-striped "}

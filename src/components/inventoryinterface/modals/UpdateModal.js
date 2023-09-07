@@ -30,11 +30,16 @@ function UpdateModal(props) {
 
   
   const handleUpdate = () => {
-    if (JSON.stringify(newData) === JSON.stringify(item)) {
+    if (
+      newData.Drug_ID === item.Drug_ID &&
+      newData.Drug_Name === item.Drug_Name &&
+      newData.Category === item.Category &&
+      newData.Drug_dosage === item.Drug_dosage &&
+      newData.Descriptions === item.Descriptions
+    ) {
+      // No changes, display the toast message
       toast.info("No data to update!");
-      return;
-    }
-  
+    } else {
     axios
       .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
@@ -46,6 +51,7 @@ function UpdateModal(props) {
         toast.error("Failed to update drug!");
         console.error(error);
       });
+    }
   };
 
   const handleDelete = () => {
@@ -76,7 +82,7 @@ function UpdateModal(props) {
   };
 
   return (
-    <Modal show={show} onHide={onHide}>
+    <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title className="modaltitleee">Drug UPDATE</Modal.Title>
       </Modal.Header>
@@ -86,7 +92,7 @@ function UpdateModal(props) {
           <table className={"ADDTable"}>
             <tbody>
               <tr>
-                <th>NDC Number</th>
+                <th>NDC Code</th>
                 <th className={"inputfield"}>
                   <input
                     type={"text"}

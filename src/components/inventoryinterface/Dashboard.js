@@ -82,7 +82,7 @@ function Dashboard(props) {
                                <div className="percentagebarr">
                                    <DoughnutChart/>
                                </div>
-                               <div className={"doughnutindicator"}>
+                               <div className="doughnutindicator">
                                    <div className={"doughnutindicator1"}>
                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                                            <circle cx="10" cy="10.5" r="10" fill="#CE0000"/>
