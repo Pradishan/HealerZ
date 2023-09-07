@@ -14,6 +14,7 @@ function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm3, setSearchTerm3] = useState("");
   const [searchTerm4, setSearchTerm4] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(""); // New state for selected category
   const [drugList, setDrugList] = useState([]);
   const [filteredDrugList, setFilteredDrugList] = useState([]);
   const [selectedDrug, setSelectedDrug] = useState(null);
@@ -26,6 +27,10 @@ function Inventory(props) {
 
   const handleChange4 = (event) => {
     setSearchTerm4(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
 
   const handleSearchByDrugID = () => {
@@ -62,10 +67,11 @@ function Inventory(props) {
   useEffect(() => {
     const filteredData = drugList.filter((drug) =>
       drug.Drug_ID.includes(searchTerm3) &&
-      drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase())
+      drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase()) &&
+      drug.Category.toLowerCase().includes(selectedCategory.toLowerCase())
     );
     setFilteredDrugList(filteredData);
-  }, [searchTerm3,searchTerm4, drugList]);
+  }, [searchTerm3, searchTerm4, selectedCategory, drugList]);
 
   const fetchData = async () => {
     try {
@@ -108,9 +114,9 @@ function Inventory(props) {
             style={{ display: "flex", flexDirection: "row" }}
           >
             <div>
-              <h3 className={"content-heading"}>Filter the Results : </h3>
+              <h3 className="content-heading">Filter the Results : </h3>
             </div>
-            <div className={"SearchSection2"}>
+            <div className="SearchSection2">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <input
                   className={"SearchBox1"}
@@ -142,6 +148,24 @@ function Inventory(props) {
                 >
                   Filter
                 </button>
+              </div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <select
+                  className="SearchBox1" 
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                  style={{width:'250px'}}
+                >
+                  <option value={''}>Select Category</option>
+                  <option value={'Liquid'}>Liquid</option>
+                  <option value={'Tablet'}>Tablet</option>
+                  <option value={'Capsules'}>Capsules</option>
+                  <option value={'Topical'}>Topical</option>
+                  <option value={'Suppositories'}>Suppositories</option>
+                  <option value={'Drops'}>Drops</option>
+                  <option value={'Injections'}>Injections</option>
+                  <option value={'Implants'}>Implants</option>
+                </select>
               </div>
             </div>
           </div>

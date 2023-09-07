@@ -112,7 +112,7 @@
 }
 
 .SearchSection2 {
-    padding-left: 240px;
+    padding-left: 100px;
     display: flex;
     flex-direction: row;
 }
@@ -200,7 +200,7 @@
 
 .SearchBox1 {
     border-radius: 5px;
-    background: #ebe8e8;
+    background: #ffffff;
     border-color: rgb(0, 0, 24);
     height: 35px;
 }
@@ -250,8 +250,8 @@
 }
 
 .Managebutt {
-    margin-top: 50px;
-    margin-left: 150px !important;
+    margin: 50px auto;
+    margin-left: 200px !important;
 }
 
 .Managebutt1 {
@@ -450,16 +450,16 @@
 }
 
 .serhedd {
-    text-transform: uppercase;
-    font-family: sans-serif;
-    margin: 50px auto;
-    margin-top: 40px;
-    color: #000536;
-    text-align: center;
-    font-size: 35px;
-    font-weight: 700;
-    max-width: 600px;
-    position: relative;
+    text-transform: uppercase !important;
+    font-family: sans-serif !important;
+    margin: 50px auto !important;
+    margin-top: 40px !important;
+    color: #000536 !important;
+    text-align: center !important;
+    font-size: 35px !important;
+    font-weight: 700 !important;
+    max-width: 600px !important;
+    position: relative !important;
 }
 
 .serhedd:before {

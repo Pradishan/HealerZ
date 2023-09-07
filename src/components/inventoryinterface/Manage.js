@@ -66,8 +66,7 @@ function Manage(props) {
             <AddModal show={showModal} onHide={addModal} />
             <SearchModal show={showModal2} onHide={searchModal}/>
             <SearchIDUpdate show={showModal3} onHide={searchModal2}/>
-
-
+          
         </Layout>
     );
 }
