@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import CustomConfirmModal from '../modals/CustomConfirmModal';
 
 function UpdateModal(props) {
   const { show, onHide, inputs } = props;
@@ -15,6 +16,8 @@ function UpdateModal(props) {
   const [dosage, setDos] = useState(item.Drug_dosage);
   const [description, setDes] = useState(item.Descriptions);
 
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   useEffect(() => {
     setNewData({
       Drug_ID: drug_id,
@@ -25,6 +28,7 @@ function UpdateModal(props) {
     });
   }, [drug_id, drug_name, category, dosage, description]);
 
+  
   const handleUpdate = () => {
     if (JSON.stringify(newData) === JSON.stringify(item)) {
       toast.info("No data to update!");
@@ -45,6 +49,11 @@ function UpdateModal(props) {
   };
 
   const handleDelete = () => {
+    // Show the confirmation modal
+    setShowConfirmModal(true);
+  };
+
+  const handleDeleteConfirmed = () => {
     const drugIdToDelete = newData.Drug_ID || item.Drug_ID;
 
     if (!drugIdToDelete) {
@@ -63,6 +72,7 @@ function UpdateModal(props) {
         toast.error("Failed to delete drug!");
         console.error(error);
       });
+      setShowConfirmModal(false);
   };
 
   return (
@@ -180,6 +190,11 @@ function UpdateModal(props) {
           Delete
         </Button>
         <ToastContainer />
+        <CustomConfirmModal
+          show={showConfirmModal}
+          onHide={() => setShowConfirmModal(false)}
+          onConfirm={handleDeleteConfirmed}
+        />
       </Modal.Footer>
     </Modal>
   );

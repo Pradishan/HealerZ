@@ -1,47 +1,47 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: http://localhost:3000"); 
 header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-require_once "../classes/Drug.php";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Healerz";
 
-use classes\Drug;
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-if ($_SERVER["REQUEST_METHOD"] === "PUT") {
-    parse_str(file_get_contents("php://input"), $_PUT);
-   
-    if (
-        isset($_PUT['Drug_ID']) &&
-        isset($_PUT['Drug_Name']) &&
-        isset($_PUT['Category']) &&
-        isset($_PUT['Drug_dosage']) &&
-        isset($_PUT['Descriptions'])
-    ) {
-        $Drug_ID = $_PUT['Drug_ID'];
-        $Drug_Name = $_PUT['Drug_Name'];
-        $Category = $_PUT['Category'];
-        $Drug_dosage =$_PUT['Drug_dosage'];
-        $Descriptions = $_PUT['Descriptions'];
-     
-        $drug = new Drug($Drug_ID, $Drug_Name, $Category, $Drug_dosage, $Descriptions);
-        
-        $result = $drug->updateDrug();
-
-        if ($result) {
-            http_response_code(200);
-            echo json_encode(array("message" => "Drug updated successfully."));
-        } else {
-            http_response_code(500);
-            echo json_encode(array("message" => "Failed to update drug."));
-        }
-    } else {
-        http_response_code(400);
-        echo json_encode(array("message" => "Incomplete data. Please provide all required fields."));
+    
+    if ($_SERVER["REQUEST_METHOD"] !== "PUT") {
+        throw new Exception("Invalid request method. Only PUT requests are allowed.");
     }
-} else {
-    $response = array("message" => "Invalid request method.");
-    echo json_encode($response);
+
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!isset($data['Drug_ID'])) {
+        throw new Exception('Drug_ID is not provided in the request.');
+    }
+
+    $stmt = $conn->prepare("UPDATE drug SET Drug_Name = :Drug_Name, Category = :Category, Drug_dosage = :Drug_dosage, Descriptions = :Descriptions WHERE Drug_ID = :Drug_ID");
+    $stmt->bindValue(':Drug_Name', $data['Drug_Name']);
+    $stmt->bindValue(':Category', $data['Category']);
+    $stmt->bindValue(':Drug_dosage', $data['Drug_dosage']);
+    $stmt->bindValue(':Descriptions', $data['Descriptions']);
+    $stmt->bindValue(':Drug_ID', $data['Drug_ID']);
+
+    $stmt->execute();
+    $rowCount = $stmt->rowCount();
+    if ($rowCount > 0) {
+        echo json_encode(array('message' => 'Drug updated successfully'));
+    } else {
+        echo json_encode(array('error' => 'Drug not found'));
+    }
+} catch (PDOException $e) {
+    echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
+} catch (Exception $e) {
+    echo json_encode(array('error' => $e->getMessage()));
 }
+

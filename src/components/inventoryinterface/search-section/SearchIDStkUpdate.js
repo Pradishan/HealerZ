@@ -72,6 +72,8 @@ function SearchIDstkUpdate(props) {
                             />
                             <label htmlFor="floatingInput" className="flotingtexxtt">Search by National Drug Code(NDC) Number</label>
                             </div>
+                            <hr/>
+                            <button type="submit" className="searchbuttt">Search</button>
                             
                         </form>
                     </div>
@@ -79,9 +81,6 @@ function SearchIDstkUpdate(props) {
                 {showModal && <StockUpdateModal show={showModal} onHide={UpdateModal2} inputs={inputs} />}
                 <ToastContainer/>
             </Modal.Body>
-            <ModalFooter>
-               <button type="submit" className="searchbuttt">Search</button>
-            </ModalFooter>
         </Modal>
        
     );

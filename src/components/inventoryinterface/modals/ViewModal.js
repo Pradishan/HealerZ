@@ -43,11 +43,11 @@ function ViewModal(props) {
                 </table>
                 <hr />
                 <div>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    {/* <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <p style={{ marginRight: '70px' }} className={'detailhed'}>StockIn :<span className={'detaildet'}>300</span></p>
                         <p style={{ marginRight: '60px' }} className={'detailhed'}>StockOut :<span className={'detaildet'}>400</span></p>
                         <p className={'detailhed'}>Expired :<span className={'detaildet'}>25</span></p>
-                    </div>
+                    </div> */}
                     <div style={{ marginLeft: '150px' }} className={'detailhed'}>Stock_Count :<span className={'detaildet'}>{drugDetails && drugDetails.StockCount}</span></div>
                 </div>
                 <hr />

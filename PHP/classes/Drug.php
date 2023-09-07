@@ -130,6 +130,17 @@ class Drug
             return false;
         }
     }
+
+    public function displayDrug(){
+        try {
+            $dbcon =new DBconnector();
+            $conn=$dbcon->getConnection();
+            $query="SELECT drug.*, druginventory.StockCount FROM drug LEFT JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID";
+            $stmt=$conn->prepare($query);
+        } catch (PDOException) {
+            return false;
+        }
+    }
     
 
 }
