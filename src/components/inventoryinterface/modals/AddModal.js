@@ -65,7 +65,7 @@ function AddModal(props) {
     const { show, onHide } = props;
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Drug ADD</Modal.Title>
             </Modal.Header>
@@ -74,7 +74,7 @@ function AddModal(props) {
                 <form>
                     <table className={"ADDTable"}>
                         <tr>
-                            <th>NDC Number</th>
+                            <th>NDC Code</th>
                             <th className={"inputfield"}>
                                 <input
                                     type={"text"}

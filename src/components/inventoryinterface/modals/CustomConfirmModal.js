@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Button, ModalHeader } from "react-bootstrap"; // You can use any modal library you prefer
+import { Modal, Button} from "react-bootstrap"; // You can use any modal library you prefer
 
 const CustomConfirmModal = ({ show, onHide, onConfirm }) => {
   return (
