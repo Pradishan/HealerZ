@@ -301,6 +301,7 @@
 }
 
 .viewbutt {
+    margin-top: -7px !important;
     color: #000000;
     height: 40px;
     width: 40px;
@@ -308,7 +309,7 @@
 
 .viewbutt:hover {
     transform: scale(1.1);
-    transition: 200ms ease-in-out;
+    /* transition: 50ms ease-in-out; */
     cursor: pointer;
 }
 

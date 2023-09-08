@@ -10,8 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
 import SearchIcon from "@mui/icons-material/Search";
-import EditIcon from "@mui/icons-material/Edit";
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import StockUpdateModal from "./modals/StockUpdateModal2";
 
 function Inventory(props) {
@@ -241,7 +240,7 @@ function Inventory(props) {
                           onClick={() => handleEdit(data)}
                           style={{ color: "green" }}
                         >
-                          <BrowserUpdatedIcon />
+                          <LocalGroceryStoreIcon/>
                         </IconButton>
 
                         <IconButton
