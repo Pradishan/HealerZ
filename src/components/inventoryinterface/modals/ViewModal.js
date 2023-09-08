@@ -6,7 +6,7 @@ function ViewModal(props) {
     const { show, onHide, drugDetails } = props;
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Drug Detail</Modal.Title>
             </Modal.Header>
