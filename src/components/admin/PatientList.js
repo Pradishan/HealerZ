@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import FeatherIcon from "feather-icons-react";
 import ViewModal from "./ViewPatientModal";
 import AdminLayout from "../../layouts/AdminLayout";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,6 +8,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +18,7 @@ function PatientList(props) {
   const [patientList, setPatientList] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [patientToDelete, setPatientToDelete] = useState(null);
+  const [setPatientToDelete, setSelectedPatientToDelete] = useState(null);
   const [filteredPatientList, setFilteredPatientList] = useState([]);
 
   const handleChange3 = (event) => {
@@ -37,7 +37,7 @@ function PatientList(props) {
     event.preventDefault();
     const searchedPatient = patientList.find(
       (patient) => patient.Patient_ID === searchTerm3
-    ); // Search for the patient by ID
+    );
     if (searchedPatient) {
       setSelectedPatient(searchedPatient);
       setShowModal(true);
@@ -51,7 +51,7 @@ function PatientList(props) {
     event.preventDefault();
     const searchedPatient = patientList.find(
       (patient) => patient.PatientName === searchTerm4
-    ); // Search for the patient by Name
+    );
     if (searchedPatient) {
       setSelectedPatient(searchedPatient);
       setShowModal(true);
@@ -93,35 +93,23 @@ function PatientList(props) {
   };
 
   const handleDelete = (patient) => {
-    setPatientToDelete(patient);
     setConfirmModalVisible(true);
+    setSelectedPatientToDelete(patient);
   };
 
   const handleConfirmDelete = async () => {
+    setConfirmModalVisible(false);
+    const patientToDelete = setPatientToDelete;
+    setSelectedPatientToDelete(null);
     try {
-      if (patientToDelete) {
-        const response = await axios.delete(
-          `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
-        );
-
-        if (response.status === 200) {
-          toast.success("Patient deleted successfully");
-          // Update the patient list by filtering out the deleted patient
-          setPatientList((prevList) =>
-            prevList.filter(
-              (patient) => patient.Patient_ID !== patientToDelete.Patient_ID
-            )
-          );
-        } else {
-          toast.error("Error deleting patient");
-        }
-      }
+      await axios.delete(
+        `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
+      );
+      toast.success("Patient deleted successfully");
+      fetchData();
     } catch (error) {
-      console.error("Error deleting patient:", error);
-      toast.error("Error deleting patient");
-    } finally {
-      setPatientToDelete(null);
-      setConfirmModalVisible(false);
+      console.error("Error deleting Patient:", error);
+      toast.error("Error deleting Patient");
     }
   };
 
@@ -130,40 +118,56 @@ function PatientList(props) {
       <h3 className="serhett">Patient List</h3>
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
-          <div className={"SearchSection"} style={{ display: "flex", flexDirection: "row" }}>
-            <div>
+          <hr />
+          <div
+            className={"SearchSection"}
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            {/* <div>
               <h3 className={"content-heading"}>Filter the Results : </h3>
-            </div>
-            <div className={"SearchSection2"}>
-              <form onSubmit={handleSearchSubmit} style={{ display: "flex", flexDirection: "row" }}>
-                <input
-                  className={"SearchBox1"}
-                  type="text"
-                  placeholder="PATIENT_ID"
-                  value={searchTerm3}
-                  onChange={handleChange3}
-                />
-                <button type="submit" className="filterbutt">
-                  Filter
-                </button>
-              </form>
-              <form onSubmit={handleSearchSubmit2} style={{ display: "flex", flexDirection: "row" }}>
+            </div> */}
+            <div className="SearchSection2">
+              <div className="search-input-container">
+                <form
+                  onSubmit={handleSearchSubmit}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
+                  <input
+                    className={"SearchBox1"}
+                    type="text"
+                    placeholder="PATIENT_ID"
+                    value={searchTerm3}
+                    onChange={handleChange3}
+                    style={{ width: "300px" }}
+                  />
+                  <div className="search-icon" onClick={handleSearchSubmit}>
+                    <SearchIcon />
+                  </div>
+                </form>
+              </div>
+              <div className="search-input-container">
+              <form
+                onSubmit={handleSearchSubmit2}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
                 <input
                   className={"SearchBox1"}
                   type="text"
                   placeholder="PATIENT_Name"
                   value={searchTerm4}
                   onChange={handleChange4}
+                  style={{ width: "300px" }}
                 />
-                <button type="submit" className="filterbutt">
-                  Filter
-                </button>
+                 <div className="search-icon" onClick={handleSearchSubmit2}>
+                    <SearchIcon />
+                  </div>
               </form>
+              </div>
               <select
                 className={"SearchBox1"}
                 value={selectedBloodGroup}
                 onChange={handleBloodGroupChange}
-                style={{width:'250px'}}
+                style={{ width: "300px" }}
               >
                 <option value="">Choose Blood Group</option>
                 <option value="A+">A+</option>
@@ -177,9 +181,13 @@ function PatientList(props) {
               </select>
             </div>
           </div>
+          <hr />
           <div className={"table-container"}>
             <table className={"table table-hover table-striped "}>
-              <thead className={"top-0 position-sticky h-45"} style={{ zIndex: 100 }}>
+              <thead
+                className={"top-0 position-sticky h-45"}
+                style={{ zIndex: 100 }}
+              >
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">Patient_ID</th>
@@ -224,7 +232,7 @@ function PatientList(props) {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="7">No results found</td>
+                    <td colSpan="8">No results found</td>
                   </tr>
                 )}
               </tbody>

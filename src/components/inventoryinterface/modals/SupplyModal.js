@@ -18,7 +18,7 @@ function SupplyPopup(props) {
     const notify = () => toast("Drug Supply Successfully!");
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} size="lg">
+        <Modal show={show} onHide={onHide} size="lg" centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
             </Modal.Header>
