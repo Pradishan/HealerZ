@@ -140,7 +140,7 @@ function Supply(props) {
                     onChange={handleChange3}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={handleSubmit3}>
+                  <div className="search-icon" onClick={supplymodal}>
                     <SearchIcon />
                   </div>
                 </form>
@@ -152,10 +152,10 @@ function Supply(props) {
                     type="text"
                     placeholder="Patient_ID"
                     value={searchTerm4}
-                    onChange={handleChange3}
+                    onChange={handleChange4}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={handleSubmit4}>
+                  <div className="search-icon" onClick={supplymodal}>
                     <SearchIcon />
                   </div>
                 </form>
