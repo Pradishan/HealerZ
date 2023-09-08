@@ -101,6 +101,7 @@ function UpdateModal(props) {
                     placeholder={"DRUGXXXXXX"}
                     className={"inputt"}
                     onChange={(e) => setID(e.target.value)}
+                    readOnly
                   />
                   <br />
                 </th>

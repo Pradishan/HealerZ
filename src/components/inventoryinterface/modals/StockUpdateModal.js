@@ -48,7 +48,7 @@ function StockUpdateModal(props) {
     };
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Stock UPDATE</Modal.Title>
             </Modal.Header>

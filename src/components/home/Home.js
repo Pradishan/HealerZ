@@ -29,14 +29,16 @@ export default function Home() {
       </div>
       <div className='slider p-3'>
         <Carousel />
+        <br/><br/>
+        <h1 className='serhed'>Healerz</h1>
       </div>
 
 
       <div className='services' id='services'>
-        <h1 className='serhed'>Healerz</h1>
+      
 
-        <div className="container text-center mt-2">
-
+        <div className="container text-center mt-2" >
+         <br/> <br/> <br/> <br/>
           <h1 className='serhed'>OUR SERVICES</h1>
           <div className="container text-center mt-2 contgap1">
             <div className="row  cardcontainer1">
@@ -73,6 +75,7 @@ export default function Home() {
             <img src={logo} alt="HealerZ" height='200px' style={{ marginTop: '180px' }} />
           </div>
           <div class="col">
+            <br/>
             <h2 className='serhed'> ABOUT US</h2>
             <p> The mission is to create a user-friendly University medical system that connects individuals with care,
               streamlines medical requests, enhances communication, and fosters community.

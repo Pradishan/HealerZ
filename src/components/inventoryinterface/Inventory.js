@@ -134,7 +134,7 @@ function Inventory(props) {
                   <input
                     className="SearchBox1"
                     type="text"
-                    placeholder="NDC Number"
+                    placeholder="Filter by NDC Number"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
@@ -151,7 +151,7 @@ function Inventory(props) {
                   <input
                     className={"SearchBox1"}
                     type="text"
-                    placeholder="DRUG_Name"
+                    placeholder="Filter by DRUG_Name"
                     value={searchTerm4}
                     onChange={handleChange4}
                     style={{ width: "300px" }}
@@ -169,7 +169,7 @@ function Inventory(props) {
                   onChange={handleCategoryChange}
                   style={{width:'300px'}}
                 >
-                  <option value={''}>Select Category</option>
+                  <option value={''}>Filter by Category</option>
                   <option value={'Liquid'}>Liquid</option>
                   <option value={'Tablet'}>Tablet</option>
                   <option value={'Capsules'}>Capsules</option>
