@@ -517,6 +517,10 @@
     cursor: pointer;
 }
 
+.search-icon:hover{
+    color: #05004b;
+}
+
 .SearchBox1:hover {
     border-color: #007bff;
 }
