@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -6,45 +6,37 @@ import "react-toastify/dist/ReactToastify.css";
 import "../inventory.css";
 
 function StockUpdateModal(props) {
-  const { show, onHide } = props;
-  const items = props.inputs;
-  
+  const { show, onHide, inputs } = props;
 
-  const [Stock_IN, setStockIN] = useState(""); // Updated state variable name
-  // const [ExpiredDate, setDate] = useState("");
+  const [Stock_IN, setStockIN] = useState("");
   const [Drug_ID, setID] = useState("");
-
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
 
   const addStockCount = (value) => {
-    console.log(items);
-        setID(items[0].Drug_ID);
-      setStockIN(parseInt(items[0].StockCount)+parseInt(value));
-   
+    if (inputs && inputs.Drug_ID) {
+      setID(inputs.Drug_ID);
+      setStockIN(parseInt(inputs.StockCount) + parseInt(value));
+    }
   };
 
   const handleAdd = () => {
-    console.log(items);
     if (Drug_ID === "") {
       toast.warning("Please select a drug.");
     } else if (Stock_IN === "") {
       toast.warning("Please enter the Stock Count.");
-    }
-    //  else if (ExpiredDate === "") {
-    //   toast.warning("Please enter the Expired Date.");
-    // }
-     else {
+    } else {
       const url = "http://localhost/HealerZ/PHP/Inventory/stockupdate.php";
       let fdata = new FormData();
       fdata.append("Drug_ID", Drug_ID);
-      fdata.append("StockCount", Stock_IN); // Use the updated Stock_IN value
-      // fdata.append("ExpiredDate", ExpiredDate);
+      fdata.append("StockCount", Stock_IN);
 
       axios
         .post(url, fdata)
         .then((response) => {
           toast.success("Stock Updated Successfully.!");
           onHide();
+          setUpdateTrigger(!updateTrigger); 
         })
         .catch((error) => {
           toast.error(error.message);
@@ -61,25 +53,27 @@ function StockUpdateModal(props) {
         <hr />
         <table>
           <tbody>
-           
-                <tr>
-                  <th className={'detailhed'}>Drug_ID</th>
-                  <th className={'detailspac'}>:</th>
-                  <th className={"detaildet"} name={"Drug_ID"}>
-                    {items[0].Drug_ID}
-                  </th>
-                </tr>
-                <tr>
-                  <th className={'detailhed'}>Drug_Name</th>
-                  <th className={'detailspac'}>:</th>
-                  <th className={"detaildet"}>{items[0].Drug_Name}</th>
-                </tr>
-                <tr> 
-                  <th className='detailhed'>Available Count</th>
-                  <th className={'detailspac'}>:</th>
-                  <th className={"detaildet"}>{items[0].StockCount}</th>
-                </tr>
-            
+            <tr>
+              <th className={'detailhed'}>Drug_ID</th>
+              <th className={'detailspac'}>:</th>
+              <th className={"detaildet"} name={"Drug_ID"}>
+                {inputs && inputs.Drug_ID}
+              </th>
+            </tr>
+            <tr>
+              <th className={'detailhed'}>Drug_Name</th>
+              <th className={'detailspac'}>:</th>
+              <th className={"detaildet"}>
+                {inputs && inputs.Drug_Name}
+              </th>
+            </tr>
+            <tr>
+              <th className='detailhed'>Available Count</th>
+              <th className={'detailspac'}>:</th>
+              <th className={"detaildet"}>
+                {inputs && inputs.StockCount}
+              </th>
+            </tr>
           </tbody>
         </table>
         <hr />
@@ -98,17 +92,6 @@ function StockUpdateModal(props) {
                     />
                   </td>
                 </tr>
-                {/* <tr>
-                  <th>Expired_Date</th>
-                  <td className={"inputfield"}>
-                    <input
-                      type={"date"}
-                      name={"ExpiredDate"}
-                      className={"inputt"}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </form>
