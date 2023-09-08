@@ -83,6 +83,11 @@ class Drug
             $res = $stmt->execute();
             
             if ($res) {
+                $query = "INSERT INTO druginventory (Drug_ID) VALUES (:Drug_ID)";
+           
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(':Drug_ID', $this->Drug_ID);
+            $res = $stmt->execute();
                 return true;
             } else {
                 return false;

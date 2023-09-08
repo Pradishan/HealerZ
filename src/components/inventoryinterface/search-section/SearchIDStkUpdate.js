@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function SearchIDstkUpdate(props) {
     const [showModal, setShowModal] = useState(false);
     const [Drug_ID, setSearchTerm] = useState('');
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState([]);
 
     const handleChange2 = (event) => {
         setSearchTerm(event.target.value);
@@ -19,6 +19,7 @@ function SearchIDstkUpdate(props) {
     const handleSubmit2 = (event) => {
         event.preventDefault();
         getUser();
+        console.log(inputs);
     };
 
     function getUser() {
