@@ -3,6 +3,8 @@ import MedModal from './utilites/MedModal';
 import axios from 'axios';
 import DOP from './algorithms/DOB';
 import AgeCalculator from './algorithms/AgeCalculator';
+import select from '../../assets/icons8-select.gif';
+import user from '../../assets/icons8-user.gif';
 
 export default function Usercard ( props )
 {
@@ -19,8 +21,9 @@ export default function Usercard ( props )
     const [ detail, setDetail ] = useState( null ); // Initialize detail as null initially
     const [ loading, setLoading ] = useState( true ); // Added loading state
 
-    const toggleModal = () => {
-        setShowModal(!showModal);
+    const toggleModal = () =>
+    {
+        setShowModal( !showModal );
     };
 
     useEffect( () =>
@@ -55,9 +58,15 @@ export default function Usercard ( props )
                 { loading ? (
                     <h1>Loading...</h1>
                 ) : !selectedId ? (
-                    <h3>Selected an Id</h3>
+                    <div className='d-flex justify-content-center align-items-center my-5 py-5'>
+                        <img src={ select } height="50px" alt="select" />
+                        <span className='ms-2'> Select a patientID</span>
+                    </div>
                 ) : !detail ? (
-                    <h3>No data available</h3>
+                    <div className='d-flex justify-content-center align-items-center my-5 py-5'>
+                    <img src={ user } height="50px" alt="select" />
+                    <span className='ms-2'> Patient not found </span>
+                </div>
                 ) : (
                     <div className='m-3'>
                         <div className='d-flex align-items-center justify-content-center mb-2'>
