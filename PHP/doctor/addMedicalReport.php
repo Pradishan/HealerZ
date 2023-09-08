@@ -1,8 +1,7 @@
 <?php
-// login.php
 
-require '../classes/DBconnector.php';
-use \classes\DBconnector;
+require '../classes/Medicalrecord.php';
+use \classes\Medicalrecord;
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");
@@ -22,12 +21,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
 
     try {
-
-        $dbcon = new DBconnector();
-        $conn = $dbcon->getConnection();
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        //front-end sends data as JSON
+   //front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
 
         $patient_ID = $data['patient_ID'];
@@ -40,25 +34,10 @@ if ($method === "POST") {
         $prescription_ID = $data['prescription_ID'];
 
 
-
-
-        // Prepare and execute the SQL INSERT query
-        $stmt = $conn->prepare("INSERT INTO medicalrecord (Patient_ID,Doctor_ID,DateandTime,Patientcomplaint,OnExamination,Tests,Confirmeddiagnosis,Prescription_ID) VALUES ( :Patient_ID, :Doctor_ID, :DateandTime, :Patientcomplaint, :OnExamination, :Tests, :Confirmeddiagnosis, :Prescription_ID)");
-
-        $stmt->bindParam(':Patient_ID', $patient_ID);
-        $stmt->bindParam(':Doctor_ID', $doctor_ID);
-        $stmt->bindParam(':DateandTime', $dateandTime);
-        $stmt->bindParam(':Patientcomplaint', $patientcomplaint);
-        $stmt->bindParam(':OnExamination', $onExamination);
-        $stmt->bindParam(':Tests', $tests);
-        $stmt->bindParam(':Confirmeddiagnosis', $confirmeddiagnosis);
-        $stmt->bindParam(':Prescription_ID', $prescription_ID);
-
-        $stmt->execute();
-
-        // Return a success response to the front-end
+        $record = new Medicalrecord($patient_ID,$doctor_ID,$dateandTime,$patientcomplaint,$onExamination,$tests,$confirmeddiagnosis,$prescription_ID);
+    if ($record->addMedicalrecord()) {
         echo json_encode(['success' => true, 'message' => 'Data added successfully']);
-
+    }
     } catch (PDOException $e) {
         // Return an error response if something goes wrong
         echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e]);
