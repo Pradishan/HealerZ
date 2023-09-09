@@ -22,7 +22,7 @@ function Dashboard(props) {
   const [highCount, sethighCount] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost/Healerz/PHP/Inventory/totalCount.php")
+    fetch("http://localhost/Healerz/PHP/Inventory/dashboard/totalCount.php")
       .then((response) => response.json())
       .then((data) => {
         setPercentage(data.percentage);
@@ -36,7 +36,7 @@ function Dashboard(props) {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/lowStockCount.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/lowStockCount.php"
         );
         const data = await response.json();
         setlowCount(data.LowStockCount);
@@ -51,7 +51,7 @@ function Dashboard(props) {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/outofStock.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/outofStock.php"
         );
         const data = await response.json();
         setoutofCount(data.OutOfStockCount);
@@ -66,7 +66,7 @@ function Dashboard(props) {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/highStock.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/highStock.php"
         );
         const data = await response.json();
         sethighCount(data.HighStockCount);

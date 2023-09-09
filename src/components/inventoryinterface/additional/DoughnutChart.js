@@ -15,7 +15,7 @@ const DoughnutChart = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/lowStockCount.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/lowStockCount.php"
         );
         const data = await response.json();
         setlowCount(data.LowStockCount);
@@ -30,7 +30,7 @@ const DoughnutChart = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/outofStock.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/outofStock.php"
         );
         const data = await response.json();
         setoutofCount(data.OutOfStockCount);
@@ -45,7 +45,7 @@ const DoughnutChart = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost/Healerz/PHP/Inventory/highStock.php"
+          "http://localhost/Healerz/PHP/Inventory/dashboard/highStock.php"
         );
         const data = await response.json();
         sethighCount(data.HighStockCount);
