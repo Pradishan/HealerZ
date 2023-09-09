@@ -11,10 +11,9 @@ import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 
 import { IconButton } from "@mui/material";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
-import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors';
-import CloudIcon from '@mui/icons-material/Cloud';
-import CloudDoneIcon from '@mui/icons-material/CloudDone';
-import ReportIcon from '@mui/icons-material/Report';
+import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
+import CloudDoneIcon from "@mui/icons-material/CloudDone";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 function Dashboard(props) {
   const [percentage, setPercentage] = useState(0);
@@ -113,7 +112,7 @@ function Dashboard(props) {
                 </Card.Title>
                 <div
                   className="card2"
-                  style={{ display: "flex", flexDirection: "row" }} 
+                  style={{ display: "flex", flexDirection: "row" }}
                 >
                   <IconButton
                     className="indicatorimage"
@@ -162,45 +161,35 @@ function Dashboard(props) {
                   <DoughnutChart />
                 </div>
                 <div className="doughnutindicator">
-                  <div className={"doughnutindicator1"}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="21"
-                      viewBox="0 0 20 21"
-                      fill="none"
+                  <div className="doughnutindicator1">
+                    <IconButton
+                      className="dotticoon"
+                      aria-label="add"
+                      style={{ color: "rgb(219, 4, 4)" }}
                     >
-                      <circle cx="10" cy="10.5" r="10" fill="#CE0000" />
-                    </svg>
+                      <FiberManualRecordIcon />
+                    </IconButton>
                     <p>Out Of Stocks Products </p>
                   </div>
                   <div className={"doughnutindicator1"}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
+                    <IconButton
+                      className="dotticoon"
+                      aria-label="add"
+                      style={{ color: "rgb(247, 210, 0)" }}
                     >
-                      <path
-                        d="M19.5 10C19.5 15.2467 15.2467 19.5 10 19.5C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5C15.2467 0.5 19.5 4.75329 19.5 10Z"
-                        fill="#FCC400"
-                        stroke="black"
-                      />
-                    </svg>
+                      <FiberManualRecordIcon />
+                    </IconButton>
                     <p>Products on low stock</p>
                   </div>
                   <div className={"doughnutindicator1"}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="21"
-                      viewBox="0 0 20 21"
-                      fill="none"
+                    <IconButton
+                      className="dotticoon"
+                      aria-label="add"
+                      style={{ color: "rgb(3, 163, 6)" }}
                     >
-                      <circle cx="10" cy="10.5" r="10" fill="#0300A0" />
-                    </svg>
-                    <p>Expired Products </p>
+                      <FiberManualRecordIcon />
+                    </IconButton>
+                    <p>Sufficient Stock </p>
                   </div>
                 </div>
               </Card.Body>
@@ -210,7 +199,7 @@ function Dashboard(props) {
             <Card className="card3">
               <Card.Body>
                 <Card.Title className="CardTitle">Stock Percentage</Card.Title>
-                <div className="percentagebarr">
+                <div className="percentagebarrtt">
                   <ChangingProgressProvider values={[0, percentage]}>
                     {(percentage) => (
                       <CircularProgressbar

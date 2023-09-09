@@ -61,8 +61,8 @@
 }
 
 .card3 {
-    height: 280px !important;
-    width: 510px;
+    height: 300px !important;
+    width: 550px;
     border-radius: 29px;
     /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
     background-color: white;
@@ -89,7 +89,14 @@
 
 .percentagebarr {
     margin-top: 15px !important;
-    margin-left: 150px;
+    margin-left: 180px;
+    height: 150px;
+    width: 150px;
+}
+
+.percentagebarrtt {
+    margin-top: 25px !important;
+    margin-left: 180px;
     height: 150px;
     width: 150px;
 }
@@ -318,16 +325,20 @@
 }
 
 .doughnutindicator p {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 800;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 2px;
+    margin-bottom: 20px;
 }
 
 .doughnutindicator1 {
     margin-right: 25px;
     display: flex;
     flex-direction: row;
+}
+.dotticoon{
+    margin-top: -20px !important;
 }
 
 .inputfield {
