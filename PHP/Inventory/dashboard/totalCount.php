@@ -12,16 +12,27 @@ if ($conn->connect_error) {
 }
 
 $query = "SELECT SUM(StockCount) as total FROM `druginventory`";
+$query1 = "SELECT COUNT(StockCount) as countt FROM `druginventory`";
 $result = $conn->query($query);
+$result1 = $conn->query($query1);
 $data = array();
+$data1 = array();
+
+if (!$result || !$result1) { 
+    die("Query failed: " . $conn->error);
+}
 
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
+while ($row = $result1->fetch_assoc()) {
+    $data1[] = $row;
+}
 
-if (!empty($data)) {
+if (!empty($data) && !empty($data1)) {
     $totalStockCount = $data[0]['total'];
-    $percentage = ($totalStockCount / 10000) * 100;
+    $totalCount = $data1[0]['countt'];
+    $percentage = ($totalStockCount / ($totalCount * 1000)) * 100;
 } else {
     $percentage = 0;
 }
