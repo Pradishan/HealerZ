@@ -135,7 +135,7 @@ function PatientList(props) {
                   <input
                     className={"SearchBox1"}
                     type="text"
-                    placeholder="PATIENT_ID"
+                    placeholder="Entroll_No"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
@@ -190,7 +190,7 @@ function PatientList(props) {
               >
                 <tr>
                   <th scope="col">NO</th>
-                  <th scope="col">Patient_ID</th>
+                  <th scope="col">Entroll_No</th>
                   <th scope="col">PatientName</th>
                   <th scope="col">Gender</th>
                   <th scope="col">DateOfBirth</th>
