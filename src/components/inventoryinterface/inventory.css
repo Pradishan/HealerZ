@@ -42,6 +42,10 @@
     left: 20%; 
 }
 
+.indicatorimage:hover{
+    transform: scale(1.1);
+}
+
 .card2 h4 {
     color: #000000;
     text-align: center;
@@ -501,6 +505,13 @@
     color: #000425 !important;
 }
 
+.modaltitleee1 {
+    font-size: 30px !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+}
+
+
 
 
 .search-input-container{
@@ -533,4 +544,8 @@
 
 .SearchBox1:hover {
     border-color: #007bff;
+}
+
+.connforrrp{
+    font-weight: 600;
 }

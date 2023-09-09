@@ -157,9 +157,9 @@ function AddModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green'}}>Add</Button>
+                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green',width:'100px'}}>Add</Button>
                 <ToastContainer />
-                <Button variant="secondary uptbut"  style={{backgroundColor:'blue' ,color:'white'}} onClick={resetForm}>Reset</Button>
+                <Button variant="secondary uptbut"   onClick={resetForm}>Reset</Button>
             </Modal.Footer>
         </Modal>
     );
