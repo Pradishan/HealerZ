@@ -1,140 +1,240 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Layout from "../../layouts/layout";
-import Card from 'react-bootstrap/Card';
-import {Col, Container, Row} from "react-bootstrap";
-import './inventory.css';
-import DoughnutChart from './additional/DoughnutChart';
-import {
-    CircularProgressbar,
-    buildStyles
-} from "react-circular-progressbar";
+import Card from "react-bootstrap/Card";
+import { Col, Container, Row } from "react-bootstrap";
+import "./inventory.css";
+import DoughnutChart from "./additional/DoughnutChart";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
 
 import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 
-
+import { IconButton } from "@mui/material";
+import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors';
+import CloudIcon from '@mui/icons-material/Cloud';
+import CloudDoneIcon from '@mui/icons-material/CloudDone';
+import ReportIcon from '@mui/icons-material/Report';
 
 function Dashboard(props) {
-    return (
-       <Layout>
-           
-           <Container className="StockIndicator">
-               <Row>
-                   <Col>
-                       <Card className="card1">
+  const [percentage, setPercentage] = useState(0);
+  const [lowCount, setlowCount] = useState(0);
+  const [outofCount, setoutofCount] = useState(0);
+  const [highCount, sethighCount] = useState(0);
 
-                           <Card.Body>
-                               <Card.Title className="CardTitle">Out Of Stocks Products</Card.Title>
-                               <div className='card2' style={{ display:'flex',flexDirection:'row'}}>
-                                   <svg className="indicatorimage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 118 116" fill="none">
-                                       <path d="M96.3949 74.7295L71.8737 27.7809C68.5786 21.4641 64.0192 18 59 18C53.9808 18 49.4214 21.4641 46.1263 27.7809L21.6051 74.7295C18.5016 80.7203 18.1568 86.4666 20.6472 90.9903C23.1377 95.514 28.0419 98 34.4787 98H83.5213C89.9581 98 94.8624 95.514 97.3528 90.9903C99.8432 86.4666 99.4984 80.6796 96.3949 74.7295ZM56.1264 46.5278C56.1264 44.8569 57.4291 43.4712 59 43.4712C60.5709 43.4712 61.8736 44.8569 61.8736 46.5278V66.9047C61.8736 68.5757 60.5709 69.9613 59 69.9613C57.4291 69.9613 56.1264 68.5757 56.1264 66.9047V46.5278ZM61.7203 82.0245L61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.2261 83.0025 59.9962 83.0841 59.728 83.1248C59.4981 83.1656 59.2299 83.2063 59 83.2063C58.7701 83.2063 58.5019 83.1656 58.2337 83.1248C57.9936 83.0804 57.7611 82.998 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135L56.2797 82.0245C55.59 81.2501 55.1686 80.1905 55.1686 79.1309C55.1686 78.0713 55.59 77.0117 56.2797 76.2374L56.8544 75.7483C57.0843 75.5853 57.3142 75.4631 57.544 75.3816C57.7739 75.2593 58.0038 75.1778 58.2337 75.137C58.7318 75.0148 59.2682 75.0148 59.728 75.137C59.9962 75.1778 60.2261 75.2593 60.456 75.3816C60.6858 75.4631 60.9157 75.5853 61.1456 75.7483L61.7203 76.2374C62.41 77.0117 62.8314 78.0713 62.8314 79.1309C62.8314 80.1905 62.41 81.2501 61.7203 82.0245Z" fill="#CE0000"/>
-                                       <path d="M61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.3841 82.9185 60.3122 82.9527 60.2392 82.983C60.2152 82.993 60.191 83.0025 60.1666 83.0116C60.0284 83.0633 59.8847 83.101 59.728 83.1248C59.7031 83.1292 59.6778 83.1336 59.6521 83.138C59.4405 83.1739 59.205 83.2063 59 83.2063C58.849 83.2063 58.6814 83.1887 58.5081 83.1651C58.4177 83.1528 58.3257 83.1388 58.2337 83.1248M61.1456 82.5135L61.2774 82.4014L61.4209 82.2792L60.8649 81.6259L59.5881 80.1254L59.429 79.9836L59.4218 79.9772L59.2227 79.7999L59.219 79.7966L59.2231 79.8024L59.4613 80.1384L59.5063 80.2018L61.1456 82.5135ZM61.1456 82.5135L59.7405 80.8622L59.5979 80.6947L59.3067 80.3525L59.3064 80.3522L59.218 80.2482L59.1192 80.1322L59.0674 80.0712L59 79.9921L58.9882 80.006L58.9507 80.05L58.7607 80.2732L58.6588 80.8246L58.2337 83.1248M58.2337 83.1248L58.5538 81.0182L58.6261 80.5424L58.6467 80.4073L58.2954 80.82L58.181 80.9545L56.8544 82.5135M58.2337 83.1248C58.0717 83.0949 57.9132 83.0476 57.7605 82.9839C57.7247 82.9689 57.6892 82.953 57.654 82.9363C57.617 82.9186 57.5803 82.8999 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135M56.8544 82.5135L58.2971 80.518L58.5161 80.2151L58.7184 79.9352L58.733 79.8394L58.6147 79.9448L58.4118 80.1255L58.3968 80.1431L57.135 81.6259L56.5791 82.2792L56.7226 82.4013L56.8544 82.5135ZM104.375 70.5674L104.372 70.5629L79.8533 23.6186C79.8531 23.6182 79.8529 23.6178 79.8527 23.6175C79.8522 23.6164 79.8516 23.6154 79.8511 23.6143C75.7419 15.7391 68.7109 9 59 9C49.2891 9 42.2581 15.7391 38.1489 23.6143C38.1485 23.6152 38.148 23.6161 38.1476 23.6169C38.1473 23.6175 38.147 23.618 38.1467 23.6186L13.6276 70.5629L13.6207 70.5763L13.6137 70.5897C9.60724 78.3236 8.38491 87.3783 12.763 95.3308C17.2465 103.475 25.7113 107 34.4787 107H83.5213C92.2887 107 100.753 103.475 105.237 95.3308C109.611 87.3852 108.401 78.286 104.375 70.5674ZM62.1441 81.4606L60.3725 79.8827L59.7328 79.1309L59.9053 78.9282C60.9093 78.8543 61.863 78.6582 62.7582 78.3583C62.8063 78.613 62.8314 78.872 62.8314 79.1309C62.8314 79.9517 62.5786 80.7724 62.1441 81.4606ZM55.2418 78.3583C56.137 78.6582 57.0906 78.8543 58.0947 78.9282L58.2672 79.1309L57.6274 79.8828L55.8559 81.4606C55.4214 80.7724 55.1686 79.9517 55.1686 79.1309C55.1686 78.872 55.1937 78.613 55.2418 78.3583Z" stroke="#F49AA5" stroke-opacity="0.3" stroke-width="18"/>
-                                   </svg>
-                                   <h4>35</h4>
-                               </div>
+  useEffect(() => {
+    fetch("http://localhost/Healerz/PHP/Inventory/totalCount.php")
+      .then((response) => response.json())
+      .then((data) => {
+        setPercentage(data.percentage);
+      })
+      .catch((error) => {
+        console.error("Error fetching percentage:", error);
+      });
+  }, []);
 
-                           </Card.Body>
-                       </Card>
-                   </Col>
-                   <Col>
-                       <Card className="card1">
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "http://localhost/Healerz/PHP/Inventory/lowStockCount.php"
+        );
+        const data = await response.json();
+        setlowCount(data.LowStockCount);
+      } catch (error) {
+        console.error("Error fetching data from the server:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
-                           <Card.Body>
-                               <Card.Title className="CardTitle"> Products on low Stock</Card.Title>
-                               <div className='card2' style={{ display:'flex',flexDirection:'row'}}>
-                                   <svg className="indicatorimage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 118 116" fill="none">
-                                       <path d="M96.3949 74.7295L71.8737 27.7809C68.5786 21.4641 64.0192 18 59 18C53.9808 18 49.4214 21.4641 46.1263 27.7809L21.6051 74.7295C18.5016 80.7203 18.1568 86.4666 20.6472 90.9903C23.1377 95.514 28.0419 98 34.4787 98H83.5213C89.9581 98 94.8624 95.514 97.3528 90.9903C99.8432 86.4666 99.4984 80.6796 96.3949 74.7295ZM56.1264 46.5278C56.1264 44.8569 57.4291 43.4712 59 43.4712C60.5709 43.4712 61.8736 44.8569 61.8736 46.5278V66.9047C61.8736 68.5757 60.5709 69.9613 59 69.9613C57.4291 69.9613 56.1264 68.5757 56.1264 66.9047V46.5278ZM61.7203 82.0245L61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.2261 83.0025 59.9962 83.0841 59.728 83.1248C59.4981 83.1656 59.2299 83.2063 59 83.2063C58.7701 83.2063 58.5019 83.1656 58.2337 83.1248C57.9936 83.0804 57.7611 82.998 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135L56.2797 82.0245C55.59 81.2501 55.1686 80.1905 55.1686 79.1309C55.1686 78.0713 55.59 77.0117 56.2797 76.2374L56.8544 75.7483C57.0843 75.5853 57.3142 75.4631 57.544 75.3816C57.7739 75.2593 58.0038 75.1778 58.2337 75.137C58.7318 75.0148 59.2682 75.0148 59.728 75.137C59.9962 75.1778 60.2261 75.2593 60.456 75.3816C60.6858 75.4631 60.9157 75.5853 61.1456 75.7483L61.7203 76.2374C62.41 77.0117 62.8314 78.0713 62.8314 79.1309C62.8314 80.1905 62.41 81.2501 61.7203 82.0245Z" fill="#FCC400"/>
-                                       <path d="M61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.3841 82.9185 60.3122 82.9527 60.2392 82.983C60.2152 82.993 60.191 83.0025 60.1666 83.0116C60.0284 83.0633 59.8847 83.101 59.728 83.1248C59.7031 83.1292 59.6778 83.1336 59.6521 83.138C59.4405 83.1739 59.205 83.2063 59 83.2063C58.849 83.2063 58.6814 83.1887 58.5081 83.1651C58.4177 83.1528 58.3257 83.1388 58.2337 83.1248M61.1456 82.5135L61.2774 82.4014L61.4209 82.2792L60.8649 81.6259L59.5881 80.1254L59.429 79.9836L59.4218 79.9772L59.2227 79.7999L59.219 79.7966L59.2231 79.8024L59.4613 80.1384L59.5063 80.2018L61.1456 82.5135ZM61.1456 82.5135L59.7405 80.8622L59.5979 80.6947L59.3067 80.3525L59.3064 80.3522L59.218 80.2482L59.1192 80.1322L59.0674 80.0712L59 79.9921L58.9882 80.006L58.9507 80.05L58.7607 80.2732L58.6588 80.8246L58.2337 83.1248M58.2337 83.1248L58.5538 81.0182L58.6261 80.5424L58.6467 80.4073L58.2954 80.82L58.181 80.9545L56.8544 82.5135M58.2337 83.1248C58.0717 83.0949 57.9132 83.0476 57.7605 82.9839C57.7247 82.9689 57.6892 82.953 57.654 82.9363C57.617 82.9186 57.5803 82.8999 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135M56.8544 82.5135L58.2971 80.518L58.5161 80.2151L58.7184 79.9352L58.733 79.8394L58.6147 79.9448L58.4118 80.1255L58.3968 80.1431L57.135 81.6259L56.5791 82.2792L56.7226 82.4013L56.8544 82.5135ZM104.375 70.5674L104.372 70.5629L79.8533 23.6186C79.8531 23.6182 79.8529 23.6178 79.8527 23.6175C79.8522 23.6164 79.8516 23.6154 79.8511 23.6143C75.7419 15.7391 68.7109 9 59 9C49.2891 9 42.2581 15.7391 38.1489 23.6143C38.1485 23.6152 38.148 23.6161 38.1476 23.6169C38.1473 23.6175 38.147 23.618 38.1467 23.6186L13.6276 70.5629L13.6207 70.5763L13.6137 70.5897C9.60724 78.3236 8.38491 87.3783 12.763 95.3308C17.2465 103.475 25.7113 107 34.4787 107H83.5213C92.2887 107 100.753 103.475 105.237 95.3308C109.611 87.3852 108.401 78.286 104.375 70.5674ZM62.1441 81.4606L60.3725 79.8827L59.7328 79.1309L59.9053 78.9282C60.9093 78.8543 61.863 78.6582 62.7582 78.3583C62.8063 78.613 62.8314 78.872 62.8314 79.1309C62.8314 79.9517 62.5786 80.7724 62.1441 81.4606ZM55.2418 78.3583C56.137 78.6582 57.0906 78.8543 58.0947 78.9282L58.2672 79.1309L57.6274 79.8828L55.8559 81.4606C55.4214 80.7724 55.1686 79.9517 55.1686 79.1309C55.1686 78.872 55.1937 78.613 55.2418 78.3583Z" stroke="#F9E111" stroke-opacity="0.29" stroke-width="18"/>
-                                   </svg>
-                                   <h4>20</h4>
-                               </div>
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "http://localhost/Healerz/PHP/Inventory/outofStock.php"
+        );
+        const data = await response.json();
+        setoutofCount(data.OutOfStockCount);
+      } catch (error) {
+        console.error("Error fetching data from the server:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
-                           </Card.Body>
-                       </Card>
-                   </Col>
-                   <Col>
-                       <Card className="card1">
-                           <Card.Body>
-                               <Card.Title className="CardTitle">Expired Products</Card.Title>
-                               <div className='card2' style={{ display:'flex',flexDirection:'row'}}>
-                                   <svg className="indicatorimage" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 118 116" fill="none">
-                                       <path d="M96.3949 74.7295L71.8737 27.7809C68.5786 21.4641 64.0192 18 59 18C53.9808 18 49.4214 21.4641 46.1263 27.7809L21.6051 74.7295C18.5016 80.7203 18.1568 86.4666 20.6472 90.9903C23.1377 95.514 28.0419 98 34.4787 98H83.5213C89.9581 98 94.8624 95.514 97.3528 90.9903C99.8432 86.4666 99.4984 80.6796 96.3949 74.7295ZM56.1264 46.5278C56.1264 44.8569 57.4291 43.4712 59 43.4712C60.5709 43.4712 61.8736 44.8569 61.8736 46.5278V66.9047C61.8736 68.5757 60.5709 69.9613 59 69.9613C57.4291 69.9613 56.1264 68.5757 56.1264 66.9047V46.5278ZM61.7203 82.0245L61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.2261 83.0025 59.9962 83.0841 59.728 83.1248C59.4981 83.1656 59.2299 83.2063 59 83.2063C58.7701 83.2063 58.5019 83.1656 58.2337 83.1248C57.9936 83.0804 57.7611 82.998 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135L56.2797 82.0245C55.59 81.2501 55.1686 80.1905 55.1686 79.1309C55.1686 78.0713 55.59 77.0117 56.2797 76.2374L56.8544 75.7483C57.0843 75.5853 57.3142 75.4631 57.544 75.3816C57.7739 75.2593 58.0038 75.1778 58.2337 75.137C58.7318 75.0148 59.2682 75.0148 59.728 75.137C59.9962 75.1778 60.2261 75.2593 60.456 75.3816C60.6858 75.4631 60.9157 75.5853 61.1456 75.7483L61.7203 76.2374C62.41 77.0117 62.8314 78.0713 62.8314 79.1309C62.8314 80.1905 62.41 81.2501 61.7203 82.0245Z" fill="#0300A0"/>
-                                       <path d="M61.1456 82.5135C60.9157 82.6765 60.6858 82.7988 60.456 82.8803C60.3841 82.9185 60.3122 82.9527 60.2392 82.983C60.2152 82.993 60.191 83.0025 60.1666 83.0116C60.0284 83.0633 59.8847 83.101 59.728 83.1248C59.7031 83.1292 59.6778 83.1336 59.6521 83.138C59.4405 83.1739 59.205 83.2063 59 83.2063C58.849 83.2063 58.6814 83.1887 58.5081 83.1651C58.4177 83.1528 58.3257 83.1388 58.2337 83.1248M61.1456 82.5135L61.2774 82.4014L61.4209 82.2792L60.8649 81.6259L59.5881 80.1254L59.429 79.9836L59.4218 79.9772L59.2227 79.7999L59.219 79.7966L59.2231 79.8024L59.4613 80.1384L59.5063 80.2018L61.1456 82.5135ZM61.1456 82.5135L59.7405 80.8622L59.5979 80.6947L59.3067 80.3525L59.3064 80.3522L59.218 80.2482L59.1192 80.1322L59.0674 80.0712L59 79.9921L58.9882 80.006L58.9507 80.05L58.7607 80.2732L58.6588 80.8246L58.2337 83.1248M58.2337 83.1248L58.5538 81.0182L58.6261 80.5424L58.6467 80.4073L58.2954 80.82L58.181 80.9545L56.8544 82.5135M58.2337 83.1248C58.0717 83.0949 57.9132 83.0476 57.7605 82.9839C57.7247 82.9689 57.6892 82.953 57.654 82.9363C57.617 82.9186 57.5803 82.8999 57.544 82.8803C57.2998 82.7912 57.0679 82.6679 56.8544 82.5135M56.8544 82.5135L58.2971 80.518L58.5161 80.2151L58.7184 79.9352L58.733 79.8394L58.6147 79.9448L58.4118 80.1255L58.3968 80.1431L57.135 81.6259L56.5791 82.2792L56.7226 82.4013L56.8544 82.5135ZM104.375 70.5674L104.372 70.5629L79.8533 23.6186C79.8531 23.6182 79.8529 23.6178 79.8527 23.6175C79.8522 23.6164 79.8516 23.6154 79.8511 23.6143C75.7419 15.7391 68.7109 9 59 9C49.2891 9 42.2581 15.7391 38.1489 23.6143C38.1485 23.6152 38.148 23.6161 38.1476 23.6169C38.1473 23.6175 38.147 23.618 38.1467 23.6186L13.6276 70.5629L13.6207 70.5763L13.6137 70.5897C9.60724 78.3236 8.38491 87.3783 12.763 95.3308C17.2465 103.475 25.7113 107 34.4787 107H83.5213C92.2887 107 100.753 103.475 105.237 95.3308C109.611 87.3852 108.401 78.286 104.375 70.5674ZM62.1441 81.4606L60.3725 79.8827L59.7328 79.1309L59.9053 78.9282C60.9093 78.8543 61.863 78.6582 62.7582 78.3583C62.8063 78.613 62.8314 78.872 62.8314 79.1309C62.8314 79.9517 62.5786 80.7724 62.1441 81.4606ZM55.2418 78.3583C56.137 78.6582 57.0906 78.8543 58.0947 78.9282L58.2672 79.1309L57.6274 79.8828L55.8559 81.4606C55.4214 80.7724 55.1686 79.9517 55.1686 79.1309C55.1686 78.872 55.1937 78.613 55.2418 78.3583Z" stroke="#7CE0FF" stroke-opacity="0.31" stroke-width="18"/>
-                                   </svg>
-                                   <h4>05</h4>
-                               </div>
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "http://localhost/Healerz/PHP/Inventory/highStock.php"
+        );
+        const data = await response.json();
+        sethighCount(data.HighStockCount);
+      } catch (error) {
+        console.error("Error fetching data from the server:", error);
+      }
+    }
+    fetchData();
+  }, []);
+  return (
+    <Layout>
+      <Container className="StockIndicator">
+        <Row>
+          <Col>
+            <Card className="card1">
+              <Card.Body>
+                <Card.Title className="CardTitle">
+                  Out Of Stocks Products
+                </Card.Title>
+                <div
+                  className="card2"
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
+                  <IconButton
+                    className="indicatorimage"
+                    size="large"
+                    aria-label="add"
+                    style={{ color: "rgb(219, 4, 4)" }}
+                  >
+                    <ProductionQuantityLimitsIcon sx={{ fontSize: "60px" }} />
+                  </IconButton>
+                  <h4 style={{ color: "rgb(219, 4, 4)" }}>{outofCount}</h4>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="card1">
+              <Card.Body>
+                <Card.Title className="CardTitle">
+                  {" "}
+                  Products on low Stock
+                </Card.Title>
+                <div
+                  className="card2"
+                  style={{ display: "flex", flexDirection: "row" }} 
+                >
+                  <IconButton
+                    className="indicatorimage"
+                    size="large"
+                    aria-label="add"
+                    style={{ color: "rgb(247, 210, 0)" }}
+                  >
+                    <RunningWithErrorsIcon sx={{ fontSize: "60px" }} />
+                  </IconButton>
+                  <h4 style={{ color: "rgb(247, 210, 0)" }}>{lowCount}</h4>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="card1">
+              <Card.Body>
+                <Card.Title className="CardTitle">Sufficient Stock</Card.Title>
+                <div
+                  className="card2"
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
+                  <IconButton
+                    className="indicatorimage"
+                    size="large"
+                    aria-label="add"
+                    style={{ color: "rgb(3, 163, 6)" }}
+                  >
+                    <CloudDoneIcon sx={{ fontSize: "60px" }} />
+                  </IconButton>
+                  <h4 style={{ color: "rgb(3, 163, 6)" }}>{highCount}</h4>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
 
-                           </Card.Body>
-                       </Card>
-                   </Col>
-               </Row>
-           </Container>
-
-
-           <Container className="percentageIndicator">
-               <Row>
-                   <Col>
-                       <Card className="card3">
-
-                           <Card.Body>
-                               <Card.Title className="CardTitle">Weighted score</Card.Title>
-                               <div className="percentagebarr">
-                                   <DoughnutChart/>
-                               </div>
-                               <div className="doughnutindicator">
-                                   <div className={"doughnutindicator1"}>
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                           <circle cx="10" cy="10.5" r="10" fill="#CE0000"/>
-                                       </svg>
-                                       <p>Out Of Stocks Products </p>
-                                   </div>
-                                   <div className={"doughnutindicator1"}>
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                           <path d="M19.5 10C19.5 15.2467 15.2467 19.5 10 19.5C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5C15.2467 0.5 19.5 4.75329 19.5 10Z" fill="#FCC400" stroke="black"/>
-                                       </svg>
-                                       <p>Products on low stock</p>
-                                   </div>
-                                   <div className={"doughnutindicator1"}>
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                           <circle cx="10" cy="10.5" r="10" fill="#0300A0"/>
-                                       </svg>
-                                       <p>Expired Products </p>
-                                   </div>
-                               </div>
-
-                           </Card.Body>
-                       </Card>
-                   </Col>
-                   <Col>
-                       <Card className="card3">
-
-                           <Card.Body>
-                               <Card.Title className="CardTitle"> Stock Percentage</Card.Title>
-                               <div className="percentagebarr" >
-                                   <ChangingProgressProvider  values={[0, 77]}>
-                                       {percentage => (
-                                           <CircularProgressbar
-                                               value={percentage}
-                                               text={`${percentage}%`}
-                                               styles={buildStyles({
-                                                   pathTransition:
-                                                       percentage === 0 ? "none" : "stroke-dashoffset 0.5s ease 0s",
-                                                   pathColor:'#007055',
-                                                   textColor:'#026f1f'
-                                               })}
-                                           />
-                                       )}
-                                   </ChangingProgressProvider>
-                               </div>
-                           </Card.Body>
-                       </Card>
-                   </Col>
-
-               </Row>
-           </Container>
-       </Layout>
-    );
+      <Container className="percentageIndicator">
+        <Row>
+          <Col>
+            <Card className="card3">
+              <Card.Body>
+                <Card.Title className="CardTitle">Weighted score</Card.Title>
+                <div className="percentagebarr">
+                  <DoughnutChart />
+                </div>
+                <div className="doughnutindicator">
+                  <div className={"doughnutindicator1"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="21"
+                      viewBox="0 0 20 21"
+                      fill="none"
+                    >
+                      <circle cx="10" cy="10.5" r="10" fill="#CE0000" />
+                    </svg>
+                    <p>Out Of Stocks Products </p>
+                  </div>
+                  <div className={"doughnutindicator1"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M19.5 10C19.5 15.2467 15.2467 19.5 10 19.5C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5C15.2467 0.5 19.5 4.75329 19.5 10Z"
+                        fill="#FCC400"
+                        stroke="black"
+                      />
+                    </svg>
+                    <p>Products on low stock</p>
+                  </div>
+                  <div className={"doughnutindicator1"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="21"
+                      viewBox="0 0 20 21"
+                      fill="none"
+                    >
+                      <circle cx="10" cy="10.5" r="10" fill="#0300A0" />
+                    </svg>
+                    <p>Expired Products </p>
+                  </div>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="card3">
+              <Card.Body>
+                <Card.Title className="CardTitle">Stock Percentage</Card.Title>
+                <div className="percentagebarr">
+                  <ChangingProgressProvider values={[0, percentage]}>
+                    {(percentage) => (
+                      <CircularProgressbar
+                        value={percentage}
+                        text={`${percentage.toFixed(2)}%`}
+                        styles={buildStyles({
+                          pathTransition:
+                            percentage === 0
+                              ? "none"
+                              : "stroke-dashoffset 0.5s ease 0s",
+                          pathColor: "#007055",
+                          textColor: "#026f1f",
+                        })}
+                      />
+                    )}
+                  </ChangingProgressProvider>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
+  );
 }
 
 export default Dashboard;
