@@ -11,6 +11,11 @@ body {
     overflow-x: hidden;
 }
 
+.modal {
+  background-color: rgba(66, 65, 65, 0.5);
+  z-index: 99999;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
