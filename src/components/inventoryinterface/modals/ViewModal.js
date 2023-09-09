@@ -53,7 +53,7 @@ function ViewModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={onHide}>
+                <Button variant="secondary" onClick={onHide}>
                     Close
                 </Button>
             </Modal.Footer>

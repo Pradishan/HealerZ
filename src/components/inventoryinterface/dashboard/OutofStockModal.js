@@ -55,7 +55,7 @@ function OutofStockModal(props) {
                 <hr/>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" style={{backgroundColor:'blue'}}onClick={onHide}>Cancel</Button>
+                <Button variant="secondary" onClick={onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );

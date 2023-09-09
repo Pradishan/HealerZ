@@ -116,9 +116,8 @@ function StockUpdateModal(props) {
           </Button>
           <ToastContainer />
           <Button
-            variant="primary uptbut"
+            variant="secondary uptbut"
             onClick={onHide}
-            style={{ backgroundColor: "blue" }}
           >
             Cancel
           </Button>
