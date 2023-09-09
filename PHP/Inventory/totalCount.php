@@ -21,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
 
 if (!empty($data)) {
     $totalStockCount = $data[0]['total'];
-    $percentage = ($totalStockCount / 30000) * 100;
+    $percentage = ($totalStockCount / 10000) * 100;
 } else {
     $percentage = 0;
 }

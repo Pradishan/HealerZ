@@ -12,7 +12,7 @@
 }
 
 .card1 {
-    height: 150px !important;
+    height: 180px !important;
     width: 300px !important;
     border-radius: 29px;
     /* background: linear-gradient(169deg, #FEFFFF 0%, rgba(158, 158, 158, 0.53) 82.81%, #FFF 100%, #A0A0A0 100%); */
@@ -29,7 +29,7 @@
 }
 
 .card1 .CardTitle {
-    color: #000;
+    color: #00012c;
     text-align: center;
     font-family: Poppins, serif;
     font-size: 20px;
@@ -39,22 +39,20 @@
 }
 
 .indicatorimage {
-    position: absolute;
-    left: 124px;
-    bottom: 38px;
+    left: 20%; 
 }
 
 .card2 h4 {
-    color: #000;
+    color: #000000;
     text-align: center;
     font-family: Poppins, serif;
-    font-size: 30px;
+    font-size: 60px;
     font-style: normal;
     font-weight: 1000 !important;
     line-height: normal;
     position: absolute;
     right: 75px;
-    bottom: 30px;
+    /* bottom: 30px; */
 }
 
 .percentageIndicator {
