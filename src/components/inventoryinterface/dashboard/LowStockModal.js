@@ -3,10 +3,15 @@ import React, {useState,useEffect} from "react";
 import { Modal, Button } from "react-bootstrap";
 import '../inventory.css';
 import axios from "axios";
+import { IconButton } from "@mui/material";
+import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
+
 
 function LowStockModal(props) {
 
     const [lowdrugList, setDrugList] = useState([]);
+    const [percentage, setPercentage] = useState(null);
+  const [percentageVisible, setPercentageVisible] = useState(false);
     const fetchData = async () => {
         try {
           const response = await axios.get(
@@ -21,11 +26,33 @@ function LowStockModal(props) {
       useEffect(() => {
         fetchData();
       }, []);
+
+      useEffect(() => {
+        if (percentageVisible) {
+          fetch("http://localhost/Healerz/PHP/Inventory/dashboard/lowStockpercentage.php")
+            .then((response) => response.json())
+            .then((data) => {
+              setPercentage(data.percentage);
+            })
+            .catch((error) => {
+              console.error("Error fetching percentage:", error);
+            });
+        }
+      }, [percentageVisible]);
+    
+    
+      const togglePercentageVisibility = () => {
+        setPercentageVisible(!percentageVisible);
+      };
+      
+
     const { show, onHide } = props;
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title className="modaltitleee1" style={{ color: "rgb(171, 120, 0)" }}>Low Stock Details</Modal.Title>
+                {percentageVisible && <div className="setttiplace">Average : {percentage.toFixed(2)}%</div>}
+                <IconButton  onClick={togglePercentageVisibility} style={{color:'rgb(171, 120, 0)'}}><RunningWithErrorsIcon sx={{ fontSize: "40px" }}/></IconButton>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
@@ -55,7 +82,7 @@ function LowStockModal(props) {
                 <hr/>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHide}>Cancel</Button>
+                <Button variant="secondary" onClick={onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

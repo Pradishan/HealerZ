@@ -549,3 +549,11 @@
 .connforrrp{
     font-weight: 600;
 }
+
+.setttiplace{
+    font-size: 25px !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+    color: #000425 !important;
+    margin-left: 150px;
+}

@@ -3,6 +3,8 @@ import React, {useState,useEffect} from "react";
 import { Modal, Button } from "react-bootstrap";
 import '../inventory.css';
 import axios from "axios";
+import { IconButton } from "@mui/material";
+import CloudDoneIcon from "@mui/icons-material/CloudDone";
 
 function SufficientModal(props) {
 
@@ -24,8 +26,9 @@ function SufficientModal(props) {
     const { show, onHide } = props;
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title className="modaltitleee1" style={{ color: "rgb(3, 163, 6)" }}>Sufficent Stock Details</Modal.Title>
+                <IconButton style={{color:'rgb(3, 163, 6)'}}><CloudDoneIcon sx={{ fontSize: "40px" }}/></IconButton>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
@@ -55,7 +58,7 @@ function SufficientModal(props) {
                 <hr/>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHide}>Cancel</Button>
+                <Button variant="secondary" onClick={onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

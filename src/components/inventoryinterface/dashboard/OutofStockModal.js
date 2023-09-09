@@ -3,6 +3,9 @@ import React, {useState,useEffect} from "react";
 import { Modal, Button } from "react-bootstrap";
 import '../inventory.css';
 import axios from "axios";
+import { IconButton } from "@mui/material";
+import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+
 
 function OutofStockModal(props) {
 
@@ -24,8 +27,9 @@ function OutofStockModal(props) {
     const { show, onHide } = props;
     return (
         <Modal show={show} onHide={onHide} size="lg" centered>
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title className="modaltitleee1" style={{ color: "rgb(219, 4, 4)" }}>Out of Stock Details</Modal.Title>
+                <IconButton   style={{color:'rgb(219, 4, 4)'}}><ProductionQuantityLimitsIcon sx={{ fontSize: "40px" }}/></IconButton>
             </Modal.Header>
             <Modal.Body>
                 <hr/>
