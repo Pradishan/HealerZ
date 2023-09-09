@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 $query = "SELECT COUNT(Drug_ID) AS LowStockCount
           FROM druginventory
-          WHERE StockCount < 100";
+          WHERE StockCount < 100 && StockCount!=0";
 
 $result = $conn->query($query);
 $lowtotal = array();

@@ -14,12 +14,30 @@ import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantity
 import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import LowStockModal from "./dashboard/LowStockModal";
+import OutofStockModal from "./dashboard/OutofStockModal";
+import SufficentModal from "./dashboard/SufficentModal"
 
 function Dashboard(props) {
   const [percentage, setPercentage] = useState(0);
   const [lowCount, setlowCount] = useState(0);
   const [outofCount, setoutofCount] = useState(0);
   const [highCount, sethighCount] = useState(0);
+
+  const [lowshowModal, setlowShowModal] = useState(false);
+  const [outofshowModal, setoutofShowModal] = useState(false);
+  const [sufficentshowModal, setsufficentShowModal] = useState(false);
+  const lowStockmodal = () => {
+    setlowShowModal(!lowshowModal);
+  };
+
+  const outofStockmodal = () => {
+    setoutofShowModal(!outofshowModal);
+  };
+
+  const sufficentStockmodal = () => {
+    setsufficentShowModal(!sufficentshowModal);
+  };
 
   useEffect(() => {
     fetch("http://localhost/Healerz/PHP/Inventory/dashboard/totalCount.php")
@@ -84,13 +102,14 @@ function Dashboard(props) {
             <Card className="card1">
               <Card.Body>
                 <Card.Title className="CardTitle">
-                  Out Of Stocks Products
+                Products on Out of Stock
                 </Card.Title>
                 <div
                   className="card2"
                   style={{ display: "flex", flexDirection: "row" }}
                 >
                   <IconButton
+                   onClick={outofStockmodal}
                     className="indicatorimage"
                     size="large"
                     aria-label="add"
@@ -104,7 +123,7 @@ function Dashboard(props) {
             </Card>
           </Col>
           <Col>
-            <Card className="card1">
+            <Card className="card1" >
               <Card.Body>
                 <Card.Title className="CardTitle">
                   {" "}
@@ -115,10 +134,12 @@ function Dashboard(props) {
                   style={{ display: "flex", flexDirection: "row" }}
                 >
                   <IconButton
+                    onClick={lowStockmodal}
                     className="indicatorimage"
                     size="large"
                     aria-label="add"
                     style={{ color: "rgb(247, 210, 0)" }}
+                    
                   >
                     <RunningWithErrorsIcon sx={{ fontSize: "60px" }} />
                   </IconButton>
@@ -136,6 +157,7 @@ function Dashboard(props) {
                   style={{ display: "flex", flexDirection: "row" }}
                 >
                   <IconButton
+                   onClick={sufficentStockmodal}
                     className="indicatorimage"
                     size="large"
                     aria-label="add"
@@ -222,6 +244,10 @@ function Dashboard(props) {
           </Col>
         </Row>
       </Container>
+      <LowStockModal show={lowshowModal} onHide={lowStockmodal} />
+      <OutofStockModal show={outofshowModal} onHide={outofStockmodal} />
+      <SufficentModal show={sufficentshowModal} onHide={sufficentStockmodal} />
+      
     </Layout>
   );
 }
