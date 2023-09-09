@@ -6,13 +6,13 @@ const CustomConfirmModal = ({ show, onHide, onConfirm }) => {
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header>
-        <Modal.Title className="modaltitleee">Conformation</Modal.Title>
+        <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to delete</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ background: "white" }}>
-        <p>Are you sure you want to delete this drug?</p>
+        <p className="connforrrp">Are you sure you want to delete this drug?</p>
       </Modal.Body>
       <Modal.Footer>
-      <Button variant="danger" onClick={onConfirm}>
+      <Button variant="danger"  onClick={onConfirm}>
           Confirm
         </Button>
         <Button variant="secondary" onClick={onHide}>
