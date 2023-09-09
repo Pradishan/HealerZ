@@ -109,12 +109,12 @@ function UpdatePatient(props) {
                 <div className={"addboxx"}>
                     <form onSubmit={handleSearch}>
                         <div className={"SearchSection searrrchbox"} style={{ display: 'flex', flexDirection: 'row', marginLeft: '150px' }}>
-                            <div><h3 className={"content-heading serachhett"}>Search Patient_ID:</h3></div>
+                            <div><h3 className={"content-heading serachhett"}>Search by Entroll_No:</h3></div>
                             <div className={"SearchSection3"}>
                                 <input
                                     className="SearchBox4"
                                     type="text"
-                                    placeholder="Patient_ID"
+                                    placeholder="Entroll_No"
                                     value={patient_id}
                                     onChange={(e) => setID(e.target.value)}
                                 />
@@ -131,7 +131,7 @@ function UpdatePatient(props) {
                                 <div style={{ display: "flex", flexDirection: "row" }}>
                                     <div className='cont1'>
                                         <tr>
-                                            <th><label>Patient_ID:</label></th>
+                                            <th><label>Entroll_No:</label></th>
                                             <th className={"addinputt"}> <input type="text" className="form-control1" name={"Patient_ID"} defaultValue={patientData.Patient_ID} onChange={(e) => updateNewData(e, "Patient_ID")} /></th>
                                         </tr>
                                         <tr>
