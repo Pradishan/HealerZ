@@ -1,7 +1,7 @@
 <?php
 
 require '../classes/Medicalrecord.php';
-use \classes\Medicalrecord;
+use classes\Medicalrecord;
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");

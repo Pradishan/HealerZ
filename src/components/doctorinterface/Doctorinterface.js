@@ -47,7 +47,7 @@ export default function Doctorinterface ()
         <div className="col-3 m-3 mt-4">
           <div className="mt-3 me-0">
             <div className='bg-white rounded shadow p-3'>
-              <form className="d-flex justify-content-center" role="search">
+              <form className="d-flex justify-content-center" role="search" onSubmit={(e) => e.preventDefault()}>
                 <div className='input-group-text bg-gray border-0 rounded-pill w-100'>
                   <input className='form-control form-control-lg rounded-pill border-0 bg-gray w-100' list="datalistOptions" id="medDataList" type="search" aria-label="Search" placeholder='Search Paient ID' onChange={ handleOptionSelect } />
                 </div>

@@ -18,7 +18,7 @@ export default function EmailPage ( props )
       {
         const response = await axios.post( 'http://localhost/HealerZ/PHP/doctor/loadMedicalReport.php', { patient_ID: selectedId } );
         setRecords( response.data );
-        console.log( response.data );
+        // console.log( response.data );
       } catch ( error )
       {
         console.error( 'Error fetching data:', error );
@@ -68,10 +68,12 @@ export default function EmailPage ( props )
                 {
                   return <MedicalRecords date={ records.DateandTime } complain={ records.Patientcomplaint } examination={ records.OnExamination } tests={ records.Tests } diagnosis={ records.Confirmeddiagnosis } prescription={ records.Prescription_ID } />;
                 } ) ) : (
-                <div className='d-flex justify-content-center align-items-center m-0 p-1'>
-                  <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
-                  <span className='m-0 p-1'> No Medical records to display.</span>
-                </div>
+                <tr>
+                  <div className='d-flex justify-content-center align-items-center m-0 p-1'>
+                    <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
+                    <span className='m-0 p-1'> No Medical records to display.</span>
+                  </div>
+                </tr>
               )
               }
             </tbody>
