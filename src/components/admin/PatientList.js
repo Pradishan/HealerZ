@@ -71,7 +71,6 @@ function PatientList(props) {
   }, []);
 
   useEffect(() => {
-    // Filter the patient list based on ID, Name, and Blood Group filters
     const filteredList = patientList.filter(
       (patient) =>
         patient.Patient_ID.includes(searchTerm3) &&

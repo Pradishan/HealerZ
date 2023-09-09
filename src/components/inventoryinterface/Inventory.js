@@ -28,7 +28,7 @@ function Inventory(props) {
 
 
   const handleEdit = (drug) => {
-    setSelectedDrug(drug); // Store the selected drug in state (if needed)
+    setSelectedDrug(drug);
     setShowStockUpdateModal(true); 
     fetchData();
   };
@@ -97,6 +97,7 @@ function Inventory(props) {
         "http://localhost/Healerz/PHP/Inventory/displaydrugs.php"
       );
       setDrugList(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
