@@ -42,6 +42,10 @@
     left: 20%; 
 }
 
+.indicatorimage:hover{
+    transform: scale(1.1);
+}
+
 .card2 h4 {
     color: #000000;
     text-align: center;
