@@ -10,10 +10,10 @@ import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 
 import { IconButton } from "@mui/material";
-import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import LowStockModal from "./dashboard/LowStockModal";
 import OutofStockModal from "./dashboard/OutofStockModal";
 import SufficentModal from "./dashboard/SufficentModal"
@@ -115,7 +115,7 @@ function Dashboard(props) {
                     aria-label="add"
                     style={{ color: "rgb(219, 4, 4)" }}
                   >
-                    <ProductionQuantityLimitsIcon sx={{ fontSize: "60px" }} />
+                    <PrivacyTipIcon sx={{ fontSize: "60px" }} />
                   </IconButton>
                   <h4 style={{ color: "rgb(219, 4, 4)" }}>{outofCount}</h4>
                 </div>

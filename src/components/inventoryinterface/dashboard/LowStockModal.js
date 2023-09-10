@@ -59,6 +59,7 @@ function LowStockModal(props) {
         <IconButton
           onClick={togglePercentageVisibility}
           style={{ color: "rgb(171, 120, 0)" }}
+          className="modalbutthover"
         >
           <RunningWithErrorsIcon sx={{ fontSize: "40px" }} />
         </IconButton>
