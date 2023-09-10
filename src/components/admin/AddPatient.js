@@ -14,7 +14,6 @@ function AddPatient(props) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [bg, setBgroup] = useState("");
-  const [pass, setPass] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
@@ -27,7 +26,6 @@ function AddPatient(props) {
     setEmail("");
     setAddress("");
     setBgroup("");
-    setPass("");
   };
   
   const resetGender = () => {
@@ -42,6 +40,17 @@ function AddPatient(props) {
   const validatePhoneNumber = (phone) => {
     const phoneRegex = /^\d{10}$/; 
     return phoneRegex.test(phone);
+  };
+
+  const generatePassword = (length) => {
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
   };
 
   const handleSubmit = () => {
@@ -66,9 +75,10 @@ function AddPatient(props) {
       toast.warning("Please Enter the Address");
     } else if (bg.length === 0) {
       toast.warning("Please Enter the BloodGroup");
-    } else if (pass.length === 0) {
-      toast.warning("Please Enter the Password");
+    
     }else {
+      const generatedPassword = generatePassword(8);
+
       const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
       let fdata = new FormData();
       fdata.append("Patient_ID", patient_id);
@@ -79,7 +89,7 @@ function AddPatient(props) {
       fdata.append("Email", email);
       fdata.append("Address", address);
       fdata.append("BloodGroup", bg);
-      fdata.append("Password", pass);
+      fdata.append("Password", generatedPassword);
       axios
         .post(url, fdata)
         .then((response) => {
@@ -284,23 +294,6 @@ function AddPatient(props) {
                         <option value="O+">O+</option>
                         <option value="O-">O-</option>
                       </select>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th>
-                      {" "}
-                      <label>Password:</label>
-                    </th>
-                    <th className={"addinputt"}>
-                      {" "}
-                      <input
-                        type="password"
-                        className="form-control1"
-                        name={"Password"}
-                        placeholder={"Type here"}
-                        onChange={(e) => setPass(e.target.value)}
-                        value={pass}
-                      />
                     </th>
                   </tr>
                 </div>
