@@ -19,7 +19,7 @@ switch ($method) {
         $sql = "SELECT drug.*, druginventory.StockCount
         FROM drug
         INNER JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID
-        WHERE drug.Drug_ID AND druginventory.StockCount >800 ;"; 
+        WHERE drug.Drug_ID AND druginventory.StockCount > 800 ;"; 
       break;
 }
  
