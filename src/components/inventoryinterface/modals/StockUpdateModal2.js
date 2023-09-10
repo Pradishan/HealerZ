@@ -7,44 +7,48 @@ import "../inventory.css";
 import UpdateConfirmModal from "./UpdateConfirmModal";
 
 function StockUpdateModal(props) {
-  const { show, onHide } = props;
-  const items = props.inputs;
+  const { show, onHide, inputs } = props;
 
   const [Stock_IN, setStockIN] = useState("");
   const [Drug_ID, setID] = useState("");
+  const [updateTrigger, setUpdateTrigger] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  
 
   const addStockCount = (value) => {
-    setID(items[0].Drug_ID);
-    setStockIN(parseInt(items[0].StockCount) + parseInt(value));
+    if (inputs && inputs.Drug_ID) {
+      setID(inputs.Drug_ID);
+      setStockIN(parseInt(inputs.StockCount) + parseInt(value));
+    }
   };
 
-  const handleAdd = () => {
+  const handleAdd = (drug) => {
+    setConfirmModalVisible(true);
+  };
+
+  const handleConfirmDelete = () => {
     if (Drug_ID === "") {
       toast.warning("Please select a drug.");
     } else if (Stock_IN === "") {
       toast.warning("Please enter the Stock Count.");
     } else {
-      setConfirmModalVisible(true);
+      const url = "http://localhost/HealerZ/PHP/Inventory/stockupdate.php";
+      let fdata = new FormData();
+      fdata.append("Drug_ID", Drug_ID);
+      fdata.append("StockCount", Stock_IN);
+
+      axios
+        .post(url, fdata)
+        .then((response) => {
+          toast.success("Stock Updated Successfully.!");
+          onHide();
+          setUpdateTrigger(!updateTrigger);
+          setConfirmModalVisible(false);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     }
-  };
-
-  const handleConfirmUpdate = () => {
-    const url = "http://localhost/HealerZ/PHP/Inventory/stockupdate.php";
-    let fdata = new FormData();
-    fdata.append("Drug_ID", Drug_ID);
-    fdata.append("StockCount", Stock_IN);
-
-    axios
-      .post(url, fdata)
-      .then((response) => {
-        toast.success("Stock Updated Successfully.!");
-        onHide();
-        setConfirmModalVisible(false);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
   };
 
   return (
@@ -61,18 +65,22 @@ function StockUpdateModal(props) {
                 <th className={"detailhed"}>Drug_ID</th>
                 <th className={"detailspac"}>:</th>
                 <th className={"detaildet"} name={"Drug_ID"}>
-                  {items[0].Drug_ID}
+                  {inputs && inputs.Drug_ID}
                 </th>
               </tr>
               <tr>
                 <th className={"detailhed"}>Drug_Name</th>
                 <th className={"detailspac"}>:</th>
-                <th className={"detaildet"}>{items[0].Drug_Name}</th>
+                <th className={"detaildet"}>
+                  {inputs && inputs.Drug_Name}
+                </th>
               </tr>
               <tr>
                 <th className="detailhed">Available Count</th>
                 <th className={"detailspac"}>:</th>
-                <th className={"detaildet"}>{items[0].StockCount}</th>
+                <th className={"detaildet"}>
+                  {inputs && inputs.StockCount}
+                </th>
               </tr>
             </tbody>
           </table>
@@ -101,7 +109,7 @@ function StockUpdateModal(props) {
         <Modal.Footer>
           <Button
             variant="primary uptbut"
-            onClick={handleAdd}
+            onClick={() => handleAdd(inputs)}
             style={{ backgroundColor: "green" }}
           >
             Update
@@ -119,7 +127,7 @@ function StockUpdateModal(props) {
         <UpdateConfirmModal
           show={confirmModalVisible}
           onHide={() => setConfirmModalVisible(false)}
-          onConfirm={handleConfirmUpdate}
+          onConfirm={handleConfirmDelete}
         />
       )}
     </>

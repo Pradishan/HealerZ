@@ -1,23 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Button} from "react-bootstrap";
-import { IconButton } from "@mui/material";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { IconButton } from "@mui/material"; 
+import UpdateIcon from '@mui/icons-material/Update';
 
-const CustomConfirmModal = ({ show, onHide, onConfirm }) => {
+const UpdateDataConformation = ({ show, onHide, onConfirm }) => {
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header>
-        <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to delete !</Modal.Title>
-        <IconButton style={{color:'darkred'}}><DeleteForeverIcon sx={{ fontSize: "40px" }}/></IconButton>
-        
+        <Modal.Title className="modaltitleee1" style={{color:'Green'}}>Conformation to Update Details !</Modal.Title>
+        <IconButton style={{color:'darkgreen'}}><UpdateIcon sx={{ fontSize: "40px" }}/></IconButton>
       </Modal.Header>
       <Modal.Body style={{ background: "white" }}>
-        <p className="connforrrp">Are you sure you want to delete this drug ?</p>
-
+        <p>Are you sure you want to Update this Stock Details ?</p>
       </Modal.Body>
       <Modal.Footer>
-      <Button variant="danger"  onClick={onConfirm}>
+      <Button variant="success" style={{width:'200px'}} onClick={onConfirm}>
           Confirm
         </Button>
         <Button variant="secondary" onClick={onHide}>
@@ -29,10 +27,10 @@ const CustomConfirmModal = ({ show, onHide, onConfirm }) => {
   );
 };
 
-CustomConfirmModal.propTypes = {
+UpdateDataConformation.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
 };
 
-export default CustomConfirmModal;
+export default UpdateDataConformation;

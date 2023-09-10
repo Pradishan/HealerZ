@@ -79,9 +79,9 @@ function Layout({children}) {
                 
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     <div>
-                                                        <h5 className='m-0'>Janarthanan</h5>
+                                                        <h5 className='m-0'>Admin Panel</h5>
                                                         {/* <p className='txt  m-0 text-muted'>emp20345</p> */}
-                                                        <p className='txt m-0 text-muted'>jana@std.uwu.ac.lk</p>
+                                                        <p className='txt m-0 text-muted'>admin@std.uwu.ac.lk</p>
                                                         {/* <p className='txt m-0 text-muted'>0771234567</p> */}
                                                     </div>
                                                 </div>

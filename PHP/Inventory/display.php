@@ -13,7 +13,11 @@ if ($conn->connect_error) {
 
 if (isset($_GET['Drug_ID'])) {
     $drugID = $_GET['Drug_ID'];
-    $query = "SELECT * FROM drug WHERE Drug_ID = '$drugID'";
+    $query = "SELECT drug.*, druginventory.StockCount
+    FROM drug
+    INNER JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID
+    WHERE drug.Drug_ID = '$drugID';
+    ";
     $result = $conn->query($query);
     $data = array();
     while ($row = $result->fetch_assoc()) {

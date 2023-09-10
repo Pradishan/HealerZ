@@ -14,7 +14,8 @@ function AddPatient(props) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [bg, setBgroup] = useState("");
-  const [pass, setPass] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const resetForm = () => {
     setID("");
@@ -25,14 +26,35 @@ function AddPatient(props) {
     setEmail("");
     setAddress("");
     setBgroup("");
-    setPass("");
   };
   
   const resetGender = () => {
     setGender("");
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^\d{10}$/; 
+    return phoneRegex.test(phone);
+  };
+
+  const generatePassword = (length) => {
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
   const handleSubmit = () => {
+  
     if (patient_id.length === 0) {
       toast.warning("Please Enter the Patient_ID");
     } else if (patient_name.length === 0) {
@@ -43,15 +65,20 @@ function AddPatient(props) {
       toast.warning("Please select the Gender");
     } else if (phoneNo.length === 0) {
       toast.warning("Please Enter the PhoneNo");
+    }else if(!validatePhoneNumber(phoneNo)){
+      toast.info("Invalid phone number format");
     } else if (email.length === 0) {
       toast.warning("Please Enter the Email");
+    }else if(!validateEmail(email)){
+      toast.info("Invalid email format");
     } else if (address.length === 0) {
       toast.warning("Please Enter the Address");
     } else if (bg.length === 0) {
       toast.warning("Please Enter the BloodGroup");
-    } else if (pass.length === 0) {
-      toast.warning("Please Enter the Password");
-    } else {
+    
+    }else {
+      const generatedPassword = generatePassword(8);
+
       const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
       let fdata = new FormData();
       fdata.append("Patient_ID", patient_id);
@@ -62,7 +89,7 @@ function AddPatient(props) {
       fdata.append("Email", email);
       fdata.append("Address", address);
       fdata.append("BloodGroup", bg);
-      fdata.append("Password", pass);
+      fdata.append("Password", generatedPassword);
       axios
         .post(url, fdata)
         .then((response) => {
@@ -90,7 +117,7 @@ function AddPatient(props) {
                 <div className="cont1">
                   <tr>
                     <th>
-                      <label>Patient_ID:</label>
+                      <label>Entroll_No:</label>
                     </th>
                     <th className={"addinputt"}>
                       {" "}
@@ -193,9 +220,15 @@ function AddPatient(props) {
                         className="form-control1"
                         name={"PhoneNo"}
                         placeholder={"076XXXXXXX"}
-                        onChange={(e) => setphoneNo(e.target.value)}
+                        onChange={(e) => {
+                          setphoneNo(e.target.value);
+                          setPhoneError(""); // Clear phone number error when typing
+                        }}
                         value={phoneNo}
                       />
+                      {phoneError && (
+                  <span className="error-message">{phoneError}</span>
+                )}
                     </th>
                   </tr>
                 </div>
@@ -212,9 +245,15 @@ function AddPatient(props) {
                         className="form-control1"
                         name={"Email"}
                         placeholder={"Thanush11@gmail.com"}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setEmailError(""); // Clear email error when typing
+                        }}
                         value={email}
                       />
+                      {emailError && (
+                        <span className="error-message">{emailError}</span>
+                      )}
                     </th>
                   </tr>
                   <tr>
@@ -255,23 +294,6 @@ function AddPatient(props) {
                         <option value="O+">O+</option>
                         <option value="O-">O-</option>
                       </select>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th>
-                      {" "}
-                      <label>Password:</label>
-                    </th>
-                    <th className={"addinputt"}>
-                      {" "}
-                      <input
-                        type="password"
-                        className="form-control1"
-                        name={"Password"}
-                        placeholder={"Type here"}
-                        onChange={(e) => setPass(e.target.value)}
-                        value={pass}
-                      />
                     </th>
                   </tr>
                 </div>
