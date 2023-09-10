@@ -262,7 +262,7 @@ function AddPatient(props) {
                     </th>
                     <th className={"addinputt"}>
                       <textarea
-                        className={"form-control1"}
+                        className={"form-controlll1"}
                         rows={3}
                         name={"Address"}
                         placeholder={"No07,Kili Town,Kilinochchi"}
@@ -283,6 +283,7 @@ function AddPatient(props) {
                         name={"BloodGroup"}
                         onChange={(e) => setBgroup(e.target.value)}
                         value={bg}
+                        style={{height:'30px'}}
                       >
                         <option value="">Choose Blood Group</option>
                         <option value="A+">A+</option>
