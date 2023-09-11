@@ -1,7 +1,9 @@
 <?php
 
 require '../classes/Medicalrecord.php';
-use \classes\Medicalrecord;
+require '../classes/Prescription.php';
+use classes\Medicalrecord;
+use classes\Prescription;
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");
@@ -21,28 +23,56 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
 
     try {
-   //front-end sends data as JSON
+        // Front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
+
+        $currentDateTime = date("Y-m-d H:i:s");
 
         $patient_ID = $data['patient_ID'];
         $doctor_ID = $data['doctor_ID'];
-        $dateandTime = $data['dateandTime'];
+        $dateandTime = $currentDateTime;
         $patientcomplaint = $data['patientcomplaint'];
         $onExamination = $data['onExamination'];
         $tests = $data['tests'];
         $confirmeddiagnosis = $data['confirmeddiagnosis'];
-        $prescription_ID = $data['prescription_ID'];
 
+        // Set prescription_ID to null initially
+        $prescription_ID = null;
 
-        $record = new Medicalrecord($patient_ID,$doctor_ID,$dateandTime,$patientcomplaint,$onExamination,$tests,$confirmeddiagnosis,$prescription_ID);
-    if ($record->addMedicalrecord()) {
-        echo json_encode(['success' => true, 'message' => 'Data added successfully']);
-    }
+        // Check if any data was found for the given Patient_ID
+        $filteredData = Prescription::displayDrugs($patient_ID);
+
+        if ($filteredData) {
+            // Generate a unique prescription ID based on patient_ID and current time
+            $prescription_ID = $patient_ID . '_' . time();
+            if (!Prescription::addPrescription($prescription_ID, $patient_ID, $doctor_ID, 'Waiting', $dateandTime)) {
+                echo json_encode(['success' => false, 'message' => 'error in prescription record adding']);
+                exit;
+            }
+        }
+
+        // Create a new medical record
+        $record = new Medicalrecord($patient_ID, $doctor_ID, $dateandTime, $patientcomplaint, $onExamination, $tests, $confirmeddiagnosis, $prescription_ID);
+
+        if ($record->addMedicalrecord()) {
+            if ($prescription_ID !== null) {
+                if (Prescription::setPrescription_ID($patient_ID, $prescription_ID)) {
+                    echo json_encode(['success' => true, 'message' => 'successfully sent prescription', 'prescription_ID' => $prescription_ID]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'error in prescription sending']);
+                }
+            } else {
+                // Prescription ID is null, no prescription data to add
+                echo json_encode(['success' => true, 'message' => 'Medical report added, no prescription', 'prescription_ID' => null]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'error in medical record adding']);
+        }
+
     } catch (PDOException $e) {
         // Return an error response if something goes wrong
-        echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e]);
+        echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e->getMessage()]);
     }
 }
-
 
 ?>

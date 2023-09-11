@@ -30,33 +30,33 @@ class Medicalrecord
         $this->Prescription_ID = $Prescription_ID;
     }
 
-
-    public function addMedicalrecord()
+    public function addMedicalRecord()
     {
         try {
             $dbcon = new DBconnector();
             $con = $dbcon->getConnection();
-            $query = "INSERT INTO medicalrecord (Patient_ID , Doctor_ID, DateandTime, Patientcomplaint, OnExamination, Tests, Confirmeddiagnosis) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO medicalrecord (Patient_ID, Doctor_ID, DateandTime, Patientcomplaint, OnExamination, Tests, Confirmeddiagnosis, Prescription_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $this->Patient_ID);
-            $pstmt->bindValue(2, $this->Doctor_ID);
-            $pstmt->bindValue(3, $this->DateandTime);
-            $pstmt->bindValue(4, $this->Patientcomplaint);
-            $pstmt->bindValue(5, $this->OnExamination);
-            $pstmt->bindValue(6, $this->Tests);
-            $pstmt->bindValue(7, $this->Confirmeddiagnosis);
-            $pstmt->execute();
+            $pstmt->bindParam(1, $this->Patient_ID);
+            $pstmt->bindParam(2, $this->Doctor_ID);
+            $pstmt->bindParam(3, $this->DateandTime);
+            $pstmt->bindParam(4, $this->Patientcomplaint);
+            $pstmt->bindParam(5, $this->OnExamination);
+            $pstmt->bindParam(6, $this->Tests);
+            $pstmt->bindParam(7, $this->Confirmeddiagnosis);
+            $pstmt->bindParam(8, $this->Prescription_ID);
 
-            if ($pstmt->rowCount() > 0) {
+            if ($pstmt->execute()) {
                 return true;
             } else {
                 return false;
             }
         } catch (PDOException $e) {
-            return $e;
+            return $e->getMessage(); // Return the error message for debugging.
         }
     }
+
     public static function deleteMedicalrecord($MedicalRecord_ID)
     {
         try {
@@ -104,6 +104,28 @@ class Medicalrecord
 
         } catch (PDOException $e) {
             return $e;
+        }
+    }
+    public static function addPrescription($MedicalRecord_ID, $Patient_ID, $Prescription_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE medicalrecord SET Prescription_ID = ? WHERE MedicalRecord_ID = ? AND Patient_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Prescription_ID);
+            $pstmt->bindValue(2, $MedicalRecord_ID);
+            $pstmt->bindValue(3, $Patient_ID);
+
+            $res = $pstmt->execute();
+
+            if ($res) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return $e->getMessage(); // Return the error message
         }
     }
 

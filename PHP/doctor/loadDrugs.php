@@ -18,7 +18,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Prepare and execute the SQL query using named placeholders
-        $stmt = $conn->prepare("SELECT 	Drug_Name  FROM drug");
+        $stmt = $conn->prepare("SELECT 	Drug_Name,Drug_ID  FROM drug");
         $stmt->execute();
 
         // Fetch the filtered data as an associative array

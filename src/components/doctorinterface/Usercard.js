@@ -5,6 +5,7 @@ import DOP from './algorithms/DOB';
 import AgeCalculator from './algorithms/AgeCalculator';
 import select from '../../assets/icons8-select.gif';
 import user from '../../assets/icons8-user.gif';
+import Loader from '../Loader';
 
 export default function Usercard ( props )
 {
@@ -56,7 +57,7 @@ export default function Usercard ( props )
         <>
             <div className='bg-white shadow rounded p-2' style={ width }>
                 { loading ? (
-                    <h1>Loading...</h1>
+                    <Loader load={true} />
                 ) : !selectedId ? (
                     <div className='d-flex justify-content-center align-items-center my-5 py-5'>
                         <img src={ select } height="50px" alt="select" />
