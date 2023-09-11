@@ -562,7 +562,7 @@
     visibility: hidden;
     background-color: rgb(220, 243, 224);
     padding-right: 60px;
-    padding-left: 10px;
+    padding-left: 20px;
     border-radius: 20px;
 }
 
@@ -579,9 +579,9 @@
     transition: transform 0.2s ease-in-out;
     transform: translateX(40%);
     visibility: hidden;
-    background-color: rgb(252, 229, 194);
+    background-color: rgb(252, 214, 214);
     padding-right: 60px;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-top: 5px;
     border-radius: 20px;
 }
@@ -601,7 +601,7 @@
     visibility: hidden;
     background-color: rgb(243, 252, 194);
     padding-right: 60px;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-top: 5px;
     border-radius: 20px;
 }
@@ -609,6 +609,12 @@
 .setttiplace3.visible {
     transform: translateX(20%);
 }
+
+
+.modalbutthover:hover {
+    transform: scale(1.1);
+}
+
 
 
 
