@@ -6,6 +6,7 @@ require_once "DBconnector.php";
 
 use classes\DBconnector;
 use PDOException;
+use PDO;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -200,8 +201,6 @@ class Patient
         }
     }
 
-
-
     public static function SendMail($UserName, $password, $email,$name) {
         // Create an instance; passing `true` enables exceptions
 
@@ -251,4 +250,32 @@ class Patient
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+
+    public static function isPatientID($Patient_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT Patient_ID FROM patient WHERE Patient_ID = ?"; 
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Patient_ID);
+            $pstmt->execute();
+    
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result) {
+                // Patient ID exists
+                return true;
+            } else {
+                // Patient ID does not exist
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
+    
+
 }
