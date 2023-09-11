@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
+import {PropagateLoader} from "react-spinners";
 
 function AddPatient(props) {
   const [patient_id, setID] = useState("");
@@ -16,6 +17,7 @@ function AddPatient(props) {
   const [bg, setBgroup] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const resetForm = () => {
     setID("");
@@ -54,7 +56,7 @@ function AddPatient(props) {
   };
 
   const handleSubmit = () => {
-  
+    setIsLoading(true); 
     if (patient_id.length === 0) {
       toast.warning("Please Enter the Patient_ID");
     } else if (patient_name.length === 0) {
@@ -95,9 +97,11 @@ function AddPatient(props) {
         .then((response) => {
           console.log(response.data);
           if (response.data.message === "Patient Added Successfully") {
+            setIsLoading(false); 
             toast.success(response.data.message);
             resetForm();
           } else {
+            setIsLoading(false); 
             toast.error("Patient Already Added");
           }
         })
@@ -110,6 +114,18 @@ function AddPatient(props) {
     <AdminLayout>
       <div className={"Addcontt"}>
         <h3 className="serhett">Add patient</h3>
+        {isLoading ? (
+          <div style={{marginLeft:'550px'}}>
+          <PropagateLoader
+          size={20}
+          color={"purple"}
+          loading={true}
+          style={{marginLeft:'50px'}}
+      />
+      </div>
+        ) : (
+          <div></div>
+          )}
         <div className={"addboxx"}>
           <form>
             <table>
