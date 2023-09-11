@@ -231,7 +231,7 @@ class Patient
         $message .= "<span style='color: red;'>Please  keep the login credentials with you  and don't share it with others.</span>"."<br>";
         $message .= "<br>"."<br>";
         $message .= "<span style='font-weight: bold;'>Username &nbsp;: &nbsp;&nbsp;</span>".$UserName."<br>";
-        $message .= "<span style='font-weight: bold;'>Password &nbsp;: &nbsp;&nbsp;</span>".$password."<br>"."<br>";
+        $message .= "<span style='font-weight: bold;'>Password &nbsp; : &nbsp;&nbsp;</span>".$password."<br>"."<br>";
         $message .= "You can use this password to log in to your account for the first time. After logging in, we recommend changing your password to something more memorable and secure"."<br>"."<br>";
         $message .= "<hr>"."<br>"."<br>";
         $message .= "Best regards ,"."<br>"."<br>";
