@@ -102,6 +102,54 @@ class Prescription
         }
     }
 
+    public static function setPrescription_ID($Patient_ID,$Prescription_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE prescription_list AS pl LEFT JOIN drug AS d ON pl.Drug_ID = d.Drug_ID SET pl.Prescription_ID = ? WHERE pl.Patient_ID = ? AND pl.Prescription_ID IS NULL";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Prescription_ID);
+            $pstmt->bindValue(2, $Patient_ID);
+
+            $res = $pstmt->execute();
+
+            if ($res) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+
+    public static function addPrescription($Prescription_ID,$Patient_ID,$Doctor_ID,$status,$TimeP)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $query = "INSERT INTO prescription_record (Prescription_ID, Patient_ID , Doctor_ID , status, TimeP ) VALUES (?, ?, ?, ?, ?)";
+
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Prescription_ID);
+            $pstmt->bindValue(2, $Patient_ID);
+            $pstmt->bindValue(3, $Doctor_ID);
+            $pstmt->bindValue(4, $status);
+            $pstmt->bindValue(5, $TimeP);
+            $pstmt->execute();
+
+            if ($pstmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
+    
     public static function displayDrugs($Patient_ID)
     {
         try {

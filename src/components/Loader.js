@@ -29,7 +29,7 @@ const Loader = (props) => {
                   <div className="sweet-loading d-flex justify-content-center">
                     <PropagateLoader
                       size={20}
-                      color={"#22C687 "}
+                      color={"#a522c6"}
                       loading={true}
                     />
                   </div>
