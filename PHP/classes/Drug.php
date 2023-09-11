@@ -3,6 +3,7 @@
 namespace classes;
 require_once "DBconnector.php";
 use classes\DBconnector;
+use PDO;
 use PDOException;
 
 
@@ -83,6 +84,11 @@ class Drug
             $res = $stmt->execute();
             
             if ($res) {
+                $query = "INSERT INTO druginventory (Drug_ID) VALUES (:Drug_ID)";
+           
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(':Drug_ID', $this->Drug_ID);
+            $res = $stmt->execute();
                 return true;
             } else {
                 return false;
@@ -139,6 +145,44 @@ class Drug
             $stmt=$conn->prepare($query);
         } catch (PDOException) {
             return false;
+        }
+    }
+
+    public static function getDrugIDbyName($Drug_Name){
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "SELECT Drug_ID FROM drug WHERE Drug_Name = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $Drug_Name);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result['Drug_ID'];
+            } else {
+                return null; // Drug not found
+            }
+        } catch (PDOException $e) {
+            return null; // Handle the exception as needed
+        }
+    }
+
+    public static function getDrugNamebyID($Drug_ID){
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "SELECT Drug_Name FROM drug WHERE Drug_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $Drug_ID);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result['Drug_Name'];
+            } else {
+                return null; // Drug not found
+            }
+        } catch (PDOException $e) {
+            return null; // Handle the exception as needed
         }
     }
     

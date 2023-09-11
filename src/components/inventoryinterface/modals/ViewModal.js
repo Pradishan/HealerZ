@@ -48,12 +48,12 @@ function ViewModal(props) {
                         <p style={{ marginRight: '60px' }} className={'detailhed'}>StockOut :<span className={'detaildet'}>400</span></p>
                         <p className={'detailhed'}>Expired :<span className={'detaildet'}>25</span></p>
                     </div> */}
-                    <div style={{ marginLeft: '150px' }} className={'detailhed'}>Stock_Count :<span className={'detaildet'}>{drugDetails && drugDetails.StockCount}</span></div>
+                    <div style={{ marginLeft: '130px' }} className={'detailhed'}>Available Count :<span className={'detaildet'}>{drugDetails && drugDetails.StockCount}</span></div>
                 </div>
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={onHide}>
+                <Button variant="secondary" onClick={onHide}>
                     Close
                 </Button>
             </Modal.Footer>

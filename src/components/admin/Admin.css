@@ -99,6 +99,12 @@ src/Admin.css
 .form-control1 {
     width: 220px;
     border-radius: 5px;
+    height: 30px;
+}
+
+.form-controlll1 {
+    width: 220px;
+    border-radius: 5px;
 }
 
 .form-check-label {
@@ -159,6 +165,10 @@ src/Admin.css
 }
 
 .form-control1::placeholder {
+    opacity: 0.4;
+}
+
+.form-controlll1::placeholder {
     opacity: 0.4;
 }
 
@@ -278,4 +288,5 @@ src/Admin.css
   .teaaaaam{
     margin-bottom: 100px;
   }
+ 
   

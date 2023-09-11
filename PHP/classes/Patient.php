@@ -6,6 +6,11 @@ require_once "DBconnector.php";
 
 use classes\DBconnector;
 use PDOException;
+use PDO;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class Patient
 {
@@ -169,8 +174,9 @@ class Patient
             $stmt->bindValue(':BloodGroup', $this->BloodGroup);
             $stmt->bindValue(':Password', $this->Password);
             $res = $stmt->execute();
-
+            Patient::SendMail($this->Patient_ID,$this->Password,$this->Email,$this->PatientName);
             if ($res) {
+               
                 return true;
             } else {
                 return false;
@@ -194,4 +200,71 @@ class Patient
             return false;
         }
     }
+
+    public static function SendMail($UserName, $password, $email,$name) {
+        // Create an instance; passing `true` enables exceptions
+
+        require '../mail/Exception.php';
+        require '../mail/PHPMailer.php';
+        require '../mail/SMTP.php';
+        $mail = new PHPMailer(true);
+
+        //Server settings
+        $mail->SMTPDebug = 0;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->Username = 'healerz763@gmail.com';                     //SMTP username
+        $mail->Password = 'lbnqanfdkzyvdgij';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        //Recipients
+        $mail->setFrom('healerz763@gmail.com');
+        $mail->addAddress($email);     //Add a recipient             //Name is optional
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Patient Registration';
+        $message = "Dear ".$name.",<br>";
+        $message .= "Welcome to Healerz! , your account has been successfully created."."<br>";
+        $message .= "        Your username:".$UserName.",<br>";
+        $message .= "        Your Password: ".$password.",<br>";
+        
+
+        $mail->Body = $message;
+
+        try {
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    public static function isPatientID($Patient_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT Patient_ID FROM patient WHERE Patient_ID = ?"; 
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Patient_ID);
+            $pstmt->execute();
+    
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result) {
+                // Patient ID exists
+                return true;
+            } else {
+                // Patient ID does not exist
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
+    
+
 }

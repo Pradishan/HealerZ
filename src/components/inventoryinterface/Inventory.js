@@ -10,6 +10,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
 import SearchIcon from "@mui/icons-material/Search";
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import StockUpdateModal from "./modals/StockUpdateModal2";
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +23,15 @@ function Inventory(props) {
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [selectedDrugToDelete, setSelectedDrugToDelete] = useState(null);
+  const [showStockUpdateModal, setShowStockUpdateModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
+
+  const handleEdit = (drug) => {
+    setSelectedDrug(drug);
+    setShowStockUpdateModal(true); 
+    fetchData();
+  };
 
   const handleChange3 = (event) => {
     setSearchTerm3(event.target.value);
@@ -37,9 +47,7 @@ function Inventory(props) {
 
   const handleSearchByDrugID = (event) => {
     event.preventDefault();
-    const searchedDrug = drugList.find(
-      (drug) => drug.Drug_ID === searchTerm3
-    );
+    const searchedDrug = drugList.find((drug) => drug.Drug_ID === searchTerm3);
     if (searchedDrug) {
       setSelectedDrug(searchedDrug);
       setShowModal(true);
@@ -54,14 +62,14 @@ function Inventory(props) {
     event.preventDefault();
     const searchedDrug1 = drugList.find(
       (drug) => drug.Drug_Name === searchTerm4
-    ); 
+    );
     if (searchedDrug1) {
       setSelectedDrug(searchedDrug1);
       setShowModal(true);
       setSearchTerm4("");
     } else {
       toast.error("Invalid Drug Name");
-    } 
+    }
   };
 
   const openModal = (drug) => {
@@ -74,10 +82,11 @@ function Inventory(props) {
   }, []);
 
   useEffect(() => {
-    const filteredData = drugList.filter((drug) =>
-      drug.Drug_ID.includes(searchTerm3) &&
-      drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase()) &&
-      drug.Category.toLowerCase().includes(selectedCategory.toLowerCase())
+    const filteredData = drugList.filter(
+      (drug) =>
+        drug.Drug_ID.includes(searchTerm3) &&
+        drug.Drug_Name.toLowerCase().includes(searchTerm4.toLowerCase()) &&
+        drug.Category.toLowerCase().includes(selectedCategory.toLowerCase())
     );
     setFilteredDrugList(filteredData);
   }, [searchTerm3, searchTerm4, selectedCategory, drugList]);
@@ -88,6 +97,7 @@ function Inventory(props) {
         "http://localhost/Healerz/PHP/Inventory/displaydrugs.php"
       );
       setDrugList(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -113,13 +123,17 @@ function Inventory(props) {
       toast.error("Error deleting drug");
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
+  
 
   return (
     <Layout>
-      <h3 className='serhedd'>Drug Detail</h3>
+      <h3 className="serhedd">Drug Detail</h3>
       <div className="container tabconttt">
         <div className="p-5">
-        <hr/>
+          <hr />
           <div
             className="SearchSection"
             style={{ display: "flex", flexDirection: "row" }}
@@ -128,69 +142,70 @@ function Inventory(props) {
               <h3 className="content-heading">Filter the Results : </h3>
             </div> */}
             <div className="SearchSection2">
-            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ display: "flex", flexDirection: "row" }}>
                 <div className="search-input-container">
                   <form onSubmit={handleSearchByDrugID}>
-                  <input
-                    className="SearchBox1"
-                    type="text"
-                    placeholder="Filter by NDC Number"
-                    value={searchTerm3}
-                    onChange={handleChange3}
-                    style={{ width: "300px" }}
-                  />
-                  <div className="search-icon" onClick={handleSearchByDrugID}>
-                    <SearchIcon />
-                  </div>
+                    <input
+                      className="SearchBox1"
+                      type="text"
+                      placeholder="Filter by NDC Number"
+                      value={searchTerm3}
+                      onChange={handleChange3}
+                      style={{ width: "300px" }}
+                    />
+                    <div className="search-icon" onClick={handleSearchByDrugID}>
+                      <SearchIcon />
+                    </div>
                   </form>
                 </div>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <div className="search-input-container">
                   <form onSubmit={handleSearchByDrugName}>
-                  <input
-                    className={"SearchBox1"}
-                    type="text"
-                    placeholder="Filter by DRUG_Name"
-                    value={searchTerm4}
-                    onChange={handleChange4}
-                    style={{ width: "300px" }}
-                  />
-                  <div className="search-icon" onClick={handleSearchByDrugName}>
-                    <SearchIcon />
-                  </div>
+                    <input
+                      className={"SearchBox1"}
+                      type="text"
+                      placeholder="Filter by DRUG_Name"
+                      value={searchTerm4}
+                      onChange={handleChange4}
+                      style={{ width: "300px" }}
+                    />
+                    <div
+                      className="search-icon"
+                      onClick={handleSearchByDrugName}
+                    >
+                      <SearchIcon />
+                    </div>
                   </form>
                 </div>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <select
-                  className="SearchBox1" 
+                  className="SearchBox1"
                   value={selectedCategory}
                   onChange={handleCategoryChange}
-                  style={{width:'300px'}}
+                  style={{ width: "300px" }}
                 >
-                  <option value={''}>Filter by Category</option>
-                  <option value={'Liquid'}>Liquid</option>
-                  <option value={'Tablet'}>Tablet</option>
-                  <option value={'Capsules'}>Capsules</option>
-                  <option value={'Topical'}>Topical</option>
-                  <option value={'Suppositories'}>Suppositories</option>
-                  <option value={'Drops'}>Drops</option>
-                  <option value={'Injections'}>Injections</option>
-                  <option value={'Implants'}>Implants</option>
+                  <option value={""}>Filter by Category</option>
+                  <option value={"Liquid"}>Liquid</option>
+                  <option value={"Tablet"}>Tablet</option>
+                  <option value={"Capsules"}>Capsules</option>
+                  <option value={"Topical"}>Topical</option>
+                  <option value={"Suppositories"}>Suppositories</option>
+                  <option value={"Drops"}>Drops</option>
+                  <option value={"Injections"}>Injections</option>
+                  <option value={"Implants"}>Implants</option>
                 </select>
               </div>
             </div>
           </div>
-          <hr/>
+          <hr />
           <div className={"table-container w-100 p-0"}>
             <table
               className={"table table-hover table-striped "}
               style={{ minWidth: "0px" }}
             >
-              <thead
-                className={"top-0 position-sticky h-45"}
-              >
+              <thead className={"top-0 position-sticky h-45"}>
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">NDC No</th>
@@ -216,9 +231,17 @@ function Inventory(props) {
                           aria-label="delete"
                           className="viewbutt"
                           onClick={() => openModal(data)}
-                          style={{ color: "green" }}
+                          style={{ color: "blue" }}
                         >
                           <VisibilityIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="edit" 
+                          className="viewbutt"
+                          onClick={() => handleEdit(data)}
+                          style={{ color: "green" }}
+                        >
+                          <LocalGroceryStoreIcon/>
                         </IconButton>
 
                         <IconButton
@@ -252,6 +275,14 @@ function Inventory(props) {
         show={confirmModalVisible}
         onHide={() => setConfirmModalVisible(false)}
         onConfirm={handleConfirmDelete}
+      />
+      <StockUpdateModal
+        show={showStockUpdateModal}
+        onHide={() => {
+          setShowStockUpdateModal(false);
+          setUpdateTrigger(!updateTrigger); // Toggle the trigger
+        }}
+        inputs={selectedDrug} // Pass the selected drug (if needed) as inputs to the modal
       />
     </Layout>
   );

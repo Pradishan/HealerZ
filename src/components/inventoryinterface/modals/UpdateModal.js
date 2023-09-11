@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import CustomConfirmModal from '../modals/CustomConfirmModal';
+import UpdateConfirmModal from '../modals/UpdateDataConformation';
 
 function UpdateModal(props) {
   const { show, onHide, inputs } = props;
@@ -17,6 +18,7 @@ function UpdateModal(props) {
   const [description, setDes] = useState(item.Descriptions);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
 
   useEffect(() => {
     setNewData({
@@ -37,9 +39,13 @@ function UpdateModal(props) {
       newData.Drug_dosage === item.Drug_dosage &&
       newData.Descriptions === item.Descriptions
     ) {
-      // No changes, display the toast message
       toast.info("No data to update!");
     } else {
+      setShowUpdateConfirmModal(true);
+    }
+  };
+
+  const handleUpdateConfirmed = () => {
     axios
       .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
@@ -51,11 +57,11 @@ function UpdateModal(props) {
         toast.error("Failed to update drug!");
         console.error(error);
       });
-    }
+
+    setShowUpdateConfirmModal(false);
   };
 
   const handleDelete = () => {
-    // Show the confirmation modal
     setShowConfirmModal(true);
   };
 
@@ -202,6 +208,11 @@ function UpdateModal(props) {
           onHide={() => setShowConfirmModal(false)}
           onConfirm={handleDeleteConfirmed}
         />
+        <UpdateConfirmModal
+            show={showUpdateConfirmModal}
+            onHide={() => setShowUpdateConfirmModal(false)}
+            onConfirm={handleUpdateConfirmed}
+          />
       </Modal.Footer>
     </Modal>
   );
