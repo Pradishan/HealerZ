@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
+import { PropagateLoader } from "react-spinners";
 
 function AddPatient(props) {
   const [patient_id, setID] = useState("");
@@ -16,6 +17,7 @@ function AddPatient(props) {
   const [bg, setBgroup] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const resetForm = () => {
     setID("");
@@ -27,7 +29,7 @@ function AddPatient(props) {
     setAddress("");
     setBgroup("");
   };
-  
+
   const resetGender = () => {
     setGender("");
   };
@@ -38,7 +40,7 @@ function AddPatient(props) {
   };
 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^\d{10}$/; 
+    const phoneRegex = /^\d{10}$/;
     return phoneRegex.test(phone);
   };
 
@@ -54,7 +56,7 @@ function AddPatient(props) {
   };
 
   const handleSubmit = () => {
-  
+    setIsLoading(true);
     if (patient_id.length === 0) {
       toast.warning("Please Enter the Patient_ID");
     } else if (patient_name.length === 0) {
@@ -65,18 +67,17 @@ function AddPatient(props) {
       toast.warning("Please select the Gender");
     } else if (phoneNo.length === 0) {
       toast.warning("Please Enter the PhoneNo");
-    }else if(!validatePhoneNumber(phoneNo)){
+    } else if (!validatePhoneNumber(phoneNo)) {
       toast.info("Invalid phone number format");
     } else if (email.length === 0) {
       toast.warning("Please Enter the Email");
-    }else if(!validateEmail(email)){
+    } else if (!validateEmail(email)) {
       toast.info("Invalid email format");
     } else if (address.length === 0) {
       toast.warning("Please Enter the Address");
     } else if (bg.length === 0) {
       toast.warning("Please Enter the BloodGroup");
-    
-    }else {
+    } else {
       const generatedPassword = generatePassword(8);
 
       const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
@@ -95,9 +96,11 @@ function AddPatient(props) {
         .then((response) => {
           console.log(response.data);
           if (response.data.message === "Patient Added Successfully") {
+            setIsLoading(false);
             toast.success(response.data.message);
             resetForm();
           } else {
+            setIsLoading(false);
             toast.error("Patient Already Added");
           }
         })
@@ -111,6 +114,18 @@ function AddPatient(props) {
       <div className={"Addcontt"}>
         <h3 className="serhett">Add patient</h3>
         <div className={"addboxx"}>
+          {isLoading ? (
+            <div style={{ marginLeft: "350px",marginBottom:'30px' }}>
+              <PropagateLoader
+                size={30}
+                color={"purple"}
+                loading={true}
+                style={{ marginLeft: "50px" }}
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
           <form>
             <table>
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -177,7 +192,6 @@ function AddPatient(props) {
                             value="Male"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Male"}
-                           
                           />
                           <label className="form-check-label">Male</label>
                         </div>
@@ -189,7 +203,6 @@ function AddPatient(props) {
                             value="Female"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Female"}
-                           
                           />
                           <label className="form-check-label">Female</label>
                         </div>
@@ -201,7 +214,6 @@ function AddPatient(props) {
                             value="Other"
                             onChange={(e) => setGender(e.target.value)}
                             checked={gender === "Other"}
-                            
                           />
                           <label className="form-check-label">Other</label>
                         </div>
@@ -227,8 +239,8 @@ function AddPatient(props) {
                         value={phoneNo}
                       />
                       {phoneError && (
-                  <span className="error-message">{phoneError}</span>
-                )}
+                        <span className="error-message">{phoneError}</span>
+                      )}
                     </th>
                   </tr>
                 </div>
@@ -262,7 +274,7 @@ function AddPatient(props) {
                     </th>
                     <th className={"addinputt"}>
                       <textarea
-                        className={"form-control1"}
+                        className={"form-controlll1"}
                         rows={3}
                         name={"Address"}
                         placeholder={"No07,Kili Town,Kilinochchi"}
@@ -283,6 +295,7 @@ function AddPatient(props) {
                         name={"BloodGroup"}
                         onChange={(e) => setBgroup(e.target.value)}
                         value={bg}
+                        style={{ height: "30px" }}
                       >
                         <option value="">Choose Blood Group</option>
                         <option value="A+">A+</option>

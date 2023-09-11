@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import "../inventory.css";
 import axios from "axios";
 import { IconButton } from "@mui/material";
-import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 
 function OutofStockModal(props) {
   const [lowdrugList, setDrugList] = useState([]);
@@ -54,7 +54,7 @@ function OutofStockModal(props) {
           Out of Stock Details
         </Modal.Title>
         <div
-          style={{ marginLeft: "80px" }}
+          style={{ marginLeft: "60px" }}
           className={`setttiplace2 ${percentageVisible ? "visible" : ""}`}
         >
           Average : {percentage !== null ? percentage.toFixed(2) : "N/A"}%
@@ -62,8 +62,9 @@ function OutofStockModal(props) {
         <IconButton
           onClick={togglePercentageVisibility}
           style={{ color: "rgb(219, 4, 4)" }}
+          className="modalbutthover"
         >
-          <ProductionQuantityLimitsIcon sx={{ fontSize: "40px" }} />
+          <PrivacyTipIcon  sx={{ fontSize: "40px" }} />
         </IconButton>
       </Modal.Header>
       <Modal.Body>

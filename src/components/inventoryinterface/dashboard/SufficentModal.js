@@ -61,6 +61,7 @@ function SufficientModal(props) {
         <IconButton
           onClick={togglePercentageVisibility}
           style={{ color: "rgb(3, 163, 6)" }}
+          className="modalbutthover"
         >
           <CloudDoneIcon sx={{ fontSize: "40px" }} />
         </IconButton>

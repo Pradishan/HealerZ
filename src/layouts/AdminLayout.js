@@ -102,15 +102,7 @@ function Layout({children}) {
                         component={<Link to="/admin/dashboard"  />}
                         icon={<GridViewRoundedIcon />}> Dashboard</MenuItem>
                     
-                    <SubMenu selected className="subline menu-item" label="Doctor" icon={<HealthAndSafetyIcon />} sx={{fontSize:'16px'}} >
-                        <MenuItem  className="menu-item" sx={{ pl: 0 }}
-                        component={<Link to="/admin/adddoctor"  />}
-                        icon={<PersonAddIcon />}>Add Doctor</MenuItem>
-                        <MenuItem className="menu-item " sx={{ pl: 0 }}
-                        component={<Link to="/admin/doctorlist"  />}
-                        icon={<ListIcon />}>Doctor List</MenuItem>
-                    </SubMenu>
-                    
+
                     <SubMenu className="subline menu-item" label="Patient" icon={<WheelchairPickupIcon />}>
                         <MenuItem className="menu-item "
                         component={<Link to="/admin/addpatient"  />}
@@ -122,6 +114,18 @@ function Layout({children}) {
                         component={<Link to="/admin/patientlist"  />}
                         icon={<ListIcon />}>Patient List</MenuItem>
                     </SubMenu>
+
+                    
+                    <SubMenu selected className="subline menu-item" label="Doctor" icon={<HealthAndSafetyIcon />} sx={{fontSize:'16px'}} >
+                        <MenuItem  className="menu-item" sx={{ pl: 0 }}
+                        component={<Link to="/admin/adddoctor"  />}
+                        icon={<PersonAddIcon />}>Add Doctor</MenuItem>
+                        <MenuItem className="menu-item " sx={{ pl: 0 }}
+                        component={<Link to="/admin/doctorlist"  />}
+                        icon={<ListIcon />}>Doctor List</MenuItem>
+                    </SubMenu>
+                    
+                   
 
                     <SubMenu className="subline menu-item" label="Human Resource" icon={<Diversity3Icon />}>
                         <MenuItem className="menu-item "
