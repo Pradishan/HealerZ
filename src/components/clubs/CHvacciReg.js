@@ -1,17 +1,17 @@
+import React from 'react';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import './Home.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "./Clubs.css";
 
-export default function HvacciReg() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
+export default function CHvacciReg(){
+    
   const [Email, setEmail] = useState('');
   const [Name, setName] = useState('');
   const [Nic, setNic] = useState('');
@@ -51,7 +51,7 @@ export default function HvacciReg() {
         }
     
     else {
-        const url = "http://localhost/HealerZ/PHP/";
+        const url = "http://localhost/HealerZ/PHP";
         let fdata = new FormData();
         fdata.append('email', Email);
         fdata.append('name', Name);
@@ -78,19 +78,14 @@ export default function HvacciReg() {
     }
 }
 
-  return (
-    <>
-      <Button className='btn btn-primary regbutt' onClick={handleShow}>
-        Register
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Vaccination Registration</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            
+    return(
+        <>
+        <div style={{flexDirection:'row',padding:'50px',gap:'20px'}}>
+      <div className="card card-2 cardproff" style={{width:500,}}>
+      <div className="">
               <div className="form-container">
+                <h3 className="serhett9">Blood Donation</h3>
+                <hr/>
                 <Form id="medical-request-form">
                   <div className="form-floating">
                     <input
@@ -179,22 +174,15 @@ export default function HvacciReg() {
                   </div>
                   <br />
                  
-                </Form>
-              
-            </div>
-
-        </Modal.Body>
-        <Modal.Footer>
-
           <Button className='btn btn-primary'name={"send"} value={"Send"} onClick={handleSubmit} style={{ backgroundColor: 'green',border:'none' }}>
             Register
           </Button>
           <ToastContainer/>
-          <Button className='btn btn-primary' onClick={resetForm}>
-            Reset
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  )
+          </Form>
+            </div>
+            </div>
+            </div>
+            </div>
+        </>
+    )
 }

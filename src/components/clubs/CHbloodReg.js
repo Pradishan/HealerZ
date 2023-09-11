@@ -1,23 +1,23 @@
+import React from 'react';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import './Home.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "./Clubs.css";
 
-export default function HvacciReg() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
+export default function CHbloodReg(){
+    
   const [Email, setEmail] = useState('');
   const [Name, setName] = useState('');
   const [Nic, setNic] = useState('');
   const [Phone_no, setPhone_no] = useState('');
   const [Address, setAddress] = useState('');
-  const [Vaccine_name, SetVaccine_name] = useState('');
+  const [Bloodgroup, setBloodgroup] = useState('');
 
   
   const resetForm = () => {
@@ -26,7 +26,7 @@ export default function HvacciReg() {
       setNic('');
       setPhone_no('');
       setAddress('');
-      SetVaccine_name('');
+      setBloodgroup('');
   }
 
 
@@ -46,19 +46,19 @@ export default function HvacciReg() {
     else if (Address.length === 0) {
         toast.warning("Pls Enter the Address");
     }
-     else if(Vaccine_name.length===0){
-        toast.warning("pls Enter the Vaccination Name")
+     else if(Bloodgroup.length===0){
+        toast.warning("pls Enter the Bloodgroup")
         }
     
     else {
-        const url = "http://localhost/HealerZ/PHP/";
+        const url = "http://localhost/HealerZ/PHP";
         let fdata = new FormData();
         fdata.append('email', Email);
         fdata.append('name', Name);
         fdata.append('nic', Nic);
         fdata.append('phone_no', Phone_no);
         fdata.append('address',Address);
-        fdata.append('vaccine_name', Vaccine_name)
+        fdata.append('bloodgroup', Bloodgroup)
 
         axios.post(url, fdata)
             .then((response) => {
@@ -78,19 +78,14 @@ export default function HvacciReg() {
     }
 }
 
-  return (
-    <>
-      <Button className='btn btn-primary regbutt' onClick={handleShow}>
-        Register
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Vaccination Registration</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            
+    return(
+        <>
+        <div style={{flexDirection:'row',padding:'50px',gap:'20px'}}>
+      <div className="card card-2 cardproff"  style={{width:500,}}>
+      <div className="">
               <div className="form-container">
+                <h3 className="serhett9">Blood Donation</h3>
+                <hr/>
                 <Form id="medical-request-form">
                   <div className="form-floating">
                     <input
@@ -168,33 +163,26 @@ export default function HvacciReg() {
                     <input
                       type="text"
                       className="form-control"
-                      name={"vaccine_name"}
-                      value={Vaccine_name}
-                      onChange={(e) => SetVaccine_name(e.target.value)}
+                      name={"bloodgroup"}
+                      value={Bloodgroup}
+                      onChange={(e) => setBloodgroup(e.target.value)}
                       id="floatingPassword"
                       placeholder="Blood group"
                       style={{ width: "100%" }}
                     />
-                    <label htmlFor="floatingPassword">Vaccine_name</label>
+                    <label htmlFor="floatingPassword">Bloodgroup</label>
                   </div>
                   <br />
                  
-                </Form>
-              
-            </div>
-
-        </Modal.Body>
-        <Modal.Footer>
-
           <Button className='btn btn-primary'name={"send"} value={"Send"} onClick={handleSubmit} style={{ backgroundColor: 'green',border:'none' }}>
             Register
           </Button>
           <ToastContainer/>
-          <Button className='btn btn-primary' onClick={resetForm}>
-            Reset
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  )
+          </Form>
+            </div>
+            </div>
+            </div>
+            </div>
+        </>
+    )
 }
