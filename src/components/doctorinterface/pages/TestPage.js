@@ -130,10 +130,11 @@ export default function TestPage ( props )
           {/* <div className='d-flex justify-content-center align-items-center py-2'>
             <button className='btn w-25 text-white shadow btn-gr' type='submit'>Add medical</button>
           </div> */}
-          { done ? (
+          { done ? ( <div className='d-flex justify-content-center align-items-center py-2'>
             <button className='btn w-25 text-white shadow btn-gr' type='submit'>Done</button>
+          </div>
           ) : null }
-        </form>
+        </form >
         <div className='row'>
           <div className='col'>
             <div className='d-flex align-items-center justify-content-between'>
@@ -155,7 +156,7 @@ export default function TestPage ( props )
           </div>
         </div>
 
-      </div>
+      </div >
       <ToastContainer />
     </>
   )
