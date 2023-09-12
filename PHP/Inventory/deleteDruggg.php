@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 if (isset($_GET['id'])) {
 
-    $drugId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $drugId = filter_var($_GET['id']);
     try {
       
         $dbHost = "localhost"; 
@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
         $stmt = $conn->prepare("DELETE FROM drug WHERE Drug_ID = :drugId");
-        $stmt->bindParam(':drugId', $drugId, PDO::PARAM_INT);
+        $stmt->bindParam(':drugId', $drugId);
         $stmt->execute();
         $rowCount = $stmt->rowCount();
  

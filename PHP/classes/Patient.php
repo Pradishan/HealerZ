@@ -223,12 +223,23 @@ class Patient
         $mail->addAddress($email);     //Add a recipient             //Name is optional
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Patient Registration';
-        $message = "Dear ".$name.",<br>";
-        $message .= "Welcome to Healerz! , your account has been successfully created."."<br>";
-        $message .= "        Your username:".$UserName.",<br>";
-        $message .= "        Your Password: ".$password.",<br>";
-        
+        $mail->Subject = 'Patient Registration for HealerZ !';
+        $message = "Dear ".$name." ,<br>"."<br>";
+        $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>"."<br>";
+        $message .= "<hr>"."<br>";
+        $message .= "We've generated a secure password for you, and it can be found in the registration email we sent, ";
+        $message .= "<span style='color: red;'>Please  keep the login credentials with you  and don't share it with others.</span>"."<br>";
+        $message .= "<br>"."<br>";
+        $message .= "<span style='font-weight: bold;'>Username &nbsp;: &nbsp;&nbsp;</span>".$UserName."<br>";
+        $message .= "<span style='font-weight: bold;'>Password &nbsp; : &nbsp;&nbsp;</span>".$password."<br>"."<br>";
+        $message .= "You can use this password to log in to your account for the first time. After logging in, we recommend changing your password to something more memorable and secure"."<br>"."<br>";
+        $message .= "<hr>"."<br>"."<br>";
+        $message .= "Best regards ,"."<br>"."<br>";
+        $message .= "HealerZ ,"."<br>";
+        $message .= "Medical System of UWU ,"."<br>";
+        $message .= "Uva Wellassa University of Srilanka ,"."<br>"."<br>";
+        $message .= "<img src='https://lh3.googleusercontent.com/Qtl6yF3Qn3ma6vEdSuG82hh3U-DJ2g-mmteKeERMawrrecQVh9Mr5RNasI8Id9n2iOQ5FoTIQD30gvmhCnq5znTZcFNosr8bXa1iweg' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
+
 
         $mail->Body = $message;
 
