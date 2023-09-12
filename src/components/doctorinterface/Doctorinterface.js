@@ -65,7 +65,7 @@ export default function Doctorinterface ()
             </div>
           </div>
           <div className="my-3 me-0">
-            <Usercard src={ 'https://source.unsplash.com/random/2' } selectedId={ selectedId } />
+            <Usercard selectedId={ selectedId } />
           </div>
         </div>
 

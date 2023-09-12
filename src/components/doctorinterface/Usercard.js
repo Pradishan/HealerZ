@@ -6,10 +6,11 @@ import AgeCalculator from './algorithms/AgeCalculator';
 import select from '../../assets/icons8-select.gif';
 import user from '../../assets/icons8-user.gif';
 import Loader from '../Loader';
+import userDefault from '../../assets/userDefault.jpg'
 
 export default function Usercard ( props )
 {
-    const { src, selectedId } = props;
+    const { selectedId } = props;
     const width = {
         minWidth: '230px',
     };
@@ -52,7 +53,7 @@ export default function Usercard ( props )
 
         fetchData();
     }, [ selectedId ] ); // Updated dependency to selectedId
-
+ 
     return (
         <>
             <div className='bg-white shadow rounded p-2' style={ width }>
@@ -72,7 +73,7 @@ export default function Usercard ( props )
                     <div className='m-3'>
                         <div className='d-flex align-items-center justify-content-center mb-2'>
                             <div className='d-flex align-items-center justify-content-center ms-2'>
-                                <img src={ src } alt='avatar' className='rounded-circle me-2' width='100px' height='100px' />
+                                <img src={ detail.Profile?(detail.Profile):(userDefault) } alt='avatar' className='rounded-circle me-2' width='100px' height='100px' />
                             </div>
 
                             <div className='d-flex align-items-center justify-content-center'>
@@ -109,13 +110,10 @@ export default function Usercard ( props )
                             <p className='m-0'>Bloog group</p>
                             <p className='text-danger m-0 fw-bold'>{ detail.BloodGroup }</p>
                         </div>
-                        <div className='d-flex justify-content-between my-0 py-0'>
-                            <p className='m-0'>Allergy</p>
-                            <p className='text-primary m-0 fw-bold'>No</p>
-                        </div>
+                     
 
                         <h5 className='mt-2'>Special Disease</h5>
-                        <div style={ scroll }><p className='text-muted m-0'>"Technophobia Virus" or "Technophobia Syndrome": This fictional disease is often portrayed in comedic settings where individuals exhibit an irrational fear or aversion to technology. It can lead to humorous situations as characters struggle to cope with modern devices and advancements.</p></div>
+                        <div style={ scroll }>{detail.SpecialDisease?(<p className='text-muted m-0'>{detail.SpecialDisease}</p>):<p className='text-muted m-0'>No Special Disease to show </p>}</div>
                         <button className='btn w-100 text-white shadow my-3 btn-gr' onClick={ toggleModal } >Medical Records</button>
                     </div>
                 ) }

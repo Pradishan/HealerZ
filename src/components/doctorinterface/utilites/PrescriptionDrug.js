@@ -114,7 +114,7 @@ export default function PrescriptionDrug ( props )
                                 <option value="1+1+0">1+1+0</option>
                                 <option value="when needed">when needed</option>
                             </datalist>
-                            <p className='p-0 mb-0 ms-4'>tacke for <input className='border-0 text-center' style={ { width: "50px" } } id="Days" type="number" aria-label="Days" placeholder='Days' name="days" value={ formData.days } onChange={ handleChange } /> days</p>
+                            <p className='p-0 mb-0 ms-4'>tacke for <input className='border-0 text-center' style={ { width: "50px" } } id="Days" type="number" aria-label="Days" placeholder='Days' name="days" value={ formData.days } onChange={ handleChange } /> { formData.days>1?' days':" day" }</p>
 
                             <input className='ms-3 form-control border-0' style={ { width: "200px" } } list="timeOptions" id="time" type="text" aria-label="Time" placeholder='Time' name="time" value={ formData.time } onChange={ handleChange } />
 
