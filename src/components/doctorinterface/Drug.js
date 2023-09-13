@@ -91,7 +91,6 @@ export default function Drug ( props )
         <form className="d-flex" role="search" onSubmit={ handleSubmit1 }>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
                 <input className='form-control rounded-pill border-0 bg-gray' list="drugsOptions" id="medDataList" type="search" aria-label="Search" placeholder='Search Drug' name="drug" value={ formData.drug } onChange={ handleChange } />
-
                 <button className='mx-2 p-1 btn rounded-pill icon-btn' type='submit'><FeatherIcon icon="plus-circle" className='text-success m-0 p-0' /></button>
             </div>
             <datalist id="drugsOptions" className="bg-white text-muted" style={ { maxHeight: '10rem' } }>

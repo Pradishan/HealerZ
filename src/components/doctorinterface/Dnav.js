@@ -7,7 +7,7 @@ import "./doctor.css";
 import { useNavigate } from "react-router-dom";
 import Dsettings from "./Dsettings";
 import MedRequestModal from "./utilites/MedRequestModal";
-import {Offcanvas,Button } from 'react-bootstrap';
+import {Offcanvas} from 'react-bootstrap';
 
 
 export default function Dnav() {
@@ -78,10 +78,10 @@ export default function Dnav() {
                 height="38px"
                 width="38px"
               />
-              <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger fs-7 p-1 mt-1">
+               {records.length > 0 ? (<span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger fs-7 p-1 mt-1">
                 {records.length}
                 <span className="visually-hidden">unread messages</span>
-              </span>
+              </span>):null}
             </div>
             <div className="dropdown me-5">
               <div
@@ -125,7 +125,7 @@ export default function Dnav() {
 
        <Offcanvas show={show} onHide={handleClose} placement={'end'}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Notification</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           {records.length > 0 ? (

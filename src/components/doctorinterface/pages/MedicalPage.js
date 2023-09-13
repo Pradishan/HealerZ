@@ -26,6 +26,10 @@ export default function MedicalPage ()
   const [ records, setRecords ] = useState( [] );
   const [ showModal, setShowModal ] = useState( false );
   const [ selectedData, setSelectedData ] = useState( null );
+  const [ searchName, setSearchName ] = useState( "" );
+  const [ searchID, setSearchID ] = useState( "" );
+  const [ searchStatus, setSearchStatus ] = useState( "" );
+  const [ filteredMedical, setFilteredMedical ] = useState( [] );
 
 
   const fetchData = useCallback( async () =>
@@ -48,6 +52,29 @@ export default function MedicalPage ()
     return () => clearInterval( fetchInterval );
   }, [ fetchData ] );
 
+  const handleSearchName = ( event ) =>
+  {
+    setSearchName( event.target.value );
+  };
+
+  const handleSearchID = ( event ) =>
+  {
+    setSearchID( event.target.value );
+  };
+
+  const handleSearchStatus = ( event ) =>
+  {
+    setSearchStatus( event.target.value );
+  };
+
+  useEffect( () =>
+  {
+    const filteredData = records.filter(
+      ( record ) =>
+        record.State.includes( searchStatus ) && record.PatientName.toLowerCase().includes( searchName.toLowerCase() ) && record.Patient_ID.toLowerCase().includes( searchID.toLowerCase() )
+    );
+    setFilteredMedical( filteredData );
+  }, [searchStatus, searchName, searchID, records] );
 
   const openModal = ( data ) =>
   {
@@ -61,11 +88,31 @@ export default function MedicalPage ()
           <h5 className='mt-2'>Medical Request</h5>
           <div className='d-flex align-items-center'>
             <div className='input-group-text bg-gray border-0 rounded-pill'>
-              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search Request' id='requestSearch' />
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search by name' id='requestSearchNAME    ' value={ searchName } onChange={ handleSearchName } />
               <FeatherIcon icon="search" className='mx-2 text-muted icon-btn' type='button' />
             </div>
           </div>
+
+          <div className='d-flex align-items-center'>
+            <div className='input-group-text bg-gray border-0 rounded-pill'>
+              <input type='text' className='form-control rounded-pill border-0 bg-gray' placeholder='Search by ID' id='requestSearchID' value={ searchID } onChange={ handleSearchID } />
+              <FeatherIcon icon="search" className='mx-2 text-muted icon-btn' type='button' />
+            </div>
+          </div>
+
+          <div className='d-flex align-items-center'>
+              <select class="form-select rounded-pill border-0 bg-gray" aria-label="Default select example" value={ searchStatus } onChange={ handleSearchStatus }>
+                <option selected value="">All</option>
+                <option value="Requested">Requested</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+          </div>
+          <button className='mx-2 p-1 btn rounded-pill icon-btn' onClick={() => {setSearchName('');setSearchID('');setSearchStatus('');}}><FeatherIcon icon="rotate-ccw" className='text-success m-0 p-0' /></button>
         </div>
+
+
+
 
         {/* tabele */ }
         <div className={ "table-container border-0 shadow-none mt-2" } style={ { overflow: 'auto', } }>
@@ -83,11 +130,11 @@ export default function MedicalPage ()
             </thead>
             <tbody>
 
-              { Array.isArray( records ) && records.length > 0 ? (
-                records.map( ( record ) => (
+              { Array.isArray( filteredMedical ) && filteredMedical.length > 0 ? (
+                filteredMedical.map( ( record ) => (
                   <tr className="" key={ record.MedicalRequest_ID }>
                     <td>{ record.Patient_ID }</td>
-                    <td> <img src={ record.Profile?(record.Profile):(userDefault) } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.	PatientName }</td>
+                    <td> <img src={ record.Profile ? ( record.Profile ) : ( userDefault ) } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.PatientName }</td>
                     <td style={ { minWidth: '100px' } }>
                       <DateTime dateTime={ record.ConsultationDate } />
                     </td>
@@ -119,10 +166,10 @@ export default function MedicalPage ()
             </tbody>
           </table>
           {
-            selectedData?(<MedRequestModal show={ showModal } onHide={ () => setShowModal( false ) } data={ selectedData } />):(null)
-          }  
+            selectedData ? ( <MedRequestModal show={ showModal } onHide={ () => setShowModal( false ) } data={ selectedData } /> ) : ( null )
+          }
         </div>
-      </div>
+      </div >
     </>
   )
 }
