@@ -1,39 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import axios from 'axios';
 import FeatherIcon from "feather-icons-react";
 import logo from "../../assets/logo.png";
-import Notifiaction from "./Notifiaction";
+import Notification from "./Notification"; 
 import "./doctor.css";
 import { useNavigate } from "react-router-dom";
 import Dsettings from "./Dsettings";
+import MedRequestModal from "./utilites/MedRequestModal";
+import {Offcanvas,Button } from 'react-bootstrap';
 
-export default function Dnav ()
-{
+
+export default function Dnav() {
   const navigate = useNavigate();
-  const notificationsData = [];
 
-  for ( let i = 0; i < 20; i++ )
-  {
-    notificationsData.push( {
-      src: `https://source.unsplash.com/random/${ i }`,
-      name: `User ${ i + 1 }`,
-      id: `cst2000${ i + 1 }`,
-      status: Math.floor( Math.random() * 3 ) + 1, // Random status between 1 and 3
-    } );
-  }
+  const [records, setRecords] = useState([]);
+  const [selectedData, setSelectedData] = useState(null);
 
-  const logout = () =>
-  {
-    sessionStorage.setItem( 'Doctor', 'false' );
-    sessionStorage.setItem( 'loginStatus', 'Logged out successfully!' );
-    navigate( "/loginDoctor" );
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.post('http://localhost/HealerZ/PHP/doctor/loadNotification.php');
+      setRecords(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+    const fetchInterval = setInterval(fetchData, 2000);
+    return () => clearInterval(fetchInterval);
+  }, [fetchData]);
+
+  const logout = () => {
+    sessionStorage.setItem('Doctor', 'false');
+    sessionStorage.setItem('loginStatus', 'Logged out successfully!');
+    navigate("/loginDoctor");
   };
 
-  const [ showModal, setShowModal ] = useState( false );
+  const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () =>
-  {
-    setShowModal( !showModal );
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
+
+  const openModal = (data) => {
+    setSelectedData(data);
+    setShowModal(true);
+  };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -46,18 +64,13 @@ export default function Dnav ()
             Home
           </a>
           <div className="d-flex align-items-center justify-content-center">
-            {/* logo */ }
-            <img src={ logo } alt="HealerZ" height="48px" />
+            <img src={logo} alt="HealerZ" height="48px" />
           </div>
-          {/* right */ }
           <div className="d-flex align-items-center me-3">
-            {/* notification */ }
             <div
               className="position-relative me-2"
               type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#medicalNotification"
-              aria-controls="offcanvasExample"
+              onClick={handleShow}
             >
               <FeatherIcon
                 icon="bell"
@@ -65,13 +78,11 @@ export default function Dnav ()
                 height="38px"
                 width="38px"
               />
-
               <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger fs-7 p-1 mt-1">
-                99+
+                {records.length}
                 <span className="visually-hidden">unread messages</span>
               </span>
             </div>
-            {/* profile */ }
             <div className="dropdown me-5">
               <div
                 className="d-flex align-items-center icon-hover rounded p-2"
@@ -88,10 +99,9 @@ export default function Dnav ()
                 />
                 <p className="mb-0">Pradishan</p>
               </div>
-
               <ul className="dropdown-menu">
                 <li>
-                  <div className="dropdown-item" type="button" onClick={ logout }>
+                  <div className="dropdown-item" type="button" onClick={logout}>
                     <div className="d-flex">
                       <FeatherIcon icon="log-out" className="me-2" />
                       <p className="fs-7 mb-0">Logout</p>
@@ -99,7 +109,7 @@ export default function Dnav ()
                   </div>
                 </li>
                 <li>
-                  <div className="dropdown-item" type="button" onClick={ toggleModal }>
+                  <div className="dropdown-item" type="button" onClick={toggleModal}>
                     <div className="d-flex">
                       <FeatherIcon icon="settings" className="me-2" />
                       <p className="fs-7 mb-0">Settings</p>
@@ -113,36 +123,32 @@ export default function Dnav ()
         </div>
       </nav>
 
-      {/* notificaton body */ }
-
-      <div className="offcanvas offcanvas-end" tabIndex="-1" id="medicalNotification" aria-labelledby="offcanvasExampleLabel">
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-            Medical Request
-          </h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">
-          { notificationsData.length > 0 ? (
-            notificationsData.map( ( notification ) => (
-              <Notifiaction
-                key={ notification.id }
-                src={ notification.src }
-                name={ notification.name }
-                id={ notification.id }
-                status={ notification.status }
-              />
-            ) )
+       <Offcanvas show={show} onHide={handleClose} placement={'end'}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {records.length > 0 ? (
+            records.map((record) => (
+              <div
+                key={record.MedicalRequest_ID}
+                type="button"
+                className='icon-hover rounded p-2 d-flex align-items-center justify-content-between m-3 my-2'
+                onClick={() => openModal(record.MedicalRequest_ID)}
+              >
+                <Notification record={record} />
+              </div>
+            ))
           ) : (
             <p>No notifications available.</p>
-          ) }
-        </div>
-      </div>
+          )}
+          {selectedData ? (
+            <MedRequestModal show={showModal} onHide={() => setShowModal(false)} data={selectedData} />
+          ) : (
+            null
+          )}
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 }
