@@ -2,22 +2,22 @@ import React from 'react';
 
 export default function Status(props) {
 
-    const{primary,success,danger,status} = props;
+    const{status} = props;
 
     let statusMessage;
 
     switch (status) {
-        case 1:
-            statusMessage = <div className="alert alert-primary m-0 p-1 ms-1" role="alert">{primary}</div>;
+        case "Requested":
+            statusMessage = <div className="alert alert-primary m-0 p-1 ms-1 text-center" role="alert">Requested</div>;
             break;
-        case 2:
-            statusMessage = <div className="alert alert-success m-0 p-1 ms-1" role="alert">{success}</div>;
+        case "Approved":
+            statusMessage = <div className="alert alert-success m-0 p-1 ms-1 text-center" role="alert">Approved</div>;
             break;
-        case 3:
-            statusMessage = <div className="alert alert-danger m-0 p-1 ms-1" role="alert">{danger}</div>;
+        case 'Rejected':
+            statusMessage = <div className="alert alert-danger m-0 p-1 ms-1 text-center" role="alert">Rejected</div>;
             break;
         default:
-            statusMessage = <div className="alert alert-warning m-0 p-1 ms-1" role="alert">Unknown Status</div>;
+            statusMessage = <div className="alert alert-warning m-0 p-1 ms-1 text-center" role="alert">Unknown Status</div>;
             break;
     }
   return (

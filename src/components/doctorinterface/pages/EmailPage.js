@@ -3,7 +3,7 @@ import axios from 'axios';
 import FeatherIcon from 'feather-icons-react';
 import cloud from '../../../assets/icons8-error-cloud.gif';
 import Demail from '../Demail';
-import MedicalRecords from '../utilites/MedicalRecords';
+import MedicalRecords from '../utilites/MedicalRecords'; 
 
 export default function EmailPage ( props )
 {
@@ -64,9 +64,9 @@ export default function EmailPage ( props )
             </thead>
             <tbody >
               { Array.isArray( records ) ? (
-                records.map( ( records ) =>
+                records.map( ( record ) =>
                 {
-                  return <MedicalRecords date={ records.DateandTime } complain={ records.Patientcomplaint } examination={ records.OnExamination } tests={ records.Tests } diagnosis={ records.Confirmeddiagnosis } prescription={ records.Prescription_ID } />;
+                  return <MedicalRecords date={ record.DateandTime } complain={ record.Patientcomplaint } examination={ record.OnExamination } tests={ record.Tests } diagnosis={ record.Confirmeddiagnosis } prescription={ record.Prescription_ID } />;
                 } ) ) : (
                 <tr>
                   <div className='d-flex justify-content-center align-items-center m-0 p-1'>

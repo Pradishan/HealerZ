@@ -143,7 +143,7 @@ export default function TestPage ( props )
                 <Drug selectedId={ selectedId } />
               </div>
               <div className='d-md-none d-lg-flex align-items-center'>
-                <p className='m-0 fw-bold mx-1'>Sharoon</p>|<p className='text-success m-0 fw-bold mx-1'>22 years</p> | <p className='text-primary m-0 fw-bold mx-1'>Male</p> | <div className='mx-1'><CurrentTime /></div>
+                <div className='mx-1'><CurrentTime /></div>
               </div>
             </div>
             <div className='m-2'>
