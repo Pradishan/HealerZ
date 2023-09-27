@@ -32,6 +32,7 @@ import Protected2 from "./components/login/Protected2";
 import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
 import Registration from "./components/clubs/Registration";
+import Protected3 from "./components/login/Protected3";
 
 
 function App() {
@@ -46,8 +47,11 @@ function App() {
         <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } roll={'Pharmacist'} /> } />
         <Route path="/clubs/dashboard" element={ <Clubs /> } />
         <Route path="/clubs/Eventresponse" element={ <Eventresponse /> } />
-        <Route path="/profile" element={ <Profile /> } />
-        <Route path="/login" element={ <Login /> } />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/profile"
+          element={<Protected3 Component={Profile} role="patient" />}
+        />
         <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } roll={'Pharmacist'}/> } />
         <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply }roll={'Pharmacist'} /> } />

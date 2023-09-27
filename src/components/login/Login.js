@@ -1,15 +1,80 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+// /* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
+  const [patientID, setPatientID] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(null);
+  const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
-  const profileopen=()=>{
-    navigate('/profile');
-  }
+
+  useEffect(() => {
+    let login = sessionStorage.getItem("patient");
+
+    if (login === true) {
+      navigate("/profile");
+    }
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus) {
+      setLogmessage(loginStatus);
+    }
+  }, []);
+
+  const profileopen = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    setLogmessage("");
+    axios
+      .post("http://localhost/HealerZ/PHP/PatientLogin.php", {
+        patientID: patientID,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setMessage(response.data.message);
+        if (response.data.message === "Login successful.") {
+          setTimeout(() => {
+            sessionStorage.setItem("patient", true);
+            sessionStorage.setItem("patientID", response.data.patientID);
+            navigate("/profile");
+          }, 100);
+        }
+      })
+      .catch((error) => {
+        setMessage("Login failed.");
+      });
+  };
+
+  const errorMessage = (message) => {
+    let color;
+    switch (message) {
+      case "User ID and Password are required.":
+        color = "warning";
+        break;
+      case "Login failed.":
+      case "Invalid User ID or Password.":
+        color = "danger";
+        break;
+      case "Method not allowed.":
+        color = "warning";
+        break;
+      case "Login successful.":
+        color = "success";
+        break;
+      default:
+        break;
+    }
+    return (
+      <div className={`alert alert-${color} mt-3`} role="alert" style={{bottom:0,position:"absolute"}}>
+        {message}
+      </div>
+    );
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow top navbarh">
@@ -53,8 +118,10 @@ function Login() {
             <div className="pill-2 rotate-45"></div>
             <div className="pill-3 rotate-45"></div>
             <div className="pill-4 rotate-45"></div>
+            {message ? errorMessage(message) : ""}
           </div>
           <div className="login">
+            {logmessage ? <p>{logmessage}</p> : ""}
             <h3 className="title">User Login</h3>
             <form action="" className="py-2">
               <div className="form-floating mb-3">
@@ -64,6 +131,8 @@ function Login() {
                   id="floatingInput"
                   placeholder="D0001"
                   style={{ width: "100%" }}
+                  value={patientID}
+                  onChange={(e) => setPatientID(e.target.value)}
                 />
                 <label htmlFor="floatingInput">User ID</label>
               </div>
@@ -74,6 +143,8 @@ function Login() {
                   id="floatingPassword"
                   placeholder="Password"
                   style={{ width: "100%" }}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <label htmlFor="floatingPassword">Password</label>
               </div>
