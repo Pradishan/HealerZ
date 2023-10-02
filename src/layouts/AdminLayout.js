@@ -154,7 +154,7 @@ function Layout({children}) {
                     component={<Link to="/admin/settings"  />}
                     icon={<SettingsIcon />}>Settings </MenuItem>
   
-                    <MenuItem className="menu-item" component={<Link to="/loginAdmin"  />} onClick={logoutt} icon={<LogoutRoundedIcon />}> Logout </MenuItem>
+                    <MenuItem className="menu-item" component={<Link to="/"  />} onClick={logoutt} icon={<LogoutRoundedIcon />}> Logout </MenuItem>
                     </div>
                     </Menu>
                 </Sidebar>

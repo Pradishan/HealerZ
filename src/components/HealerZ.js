@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import wave from "./assets/wave.png";
-import "./test.css";
-import logo from "./assets/logo.png";
-import loginhome from "./assets/loginhome.png";
-
-import adminlogin from "./assets/adminlogin.svg";
-import inventorylogin from "./assets/inventorylogin.svg";
-import doctorlogin from "./assets/doctorlogin.svg";
-import clubadminlogin from "./assets/clubadminlogin.svg";
+import wave from "../assets/wave.png";
+import "./HealerZ.css";
+import logo from "../assets/logo.png";
+import adminlogin from "../assets/adminlogin.svg";
+import inventorylogin from "../assets/inventorylogin.svg";
+import doctorlogin from "../assets/doctorlogin.svg";
+import clubadminlogin from "../assets/clubadminlogin.svg";
 
 import { IconButton } from "@mui/material";
 
@@ -16,12 +14,12 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import MedicationIcon from "@mui/icons-material/Medication";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-import Adminlogin from "./components/login/AdminLogin";
-import Inventorylogin from "./components/login/InventoryLogin";
-import Doctorlogin from "./components/login/DoctorLogin";
+import Adminlogin from "./login/AdminLogin";
+import Inventorylogin from "./login/InventoryLogin";
+import Doctorlogin from "./login/DoctorLogin";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 
-function Test() {
+function HealerZ() {
   return (
     <div>
       <div></div>
@@ -57,7 +55,7 @@ function Test() {
               </a>
             </li>
             <li className="nav-item nav-link nav-hover navicoon">
-              <a className="nav-link" href="#clubaminlogin">
+              <a className="nav-link" href="#clubadminlogin">
                 <IconButton aria-label="delete">
                   <ManageAccountsIcon />
                 </IconButton>
@@ -97,7 +95,7 @@ function Test() {
             <Doctorlogin />
           </div>
         </div>
-        <div className="containerthlogin" id="clubaminlogin">
+        <div className="containerthlogin" id="clubadminlogin">
           <div className="imggh">
             <img src={clubadminlogin} alt="Background" />
           </div>
@@ -107,4 +105,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default HealerZ;

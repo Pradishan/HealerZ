@@ -13,7 +13,7 @@ export default function Protected2(props) {
         "loginStatus",
         "Please login to access the Admin interface!"
       );
-      navigate("/loginAdmin");
+      navigate("/");
       return;
     }
   });

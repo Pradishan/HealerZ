@@ -33,7 +33,7 @@ import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
 import Registration from "./components/clubs/Registration";
 import Protected3 from "./components/login/Protected3";
-import Test from "./Test";
+import HealerZ from "./components/HealerZ";
 
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
         {/* <Loader /> */}
       <Routes>
         <Route path="/*" element={ <Page404 /> } />
-        <Route path="/" element={ <Home /> } />
+        <Route path="/home" element={ <Home /> } />
         <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
         <Route path="/inventory-interface/inventory" element={ <Protected1 Component={ Inventory } roll={'Pharmacist'} /> } />
         <Route path="/clubs/dashboard" element={ <Clubs /> } />
@@ -56,8 +56,6 @@ function App() {
         <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/manage" element={ <Protected1 Component={ Manage } roll={'Pharmacist'}/> } />
         <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply }roll={'Pharmacist'} /> } />
-        <Route path="/loginDoctor" element={ <DoctorLogin /> } />
-        <Route path="/LoginInventory" element={ <InventoryLogin /> } />
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
         <Route path="/admin/dashboard" element={<Protected2 Component={ DashboardAdmin  } roll={'admin'} /> } />
         <Route path="/admin/adddoctor" element={ <Protected2 Component={ AddDoctor } roll={'admin'} /> } />
@@ -68,11 +66,10 @@ function App() {
         <Route path="/admin/addemployee" element={ <Protected2 Component={ AddEmployee } roll={'admin'} /> } />
         <Route path="/admin/employeelist" element={ <Protected2 Component={ EmployeeList } roll={'admin'} /> } />
         <Route path="/admin/medicalreports" element={ <Protected2 Component={ MedicalReport } roll={'admin'} /> } />
-        <Route path="/loginAdmin" element={<AdminLogin/>}/>
         <Route path="/clubs/blooddonation" element={<BloodDonation />}/>
         <Route path="/clubs/vacination" element={<Vaccination />}/>
         <Route path="/clubs/registration" element={<Registration/>}/>
-        <Route path="/test" element={<Test/>}/>
+        <Route path="/" element={<HealerZ/>}/>
         
       </Routes>
       </div>
