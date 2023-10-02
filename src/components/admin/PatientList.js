@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from '@mui/icons-material/Clear';
 
 function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -142,6 +143,11 @@ function PatientList(props) {
                   <div className="search-icon" onClick={handleSearchSubmit}>
                     <SearchIcon />
                   </div>
+                  {searchTerm3 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
               </div>
               <div className="search-input-container">
@@ -160,8 +166,15 @@ function PatientList(props) {
                  <div className="search-icon" onClick={handleSearchSubmit2}>
                     <SearchIcon />
                   </div>
+                  {searchTerm4 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm2("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
               </form>
               </div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="search-input-container">
               <select
                 className={"SearchBox1"}
                 value={selectedBloodGroup}
@@ -178,6 +191,13 @@ function PatientList(props) {
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
               </select>
+              {selectedBloodGroup && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedBloodGroup("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
+            </div>
+            </div>
             </div>
           </div>
           <hr />

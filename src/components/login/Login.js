@@ -121,7 +121,7 @@ function Login() {
             {message ? errorMessage(message) : ""}
           </div>
           <div className="login">
-            {logmessage ? <p>{logmessage}</p> : ""}
+            {/* {logmessage ? <p>{logmessage}</p> : ""} */}
             <h3 className="title">User Login</h3>
             <form action="" className="py-2">
               <div className="form-floating mb-3">

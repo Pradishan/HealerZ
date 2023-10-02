@@ -8,6 +8,7 @@ import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
 import axios from "axios";
+import ClearIcon from '@mui/icons-material/Clear';
 
 function Supply(props) {
   const [showModal, setShowModal] = useState(false);
@@ -19,6 +20,11 @@ function Supply(props) {
   const [searchTerm4, setSearchTerm2] = useState("");
   const [presList, setPresList] = useState([]);
   const [filteredPresList, setFilteredPresList] = useState([]);
+
+  const [searchDate, setSearchDate] = useState("");
+  const handleChangeDate = (event) => {
+    setSearchDate(event.target.value);
+  };
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
@@ -56,12 +62,14 @@ function Supply(props) {
   };
 
   useEffect(() => {
-    const filteredData = presList.filter((prescription_list) =>
-      prescription_list.Prescription_ID.includes(searchTerm3) &&
-      prescription_list.Patient_ID.includes(searchTerm4)
+    const filteredData = presList.filter(
+      (prescription_list) =>
+        prescription_list.Prescription_ID.includes(searchTerm3) &&
+        prescription_list.Patient_ID.includes(searchTerm4) &&
+        (searchDate === "" || prescription_list.TimeP.includes(searchDate))
     );
     setFilteredPresList(filteredData);
-  }, [searchTerm3, searchTerm4, presList]);
+  }, [searchTerm3, searchTerm4, searchDate, presList]);
 
   return (
     <Layout>
@@ -87,6 +95,11 @@ function Supply(props) {
                   <div className="search-icon" onClick={supplymodal}>
                     <SearchIcon />
                   </div>
+                  {searchTerm3 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
               </div>
               <div className="search-input-container">
@@ -102,7 +115,28 @@ function Supply(props) {
                   <div className="search-icon" onClick={supplymodal}>
                     <SearchIcon />
                   </div>
+                  {searchTerm4 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm2("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
+              </div>
+
+              <div className="search-input-container">
+                <input
+                  className="SearchBox1"
+                  type="date"
+                  placeholder="Date"
+                  value={searchDate}
+                  onChange={handleChangeDate}
+                  style={{ width: "300px" }}
+                />
+                {searchDate && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'4px'}} onClick={() => setSearchDate("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
               </div>
             </div>
           </div>
