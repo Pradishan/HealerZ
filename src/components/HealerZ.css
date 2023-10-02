@@ -6,6 +6,15 @@
 	z-index: -1;
 }
 
+.neeeeeeee {
+    background-image: url("./assets/medback.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    width: 100%; /* Set the width to 100% */
+}
+
 
 .imggh{
 	display: flex;
@@ -52,8 +61,36 @@
     position: fixed;
     right: 50px;
     margin-top: 20px;
+    z-index: 200;  
 }
 
 .categoryselectorr{
     margin-top: 30px;
+}
+
+.loginncardform{
+    margin-top: 120px;
+    margin-left: -200px;
+}
+
+.loginncardpos{
+    width: 400px;
+}
+
+.remmberme{
+    font-size: 16px;
+    font-weight: 600;
+    color: darkblue;
+    margin-left: -180px;
+}
+
+
+.downarrroww{
+    position: relative;
+    left: 110%;
+    top: 90%;
+}
+
+.dahover:hover{
+    transform: scale(1.1);
 }
