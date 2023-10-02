@@ -12,6 +12,7 @@ import CustomConfirmModal from "./modals/CustomConfirmModal";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import StockUpdateModal from "./modals/StockUpdateModal2";
+import ClearIcon from '@mui/icons-material/Clear';
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
@@ -138,9 +139,6 @@ function Inventory(props) {
             className="SearchSection"
             style={{ display: "flex", flexDirection: "row" }}
           >
-            {/* <div>
-              <h3 className="content-heading">Filter the Results : </h3>
-            </div> */}
             <div className="SearchSection2">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <div className="search-input-container">
@@ -156,6 +154,11 @@ function Inventory(props) {
                     <div className="search-icon" onClick={handleSearchByDrugID}>
                       <SearchIcon />
                     </div>
+                    {searchTerm3 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm3("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                   </form>
                 </div>
               </div>
@@ -176,10 +179,16 @@ function Inventory(props) {
                     >
                       <SearchIcon />
                     </div>
+                    {searchTerm4 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm4("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                   </form>
                 </div>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="search-input-container">
                 <select
                   className="SearchBox1"
                   value={selectedCategory}
@@ -196,6 +205,13 @@ function Inventory(props) {
                   <option value={"Injections"}>Injections</option>
                   <option value={"Implants"}>Implants</option>
                 </select>
+
+                {selectedCategory && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedCategory("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
+              </div>
               </div>
             </div>
           </div>

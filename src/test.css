@@ -1,0 +1,59 @@
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+
+.imggh{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.containerthlogin{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+
+.imggh img{
+	width: 500px;
+}
+
+.imgghhv{
+    display: flex;
+	justify-content: flex-end;
+	align-items: center;
+    margin-left: 700px;
+    margin-top: 100px;
+}
+.imgghhv img{
+	width: 600px;
+}
+
+.loginlogoo{
+    height: 50px;
+    width: 100px;
+    position: fixed;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.loginselect{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    position: fixed;
+    right: 50px;
+    margin-top: 20px;
+}
+
+.categoryselectorr{
+    margin-top: 30px;
+}
