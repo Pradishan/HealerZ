@@ -139,9 +139,6 @@ function Inventory(props) {
             className="SearchSection"
             style={{ display: "flex", flexDirection: "row" }}
           >
-            {/* <div>
-              <h3 className="content-heading">Filter the Results : </h3>
-            </div> */}
             <div className="SearchSection2">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <div className="search-input-container">

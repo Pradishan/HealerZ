@@ -87,7 +87,7 @@ function Supply(props) {
                   <input
                     className="SearchBox1"
                     type="text"
-                    placeholder="Prescription_ID"
+                    placeholder="Filter by Prescription_ID"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
@@ -107,7 +107,7 @@ function Supply(props) {
                   <input
                     className="SearchBox1"
                     type="text"
-                    placeholder="Patient_ID"
+                    placeholder="Filter by Patient_ID"
                     value={searchTerm4}
                     onChange={handleChange4}
                     style={{ width: "300px" }}
@@ -127,7 +127,7 @@ function Supply(props) {
                 <input
                   className="SearchBox1"
                   type="date"
-                  placeholder="Date"
+                  placeholder="Filter by Date"
                   value={searchDate}
                   onChange={handleChangeDate}
                   style={{ width: "300px" }}
