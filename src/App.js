@@ -33,6 +33,7 @@ import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
 import Registration from "./components/clubs/Registration";
 import Protected3 from "./components/login/Protected3";
+import Test from "./Test";
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
         <Route path="/clubs/blooddonation" element={<BloodDonation />}/>
         <Route path="/clubs/vacination" element={<Vaccination />}/>
         <Route path="/clubs/registration" element={<Registration/>}/>
+        <Route path="/test" element={<Test/>}/>
         
       </Routes>
       </div>
