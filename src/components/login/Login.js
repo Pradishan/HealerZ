@@ -54,32 +54,6 @@ function Login() {
       });
   };
 
-  // const errorMessage = (message) => {
-  //   let color;
-  //   switch (message) {
-  //     case "User ID and Password are required.":
-  //       color = "warning";
-  //       break;
-  //     case "Login failed.":
-  //     case "Invalid User ID or Password.":
-  //       color = "danger";
-  //       break;
-  //     case "Method not allowed.":
-  //       color = "warning";
-  //       break;
-  //     case "Login successful.":
-  //       color = "success";
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   return (
-  //     <div className={`alert alert-${color} mt-3`} role="alert" style={{bottom:0,position:"absolute"}}>
-  //       {message}
-  //     </div>
-  //   );
-  // };
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow top navbarh">
@@ -123,10 +97,8 @@ function Login() {
             <div className="pill-2 rotate-45"></div>
             <div className="pill-3 rotate-45"></div>
             <div className="pill-4 rotate-45"></div>
-            {/* {message ? errorMessage(message) : ""} */}
           </div>
           <div className="login">
-            {/* {logmessage ? <p>{logmessage}</p> : ""} */}
             <h3 className="title">User Login</h3>
             <form action="" className="py-2">
               <div className="form-floating mb-3">
