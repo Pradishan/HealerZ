@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../layouts/layout";
 import "./inventory.css";
 import SupplyModal from "./modals/SupplyModal";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
+import axios from "axios";
 
 function Supply(props) {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +17,8 @@ function Supply(props) {
   };
   const [searchTerm3, setSearchTerm] = useState("");
   const [searchTerm4, setSearchTerm2] = useState("");
+  const [presList, setPresList] = useState([]);
+  const [filteredPresList, setFilteredPresList] = useState([]);
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
@@ -36,92 +39,33 @@ function Supply(props) {
     setConfirmModalVisible(true);
   };
 
-  const [drugList1, setdrugList1] = useState([
-    {
-      No: 1,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 2,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 3,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 4,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 5,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 6,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 7,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Rejected",
-    },
-    {
-      No: 8,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 9,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 10,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-  ]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/Healerz/PHP/Inventory/displayPrescriptions.php"
+      );
+      setPresList(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const filteredData = presList.filter((prescription_list) =>
+      prescription_list.Prescription_ID.includes(searchTerm3) &&
+      prescription_list.Patient_ID.includes(searchTerm4)
+    );
+    setFilteredPresList(filteredData);
+  }, [searchTerm3, searchTerm4, presList]);
 
   return (
     <Layout>
-        <h3 className='serhedd'>Supply Detail</h3>
+      <h3 className="serhedd">Supply Detail</h3>
       <div className={"container tabconttt"}>
         <div className={"p-5"}>
           <hr />
@@ -162,7 +106,7 @@ function Supply(props) {
               </div>
             </div>
           </div>
-          <hr/>
+          <hr />
           <div className={"table-container "}>
             <table className={"table table-hover table-striped "}>
               <thead className={"top-0 position-sticky h-45"}>
@@ -177,26 +121,27 @@ function Supply(props) {
                 </tr>
               </thead>
               <tbody>
-                {drugList1.map((data, index) => (
-                  <tr>
-                    <th scope="row">{data.No}</th>
-                    <td>{data.date}</td>
-                    <td>{data.Prescription_ID}</td>
-                    <td>{data.Patient_ID}</td>
-                    <td>{data.Patient_Name}</td>
-                    <td
-                      className={
-                        data.status === "Pending"
-                          ? "pending"
-                          : data.status === "Delivered"
-                          ? "delivered"
-                          : "rejected"
-                      }
-                    >
-                      {data.status}
-                    </td>
-                    <td>
-                    <IconButton
+                {filteredPresList.length > 0 ? (
+                  filteredPresList.map((data, index) => (
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      <td>{data.TimeP}</td>
+                      <td>{data.Prescription_ID}</td>
+                      <td>{data.Patient_ID}</td>
+                      <td>{data.PatientName}</td>
+                      <td
+                        className={
+                          data.status === "Waiting"
+                            ? "waiting"
+                            : data.status === "Delivered"
+                            ? "delivered"
+                            : "rejected"
+                        }
+                      >
+                        {data.status}
+                      </td>
+                      <td>
+                        <IconButton
                           aria-label="delete"
                           className="viewbutt"
                           onClick={supplymodal}
@@ -212,9 +157,14 @@ function Supply(props) {
                         >
                           <DeleteIcon />
                         </IconButton>
-                    </td>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="7">No results found</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>

@@ -388,51 +388,51 @@
     flex-direction: row;
 }
 
-.pending {
+.waiting {
     color: #0029FF !important;
-    border-radius: 9px !important;
+    /* border-radius: 9px !important; */
     background-color: #B7C4F2 !important;
-    display: flex !important;
+    /* display: flex !important; */
     width: 126px !important;
-    padding: 4px 0 !important;
+    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
     margin-top: 10px;
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
 }
 
 .delivered {
     color: #009418 !important;
-    border-radius: 9px !important;
+    /* border-radius: 9px !important; */
     background-color: #B8FF81 !important;
-    display: flex !important;
+    /* display: flex !important; */
     width: 126px !important;
-    padding: 4px 0 !important;
+    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
     margin-top: 10px;
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
 }
 
 .rejected {
     color: #E20000 !important;
-    border-radius: 9px !important;
+    /* border-radius: 9px !important; */
     background-color: #FFB2B2 !important;
-    display: flex !important;
+    /* display: flex !important; */
     width: 126px !important;
-    padding: 4px 0 !important;
+    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
     margin-top: 10px;
     font-size: 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
 }
 
