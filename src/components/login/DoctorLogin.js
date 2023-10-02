@@ -56,8 +56,10 @@ export default function DoctorLogin() {
           <div className="col-md-4">
             {/* <p style={{ width: "400px" }}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
+            <div className="card-header bg-white text-center">
+                <h3>Login | Doctor</h3>
+              </div>
               <div className="card-body">
-                <h3>Login As Doctor</h3>
                 <form action="" className="py-2">
                   <div className="form-floating mb-3">
                     <input
