@@ -5,6 +5,8 @@ import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const [patientID, setPatientID] = useState("");
@@ -37,11 +39,14 @@ function Login() {
         console.log(response.data);
         setMessage(response.data.message);
         if (response.data.message === "Login successful.") {
+          toast.success(message);
           setTimeout(() => {
             sessionStorage.setItem("patient", true);
             sessionStorage.setItem("patientID", response.data.patientID);
             navigate("/profile");
           }, 100);
+        } else {
+          toast.error(message);
         }
       })
       .catch((error) => {
@@ -49,31 +54,31 @@ function Login() {
       });
   };
 
-  const errorMessage = (message) => {
-    let color;
-    switch (message) {
-      case "User ID and Password are required.":
-        color = "warning";
-        break;
-      case "Login failed.":
-      case "Invalid User ID or Password.":
-        color = "danger";
-        break;
-      case "Method not allowed.":
-        color = "warning";
-        break;
-      case "Login successful.":
-        color = "success";
-        break;
-      default:
-        break;
-    }
-    return (
-      <div className={`alert alert-${color} mt-3`} role="alert" style={{bottom:0,position:"absolute"}}>
-        {message}
-      </div>
-    );
-  };
+  // const errorMessage = (message) => {
+  //   let color;
+  //   switch (message) {
+  //     case "User ID and Password are required.":
+  //       color = "warning";
+  //       break;
+  //     case "Login failed.":
+  //     case "Invalid User ID or Password.":
+  //       color = "danger";
+  //       break;
+  //     case "Method not allowed.":
+  //       color = "warning";
+  //       break;
+  //     case "Login successful.":
+  //       color = "success";
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   return (
+  //     <div className={`alert alert-${color} mt-3`} role="alert" style={{bottom:0,position:"absolute"}}>
+  //       {message}
+  //     </div>
+  //   );
+  // };
 
   return (
     <div>
@@ -118,7 +123,7 @@ function Login() {
             <div className="pill-2 rotate-45"></div>
             <div className="pill-3 rotate-45"></div>
             <div className="pill-4 rotate-45"></div>
-            {message ? errorMessage(message) : ""}
+            {/* {message ? errorMessage(message) : ""} */}
           </div>
           <div className="login">
             {/* {logmessage ? <p>{logmessage}</p> : ""} */}
@@ -165,6 +170,7 @@ function Login() {
             <a href="#" className="forgot" onClick={(e) => e.preventDefault()}>
               Forgot! Username/Password?
             </a>
+            <ToastContainer/>
           </div>
         </div>
       </div>

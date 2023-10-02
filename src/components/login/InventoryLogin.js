@@ -38,6 +38,7 @@ export default function InventoryLogin() {
           toast.success(message);
           setTimeout(() => {
           sessionStorage.setItem("Pharmacist", true);
+          sessionStorage.setItem("pharmacistID", response.data.pharmacistID);
           navigate("/inventory-interface/dashboard");
         }, 100);
         } else {
