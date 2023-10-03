@@ -127,3 +127,18 @@
 .downhomeicc:hover{
     transform: scale(1.1);
 }
+
+.logoaddinglogin{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+.logoaddinglogin h3{
+    color: rgb(0, 0, 70);
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.loginiconlogin{
+    color: darkblue;
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 export default function InventoryLogin() {
   const [pharmacistID, setPharmacistID] = useState("");
@@ -56,7 +57,11 @@ export default function InventoryLogin() {
           <div className="col-md-4">
             {/* <p style={{width:'400px'}}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
-              <div className="card-header bg-white text-center">
+              <div className="card-header bg-white text-center logoaddinglogin"  style={{gap:'30px'}}>
+              <InventoryIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
                 <h3>Login | Pharmacist</h3>
               </div>
               <div className="card-body">

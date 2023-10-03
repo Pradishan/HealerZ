@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import wave from "../assets/wave.png";
+import wave from "../assets/wave2.png";
 import "./HealerZ.css";
 import logo from "../assets/logo.png";
-import adminlogin from "../assets/adminlogin.svg";
+import adminlogin from "../assets/adminlogin3.svg";
 import inventorylogin from "../assets/inventorylogin.svg";
 import doctorlogin from "../assets/doctorlogin.svg";
 import clubadminlogin from "../assets/clubadminlogin.svg";
@@ -12,7 +12,7 @@ import { IconButton } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import MedicationIcon from "@mui/icons-material/Medication";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 import Adminlogin from "./login/AdminLogin";
 import Inventorylogin from "./login/InventoryLogin";
@@ -41,7 +41,7 @@ function HealerZ() {
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link" href="#inventorylogin">
                 <IconButton aria-label="delete">
-                  <AddShoppingCartIcon />
+                  <InventoryIcon />
                 </IconButton>
                 <span className="lettnav">Inventory Login</span>
               </a>

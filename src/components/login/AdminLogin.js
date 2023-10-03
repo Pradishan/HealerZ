@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 export default function AdminLogin() {
@@ -57,7 +58,8 @@ export default function AdminLogin() {
           <div className="col-md-4">
             {/* <p style={{width:'400px'}}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
-              <div className="card-header bg-white text-center">
+              <div className="card-header bg-white text-center logoaddinglogin">
+                <AdminPanelSettingsIcon className="loginiconlogin" sx={{ fontSize: "40px" }}/>
                 <h3>Login | Admin</h3>
               </div>
               <div className="card-body">
