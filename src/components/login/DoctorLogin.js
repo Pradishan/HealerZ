@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MedicationIcon from "@mui/icons-material/Medication";
 
 export default function DoctorLogin() {
   const [doctorID, setDoctorID] = useState("");
@@ -56,7 +57,11 @@ export default function DoctorLogin() {
           <div className="col-md-4">
             {/* <p style={{ width: "400px" }}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
-            <div className="card-header bg-white text-center">
+              <div className="card-header bg-white text-center logoaddinglogin">
+                <MedicationIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
                 <h3>Login | Doctor</h3>
               </div>
               <div className="card-body">
@@ -85,7 +90,10 @@ export default function DoctorLogin() {
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
-                  <div className="form-check mb-3" style={{marginTop:'15px'}}>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
                     <input
                       type="checkbox"
                       className="form-check-input"

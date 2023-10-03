@@ -10,6 +10,7 @@ import CustomConfirmModal from "./modals/CustomConfirmModal";
 import axios from "axios";
 import ClearIcon from '@mui/icons-material/Clear';
 
+
 function Supply(props) {
   const [showModal, setShowModal] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -20,6 +21,7 @@ function Supply(props) {
   const [searchTerm4, setSearchTerm2] = useState("");
   const [presList, setPresList] = useState([]);
   const [filteredPresList, setFilteredPresList] = useState([]);
+  const [selectedDrug, setSelectedDrug] = useState(null);
 
   const [searchDate, setSearchDate] = useState("");
   const handleChangeDate = (event) => {
@@ -70,6 +72,12 @@ function Supply(props) {
     );
     setFilteredPresList(filteredData);
   }, [searchTerm3, searchTerm4, searchDate, presList]);
+
+
+  const openModal = (drug) => {
+    setSelectedDrug(drug);
+    setShowModal(true);
+  };
 
   return (
     <Layout>
@@ -178,7 +186,7 @@ function Supply(props) {
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"
-                          onClick={supplymodal}
+                          onClick={() => openModal(data)}
                           style={{ color: "green" }}
                         >
                           <BrowserUpdatedIcon />
@@ -204,7 +212,11 @@ function Supply(props) {
           </div>
         </div>
       </div>
-      <SupplyModal show={showModal} onHide={supplymodal} />
+      <SupplyModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        drugDetails={selectedDrug}
+      />
       <CustomConfirmModal
         show={confirmModalVisible}
         onHide={() => setConfirmModalVisible(false)}
