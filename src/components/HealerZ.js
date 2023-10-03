@@ -17,8 +17,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Adminlogin from "./login/AdminLogin";
 import Inventorylogin from "./login/InventoryLogin";
 import Doctorlogin from "./login/DoctorLogin";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 function HealerZ() {
   return (
     <div>
@@ -67,7 +66,7 @@ function HealerZ() {
         <div className="containerthlogin neeeeeeee" id="loginhome">
           <div className="downarrroww">
             <IconButton aria-label="delete" className="dahover" href="#adminlogin">
-              <ExpandCircleDownIcon sx={{ fontSize: "40px" }}/>
+              <KeyboardDoubleArrowDownIcon sx={{ fontSize: "40px" }}/>
             </IconButton>
           </div>
         </div>
