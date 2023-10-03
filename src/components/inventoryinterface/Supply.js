@@ -9,14 +9,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CustomConfirmModal from "./modals/CustomConfirmModal";
 import axios from "axios";
 import ClearIcon from '@mui/icons-material/Clear';
+import { ToastContainer, toast } from "react-toastify";
 
 
 function Supply(props) {
   const [showModal, setShowModal] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const supplymodal = () => {
-    setShowModal(!showModal);
-  };
   const [searchTerm3, setSearchTerm] = useState("");
   const [searchTerm4, setSearchTerm2] = useState("");
   const [presList, setPresList] = useState([]);
@@ -31,18 +29,36 @@ function Supply(props) {
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
   };
+
+
   const handleChange4 = (event) => {
     setSearchTerm2(event.target.value);
   };
 
-  const handleSubmit3 = (event) => {
+  const handleSearchByPresID = (event) => {
     event.preventDefault();
-    console.log(`Searching for ${searchTerm3}...`);
+    const searchedDrug = presList.find((drug) => drug.Prescription_ID === searchTerm3);
+    if (searchedDrug) {
+      setSelectedDrug(searchedDrug);
+      setShowModal(true);
+      setSearchTerm("");
+    } else {
+      toast.error("Invalid Prescription ID");
+    }
   };
-  const handleSubmit4 = (event) => {
+
+  const handleSearchByPatID = (event) => {
     event.preventDefault();
-    console.log(`Searching for ${searchTerm4}...`);
+    const searchedDrug = presList.find((drug) => drug.Patient_ID === searchTerm4);
+    if (searchedDrug) {
+      setSelectedDrug(searchedDrug);
+      setShowModal(true);
+      setSearchTerm2("");
+    } else {
+      toast.error("Invalid Patient ID");
+    }
   };
+  
   const handleDelete = () => {
     setConfirmModalVisible(true);
   };
@@ -91,7 +107,7 @@ function Supply(props) {
           >
             <div className={"SearchSection2"}>
               <div className="search-input-container">
-                <form onSubmit={handleSubmit3}>
+                <form onSubmit={handleSearchByPresID}>
                   <input
                     className="SearchBox1"
                     type="text"
@@ -100,7 +116,7 @@ function Supply(props) {
                     onChange={handleChange3}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={supplymodal}>
+                  <div className="search-icon" onClick={handleSearchByPresID}>
                     <SearchIcon />
                   </div>
                   {searchTerm3 && (
@@ -111,7 +127,7 @@ function Supply(props) {
                 </form>
               </div>
               <div className="search-input-container">
-                <form onSubmit={handleSubmit4}>
+                <form onSubmit={handleSearchByPatID}>
                   <input
                     className="SearchBox1"
                     type="text"
@@ -120,7 +136,7 @@ function Supply(props) {
                     onChange={handleChange4}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={supplymodal}>
+                  <div className="search-icon" onClick={handleSearchByPatID}>
                     <SearchIcon />
                   </div>
                   {searchTerm4 && (
@@ -211,6 +227,7 @@ function Supply(props) {
             </table>
           </div>
         </div>
+        <ToastContainer />
       </div>
       <SupplyModal
         show={showModal}

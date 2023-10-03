@@ -91,20 +91,22 @@ export default function AdminLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <span
-                      className="password-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <div className="search-icon">
-                          <VisibilityOffIcon/>
-                        </div>
-                      ) : (
-                        <div className="search-icon">
-                          <VisibilityIcon/>
-                        </div>
-                      )}
-                    </span>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
                   </div>
                   <div
                     className="form-check mb-3"

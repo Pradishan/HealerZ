@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -41,10 +41,10 @@ export default function InventoryLogin() {
         if (message === "Login successful.") {
           toast.success(message);
           setTimeout(() => {
-          sessionStorage.setItem("Pharmacist", true);
-          sessionStorage.setItem("pharmacistID", response.data.pharmacistID);
-          navigate("/inventory-interface/dashboard");
-        }, 100);
+            sessionStorage.setItem("Pharmacist", true);
+            sessionStorage.setItem("pharmacistID", response.data.pharmacistID);
+            navigate("/inventory-interface/dashboard");
+          }, 100);
         } else {
           toast.error(message);
         }
@@ -60,8 +60,11 @@ export default function InventoryLogin() {
           <div className="col-md-4">
             {/* <p style={{width:'400px'}}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
-              <div className="card-header bg-white text-center logoaddinglogin"  style={{gap:'30px'}}>
-              <InventoryIcon
+              <div
+                className="card-header bg-white text-center logoaddinglogin"
+                style={{ gap: "30px" }}
+              >
+                <InventoryIcon
                   className="loginiconlogin"
                   sx={{ fontSize: "40px" }}
                 />
@@ -83,7 +86,7 @@ export default function InventoryLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                       type={showPassword ? "text" : "password"}
+                      type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
@@ -92,22 +95,27 @@ export default function InventoryLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
-                    <span
-                      className="password-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <div className="search-icon">
-                          <VisibilityOffIcon/>
-                        </div>
-                      ) : (
-                        <div className="search-icon">
-                          <VisibilityIcon/>
-                        </div>
-                      )}
-                    </span>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
                   </div>
-                  <div className="form-check mb-3" style={{marginTop:'15px'}}>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
                     <input
                       type="checkbox"
                       className="form-check-input"
@@ -136,7 +144,7 @@ export default function InventoryLogin() {
                 </form>
               </div>
             </div>
-           <ToastContainer/>
+            <ToastContainer />
           </div>
         </div>
       </div>
