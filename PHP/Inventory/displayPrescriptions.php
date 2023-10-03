@@ -18,7 +18,7 @@ switch ($method) {
     case 'GET':
          $sql = "SELECT prescription_record.*, patient.PatientName
          FROM prescription_record
-         LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID"; 
+         LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID ORDER BY TimeP DESC"; 
 }
 
 $result = mysqli_query($con, $sql);

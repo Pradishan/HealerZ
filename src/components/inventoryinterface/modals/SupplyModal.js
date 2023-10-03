@@ -3,6 +3,10 @@ import { Modal, Button } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import "../inventory.css";
 import axios from "axios";
+import { IconButton } from "@mui/material";
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import GppBadIcon from '@mui/icons-material/GppBad';
 
 function SupplyPopup(props) {
   const notify = () => toast("Drug Supply Successfully!");
@@ -33,8 +37,32 @@ function SupplyPopup(props) {
   
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
-      <Modal.Header closeButton>
+      <Modal.Header >
         <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
+        {drugDetails && drugDetails.status === "Waiting" && (
+          <IconButton
+            style={{ color: "blue" }}
+            className="modalbutthover"
+          >
+            <HourglassBottomIcon sx={{ fontSize: "40px" }} />
+          </IconButton>
+        )}
+        {drugDetails && drugDetails.status === "Delivered" && (
+          <IconButton
+            style={{ color: "green" }}
+            className="modalbutthover"
+          >
+            <VerifiedUserIcon sx={{ fontSize: "40px" }} />
+          </IconButton>
+        )}
+        {drugDetails && drugDetails.status !== "Waiting" && drugDetails.status !== "Delivered" && (
+          <IconButton
+            style={{ color: "red" }}
+            className="modalbutthover"
+          >
+            <GppBadIcon sx={{ fontSize: "40px" }} />
+          </IconButton>
+        )}
       </Modal.Header>
       <Modal.Body>
         <hr />
@@ -98,18 +126,21 @@ function SupplyPopup(props) {
           </table>
         </div>
         <div>
-          <hr style={{ width: "180px", marginLeft: "550px" }} />
+          {/* <hr style={{ width: "250px", marginLeft: "450px" }} /> */}
+          <hr/>
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              marginLeft: "575px",
+              marginLeft: "460px",
             }}
           >
-            <p>Total Count</p>
-            <p style={{ paddingLeft: "30px" }}>{totalCount}</p>
+            <p className="totalcounttthed">Total Count</p>
+            <p className={"detailspac"}>=</p>
+            <p className="totalcounttt">{totalCount}</p>
           </div>
-          <hr style={{ width: "180px", marginLeft: "550px" }} />
+          <hr/>
+          {/* <hr style={{ width: "250px", marginLeft: "450px" }} /> */}
         </div>
       </Modal.Body>
       <Modal.Footer>
