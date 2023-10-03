@@ -13,7 +13,7 @@ export default function Protected1(props) {
         "loginStatus",
         "Please login to access the Pharmacist interface!"
       );
-      navigate("/loginInventory");
+      navigate("/");
       return;
     }
   });

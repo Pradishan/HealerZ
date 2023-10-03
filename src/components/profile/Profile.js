@@ -94,11 +94,15 @@ const Profile = () => {
             const messages = res.data.message.split(".");
             for (const message of messages) {
               message && toast.success(message);
+             
             }
           }
 
           res.data.error && toast.error(res.data.error);
-          window.location.reload();
+          toast.success("Profile updated Successfully");
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
         })
         .catch((err) => {
           console.log(err);
@@ -133,7 +137,10 @@ const Profile = () => {
           }
         }
         res.data.error && toast.error(res.data.error);
-        window.location.reload();
+        toast.success("Special Disease updated Successfully");
+        setTimeout(function() {
+          window.location.reload();
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
@@ -215,7 +222,9 @@ const Profile = () => {
       .then((res) => {
         console.log(res);
         toast.success(res.data.message);
-        window.location.reload();
+        setTimeout(function() {
+          window.location.reload();
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
@@ -257,7 +266,7 @@ const Profile = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item nav-link nav-hover navicoon">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/home">
                   <FeatherIcon
                     icon="home"
                     className="me-2 naviccon2 nav-hover"

@@ -34,7 +34,7 @@ export default function Hnav() {
         >
           <ul className="navbar-nav">
             <li className="nav-item nav-link nav-hover navicoon">
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="/home">
                 {/* <FeatherIcon icon="home" className='me-2 naviccon2 nav-hover' /> */}
                 <IconButton aria-label="delete">
                   <HomeIcon />

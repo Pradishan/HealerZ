@@ -34,7 +34,7 @@ export default function Dnav() {
   const logout = () => {
     sessionStorage.setItem('Doctor', 'false');
     sessionStorage.setItem('loginStatus', 'Logged out successfully!');
-    navigate("/loginDoctor");
+    navigate("/");
   };
 
   const [showModal, setShowModal] = useState(false);
