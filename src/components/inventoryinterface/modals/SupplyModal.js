@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
-import "../inventory.css";
 import axios from "axios";
 import { IconButton } from "@mui/material";
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
@@ -9,11 +8,11 @@ import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import GppBadIcon from '@mui/icons-material/GppBad';
 
 function SupplyPopup(props) {
-  const notify = () => toast("Drug Supply Successfully!");
   const { show, onHide, drugDetails } = props;
   const [supplyList, setsupplyList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
+  
 
   useEffect(() => {
     if (show && drugDetails) {
@@ -35,7 +34,36 @@ function SupplyPopup(props) {
     }
   };
   
+
+  const handleUpdate = async () => {
+    try {
+      // Calculate the updated count based on the total count
+      const updatedStockCount = totalCount - supplyList.reduce((acc, item) => acc + item.Days * 3, 0);
+
+      // Send a POST request to your PHP script
+      const response = await axios.post(
+        "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php",
+        {
+          Drug_ID: drugDetails.Prescription_ID,
+          StockCount: updatedStockCount,
+        }
+      );
+
+      if (response.data === "Stock Updated Successfully") {
+        // Show a success message
+        toast.success("Stock Updated Successfully");
+        // You can also close the modal or perform other actions as needed
+      } else {
+        // Show an error message
+        toast.error("Error updating stock");
+      }
+    } catch (error) {
+      console.error("Error updating stock:", error);
+      toast.error("Error updating stock");
+    }
+  };
   return (
+    <>
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header >
         <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
@@ -67,32 +95,34 @@ function SupplyPopup(props) {
       <Modal.Body>
         <hr />
         <table>
-          <tr>
-            <th className={"detailhed"}>Date</th>
-            <th className={"detailspac"}>:</th>
-            <th className={"detaildet"}>{drugDetails && drugDetails.TimeP}</th>
-          </tr>
-          <tr>
-            <th className={"detailhed"}>Prescription_ID</th>
-            <th className={"detailspac"}>:</th>
-            <th className={"detaildet"}>
-              {drugDetails && drugDetails.Prescription_ID}
-            </th>
-          </tr>
-          <tr>
-            <th className={"detailhed"}>Patient_ID</th>
-            <th className={"detailspac"}>:</th>
-            <th className={"detaildet"}>
-              {drugDetails && drugDetails.Patient_ID}
-            </th>
-          </tr>
-          <tr>
-            <th className={"detailhed"}>Patient_Name</th>
-            <th className={"detailspac"}>:</th>
-            <th className={"detaildet"}>
-              {drugDetails && drugDetails.PatientName}
-            </th>
-          </tr>
+          <tbody>
+            <tr>
+              <th className={"detailhed"}>Date</th>
+              <th className={"detailspac"}>:</th>
+              <th className={"detaildet"}>{drugDetails && drugDetails.TimeP}</th>
+            </tr>
+            <tr>
+              <th className={"detailhed"}>Prescription_ID</th>
+              <th className={"detailspac"}>:</th>
+              <th className={"detaildet"}>
+                {drugDetails && drugDetails.Prescription_ID}
+              </th>
+            </tr>
+            <tr>
+              <th className={"detailhed"}>Patient_ID</th>
+              <th className={"detailspac"}>:</th>
+              <th className={"detaildet"}>
+                {drugDetails && drugDetails.Patient_ID}
+              </th>
+            </tr>
+            <tr>
+              <th className={"detailhed"}>Patient_Name</th>
+              <th className={"detailspac"}>:</th>
+              <th className={"detaildet"}>
+                {drugDetails && drugDetails.PatientName}
+              </th>
+            </tr>
+          </tbody>
         </table>
 
         <hr />
@@ -105,6 +135,7 @@ function SupplyPopup(props) {
               <tr>
                 <th scope="col">NO</th>
                 <th scope="col">DRUG_ID</th>
+                <th scope="col">StockCount</th>
                 <th scope="col">TDS</th>
                 <th scope="col">AF/BF</th>
                 <th scope="col">Days</th>
@@ -116,6 +147,7 @@ function SupplyPopup(props) {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{item.Drug_ID}</td>
+                  <td>{item.StockCount}</td>
                   <td>{item.TDS}</td>
                   <td>{item.Time}</td>
                   <td>{item.Days}</td>
@@ -126,27 +158,25 @@ function SupplyPopup(props) {
           </table>
         </div>
         <div>
-          {/* <hr style={{ width: "250px", marginLeft: "450px" }} /> */}
-          <hr/>
+          <hr />
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              marginLeft: "460px",
+              marginLeft: "485px",
             }}
           >
             <p className="totalcounttthed">Total Count</p>
             <p className={"detailspac"}>=</p>
             <p className="totalcounttt">{totalCount}</p>
           </div>
-          <hr/>
-          {/* <hr style={{ width: "250px", marginLeft: "450px" }} /> */}
+          <hr />
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
           variant="primary"
-          onClick={notify}
+          onClick={handleUpdate}
           style={{ backgroundColor: "green" }}
         >
           Update
@@ -160,6 +190,7 @@ function SupplyPopup(props) {
         </Button>
       </Modal.Footer>
     </Modal>
+    </>
   );
 }
 

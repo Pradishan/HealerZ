@@ -4,12 +4,15 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function InventoryLogin() {
   const [pharmacistID, setPharmacistID] = useState("");
   const [password, setPassword] = useState("");
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Pharmacist");
@@ -80,7 +83,7 @@ export default function InventoryLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                      type="password"
+                       type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
@@ -89,6 +92,20 @@ export default function InventoryLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
+                    <span
+                      className="password-toggle"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <div className="search-icon">
+                          <VisibilityOffIcon/>
+                        </div>
+                      ) : (
+                        <div className="search-icon">
+                          <VisibilityIcon/>
+                        </div>
+                      )}
+                    </span>
                   </div>
                   <div className="form-check mb-3" style={{marginTop:'15px'}}>
                     <input
