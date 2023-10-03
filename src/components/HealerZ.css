@@ -1,9 +1,9 @@
-.wave{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index: -1;
+.wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
 }
 
 .neeeeeeee {
@@ -11,42 +11,45 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    width: 100%; /* Set the width to 100% */
+    height: 100vh;
+    /* Set the height to 100% of the viewport height */
+    width: 100%;
+    /* Set the width to 100% */
 }
 
 
-.imggh{
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+.imggh {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.containerthlogin{
+.containerthlogin {
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap :7rem;
+    grid-gap: 7rem;
     padding: 0 2rem;
 }
 
-.imggh img{
-	width: 500px;
+.imggh img {
+    width: 500px;
 }
 
-.imgghhv{
+.imgghhv {
     display: flex;
-	justify-content: flex-end;
-	align-items: center;
+    justify-content: flex-end;
+    align-items: center;
     margin-left: 700px;
     margin-top: 100px;
 }
-.imgghhv img{
-	width: 600px;
+
+.imgghhv img {
+    width: 600px;
 }
 
-.loginlogoo{
+.loginlogoo {
     height: 50px;
     width: 100px;
     position: fixed;
@@ -54,30 +57,30 @@
     margin-top: 5px;
 }
 
-.loginselect{
+.loginselect {
     display: flex;
     flex-direction: row;
     gap: 50px;
     position: fixed;
     right: 50px;
     margin-top: 20px;
-    z-index: 200;  
+    z-index: 200;
 }
 
-.categoryselectorr{
+.categoryselectorr {
     margin-top: 30px;
 }
 
-.loginncardform{
+.loginncardform {
     margin-top: 120px;
     margin-left: -200px;
 }
 
-.loginncardpos{
+.loginncardpos {
     width: 400px;
 }
 
-.remmberme{
+.remmberme {
     font-size: 16px;
     font-weight: 600;
     color: darkblue;
@@ -85,24 +88,42 @@
 }
 
 
-.downarrroww{
+.downarrroww {
     position: relative;
     left: 110%;
     top: 90%;
 }
 
-.dahover{
+.downhomee {
+    position: relative;
+    top: 90%;
+    left: 90%;
+}
+
+.dahover {
     animation: bounce 1s infinite;
 }
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
     }
+
     40% {
-      transform: translateY(-20px);
+        transform: translateY(-20px);
     }
+
     60% {
-      transform: translateY(-10px);
+        transform: translateY(-10px);
     }
-  }
-  
+}
+
+
+.downhomeicc:hover{
+    transform: scale(1.1);
+}
