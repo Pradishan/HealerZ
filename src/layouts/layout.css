@@ -146,6 +146,14 @@
     color: #090086;
 }
 
+
+.layoutProfilename{
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #04003d;
+}
+
 @media (max-width: 767px) {
     .sa-modal-bg-inner {
         display: block;

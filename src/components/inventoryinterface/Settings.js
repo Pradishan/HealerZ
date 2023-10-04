@@ -12,6 +12,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import setting from "../../assets/inventorysettings.svg";
 
 // import { Link } from "react-router-dom";
 
@@ -20,6 +21,10 @@ const Settings = () => {
   const [userdata, setUserData] = useState([]);
   const [showSecondCard, setShowSecondCard] = useState(false);
   const [value, onChange] = useState(new Date());
+  const [editedPhoneNo, setEditedPhoneNo] = useState("");
+  const [editedAddress, setEditedAddress] = useState("");
+  const [editedAllDiseases, setEditedAllDiseases] = useState("");
+  const [editedProfilePic, setEditedProfilePic] = useState(null);
 
   // Function to toggle the visibility of the second card
   const handleOpen = () => {
@@ -48,8 +53,8 @@ const Settings = () => {
       }
 
       // setUserData(response.data);
-      // setEditedAddress(response.data[0].Address);
-      // setEditedPhoneNo(response.data[0].PhoneNo);
+      setEditedAddress(response.data[0].Address);
+      setEditedPhoneNo(response.data[0].PhoneNo);
       // setEditedAllDiseases(response.data[0].SpecialDisease);
 
       if (response.data[0].Profile) {
@@ -69,6 +74,54 @@ const Settings = () => {
     image.onload = () => {
       setprofilepic(image.src);
     };
+  };
+
+  const handleProfileUpdate = () => {
+    if (editedPhoneNo.length < 10 || editedPhoneNo.length > 10 || editedPhoneNo[0] != 0) {
+      toast.error("Invalid Phone Number");
+    } else if (
+      userdata[0].Address == editedAddress &&
+      userdata[0].PhoneNo == editedPhoneNo &&
+      editedProfilePic == null
+    ) {
+      toast.error("No changes made");
+    } else {
+      const formData = new FormData();
+      formData.append("Pharmacist_ID", sessionStorage.getItem("pharmacistID"));
+      formData.append("PhoneNo", editedPhoneNo);
+      formData.append("Address", editedAddress);
+      editedProfilePic && formData.append("Profile", editedProfilePic);
+
+      //have to use post method to make image upload work
+      axios
+        .post(
+          "http://localhost/HealerZ/PHP/Inventory/updateProfilePharmacist.php",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data.message) {
+            const messages = res.data.message.split(".");
+            for (const message of messages) {
+              message && toast.success(message);
+             
+            }
+          }
+
+          res.data.error && toast.error(res.data.error);
+          toast.success("Profile updated Successfully");
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <Layout>
@@ -182,10 +235,10 @@ const Settings = () => {
                               id="phoneNo"
                               placeholder="New Password"
                               style={{ width: "100%" }}
-                              // value={editedPhoneNo}
-                              // onChange={(e) => {
-                              //   setEditedPhoneNo(e.target.value);
-                              // }}
+                              value={editedPhoneNo}
+                              onChange={(e) => {
+                                setEditedPhoneNo(e.target.value);
+                              }}
                             />
                             <label htmlFor="phoneNo">Change PhoneNo</label>
                           </div>
@@ -197,10 +250,10 @@ const Settings = () => {
                               id="address_field"
                               placeholder="New Password"
                               style={{ width: "100%" }}
-                              // value={editedAddress}
-                              // onChange={(e) => {
-                              //   setEditedAddress(e.target.value);
-                              // }}
+                              value={editedAddress}
+                              onChange={(e) => {
+                                setEditedAddress(e.target.value);
+                              }}
                             />
                             <label htmlFor="address_field">
                               Change Address
@@ -216,9 +269,9 @@ const Settings = () => {
                               id="profilePic"
                               placeholder="Change Profile pic"
                               style={{ width: "100%" }}
-                              // onChange={(e) => {
-                              //   setEditedProfilePic(e.target.files[0]);
-                              // }}
+                              onChange={(e) => {
+                                setEditedProfilePic(e.target.files[0]);
+                              }}
                             />
                             <label htmlFor="ProfilePic">
                               Change profile pic
@@ -228,10 +281,10 @@ const Settings = () => {
                           <div className="button">
                             <button
                               className="btn shadow gradient-button"
-                              // onClick={(e) => {
-                              //   e.preventDefault();
-                              //   handleProfileUpdate();
-                              // }}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleProfileUpdate();
+                              }}
                             >
                               Save changes{" "}
                             </button>
@@ -301,10 +354,13 @@ const Settings = () => {
                     ) : (
                       <div className="card cardsettprof2 cardproff">
                         <div className="justify-content-center mb-2">
-                        <div className="d-flex align-items-center justify-content-center ">
-                        <div className="custom-calendar">
-                            <Calendar onChange={onChange} value={value} />
-                            </div>
+                          <img src={setting} alt="Background" />
+                          <div className="d-flex align-items-center justify-content-center ">
+                            <Calendar
+                              onChange={onChange}
+                              value={value}
+                              className="custom-calendar"
+                            />
                           </div>
                         </div>
                       </div>

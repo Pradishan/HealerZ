@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState ,useEffect} from 'react';
 import Bell from "../assets/bell.svg";
 // import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
@@ -10,9 +10,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {changeToggle} from "../redux/actions";
 import './layout.css';
 import powsi from "../assets/Powsi.jpg";
+import default_dp from "../assets/default_dp.png";
+import axios from "axios";
 
 function Layout({children}) {
-
+    const [profilepic, setprofilepic] = useState(default_dp);
+    const [userdata, setUserData] = useState([]);
     const dispatch = useDispatch()
     const open = useSelector(state => {
         return state.setting.toggle
@@ -29,6 +32,42 @@ function Layout({children}) {
         sessionStorage.setItem('Pharmacist',false);
  
     }
+
+    useEffect(() => {
+        fetchData();
+      }, []);
+    
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost/Healerz/PHP/Inventory/getPharmacistData.php",
+            { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
+          );
+    
+          console.log(response.data);
+          if (Array.isArray(response.data) && response.data.length > 0) {
+            setUserData(response.data);
+          } else {
+            console.error("No data found or invalid response structure");
+          }
+          if (response.data[0].Profile) {
+            convertBase64ProfileImage(
+              response.data[0].Profile,
+              response.data[0].ProfileType
+            );
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+    
+      const convertBase64ProfileImage = (base64, type) => {
+        const image = new Image();
+        image.src = `data:${type};base64,${base64}`;
+        image.onload = () => {
+          setprofilepic(image.src);
+        };
+      };
 
    
 
@@ -140,17 +179,21 @@ function Layout({children}) {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav ms-auto align-items-center">
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <a className="nav-link active position-relative px-2" aria-current="page"
                                            href="#">
                                             <div className="red-dot"/>
                                             <img src={Bell} alt={""}/>
                                         </a>
+                                    </li> */}
+                                    <li className="nav-item px-2 layoutProfilename">
+                                    {userdata.map((data) => data.Pharmacist_Name)}
                                     </li>
+                                   
                                     <li className="nav-item px-2">
-                                        <a className="nav-link  position-relative p-0" aria-current="page" href="#">
+                                        <a className="nav-link  position-relative p-0" aria-current="page" href="/inventory-interface/settings">
 
-                                            <img src={powsi} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
+                                            <img src={profilepic} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
                                         </a>
                                     </li>
 
