@@ -22,7 +22,6 @@ import HomeIcon from '@mui/icons-material/Home';
 function HealerZ() {
   return (
     <div>
-      <div></div>
       <div id="homes">
         <img className="wave" src={wave} alt="Wave" />
         <a href="#loginhome">

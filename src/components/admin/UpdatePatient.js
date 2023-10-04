@@ -110,9 +110,11 @@ function UpdatePatient(props) {
   return (
     <AdminLayout>
       <div className="Addcontt">
-        <h3 className="serhett">Update patient</h3>
+        {/* <h3 className="serhett">Update patient</h3> */}
 
         <div className="addboxx">
+        <h3 className="pataddhed">Update patient</h3>
+        <hr/>
           <form onSubmit={handleSearch}>
             <div className="SearchSection searrrchbox" style={{ display: 'flex', flexDirection: 'row', marginLeft: '150px' }}>
               <div><h3 className="content-heading serachhett">Search by Entroll_No:</h3></div>
@@ -229,7 +231,7 @@ function UpdatePatient(props) {
               <div className="Adddelbutt">
                 <button className="btn btn-primary done-button5" type="submit" style={{ backgroundColor: 'green' }}>Update</button>
                 <button className="btn btn-primary done-button5" type="button" onClick={handleDelete} style={{ backgroundColor: 'red' }}>Delete</button>
-                <button className="btn btn-primary done-button5" type="button" onClick={closee} style={{ backgroundColor: 'blue' }}>Cancel</button>
+                <button className="btn btn-secondary done-button5" type="button" onClick={closee} >Cancel</button>
               </div>
             </form>
           )}

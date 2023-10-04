@@ -97,7 +97,7 @@ function Layout({ children }) {
         clearInterval(intervalId);
         setTimeout(() => {
           setTextVisibility(false);
-        }, 2000);
+        }, 5000);
       }
     }, 100);
 
