@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function AdminLogin() {
   const [adminID, setAdminID] = useState("");
   const [password, setPassword] = useState("");
-  const [logmessage, setLogmessage] = useState(null);// Initially display 'jana.jpg'
+  const [logmessage, setLogmessage] = useState(null); // Initially display 'jana.jpg'
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     let login = sessionStorage.getItem("admin");
@@ -39,9 +41,9 @@ export default function AdminLogin() {
         if (message === "Login successful.") {
           toast.success(message);
           setTimeout(() => {
-          sessionStorage.setItem("admin", true);
-          navigate("/admin/dashboard");
-        }, 100);
+            sessionStorage.setItem("admin", true);
+            navigate("/admin/dashboard");
+          }, 100);
         } else {
           toast.error(message);
         }
@@ -59,7 +61,10 @@ export default function AdminLogin() {
             {/* <p style={{width:'400px'}}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
               <div className="card-header bg-white text-center logoaddinglogin">
-                <AdminPanelSettingsIcon className="loginiconlogin" sx={{ fontSize: "40px" }}/>
+                <AdminPanelSettingsIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
                 <h3>Login | Admin</h3>
               </div>
               <div className="card-body">
@@ -77,7 +82,7 @@ export default function AdminLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
@@ -86,8 +91,27 @@ export default function AdminLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
                   </div>
-                  <div className="form-check mb-3" style={{marginTop:'15px'}}>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
                     <input
                       type="checkbox"
                       className="form-check-input"
@@ -117,7 +141,7 @@ export default function AdminLogin() {
                 </form>
               </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
           </div>
         </div>
       </div>

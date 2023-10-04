@@ -155,7 +155,7 @@ function Inventory(props) {
                       <SearchIcon />
                     </div>
                     {searchTerm3 && (
-                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm3("")}>
+                  <div className="search-icon si2" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm3("")}>
                    <ClearIcon/>
                   </div>
                 )}

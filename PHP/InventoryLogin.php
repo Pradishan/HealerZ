@@ -26,9 +26,9 @@ if ($method === "POST") {
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
-    $sql = "SELECT * FROM pharmacist WHERE Pharmacist_ID = :pharmacistID LIMIT 1"; 
+    $sql = "SELECT * FROM pharmacist WHERE Pharmacist_ID = '$pharmacistID' LIMIT 1"; 
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":pharmacistID", $pharmacistID);
+    // $stmt->bindParam(":pharmacistID", $pharmacistID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -38,7 +38,7 @@ if ($method === "POST") {
     }
 
 
-    echo json_encode(array("message" => "Login successful."));
+    echo json_encode(array("message" => "Login successful.","pharmacistID" => $pharmacistID));
 
 } else {
     echo json_encode(array("message" => "Method not allowed."));
