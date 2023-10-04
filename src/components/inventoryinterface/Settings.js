@@ -13,9 +13,6 @@ import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import setting from "../../assets/inventorysettings.svg";
-
-// import { Link } from "react-router-dom";
-
 const Settings = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
   const [userdata, setUserData] = useState([]);
@@ -23,10 +20,11 @@ const Settings = () => {
   const [value, onChange] = useState(new Date());
   const [editedPhoneNo, setEditedPhoneNo] = useState("");
   const [editedAddress, setEditedAddress] = useState("");
-  const [editedAllDiseases, setEditedAllDiseases] = useState("");
   const [editedProfilePic, setEditedProfilePic] = useState(null);
+  const [currpw, setcurrpw] = useState(null);
+  const [changepw, setchangepw] = useState(null);
+  const [confirmpw, setconfirmpw] = useState(null);
 
-  // Function to toggle the visibility of the second card
   const handleOpen = () => {
     setShowSecondCard(!showSecondCard);
   };
@@ -38,25 +36,19 @@ const Settings = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/Inventory/getPharmacistData.php",
+        "http://localhost/Healerz/PHP/Inventory/settings/getPharmacistData.php",
         { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
       );
 
       console.log(response.data);
-
-      // // Check if the response contains the data you expect
       if (Array.isArray(response.data) && response.data.length > 0) {
-        // Assuming the response is an array of pharmacist data
         setUserData(response.data);
       } else {
         console.error("No data found or invalid response structure");
       }
-
-      // setUserData(response.data);
+    
       setEditedAddress(response.data[0].Address);
       setEditedPhoneNo(response.data[0].PhoneNo);
-      // setEditedAllDiseases(response.data[0].SpecialDisease);
-
       if (response.data[0].Profile) {
         convertBase64ProfileImage(
           response.data[0].Profile,
@@ -92,10 +84,10 @@ const Settings = () => {
       formData.append("Address", editedAddress);
       editedProfilePic && formData.append("Profile", editedProfilePic);
 
-      //have to use post method to make image upload work
+     
       axios
         .post(
-          "http://localhost/HealerZ/PHP/Inventory/updateProfilePharmacist.php",
+          "http://localhost/HealerZ/PHP/Inventory/settings/updateProfilePharmacist.php",
           formData,
           {
             headers: {
@@ -108,12 +100,11 @@ const Settings = () => {
             const messages = res.data.message.split(".");
             for (const message of messages) {
               message && toast.success(message);
-             
             }
           }
 
           res.data.error && toast.error(res.data.error);
-          toast.success("Profile updated Successfully");
+          // toast.success("Profile updated Successfully");
           setTimeout(function() {
             window.location.reload();
           }, 1000);
@@ -121,6 +112,42 @@ const Settings = () => {
         .catch((err) => {
           console.log(err);
         });
+    }
+  };
+  const passwordchange = () => {
+    if (currpw === null && changepw === null && confirmpw === null) {
+      toast.error("Fill Feilds");
+    } else {
+      if (currpw === userdata.map((data) => data.Password)[0]) {
+        if (changepw === null) {
+          toast.error("Enter new Password");
+        } else if (changepw === confirmpw && changepw !== null) {
+          if (currpw === changepw) {
+            toast.warn("Existing Password !");
+          } else {
+            const tempuserdata = [...userdata];
+            tempuserdata[0].Password = changepw;
+            setUserData(tempuserdata);
+            console.log(userdata[0]);
+            axios
+              .put(
+                "http://localhost/HealerZ/PHP/Inventory/settings/changepharmacistPassword.php",
+                userdata[0]
+              )
+              .then((res) => {
+                toast.success("Password Changed Successfully");
+                window.location.reload();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        } else {
+          toast.error("Wrong Confirm Password !");
+        }
+      } else {
+        toast.error("Wrong Current Password !");
+      }
     }
   };
   return (
@@ -298,9 +325,9 @@ const Settings = () => {
                               className="form-control"
                               id="currentPassword"
                               placeholder="Current Password"
-                              // onChange={(e) => {
-                              //   setcurrpw(e.target.value);
-                              // }}
+                              onChange={(e) => {
+                                setcurrpw(e.target.value);
+                              }}
                               style={{ width: "100%" }}
                             />
                             <label htmlFor="currentPassword">
@@ -314,9 +341,9 @@ const Settings = () => {
                               className="form-control"
                               id="newPassword"
                               placeholder="New Password"
-                              // onChange={(e) => {
-                              //   setchangepw(e.target.value);
-                              // }}
+                              onChange={(e) => {
+                                setchangepw(e.target.value);
+                              }}
                               style={{ width: "100%" }}
                             />
                             <label htmlFor="newPassword">New Password</label>
@@ -328,9 +355,9 @@ const Settings = () => {
                               className="form-control"
                               id="confirmPassword"
                               placeholder="Confirm Password"
-                              // onChange={(e) => {
-                              //   setconfirmpw(e.target.value);
-                              // }}
+                              onChange={(e) => {
+                                setconfirmpw(e.target.value);
+                              }}
                               style={{ width: "100%" }}
                             />
                             <label htmlFor="confirmPassword">
@@ -341,10 +368,10 @@ const Settings = () => {
                           <div className="button">
                             <button
                               className="btn shadow gradient-button"
-                              // onClick={(e) => {
-                              //   e.preventDefault();
-                              //   passwordchange();
-                              // }}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                passwordchange();
+                              }}
                             >
                               Save changes{" "}
                             </button>
@@ -371,6 +398,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
     </Layout>
   );

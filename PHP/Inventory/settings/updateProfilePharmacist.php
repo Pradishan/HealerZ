@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-require '../classes/DBconnector.php';
+require '../../classes/DBconnector.php';
 
 use classes\DBconnector;
 
@@ -21,8 +21,7 @@ try {
     if (!isset($_POST['Pharmacist_ID'])) {
         throw new Exception('Pharmacist_ID is not provided in the request');
     }
-
-    //check if user exists
+  
     $stmt = $conn->prepare("SELECT * FROM pharmacist WHERE Pharmacist_ID = ?");
     $stmt->execute([$_POST['Pharmacist_ID']]);
 
@@ -35,8 +34,7 @@ try {
         $stmt->execute([$_POST['Address'], $_POST['PhoneNo'], $_POST['Pharmacist_ID']]);
 
         $message = 'Profile updated successfully.';
-
-        //handle profile picture update
+     
         if (isset($_FILES["Profile"])) {
             $target_dir = "profilePics/";
             if ($_FILES["file-input"]["size"] > 1000000) {
@@ -45,39 +43,31 @@ try {
 
 
             } else {
-
-                //create directory if not exists
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0777, true);
                 }
-
-                //save with patient id as file name
+              
                 $file_type = strtolower(pathinfo(basename($_FILES["Profile"]["name"]), PATHINFO_EXTENSION));
                 $target_file = $target_dir . $_POST['Pharmacist_ID'] . "." . $file_type;
-
-                // Check file size
+             
                 if ($_FILES["Profile"]["size"] > 500000) {
                     throw new Exception("Sorry, your photo is too large");
                 }
-
-                // Allow certain file formats
+          
                 if ($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" && $file_type != "gif") {
                     throw new Exception("Sorry, only JPG, JPEG, PNG & GIF files are allowed");
                 }
-
-                //remove if file already exists
+             
                 if (file_exists($target_file)) {
                     unlink($target_file);
                 }
-
-                //save file
+         
                 if (move_uploaded_file($_FILES["Profile"]["tmp_name"], $target_file)) {
-
-                    //update profile pic path in db
+                   
                     $stmt = $conn->prepare("UPDATE pharmacist SET Profile = ? WHERE Pharmacist_ID = ?");
                     $stmt->execute([$target_file, $_POST['Pharmacist_ID']]);
 
-                    $message = $message . 'Profile picture updated successfully';
+                    $message = 'Profile updated successfully.';
                 } else {
                     throw new Exception("Sorry, there was an error uploading your photo");
                 }

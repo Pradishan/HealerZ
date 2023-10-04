@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-require '../classes/DBconnector.php';
+require '../../classes/DBconnector.php';
 use classes\DBconnector;
 
 
@@ -19,7 +19,7 @@ try {
     $data = json_decode(file_get_contents("php://input"), true);
 
     if (!isset($data['Pharmacist_ID'])) {
-        throw new Exception('User_ID is not provided in the request.');
+        throw new Exception('Pharmacist_ID is not provided in the request.');
     }
 
     $stmt = $conn->prepare("UPDATE pharmacist SET Password = :Password WHERE Pharmacist_ID = :Pharmacist_ID");
@@ -31,7 +31,7 @@ try {
     if ($rowCount > 0) {
         echo json_encode(array('message' => 'Password changed successfully'));
     } else {
-        echo json_encode(array('error' => 'Patient not found'));
+        echo json_encode(array('error' => 'Pharmacist not found'));
     }
 } catch (PDOException $e) {
     echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));

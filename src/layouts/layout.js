@@ -23,7 +23,6 @@ function Layout({children}) {
 
     function toggleDrawer() {
         dispatch(changeToggle(!open));
-        // setOpen(!open)
     }
 
     console.log(open);
@@ -40,7 +39,7 @@ function Layout({children}) {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost/Healerz/PHP/Inventory/getPharmacistData.php",
+            "http://localhost/Healerz/PHP/Inventory/settings/getPharmacistData.php",
             { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
           );
     
@@ -179,20 +178,12 @@ function Layout({children}) {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav ms-auto align-items-center">
-                                    {/* <li className="nav-item">
-                                        <a className="nav-link active position-relative px-2" aria-current="page"
-                                           href="#">
-                                            <div className="red-dot"/>
-                                            <img src={Bell} alt={""}/>
-                                        </a>
-                                    </li> */}
                                     <li className="nav-item px-2 layoutProfilename">
                                     {userdata.map((data) => data.Pharmacist_Name)}
                                     </li>
                                    
                                     <li className="nav-item px-2">
                                         <a className="nav-link  position-relative p-0" aria-current="page" href="/inventory-interface/settings">
-
                                             <img src={profilepic} alt='avatar' className='rounded-circle me-2' width='40px' height='40px'/>
                                         </a>
                                     </li>
