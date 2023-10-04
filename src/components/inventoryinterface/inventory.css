@@ -615,13 +615,64 @@
     transform: scale(1.1);
 }
 
-.totalcounttt{
+.totalcounttt {
     font-size: 18px;
     font-weight: 600;
 }
-.totalcounttthed{
+
+.totalcounttthed {
     font-size: 20px;
     font-weight: 600;
 }
 
+.settingcard {
+    width: calc(90% - 10px);
+    padding: 15px 20px 15px 20px;
 
+}
+
+.settingcardproff {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+}
+
+.settingcardcenter {
+    margin-left: 50px;
+    margin-top: 2%;
+
+}
+
+/* .phsetprofiledata{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+} */
+
+.cardsettprof {
+    width: calc(35% - 10px);
+}
+
+.settemailposition {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.cardsettprof2 {
+    margin-left: 50px;
+    width: calc(60% - 10px);
+    padding: 15px 20px 15px 20px;
+}
+
+.editbuttprof {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.custom-calendar {
+    border: 2px solid #000;
+    width: 100%;
+   
+}

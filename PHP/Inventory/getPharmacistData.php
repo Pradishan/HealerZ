@@ -20,16 +20,17 @@ try {
             $patientID = $_GET['pharmacistID'];
 
             // Prepare and execute the SQL query using the patientID as a parameter
-            $stmt = $conn->prepare("SELECT * FROM pharmacist WHERE Pharmacist_ID = '$pharmacistID'");
+            $stmt = $conn->prepare("SELECT * FROM pharmacist WHERE Pharmacist_ID = '$patientID'");
             $stmt->execute();
 
             // Fetch the filtered data as an associative array
             $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // echo $filteredData;
 
-            // Check if any data was found for the given Patient_ID
+            // // Check if any data was found for the given Patient_ID
             if ($filteredData) {
                 //get image path from db
-                $stmt = $conn->prepare("SELECT Profile FROM pharmacist WHERE Pharmacist_ID = '$pharmacistID");
+                $stmt = $conn->prepare("SELECT Profile FROM pharmacist WHERE Pharmacist_ID = '$patientID'");
                 $stmt->execute();
                 $imagePath = $stmt->fetch(PDO::FETCH_ASSOC)['Profile'];
 
@@ -51,11 +52,11 @@ try {
                 echo json_encode($filteredData);
             } else {
                 // If no data found for the given Patient_ID, return an error message or appropriate response
-                echo json_encode(['message' => 'Patient not found']);
+                echo json_encode(['message' => 'Pharmacist not found']);
             }
         } else {
             // If 'patientID' is not provided as a query parameter, return an error message or appropriate response
-            echo json_encode(['message' => 'Missing patientID parameter in the request']);
+            echo json_encode(['message' => 'Missing Pharmacist_ID parameter in the request']);
         }
     }
 } catch (Exception $e) {

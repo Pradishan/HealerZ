@@ -161,7 +161,13 @@ const Profile = () => {
         "http://localhost/Healerz/PHP/patient/getPatientData.php",
         { params: { patientID: sessionStorage.getItem("patientID") } }
       );
-      setuserdata(response.data);
+      console.log(response.data);
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        // Assuming the response is an array of pharmacist data
+        setuserdata(response.data);
+      } else {
+        console.error("No data found or invalid response structure");
+      }
       setEditedAddress(response.data[0].Address);
       setEditedPhoneNo(response.data[0].PhoneNo);
       setEditedAllDiseases(response.data[0].SpecialDisease);

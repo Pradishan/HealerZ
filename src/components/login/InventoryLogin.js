@@ -13,6 +13,7 @@ export default function InventoryLogin() {
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Pharmacist");
@@ -28,7 +29,7 @@ export default function InventoryLogin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
+    setLogmessage("");
     axios
       .post("http://localhost/HealerZ/PHP/InventoryLogin.php", {
         pharmacistID: pharmacistID,
@@ -36,9 +37,9 @@ export default function InventoryLogin() {
       })
       .then((response) => {
         console.log(response.data);
-        const message = response.data.message;
-
-        if (message === "Login successful.") {
+        // const message = response.data.message;
+        setMessage(response.data.message);
+        if (response.data.message === "Login successful.") {
           toast.success(message);
           setTimeout(() => {
             sessionStorage.setItem("Pharmacist", true);
@@ -50,7 +51,8 @@ export default function InventoryLogin() {
         }
       })
       .catch((error) => {
-        toast.error("Login failed.");
+        // toast.error("Login failed.");
+        setMessage("Login failed.");
       });
   };
   return (
