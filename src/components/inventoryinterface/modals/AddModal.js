@@ -12,6 +12,7 @@ function AddModal(props) {
     const [category, setCat] = useState('');
     const [dosage, setDos] = useState('');
     const [description, setDes] = useState('');
+    const [updateTrigger, setUpdateTrigger] = useState(false);
 
     const resetForm = () => {
         setID('');
@@ -51,6 +52,7 @@ function AddModal(props) {
                     if(response.data.message==="Drug Added Successfully"){
                         toast.success(response.data.message);
                         resetForm();
+                        setUpdateTrigger(!updateTrigger);
                     }else{
                         toast.error("Drug Already Added");
                     }
@@ -103,13 +105,12 @@ function AddModal(props) {
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={'inputfield'}>
+                            <th className='inputfield'>
                                 <select
                                     name={'Category'}
                                     className="SearchBox1"
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
-                                    style={{height:'30px '}}
                                 >
                                     <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>

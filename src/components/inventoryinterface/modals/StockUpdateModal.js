@@ -13,6 +13,7 @@ function StockUpdateModal(props) {
   const [Stock_IN, setStockIN] = useState("");
   const [Drug_ID, setID] = useState("");
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
   const addStockCount = (value) => {
     setID(items[0].Drug_ID);
@@ -40,6 +41,7 @@ function StockUpdateModal(props) {
       .then((response) => {
         toast.success("Stock Updated Successfully.!");
         onHide();
+        setUpdateTrigger(!updateTrigger);
         setConfirmModalVisible(false);
       })
       .catch((error) => {
