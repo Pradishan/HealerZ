@@ -36,15 +36,11 @@ if ($method === "POST") {
         $tests = $data['tests'];
         $confirmeddiagnosis = $data['confirmeddiagnosis'];
 
-       
-        $min_range = 1000000000; 
-        $max_range = 9999999999;
-        $prescription_ID = mt_rand($min_range, $max_range);
-       
+        
+        $prescription_ID = null; 
         $filteredData = Prescription::displayDrugs($patient_ID);
-
         if ($filteredData) {
-           
+            $prescription_ID= $patient_ID ."_".time();
             if (!Prescription::addPrescription($prescription_ID, $patient_ID, $doctor_ID, 'Waiting', $dateandTime)) {
                 echo json_encode(['success' => false, 'message' => 'error in prescription record adding']);
                 exit;

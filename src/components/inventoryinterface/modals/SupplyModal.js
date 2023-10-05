@@ -79,6 +79,9 @@ console.log( supplyList.map((item) => {
           .post(url2, fdata2)
           .then((response) => {
             console.log(response);
+            setTimeout(function() {
+            window.location.reload();
+            }, 2000);
           })
           .catch((error) => {
             toast.error(error.message);

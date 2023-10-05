@@ -17,7 +17,7 @@ if (mysqli_connect_error()) {
     $status = 'Delivered';
 
         $stmt = $conn->prepare("UPDATE prescription_record SET status = ? WHERE Prescription_ID = ?");
-        $stmt->bind_param("si", $status, $prescription_id);
+        $stmt->bind_param("ss", $status, $prescription_id);
        
         if ($stmt->execute()) {
             echo "Status Updated Successfully";
