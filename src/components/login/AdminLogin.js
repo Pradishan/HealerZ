@@ -42,6 +42,7 @@ export default function AdminLogin() {
           toast.success(message);
           setTimeout(() => {
             sessionStorage.setItem("admin", true);
+            sessionStorage.setItem("adminID", response.data.adminID);
             navigate("/admin/dashboard");
           }, 100);
         } else {

@@ -14,8 +14,8 @@ src/Admin.css
 
 .done-button {
     position: relative;
-    left: 600px;
-    width: 100px;
+    left: 750px;
+    width: 150px;
     background-color: purple !important;
     color: #fff;
     padding: 10px 80px;
@@ -27,12 +27,9 @@ src/Admin.css
 
 .done-buttontt3{
     position: relative;
-    left: 620px;
+    left: 780px;
     width: 100px;
-    background-color: rgb(0, 11, 112) !important;
-    color: #fff !important;
     padding: 10px 80px;
-    border: none;
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -74,7 +71,7 @@ src/Admin.css
     box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
     padding: 20px;
     margin-bottom: 20px;
-    width: fit-content;
+    max-width: calc(150vh - 10px);
 }
 
 .cont1 {
@@ -83,11 +80,12 @@ src/Admin.css
 
 .cont2 {
     text-align: left;
-    padding-left: 80px;
+    padding-left: 140px;
 }
 
 .addinputt {
     padding: 15px;
+    padding-left: 40px;
 }
 
 .form-control {
@@ -97,13 +95,13 @@ src/Admin.css
 }
 
 .form-control1 {
-    width: 220px;
+    width: 270px;
     border-radius: 5px;
     height: 30px;
 }
 
 .form-controlll1 {
-    width: 220px;
+    width: 270px;
     border-radius: 5px;
 }
 
@@ -287,6 +285,19 @@ src/Admin.css
   }
   .teaaaaam{
     margin-bottom: 100px;
+  }
+
+  .pataddhed{
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: purple;
+    font-weight: 700!important;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
   }
  
   

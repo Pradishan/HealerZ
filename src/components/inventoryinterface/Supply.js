@@ -97,7 +97,7 @@ function Supply(props) {
 
   return (
     <Layout>
-      <h3 className="serhedd">Supply Detail</h3>
+      {/* <h3 className="serhedd">Supply Detail</h3> */}
       <div className={"container tabconttt"}>
         <div className={"p-5"}>
           <hr />
@@ -165,7 +165,7 @@ function Supply(props) {
             </div>
           </div>
           <hr />
-          <div className={"table-container "}>
+          <div className="table-container ">
             <table className={"table table-hover table-striped "}>
               <thead className={"top-0 position-sticky h-45"}>
                 <tr>

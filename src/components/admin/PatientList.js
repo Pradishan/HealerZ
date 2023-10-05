@@ -115,7 +115,7 @@ function PatientList(props) {
 
   return (
     <AdminLayout>
-      <h3 className="serhett">Patient List</h3>
+      {/* <h3 className="serhett">Patient List</h3> */}
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
           <hr />
@@ -135,7 +135,7 @@ function PatientList(props) {
                   <input
                     className={"SearchBox1"}
                     type="text"
-                    placeholder="Entroll_No"
+                    placeholder="Filter By Entroll_No"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
@@ -158,7 +158,7 @@ function PatientList(props) {
                 <input
                   className={"SearchBox1"}
                   type="text"
-                  placeholder="PATIENT_Name"
+                  placeholder="Filter by Patient Name"
                   value={searchTerm4}
                   onChange={handleChange4}
                   style={{ width: "300px" }}

@@ -111,9 +111,12 @@ function AddPatient(props) {
   };
   return (
     <AdminLayout>
-      <div className={"Addcontt"}>
-        <h3 className="serhett">Add patient</h3>
-        <div className={"addboxx"}>
+      <div className="Addcontt">
+        {/* <h3 className="serhett">Add patient</h3> */}
+        <div className="addboxx">
+         
+        <h3 className="pataddhed">Add patient</h3>
+        <hr/>
           {isLoading ? (
             <div style={{ marginLeft: "350px",marginBottom:'30px' }}>
               <PropagateLoader
@@ -126,6 +129,7 @@ function AddPatient(props) {
           ) : (
             <div></div>
           )}
+           <hr/>
           <form>
             <table>
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -250,7 +254,7 @@ function AddPatient(props) {
                     <th>
                       <label>Email:</label>
                     </th>
-                    <th className={"addinputt"}>
+                    <th className="addinputt">
                       {" "}
                       <input
                         type="email"

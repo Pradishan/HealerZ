@@ -131,7 +131,7 @@ function Inventory(props) {
 
   return (
     <Layout>
-      <h3 className="serhedd">Drug Detail</h3>
+      {/* <h3 className="serhedd">Drug Detail</h3> */}
       <div className="container tabconttt">
         <div className="p-5">
           <hr />

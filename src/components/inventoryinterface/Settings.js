@@ -156,7 +156,7 @@ const Settings = () => {
         <div className="card settingcard settingcardproff">
           <div className="">
             <div className="form-container">
-              <h3 className="serhed6">Settings</h3>
+              {/* <h3 className="serhed6">Settings</h3> */}
               <div style={{ marginTop: "-50px" }}>
                 <div className="profile">
                   <div className="card-container cardprof">
@@ -179,7 +179,7 @@ const Settings = () => {
                                 className="btn shadow gradient-button"
                                 onClick={handleOpen}
                               >
-                                Edit Profile{" "}
+                                {showSecondCard?"Close Profile":"Edit Profile"}
                               </button>
                             </div>
 

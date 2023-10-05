@@ -45,20 +45,6 @@ export default function DashboardAdmin() {
 
   return (
     <AdminLayout>
-      <h3 className="serhett">Calender</h3>
-      <div className="calenderrr">
-        <div className="" ref={calendarRef}>
-          <FullCalendar
-            ref={calendarRef}
-            plugins={[dayGridPlugin]}
-            initialView="dayGridMonth"
-            weekends={true}
-            events={events}
-            eventContent={renderEventContent}
-          />
-        </div>
-      </div>
-      <hr />
       <div className="container text-center mu-auto teamele teaaaaam">
         <h3 className="serhett">MEET OUR TEAM</h3>
         <img src={nusnan} className="card-img-top img" alt="..." />

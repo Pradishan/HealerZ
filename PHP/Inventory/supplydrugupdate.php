@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 header("Access-Control-Allow-Origin: http://localhost:3000");
@@ -15,15 +12,16 @@ if (mysqli_connect_error()) {
     echo mysqli_connect_error();
     exit();
 } else {
-    $drug_id = $_POST["Drug_ID"];
-    $updated_stock_count = $_POST["StockCount"];
+    $drugIdsToUpdate = $_POST["Drug_ID"];;
+    $updatedStockCount = $_POST["StockCount"];
 
-
-    $sql = "UPDATE druginventory SET StockCount = StockCount - $updated_stock_count WHERE Drug_ID = $drug_id";
-    $res = mysqli_query($conn, $sql);
+    foreach ($drugIdsToUpdate as $drug_id) {
+        $sql = "UPDATE druginventory SET StockCount = StockCount - $updatedStockCount WHERE Drug_ID = $drug_id";
+        $res = mysqli_query($conn, $sql);
+    }
 
     if ($res) {
-        echo "Item Added Succesfully";
+        echo "Stock Updated Successfully";
     } else {
         echo "error";
     }
