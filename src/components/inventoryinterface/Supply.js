@@ -165,7 +165,7 @@ function Supply(props) {
             </div>
           </div>
           <hr />
-          <div className="table-container ">
+          <div className="table-container tablesupply">
             <table className={"table table-hover table-striped "}>
               <thead className={"top-0 position-sticky h-45"}>
                 <tr>

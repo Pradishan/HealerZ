@@ -152,11 +152,23 @@
     overflow-y: scroll;
     /* overflow-x: hidden;
     width: 100% !important; */
-    max-height: calc(100vh - 240px);
+    max-height: calc(100vh - 300px) !important;
     border-radius: 9px;
     border: .75px solid rgba(63, 68, 81, .12156862745098039);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.tablesupply{
+    overflow-y: scroll;
+    /* overflow-x: hidden;
+    width: 100% !important; */
+    max-height: calc(100vh - 210px) !important;
+    border-radius: 9px;
+    border: .75px solid rgba(63, 68, 81, .12156862745098039);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  
 }
 
 .h-45 {
@@ -167,11 +179,11 @@
 
 .h-45 th {
     font-weight: 700 !important;
-    padding: 20px !important;
+    padding: 15px !important;
 }
 
 .h-50 td {
-    padding: 20px !important;
+    padding: 15px !important;
 }
 
 .h-50 th {
@@ -686,3 +698,29 @@
     height: 330px;
    
 }
+
+.inventorybuttongroup{
+    display: flex;
+    gap: 20px;
+    position: relative;
+    justify-content: flex-end;
+    right: 8%;
+    margin-top: 50px;
+    margin-left: auto;
+}
+
+.inventoryhedding h4{
+    margin-top: 50px;
+   position: relative;
+   left: 60%;
+}
+
+.hedcontinvent{
+    display: flex;
+}
+
+.icoinvent{
+   margin-left: 10px;
+}
+
+

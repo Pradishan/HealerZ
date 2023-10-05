@@ -19,6 +19,7 @@ function UpdateModal(props) {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
   useEffect(() => {
     setNewData({
@@ -52,6 +53,7 @@ function UpdateModal(props) {
         console.log(response.data);
         toast.success("Drug updated successfully!");
         onHide();
+        setUpdateTrigger(!updateTrigger);
       })
       .catch((error) => {
         toast.error("Failed to update drug!");
@@ -136,7 +138,6 @@ function UpdateModal(props) {
                     defaultValue={category}
                     className="SearchBox1"
                     onChange={(e) => setCat(e.target.value)}
-                    style={{height:'30px '}}
                   >
                     <option value={""}>Select Category</option>
                     <option value={"Liquid"}>Liquid</option>

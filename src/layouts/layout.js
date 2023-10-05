@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Bell from "../assets/bell.svg";
-// import Profile from "../assets/profile-img.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from "feather-icons-react";
 import logo from "../assets/logo.png";
@@ -9,7 +7,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeToggle } from "../redux/actions";
 import "./layout.css";
-import powsi from "../assets/Powsi.jpg";
 import default_dp from "../assets/default_dp.png";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -19,7 +16,6 @@ function Layout({ children }) {
   const [userdata, setUserData] = useState([]);
   const [typingText, setTypingText] = useState("");
   const [isTextVisible, setTextVisibility] = useState(true);
-  const [welcomeMessage, setWelcomeMessage] = useState("");
   const location = useLocation();
 
 
@@ -110,14 +106,12 @@ function Layout({ children }) {
   function getActiveRoute(pathname) {
     if (pathname === "/inventory-interface/dashboard") {
       return "Dashboard";
-    } else if (pathname === "/inventory-interface/inventory") {
+    }else if (pathname === "/inventory-interface/inventory") {
       return "Inventory";
-    } else if (pathname === "/inventory-interface/manage") {
-        return "Manage";
-      } else if (pathname === "/inventory-interface/supply") {
+    }else if (pathname === "/inventory-interface/supply") {
         return "Supply";
       }
-    // Add more conditions for other routes if needed
+    
     return null;
   }
 
@@ -190,25 +184,6 @@ function Layout({ children }) {
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={""}>Inventory</div>}
-                </div>
-              </NavLink>
-            </div>
-
-            <div className={"w-100 px-sm-2"}>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "side-menu-item side-menu-active"
-                    : "side-menu-item"
-                }
-                to={"/inventory-interface/manage"}
-              >
-                <div className={"d-flex"}>
-                  <FeatherIcon
-                    icon="monitor"
-                    className={!open ? "me-2" : "ms-1"}
-                  />
-                  {!open && <div className={""}>Manage</div>}
                 </div>
               </NavLink>
             </div>
