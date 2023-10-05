@@ -1,51 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import AdminLayout from "../../layouts/AdminLayout";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
 import "./Admin.css";
-import nusnan from "../../assets/nusnan.jpg";
-import pradi from "../../assets/pradi.jpg";
-import thanu from "../../assets/thanu.jpg";
-import powsi from "../../assets/Powsi.jpg";
-import farhath from "../../assets/farhath.jpg";
-import jana from "../../assets/jana.jpg";
-import joshi from "../../assets/joshi.jpg";
+// import nusnan from "../../assets/nusnan.jpg";
+// import pradi from "../../assets/pradi.jpg";
+// import thanu from "../../assets/thanu.jpg";
+// import powsi from "../../assets/Powsi.jpg";
+// import farhath from "../../assets/farhath.jpg";
+// import jana from "../../assets/jana.jpg";
+// import joshi from "../../assets/joshi.jpg";
+import BarChart from "./additional/Barchart";
 
-function renderEventContent(eventInfo) {
-  return (
-    <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
-    </>
-  );
-}
 
 export default function DashboardAdmin() {
-  const events = [{ title: "Meeting", start: new Date() }];
-  const calendarRef = useRef(null);
-
-  useEffect(() => {
-    const calendarElement = calendarRef.current;
-    const centerCalendar = () => {
-      if (calendarElement) {
-        const windowHeight = window.innerHeight;
-        const calendarHeight = calendarElement.clientHeight;
-        const marginTop = (windowHeight - calendarHeight) / 2;
-        calendarElement.style.marginTop = `${marginTop}px`;
-      }
-    };
-
-    centerCalendar();
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("resize", centerCalendar);
-    };
-  }, []);
 
   return (
     <AdminLayout>
-      <div className="container text-center mu-auto teamele teaaaaam">
+      <div className="barchartcontainer">
+      <BarChart/>
+      </div>
+      
+      {/* <div className="container text-center mu-auto teamele teaaaaam">
         <h3 className="serhett">MEET OUR TEAM</h3>
         <img src={nusnan} className="card-img-top img" alt="..." />
         <img src={pradi} className="card-img-top img" alt="..." />
@@ -54,7 +28,7 @@ export default function DashboardAdmin() {
         <img src={farhath} className="card-img-top img" alt="..." />
         <img src={jana} className="card-img-top img" alt="..." />
         <img src={joshi} className="card-img-top img" alt="..." />
-      </div>
+      </div> */}
     </AdminLayout>
   );
 }
