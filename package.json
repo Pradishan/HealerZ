@@ -22,6 +22,7 @@
     "d3-ease": "^3.0.1",
     "expo-status-bar": "^1.6.0",
     "feather-icons-react": "^0.6.2",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "mdb-react-ui-kit": "^6.2.0",
     "react": "^18.2.0",

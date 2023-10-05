@@ -18,6 +18,8 @@ import UpdateIcon from "@mui/icons-material/Update";
 import AddModal from "./modals/AddModal";
 import SearchModal from "./search-section/SearchIDStkUpdate";
 import SearchIDUpdate from "./search-section/SearchIDUpdate";
+import { saveAs } from "file-saver";
+import DownloadIcon from '@mui/icons-material/Download';
 
 function Inventory(props) {
   const [showModal, setShowModal] = useState(false);
@@ -31,8 +33,8 @@ function Inventory(props) {
   const [selectedDrugToDelete, setSelectedDrugToDelete] = useState(null);
   const [showStockUpdateModal, setShowStockUpdateModal] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [tableData, setTableData] = useState([]);
 
-  
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
@@ -120,6 +122,7 @@ function Inventory(props) {
         "http://localhost/Healerz/PHP/Inventory/displaydrugs.php"
       );
       setDrugList(response.data);
+      setTableData(response.data);
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -150,15 +153,36 @@ function Inventory(props) {
     fetchData();
   }, [updateTrigger]);
 
+  const downloadCSV = () => {
+    const csvData = [];
+    csvData.push([
+      "NDC No",
+      "DRUG_NAME",
+      "Category",
+      "Drug_Dosage",
+      "AVAILABLE_COUNT",
+    ]);
+    tableData.forEach((data) => {
+      csvData.push([
+        data.Drug_ID,
+        data.Drug_Name,
+        data.Category,
+        data.Drug_dosage,
+        data.StockCount,
+      ]);
+    });
+    const csvString = csvData.map((row) => row.join(",")).join("\n");
+    const blob = new Blob([csvString], { type: "text/csv" });
+    saveAs(blob, "inventory_data.csv");
+  };
+
   return (
     <Layout>
-      {/* <h3 className="serhedd">Drug Detail</h3> */}
-
       <div>
         <div className="hedcontinvent">
           <div className="inventoryhedding">
             {" "}
-            <h4>Drug Detail</h4>
+            {/* <h4>Drug Detail</h4> */}
           </div>
           <div className="inventorybuttongroup">
             <button className="btn btn-success" onClick={addModal}>
@@ -172,6 +196,10 @@ function Inventory(props) {
             <button className="btn btn-dark" onClick={searchModal}>
               Stock Update
               <LocalGroceryStoreIcon className="icoinvent" />
+            </button>
+            <button className="btn btn-warning" onClick={downloadCSV}>
+              Download CSV
+              <DownloadIcon className="icoinvent" />
             </button>
           </div>
         </div>

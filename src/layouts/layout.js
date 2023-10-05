@@ -110,14 +110,12 @@ function Layout({ children }) {
   function getActiveRoute(pathname) {
     if (pathname === "/inventory-interface/dashboard") {
       return "Dashboard";
-    } else if (pathname === "/inventory-interface/inventory") {
+    }else if (pathname === "/inventory-interface/inventory") {
       return "Inventory";
-    } else if (pathname === "/inventory-interface/manage") {
-        return "Manage";
-      } else if (pathname === "/inventory-interface/supply") {
+    }else if (pathname === "/inventory-interface/supply") {
         return "Supply";
       }
-    // Add more conditions for other routes if needed
+    
     return null;
   }
 
@@ -190,25 +188,6 @@ function Layout({ children }) {
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={""}>Inventory</div>}
-                </div>
-              </NavLink>
-            </div>
-
-            <div className={"w-100 px-sm-2"}>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "side-menu-item side-menu-active"
-                    : "side-menu-item"
-                }
-                to={"/inventory-interface/manage"}
-              >
-                <div className={"d-flex"}>
-                  <FeatherIcon
-                    icon="monitor"
-                    className={!open ? "me-2" : "ms-1"}
-                  />
-                  {!open && <div className={""}>Manage</div>}
                 </div>
               </NavLink>
             </div>
