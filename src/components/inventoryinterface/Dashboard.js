@@ -96,6 +96,7 @@ function Dashboard(props) {
   }, []);
   return (
     <Layout>
+      <Container className="Dashboardcardss">
       <Container className="StockIndicator">
         <Row>
           <Col>
@@ -243,6 +244,7 @@ function Dashboard(props) {
             </Card>
           </Col>
         </Row>
+      </Container>
       </Container>
       <LowStockModal show={lowshowModal} onHide={lowStockmodal} />
       <OutofStockModal show={outofshowModal} onHide={outofStockmodal} />

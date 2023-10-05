@@ -105,7 +105,7 @@ function UpdateModal(props) {
                     name={"Drug_ID"}
                     defaultValue={drug_id}
                     placeholder={"DRUGXXXXXX"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setID(e.target.value)}
                     readOnly
                   />
@@ -121,7 +121,7 @@ function UpdateModal(props) {
                     name={"Drug_Name"}
                     defaultValue={drug_name}
                     placeholder={"XXXXXXXXXX"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setName(e.target.value)}
                   />
                   <br />
@@ -134,7 +134,7 @@ function UpdateModal(props) {
                   <select
                     name={"Category"}
                     defaultValue={category}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setCat(e.target.value)}
                     style={{height:'30px '}}
                   >
@@ -160,7 +160,7 @@ function UpdateModal(props) {
                     name={"Drug_dosage"}
                     defaultValue={dosage}
                     placeholder={"XXXmg"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setDos(e.target.value)}
                   />
                   <br />
@@ -174,7 +174,7 @@ function UpdateModal(props) {
                     name={"Descriptions"}
                     defaultValue={description}
                     placeholder={"Type description here..."}
-                    className={"inputt"}
+                    className="SearchBox1 inputt"
                     rows={3}
                     onChange={(e) => setDes(e.target.value)}
                   />

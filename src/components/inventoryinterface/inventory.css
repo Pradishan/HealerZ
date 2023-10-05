@@ -7,9 +7,17 @@
     line-height: normal !important;
 }
 
-.StockIndicator {
-    margin-top: 50px;
+.Dashboardcardss{
+    position: relative !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
+
+.StockIndicator {
+    margin-top: 40px;
+    margin-left: 20px !important;
+}
+
 
 .card1 {
     height: 180px !important;
@@ -355,13 +363,13 @@
 }
 
 .inputt {
-    width: 300px;
+    width: 300px !important;
     border-radius: 5px;
+    height: 100px !important;
 }
 
-.inputt::placeholder {
-    opacity: 0.2;
-}
+
+
 
 /* .selectinputtt{
     width: 468px;
@@ -467,7 +475,7 @@
 .serhedd {
     text-transform: uppercase !important;
     font-family: sans-serif !important;
-    margin: 50px auto !important;
+    margin: 70px auto !important;
     margin-top: 40px !important;
     color: #000536 !important;
     text-align: center !important;
@@ -475,6 +483,7 @@
     font-weight: 700 !important;
     max-width: 600px !important;
     position: relative !important;
+    right: 18%;
 }
 
 .serhedd:before {

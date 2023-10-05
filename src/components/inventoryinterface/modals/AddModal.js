@@ -80,7 +80,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_ID"}
                                     placeholder={"DRUGXXXXX"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setID(e.target.value)}
                                     value={drug_id}
                                 />
@@ -94,7 +94,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_Name"}
                                     placeholder={"XXXXXXXXXX"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setName(e.target.value)}
                                     value={drug_name}
                                 />
@@ -106,7 +106,7 @@ function AddModal(props) {
                             <th className={'inputfield'}>
                                 <select
                                     name={'Category'}
-                                    className="inputt"
+                                    className="SearchBox1"
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
                                     style={{height:'30px '}}
@@ -131,7 +131,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_dosage"}
                                     placeholder={"XXXmg"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setDos(e.target.value)}
                                     value={dosage}
                                 />
@@ -144,7 +144,7 @@ function AddModal(props) {
                                 <textarea
                                     name={"Descriptions"}
                                     placeholder={"Type description here..."}
-                                    className={"inputt"}
+                                    className="SearchBox1 inputt"
                                     rows={3}
                                     onChange={(e) => setDes(e.target.value)}
                                     value={description}
@@ -157,7 +157,7 @@ function AddModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green',width:'100px'}}>Add</Button>
+                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green',width:'130px'}}>Add</Button>
                 <ToastContainer />
                 <Button variant="secondary uptbut"   onClick={resetForm}>Reset</Button>
             </Modal.Footer>
