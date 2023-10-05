@@ -6,12 +6,13 @@ import { IconButton } from "@mui/material";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import GppBadIcon from "@mui/icons-material/GppBad";
+import UpdateConfirmModal from "./UpdateConfirmModal";
 
 function SupplyPopup(props) {
   const { show, onHide, drugDetails } = props;
   const [supplyList, setsupplyList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   useEffect(() => {
     if (show && drugDetails) {
       fetchData(drugDetails.Prescription_ID);
@@ -37,52 +38,38 @@ function SupplyPopup(props) {
     }
   };
 
- // ... (previous code)
+  const handleAdd = () => {
+    setConfirmModalVisible(true);
+  };
 
- const handleUpdate = async () => {
-  try {
-    const drugIdsToUpdate = supplyList.map((item) => item.Drug_ID);
-    console.log("Data to send:", {
-      DrugIDs: drugIdsToUpdate,
-      StockCount: supplyList.map((item) => {
-        const tdsNumbers = item.TDS.split('+').map(Number);
+  const handleConfirmUpdate = () => {
+    const url = "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php";
+    let fdata = new FormData();
+    fdata.append(
+      "Drug_ID",
+      supplyList.map((item) => item.Drug_ID)
+    );
+    fdata.append(
+      "StockCount",
+      supplyList.map((item) => {
+        const tdsNumbers = item.TDS.split("+").map(Number);
         const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
         return tdsTotal * item.Days;
-      }),
-    });
-
-    const response = await axios.post(
-      "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php",
-      {
-        DrugIDs: drugIdsToUpdate,
-        StockCount: supplyList.map((item) => {
-          const tdsNumbers = item.TDS.split('+').map(Number);
-          const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
-          return tdsTotal * item.Days;
-        }),
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
+      })
     );
-    
-    
 
-    if (response.data === "Stock Updated Successfully") {
-      toast.success("Stock Updated Successfully");
-    } else {
-      toast.error("Error updating stock");
-    }
-  } catch (error) {
-    console.error("Error updating stock:", error);
-    toast.error("Error updating stock");
-  }
-};
-
-// ... (rest of the code)
-
+    axios
+      .post(url, fdata)
+      .then((response) => {
+        console.log(response);
+        toast.success("Drug Distributed Successfully.!");
+        onHide();
+        setConfirmModalVisible(false);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <>
       <Modal show={show} onHide={onHide} size="lg" centered>
@@ -201,7 +188,7 @@ function SupplyPopup(props) {
         <Modal.Footer>
           <Button
             variant="primary"
-            onClick={handleUpdate}
+            onClick={handleAdd}
             style={{ backgroundColor: "green" }}
           >
             Update
@@ -212,6 +199,14 @@ function SupplyPopup(props) {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {confirmModalVisible && (
+        <UpdateConfirmModal
+          show={confirmModalVisible}
+          onHide={() => setConfirmModalVisible(false)}
+          onConfirm={handleConfirmUpdate}
+        />
+      )}
     </>
   );
 }
