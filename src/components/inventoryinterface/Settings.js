@@ -179,7 +179,7 @@ const Settings = () => {
                                 className="btn shadow gradient-button"
                                 onClick={handleOpen}
                               >
-                                Edit Profile{" "}
+                                {showSecondCard?"Close Profile":"Edit Profile"}
                               </button>
                             </div>
 
