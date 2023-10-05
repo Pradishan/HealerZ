@@ -42,9 +42,16 @@ function SupplyPopup(props) {
     setConfirmModalVisible(true);
   };
 
+
+console.log(supplyList.map((item) => item.Drug_ID));
+console.log( supplyList.map((item) => {
+  const tdsNumbers = item.TDS.split("+").map(Number);
+  const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
+  return tdsTotal * item.Days;
+}));
   const handleConfirmUpdate = () => {
     const url = "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php";
-    let fdata = new FormData();
+    const fdata = new FormData();
     fdata.append(
       "Drug_ID",
       supplyList.map((item) => item.Drug_ID)
@@ -58,11 +65,27 @@ function SupplyPopup(props) {
       })
     );
 
+    const url2 = "http://localhost/Healerz/PHP/Inventory/fetchstatus.php";
+    const fdata2 = new FormData();
+    fdata2.append("Prescription_ID", drugDetails.Prescription_ID);
+    console.log(drugDetails.Prescription_ID);
+
     axios
       .post(url, fdata)
       .then((response) => {
         console.log(response);
         toast.success("Drug Distributed Successfully.!");
+        axios
+          .post(url2, fdata2)
+          .then((response) => {
+            console.log(response);
+            setTimeout(function() {
+            window.location.reload();
+            }, 2000);
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
         onHide();
         setConfirmModalVisible(false);
       })

@@ -23,8 +23,9 @@ function Manage(props) {
 
     return (
         <Layout>
-             <h3 className='serhedd'>Access</h3>
+             
             <Container className="Managebutt">
+            <h3 className='serhedd'>Access</h3>
                 <div style={{display:"flex",flexDirection:'row'}}>
                         <Card className="Managebutt1" onClick={addModal} >
                             <Card.Body>
@@ -49,7 +50,7 @@ function Manage(props) {
                         </Card>
 
                 </div>
-                <div style={{marginTop:'50px',marginLeft:'250px', marginBottom:'50px'}} onClick={searchModal}>
+                <div style={{marginTop:'70px',marginLeft:'250px', marginBottom:'50px'}} onClick={searchModal}>
                         <Card className="Managebutt1">
 
                             <Card.Body>

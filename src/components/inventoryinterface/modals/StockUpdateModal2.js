@@ -95,7 +95,8 @@ function StockUpdateModal(props) {
                       <input
                         type={"number"}
                         name={"StockCount"}
-                        className={"inputt"}
+                        className={"SearchBox1"}
+                        style={{width:'300px'}}
                         onChange={(e) => addStockCount(e.target.value)}
                       />
                     </td>
@@ -110,7 +111,7 @@ function StockUpdateModal(props) {
           <Button
             variant="primary uptbut"
             onClick={() => handleAdd(inputs)}
-            style={{ backgroundColor: "green" }}
+            style={{ backgroundColor: "green",width:'130px'}}
           >
             Update
           </Button>
