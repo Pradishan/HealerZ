@@ -7,12 +7,15 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import UpdateConfirmModal from "./UpdateConfirmModal";
+import RejectConfirmModal from "./RejectConfirmModal";
 
 function SupplyPopup(props) {
   const { show, onHide, drugDetails } = props;
   const [supplyList, setsupplyList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [rejectconfirmModalVisible, setrejectConfirmModalVisible] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
   useEffect(() => {
     if (show && drugDetails) {
       fetchData(drugDetails.Prescription_ID);
@@ -42,28 +45,23 @@ function SupplyPopup(props) {
     setConfirmModalVisible(true);
   };
 
+  const handleConfirmReject = () => {
+    setrejectConfirmModalVisible(true);
+  };
 
-console.log(supplyList.map((item) => item.Drug_ID));
-console.log( supplyList.map((item) => {
-  const tdsNumbers = item.TDS.split("+").map(Number);
-  const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
-  return tdsTotal * item.Days;
-}));
   const handleConfirmUpdate = () => {
     const url = "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php";
     const fdata = new FormData();
-    fdata.append(
-      "Drug_ID",
-      supplyList.map((item) => item.Drug_ID)
-    );
-    fdata.append(
-      "StockCount",
-      supplyList.map((item) => {
-        const tdsNumbers = item.TDS.split("+").map(Number);
-        const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
-        return tdsTotal * item.Days;
-      })
-    );
+    const DrugIDarray = supplyList.map((item) => item.Drug_ID);
+    const StockCountarray = supplyList.map((item) => {
+      const tdsNumbers = item.TDS.split("+").map(Number);
+      const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
+      return tdsTotal * item.Days;
+    });
+    for (let i = 0; i < DrugIDarray.length; i++) {
+      fdata.append("Drug_ID[]", DrugIDarray[i]);
+      fdata.append("StockCount[]", StockCountarray[i]);
+    }
 
     const url2 = "http://localhost/Healerz/PHP/Inventory/fetchstatus.php";
     const fdata2 = new FormData();
@@ -79,9 +77,7 @@ console.log( supplyList.map((item) => {
           .post(url2, fdata2)
           .then((response) => {
             console.log(response);
-            setTimeout(function() {
-            window.location.reload();
-            }, 2000);
+            setUpdateTrigger(!updateTrigger);
           })
           .catch((error) => {
             toast.error(error.message);
@@ -92,6 +88,24 @@ console.log( supplyList.map((item) => {
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+
+  const handleReject = () => {
+    const url3 = "http://localhost/Healerz/PHP/Inventory/fetchstatusreject.php";
+    const fdata3 = new FormData();
+    fdata3.append("Prescription_ID", drugDetails.Prescription_ID);
+    console.log(drugDetails.Prescription_ID);
+    axios
+      .post(url3, fdata3)
+      .then((response) => {
+        console.log(response);
+        setUpdateTrigger(!updateTrigger);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+    onHide();
+    setrejectConfirmModalVisible(false);
   };
   return (
     <>
@@ -209,12 +223,15 @@ console.log( supplyList.map((item) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary btn-success" onClick={handleAdd}>
+            Update
+          </Button>
           <Button
             variant="primary"
-            onClick={handleAdd}
-            style={{ backgroundColor: "green" }}
+            onClick={handleConfirmReject}
+            style={{ backgroundColor: "red" }}
           >
-            Update
+            Reject
           </Button>
           <ToastContainer />
           <Button variant="secondary" onClick={onHide}>
@@ -228,6 +245,14 @@ console.log( supplyList.map((item) => {
           show={confirmModalVisible}
           onHide={() => setConfirmModalVisible(false)}
           onConfirm={handleConfirmUpdate}
+        />
+      )}
+
+      {rejectconfirmModalVisible && (
+        <RejectConfirmModal
+          show={rejectconfirmModalVisible}
+          onHide={() => setrejectConfirmModalVisible(false)}
+          onConfirm={handleReject}
         />
       )}
     </>

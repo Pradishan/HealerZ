@@ -13,7 +13,6 @@ if ($conn->connect_error) {
 
 if (isset($_GET['Prescription_ID'])) {
     $prescriptionID = $_GET['Prescription_ID']; 
-    // $query = "SELECT * FROM prescription_list WHERE Prescription_ID = '$prescriptionID'";
     $query = "SELECT prescription_list.*, druginventory.StockCount 
     FROM prescription_list
     LEFT JOIN druginventory ON prescription_list.Drug_ID = druginventory.Drug_ID 

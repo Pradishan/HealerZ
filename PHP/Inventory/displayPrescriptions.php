@@ -1,41 +1,42 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "Healerz";
-$id = '';
+header("Access-Control-Allow-Origin: http://localhost:3000");
+require_once '../classes/DBconnector.php';
+use classes\DBconnector; 
 
-$con = mysqli_connect($host, $user, $password, $dbname);
+$dbConnector = new DBconnector();
+$conn = $dbConnector->getConnection();
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
+if (!$conn) {
+    die("Connection failed: " . $conn->errorInfo());
 }
 
 switch ($method) {
     case 'GET':
-         $sql = "SELECT prescription_record.*, patient.PatientName
-         FROM prescription_record
-         LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID ORDER BY TimeP DESC"; 
+        $sql = "SELECT prescription_record.*, patient.PatientName
+        FROM prescription_record
+        LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID
+        ORDER BY TimeP DESC";
+        break;
 }
+$stmt = $conn->prepare($sql);
 
-$result = mysqli_query($con, $sql);
-
-if (!$result) {
+if (!$stmt) {
     http_response_code(404);
-    die(mysqli_error($con));
+    die($conn->errorInfo());
 }
-
 if ($method == 'GET') {
-    if (!$id) echo '[';
-    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    if ($stmt->execute()) {
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        http_response_code(500);
+        echo "Error executing the query: " . $stmt->errorInfo();
     }
-    if (!$id) echo ']';
 } else {
-    echo mysqli_affected_rows($con);
+    echo "Unsupported request method.";
 }
 
-$con->close();
+$conn = null;
+?>

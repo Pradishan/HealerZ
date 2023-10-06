@@ -396,9 +396,9 @@ function Inventory(props) {
         show={showStockUpdateModal}
         onHide={() => {
           setShowStockUpdateModal(false);
-          setUpdateTrigger(!updateTrigger); // Toggle the trigger
+          setUpdateTrigger(!updateTrigger);
         }}
-        inputs={selectedDrug} // Pass the selected drug (if needed) as inputs to the modal
+        inputs={selectedDrug} 
       />
 
       <AddModal show={showModal4} onHide={addModal} />
