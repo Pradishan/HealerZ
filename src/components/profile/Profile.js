@@ -63,7 +63,11 @@ const Profile = () => {
   };
 
   const handleProfileUpdate = () => {
-    if (editedPhoneNo.length < 10 || editedPhoneNo.length > 10 || editedPhoneNo[0] != 0) {
+    if (
+      editedPhoneNo.length < 10 ||
+      editedPhoneNo.length > 10 ||
+      editedPhoneNo[0] != 0
+    ) {
       toast.error("Invalid Phone Number");
     } else if (
       userdata[0].Address == editedAddress &&
@@ -94,13 +98,12 @@ const Profile = () => {
             const messages = res.data.message.split(".");
             for (const message of messages) {
               message && toast.success(message);
-             
             }
           }
 
           res.data.error && toast.error(res.data.error);
           toast.success("Profile updated Successfully");
-          setTimeout(function() {
+          setTimeout(function () {
             window.location.reload();
           }, 1000);
         })
@@ -132,13 +135,12 @@ const Profile = () => {
         if (res.data.message) {
           const messages = res.data.message.split(".");
           for (const message of messages) {
-           
             message && toast.success(message);
           }
         }
         res.data.error && toast.error(res.data.error);
         toast.success("Special Disease updated Successfully");
-        setTimeout(function() {
+        setTimeout(function () {
           window.location.reload();
         }, 2000);
       })
@@ -228,7 +230,7 @@ const Profile = () => {
       .then((res) => {
         console.log(res);
         toast.success(res.data.message);
-        setTimeout(function() {
+        setTimeout(function () {
           window.location.reload();
         }, 2000);
       })
@@ -243,7 +245,6 @@ const Profile = () => {
     sessionStorage.setItem("patientID", null);
     sessionStorage.setItem("loginStatus", "Logged out successfully!");
   };
-
 
   return (
     <div>
@@ -325,14 +326,25 @@ const Profile = () => {
               <div key={index}>
                 <div className="d-flex justify-content-center mb-2">
                   <div className="d-flex align-items-center justify-content-center ms-2">
-                    <img
-                      src={profilepic}
-                      alt="avatar"
-                      className="rounded-circle me-2"
-                      width="100px"
-                      height="100px"
-                      style={{ objectFit: "cover" }}
-                    />
+                    <div className="image-containertt">
+                      <img
+                        src={profilepic}
+                        alt="avatar"
+                        className="rounded-circle me-2"
+                        width="100px"
+                        height="100px"
+                        style={{ objectFit: "cover" }}
+                      />
+                      <div className="zoomed-image">
+                        <img
+                          src={profilepic}
+                          alt="zoomed-avatar"
+                          width="200px" /* Adjust the size of the zoomed image as needed */
+                          height="200px"
+                          style={{ objectFit: "cover" }}
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="d-flex align-items-center justify-content-center">
@@ -487,9 +499,7 @@ const Profile = () => {
                                 setEditedPhoneNo(e.target.value);
                               }}
                             />
-                            <label htmlFor="phoneNo">
-                              Change PhoneNo
-                            </label>
+                            <label htmlFor="phoneNo">Change PhoneNo</label>
                           </div>
                           <br />
                           <div className="form-floating">
@@ -535,7 +545,7 @@ const Profile = () => {
                                 handleProfileUpdate();
                               }}
                             >
-                              Save changes{" "}
+                              Update Profile{" "}
                             </button>
                           </div>
                         </div>
@@ -602,7 +612,7 @@ const Profile = () => {
                               passwordchange();
                             }}
                           >
-                            Save changes{" "}
+                            Update Password{" "}
                           </button>
                         </div>
                       </div>
@@ -633,9 +643,7 @@ const Profile = () => {
                           setEditedAllDiseases(e.target.value);
                         }}
                       ></textarea>
-                      <label htmlFor="diseases">
-                        Specific Diseases
-                      </label>
+                      <label htmlFor="diseases">Specific Diseases</label>
                     </div>
                   </div>
                   <hr />
