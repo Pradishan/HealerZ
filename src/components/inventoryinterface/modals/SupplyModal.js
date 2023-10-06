@@ -43,27 +43,19 @@ function SupplyPopup(props) {
   };
 
 
-console.log(supplyList.map((item) => item.Drug_ID));
-console.log( supplyList.map((item) => {
-  const tdsNumbers = item.TDS.split("+").map(Number);
-  const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
-  return tdsTotal * item.Days;
-}));
   const handleConfirmUpdate = () => {
     const url = "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php";
     const fdata = new FormData();
-    fdata.append(
-      "Drug_ID",
-      supplyList.map((item) => item.Drug_ID)
-    );
-    fdata.append(
-      "StockCount",
-      supplyList.map((item) => {
-        const tdsNumbers = item.TDS.split("+").map(Number);
-        const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
-        return tdsTotal * item.Days;
-      })
-    );
+    const DrugIDarray = supplyList.map((item) => item.Drug_ID);
+    const StockCountarray = supplyList.map((item) => {
+      const tdsNumbers = item.TDS.split("+").map(Number);
+      const tdsTotal = tdsNumbers.reduce((sum, num) => sum + num, 0);
+      return tdsTotal * item.Days;
+    });
+    for (let i = 0; i < DrugIDarray.length; i++) {
+      fdata.append("Drug_ID[]", DrugIDarray[i]);
+      fdata.append("StockCount[]", StockCountarray[i]);
+    }
 
     const url2 = "http://localhost/Healerz/PHP/Inventory/fetchstatus.php";
     const fdata2 = new FormData();

@@ -1,6 +1,4 @@
 <?php
-
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
 $servername = "localhost";
 $username = "root";
@@ -13,25 +11,35 @@ if (mysqli_connect_error()) {
     echo mysqli_connect_error();
     exit();
 } else {
+    $drugIdsToUpdate = $_POST["Drug_ID"];
+    $updatedStockCounts = $_POST["StockCount"];
+    if (count($drugIdsToUpdate) !== count($updatedStockCounts)) {
+        echo "Error: Mismatched array lengths";
+        exit();
+    }
+    $stmt = $conn->prepare("UPDATE druginventory SET StockCount = StockCount - ? WHERE Drug_ID = ?");
 
-    $drugIdsToUpdate = $_POST["Drug_ID"];;
-    $updatedStockCount = $_POST["StockCount"];
-
- 
-    // for ($i = 0; $i < count($drugIdsToUpdate); $i++) {
-    //     $drug_id = $drugIdsToUpdate[$i];
-    //     $stock_count = $updatedStockCounts[$i];
-
-        $stmt = $conn->prepare("UPDATE druginventory SET StockCount = StockCount - ? WHERE Drug_ID = ?");
-        $stmt->bind_param("ii", $updatedStockCount, $drugIdsToUpdate );
-       
-        if ($stmt->execute()) {
-            echo "Status Updated Successfully";
-        } else {
+    if (!$stmt) {
+        echo "Error preparing statement: " . $conn->error;
+        exit();
+    }
+    $conn->begin_transaction();
+    for ($i = 0; $i < count($drugIdsToUpdate); $i++) {
+        $drugId = $drugIdsToUpdate[$i];
+        $stockCount = $updatedStockCounts[$i];
+  
+        $stmt->bind_param("ii", $stockCount, $drugId);
+        if (!$stmt->execute()) {
             echo "Error updating status: " . $stmt->error;
+            $conn->rollback(); 
+            exit();
         }
-        $stmt->close();
-    // }
+    }
+    $conn->commit();
+    $stmt->close();
+
+    echo "Status Updated Successfully";
 }
 
 mysqli_close($conn);
+?>
