@@ -3,6 +3,7 @@ import "./index.css"
 import { Route, Routes } from "react-router-dom";
 import Doctorinterface from "./components/doctorinterface/Doctorinterface";
 import Dashboard from "./components/inventoryinterface/Dashboard";
+import Summary from "./components/inventoryinterface/Summary";
 import Inventory from "./components/inventoryinterface/Inventory";
 import Clubs from "./components/clubs/Clubs";
 import Eventresponse from "./components/clubs/Eventresponse";
@@ -51,6 +52,7 @@ function App() {
         />
         <Route path="/inventory-interface/dashboard" element={ <Protected1 Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/supply" element={ <Protected1 Component={ Supply }roll={'Pharmacist'} /> } />
+        <Route path="/inventory-interface/summary" element={ <Protected1 Component={ Summary }roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/settings" element={ <Protected1 Component={ Settings } roll={'Pharmacist'}/> } />
         <Route path="/admin/dashboard" element={<Protected2 Component={ DashboardAdmin  } roll={'admin'} /> } />
         <Route path="/admin/adddoctor" element={ <Protected2 Component={ AddDoctor } roll={'admin'} /> } />

@@ -723,3 +723,25 @@
 .icoinvent {
     margin-left: 10px;
 }
+
+
+.summarycatcont {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin-left: 100px;
+   
+}
+
+
+.sumcontbig {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    margin-left: 20px;
+    margin-top: 20px !important;
+}
