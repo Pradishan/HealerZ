@@ -236,3 +236,11 @@ h6 {
     top: 50%;
     position: absolute;
 }
+
+.profilesideimg{
+    margin-left: 150px;
+}
+
+.profilesideimg img{
+    height: 550px;
+}
