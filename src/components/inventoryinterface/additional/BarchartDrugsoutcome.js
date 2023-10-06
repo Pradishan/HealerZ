@@ -77,7 +77,7 @@ class BarchartDrugsoutcome extends Component {
           },
         },
         title: {
-          text: 'Monthly Prescription Records , 2023',
+          text: 'Monthly Patient Income , 2023',
           floating: true,
           offsetY: 230,
           align: 'center',

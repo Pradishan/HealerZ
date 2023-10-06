@@ -313,7 +313,7 @@ const Settings = () => {
                                 handleProfileUpdate();
                               }}
                             >
-                              Save changes{" "}
+                              Update Profile{" "}
                             </button>
                           </div>
                         </div>
@@ -373,7 +373,7 @@ const Settings = () => {
                                 passwordchange();
                               }}
                             >
-                              Save changes{" "}
+                              Update Password{" "}
                             </button>
                           </div>
                         </div>

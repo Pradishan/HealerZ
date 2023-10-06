@@ -6,9 +6,7 @@ import "./inventory.css";
 import DoughnutChart from "./additional/DoughnutChart";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
 import ChangingProgressProvider from "./additional/ChangingProgressProvider";
-
 import { IconButton } from "@mui/material";
 import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
@@ -16,7 +14,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import LowStockModal from "./dashboard/LowStockModal";
 import OutofStockModal from "./dashboard/OutofStockModal";
-import SufficentModal from "./dashboard/SufficentModal"
+import SufficentModal from "./dashboard/SufficentModal";
 
 function Dashboard(props) {
   const [percentage, setPercentage] = useState(0);
