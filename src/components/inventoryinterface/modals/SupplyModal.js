@@ -7,12 +7,14 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import UpdateConfirmModal from "./UpdateConfirmModal";
+import RejectConfirmModal from "./RejectConfirmModal";
 
 function SupplyPopup(props) {
   const { show, onHide, drugDetails } = props;
   const [supplyList, setsupplyList] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [rejectconfirmModalVisible, setrejectConfirmModalVisible] = useState(false);
   useEffect(() => {
     if (show && drugDetails) {
       fetchData(drugDetails.Prescription_ID);
@@ -42,6 +44,9 @@ function SupplyPopup(props) {
     setConfirmModalVisible(true);
   };
 
+  const handleConfirmReject = () => {
+    setrejectConfirmModalVisible(true);
+  };
 
   const handleConfirmUpdate = () => {
     const url = "http://localhost/Healerz/PHP/Inventory/supplydrugupdate.php";
@@ -71,8 +76,8 @@ function SupplyPopup(props) {
           .post(url2, fdata2)
           .then((response) => {
             console.log(response);
-            setTimeout(function() {
-            window.location.reload();
+            setTimeout(function () {
+              window.location.reload();
             }, 2000);
           })
           .catch((error) => {
@@ -84,6 +89,26 @@ function SupplyPopup(props) {
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+
+  const handleReject = () => {
+    const url3 = "http://localhost/Healerz/PHP/Inventory/fetchstatusreject.php";
+    const fdata3 = new FormData();
+    fdata3.append("Prescription_ID", drugDetails.Prescription_ID);
+    console.log(drugDetails.Prescription_ID);
+    axios
+      .post(url3, fdata3)
+      .then((response) => {
+        console.log(response);
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+    onHide();
+    setrejectConfirmModalVisible(false);
   };
   return (
     <>
@@ -201,12 +226,15 @@ function SupplyPopup(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary btn-success" onClick={handleAdd}>
+            Update
+          </Button>
           <Button
             variant="primary"
-            onClick={handleAdd}
-            style={{ backgroundColor: "green" }}
+            onClick={handleConfirmReject}
+            style={{ backgroundColor: "red" }}
           >
-            Update
+            Reject
           </Button>
           <ToastContainer />
           <Button variant="secondary" onClick={onHide}>
@@ -220,6 +248,14 @@ function SupplyPopup(props) {
           show={confirmModalVisible}
           onHide={() => setConfirmModalVisible(false)}
           onConfirm={handleConfirmUpdate}
+        />
+      )}
+
+      {rejectconfirmModalVisible && (
+        <RejectConfirmModal
+          show={rejectconfirmModalVisible}
+          onHide={() => setrejectConfirmModalVisible(false)}
+          onConfirm={handleReject}
         />
       )}
     </>
