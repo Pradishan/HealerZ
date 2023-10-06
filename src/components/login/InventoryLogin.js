@@ -14,6 +14,17 @@ export default function InventoryLogin() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState(null);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const savedPharmacistID = localStorage.getItem("pharmacistID");
+    const savedRememberMe = localStorage.getItem("rememberMe");
+
+    if (savedRememberMe === "true" && savedPharmacistID) {
+      setPharmacistID(savedPharmacistID);
+      setRememberMe(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Pharmacist");
@@ -41,6 +52,13 @@ export default function InventoryLogin() {
         setMessage(response.data.message);
         if (response.data.message === "Login successful.") {
           toast.success(message);
+          if (rememberMe) {
+            localStorage.setItem("pharmacistID", pharmacistID);
+            localStorage.setItem("rememberMe", "true");
+          } else {
+            localStorage.removeItem("pharmacistID");
+            localStorage.removeItem("rememberMe");
+          }
           setTimeout(() => {
             sessionStorage.setItem("Pharmacist", true);
             sessionStorage.setItem("pharmacistID", response.data.pharmacistID);
@@ -122,6 +140,8 @@ export default function InventoryLogin() {
                       type="checkbox"
                       className="form-check-input"
                       id="rememberMeCheckbox"
+                      checked={rememberMe}
+                      onChange={() => setRememberMe(!rememberMe)}
                     />
                     <label
                       className="form-check-label remmberme"

@@ -13,6 +13,17 @@ export default function AdminLogin() {
   const [logmessage, setLogmessage] = useState(null); // Initially display 'jana.jpg'
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe2, setRememberMe2] = useState(false);
+
+  useEffect(() => {
+    const savedAdminID = localStorage.getItem("adminID");
+    const savedRememberMe2 = localStorage.getItem("rememberMe2");
+
+    if (savedRememberMe2 === "true" && savedAdminID) {
+      setAdminID(savedAdminID);
+      setRememberMe2(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("admin");
@@ -40,6 +51,13 @@ export default function AdminLogin() {
 
         if (message === "Login successful.") {
           toast.success(message);
+          if (rememberMe2) {
+            localStorage.setItem("adminID", adminID);
+            localStorage.setItem("rememberMe2", "true");
+          } else {
+            localStorage.removeItem("adminID");
+            localStorage.removeItem("rememberMe2");
+          }
           setTimeout(() => {
             sessionStorage.setItem("admin", true);
             sessionStorage.setItem("adminID", response.data.adminID);
@@ -117,6 +135,8 @@ export default function AdminLogin() {
                       type="checkbox"
                       className="form-check-input"
                       id="rememberMeCheckbox"
+                      checked={rememberMe2}
+                      onChange={() => setRememberMe2(!rememberMe2)}
                     />
                     <label
                       className="form-check-label remmberme"

@@ -1,6 +1,7 @@
 <?php
 require './classes/DBconnector.php';
 use classes\DBconnector;
+
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization"); 
@@ -22,13 +23,13 @@ if ($method === "POST") {
 
     $pharmacistID = $data['pharmacistID'];
     $password = $data['password'];
+    $rememberMe = isset($data['rememberMe']) ? $data['rememberMe'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
     $sql = "SELECT * FROM pharmacist WHERE Pharmacist_ID = '$pharmacistID' LIMIT 1"; 
     $stmt = $conn->prepare($sql);
-    // $stmt->bindParam(":pharmacistID", $pharmacistID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -37,6 +38,10 @@ if ($method === "POST") {
         exit();
     }
 
+    if ($rememberMe) {
+        setcookie("pharmacistID", $pharmacistID, time() + 24 * 60 * 60 * 60, "/");
+        setcookie("authToken", $token, time() + 24 * 60 * 60 * 60, "/");
+    }
 
     echo json_encode(array("message" => "Login successful.","pharmacistID" => $pharmacistID));
 
