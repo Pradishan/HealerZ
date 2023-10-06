@@ -731,7 +731,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     max-width: 1000px;
     margin-left: 100px;
-   
+
 }
 
 
@@ -749,29 +749,28 @@
 
 .image-containertt {
     position: relative;
-    width: 100px; 
+    width: 100px;
     height: 100px;
     cursor: pointer;
-  }
-  
-  .zoomed-image {
+}
+
+.zoomed-image {
     position: absolute;
-    top: 0;
-    left: 120%; 
+    top: -50%;
+    left: -170%;
     transform: translateX(10px);
     opacity: 0;
     transition: transform 0.2s, opacity 0.2s;
     z-index: 500;
-    clip-path: circle(50% at 50% 50%); 
-  }
-  
-  .image-containertt:hover .zoomed-image {
-    transform: translateX(0); 
-    opacity: 1;
-    cursor: grab; 
-  }
+    clip-path: circle(50% at 50% 50%);
+}
 
-  .image-containertt .zoomed-image:hover{
+.image-containertt:hover .zoomed-image {
+    transform: translateX(0);
+    opacity: 1;
+    cursor: grab;
+}
+
+.image-containertt .zoomed-image:hover {
     transform: scale(1.4);
-  }
-  
+}

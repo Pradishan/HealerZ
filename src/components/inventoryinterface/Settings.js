@@ -181,8 +181,8 @@ const Settings = () => {
                                   <img
                                     src={profilepic}
                                     alt="zoomed-avatar"
-                                    width="200px" /* Adjust the size of the zoomed image as needed */
-                                    height="200px"
+                                    width="150px" /* Adjust the size of the zoomed image as needed */
+                                    height="150px"
                                     style={{ objectFit: "cover" }}
                                   />
                                 </div>

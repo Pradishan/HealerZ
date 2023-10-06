@@ -333,7 +333,7 @@ const Profile = () => {
                   style={{ gap: "25px" }}
                 >
                   <div className="d-flex align-items-center justify-content-center ms-2">
-                    <div className="image-containertt">
+                    <div className="image-containertt2">
                       <img
                         src={profilepic}
                         alt="avatar"
@@ -342,12 +342,12 @@ const Profile = () => {
                         height="100px"
                         style={{ objectFit: "cover" }}
                       />
-                      <div className="zoomed-image">
+                      <div className="zoomed-image2">
                         <img
                           src={profilepic}
                           alt="zoomed-avatar"
-                          width="200px" /* Adjust the size of the zoomed image as needed */
-                          height="200px"
+                          width="150px" /* Adjust the size of the zoomed image as needed */
+                          height="150px"
                           style={{ objectFit: "cover" }}
                         />
                       </div>
