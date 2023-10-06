@@ -20,6 +20,7 @@ function Supply(props) {
   const [presList, setPresList] = useState([]);
   const [filteredPresList, setFilteredPresList] = useState([]);
   const [selectedDrug, setSelectedDrug] = useState(null);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
   const [searchDate, setSearchDate] = useState("");
   const handleChangeDate = (event) => {
@@ -94,6 +95,10 @@ function Supply(props) {
     setSelectedDrug(drug);
     setShowModal(true);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   return (
     <Layout>
@@ -231,7 +236,10 @@ function Supply(props) {
       </div>
       <SupplyModal
         show={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={() => {
+          setShowModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
         drugDetails={selectedDrug}
       />
       <CustomConfirmModal

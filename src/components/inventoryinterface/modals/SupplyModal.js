@@ -15,6 +15,7 @@ function SupplyPopup(props) {
   const [totalCount, setTotalCount] = useState(0);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [rejectconfirmModalVisible, setrejectConfirmModalVisible] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
   useEffect(() => {
     if (show && drugDetails) {
       fetchData(drugDetails.Prescription_ID);
@@ -76,9 +77,7 @@ function SupplyPopup(props) {
           .post(url2, fdata2)
           .then((response) => {
             console.log(response);
-            setTimeout(function () {
-              window.location.reload();
-            }, 2000);
+            setUpdateTrigger(!updateTrigger);
           })
           .catch((error) => {
             toast.error(error.message);
@@ -100,9 +99,7 @@ function SupplyPopup(props) {
       .post(url3, fdata3)
       .then((response) => {
         console.log(response);
-        setTimeout(function () {
-          window.location.reload();
-        }, 2000);
+        setUpdateTrigger(!updateTrigger);
       })
       .catch((error) => {
         toast.error(error.message);
