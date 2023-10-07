@@ -11,7 +11,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT COUNT(StockCount) as total FROM `druginventory` WHERE StockCount > 800";
+// $query = "SELECT COUNT(StockCount) as total FROM `druginventory` WHERE StockCount > 800";
+$query = "SELECT COUNT(druginventory.StockCount) AS total
+          FROM druginventory
+          INNER JOIN drug ON druginventory.Drug_ID = drug.Drug_ID
+          WHERE ((drug.Category = 'Tablet' AND druginventory.StockCount > 800)
+               OR (drug.Category = 'Drops' AND druginventory.StockCount > 300)
+               OR (drug.Category = 'Liquid' AND druginventory.StockCount > 600)
+               OR (drug.Category = 'Capsules' AND druginventory.StockCount > 700)
+               OR (drug.Category = 'Topical' AND druginventory.StockCount > 200)
+               OR (drug.Category = 'Suppositories' AND druginventory.StockCount > 200)
+               OR (drug.Category = 'Injections' AND druginventory.StockCount > 300)
+               OR (drug.Category = 'Implants' AND druginventory.StockCount > 150))
+          AND druginventory.StockCount != 0;";
 $query1 = "SELECT COUNT(StockCount) as countt FROM `druginventory`";
 $result = $conn->query($query);
 $result1 = $conn->query($query1);

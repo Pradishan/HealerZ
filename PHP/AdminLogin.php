@@ -22,6 +22,7 @@ if ($method === "POST") {
 
     $adminID = $data['adminID'];
     $password = $data['password'];
+    $rememberMe = isset($data['rememberMe2']) ? $data['rememberMe2'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
@@ -35,6 +36,11 @@ if ($method === "POST") {
     if (!$user || $password !== $user["Password"]) {
         echo json_encode(array("message" => "Invalid Admin ID or Password."));
         exit();
+    }
+
+    if ($rememberMe) {
+        setcookie("adminID", $adminID, time() + 24 * 60 * 60 * 60, "/");
+        setcookie("authToken2", $token, time() + 24 * 60 * 60 * 60, "/");
     }
 
 

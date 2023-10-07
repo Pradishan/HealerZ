@@ -110,6 +110,8 @@ function Layout({ children }) {
       return "Inventory";
     }else if (pathname === "/inventory-interface/supply") {
         return "Supply";
+      }else if (pathname === "/inventory-interface/summary") {
+        return "Summary";
       }
     
     return null;
@@ -203,6 +205,25 @@ function Layout({ children }) {
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={""}>Supply</div>}
+                </div>
+              </NavLink>
+            </div>
+
+            <div className={"w-100 px-sm-2"}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "side-menu-item side-menu-active"
+                    : "side-menu-item"
+                }
+                to={"/inventory-interface/summary"}
+              >
+                <div className={"d-flex"}>
+                  <FeatherIcon
+                    icon="activity"
+                    className={!open ? "me-2" : "ms-1"}
+                  />
+                  {!open && <div className={""}>Summary</div>}
                 </div>
               </NavLink>
             </div>

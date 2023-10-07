@@ -6,7 +6,7 @@ import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import Avatar from "@mui/material/Avatar";
+import profprofimg from "../../assets/Profilesideimg.webp"
 import default_dp from "../../assets/default_dp.png";
 import AgeCalculator from "../doctorinterface/algorithms/AgeCalculator";
 
@@ -20,6 +20,10 @@ const Profile = () => {
   const [currpw, setcurrpw] = useState(null);
   const [changepw, setchangepw] = useState(null);
   const [confirmpw, setconfirmpw] = useState(null);
+  const [showSecondCard, setShowSecondCard] = useState(false);
+  const handleOpen = () => {
+    setShowSecondCard(!showSecondCard);
+  };
 
   useEffect(() => {
     fetchData();
@@ -63,7 +67,11 @@ const Profile = () => {
   };
 
   const handleProfileUpdate = () => {
-    if (editedPhoneNo.length < 10 || editedPhoneNo.length > 10 || editedPhoneNo[0] != 0) {
+    if (
+      editedPhoneNo.length < 10 ||
+      editedPhoneNo.length > 10 ||
+      editedPhoneNo[0] != 0
+    ) {
       toast.error("Invalid Phone Number");
     } else if (
       userdata[0].Address == editedAddress &&
@@ -94,13 +102,12 @@ const Profile = () => {
             const messages = res.data.message.split(".");
             for (const message of messages) {
               message && toast.success(message);
-             
             }
           }
 
           res.data.error && toast.error(res.data.error);
           toast.success("Profile updated Successfully");
-          setTimeout(function() {
+          setTimeout(function () {
             window.location.reload();
           }, 1000);
         })
@@ -132,13 +139,12 @@ const Profile = () => {
         if (res.data.message) {
           const messages = res.data.message.split(".");
           for (const message of messages) {
-           
             message && toast.success(message);
           }
         }
         res.data.error && toast.error(res.data.error);
         toast.success("Special Disease updated Successfully");
-        setTimeout(function() {
+        setTimeout(function () {
           window.location.reload();
         }, 2000);
       })
@@ -228,7 +234,7 @@ const Profile = () => {
       .then((res) => {
         console.log(res);
         toast.success(res.data.message);
-        setTimeout(function() {
+        setTimeout(function () {
           window.location.reload();
         }, 2000);
       })
@@ -243,7 +249,6 @@ const Profile = () => {
     sessionStorage.setItem("patientID", null);
     sessionStorage.setItem("loginStatus", "Logged out successfully!");
   };
-
 
   return (
     <div>
@@ -323,18 +328,31 @@ const Profile = () => {
             </div> */}
             {userdata.map((data, index) => (
               <div key={index}>
-                <div className="d-flex justify-content-center mb-2">
+                <div
+                  className="d-flex justify-content-center mb-2"
+                  style={{ gap: "25px" }}
+                >
                   <div className="d-flex align-items-center justify-content-center ms-2">
-                    <img
-                      src={profilepic}
-                      alt="avatar"
-                      className="rounded-circle me-2"
-                      width="100px"
-                      height="100px"
-                      style={{ objectFit: "cover" }}
-                    />
+                    <div className="image-containertt2">
+                      <img
+                        src={profilepic}
+                        alt="avatar"
+                        className="rounded-circle me-2"
+                        width="100px"
+                        height="100px"
+                        style={{ objectFit: "cover" }}
+                      />
+                      <div className="zoomed-image2">
+                        <img
+                          src={profilepic}
+                          alt="zoomed-avatar"
+                          width="150px" /* Adjust the size of the zoomed image as needed */
+                          height="150px"
+                          style={{ objectFit: "cover" }}
+                        />
+                      </div>
+                    </div>
                   </div>
-
                   <div className="d-flex align-items-center justify-content-center">
                     <div>
                       <h4 className="m-0">{data.PatientName}</h4>
@@ -344,6 +362,13 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
+                <button
+                  className="btn shadow gradient-button"
+                  onClick={handleOpen}
+                  style={{ marginTop: "10px" }}
+                >
+                  {showSecondCard ? "Close Profile" : "Edit Profile"}
+                </button>
                 <hr />
                 <div className="info-2">
                   <p info-2>
@@ -405,125 +430,133 @@ const Profile = () => {
               <hr />
             </div>
           </div>
-
-          <div className="card card-2 cardproff">
-            <div className="">
+          {showSecondCard ? (
+            <div className="card card-2 cardproff">
               <div className="form-container">
-                <h3 className="serhed6">Request Medical</h3>
-                <form
-                  id="medical-request-form"
-                  onSubmit={(e) => handleAddMedicalRequest(e)}
-                >
-                  <div className="form-floating">
-                    <input
-                      type="date"
-                      className="form-control"
-                      id="Date_field"
-                      name="consultationDate"
-                      placeholder="New Password"
-                      style={{ width: "100%" }}
-                    />
-                    <label htmlFor="Date_field">Consulatation Date</label>
-                  </div>
-                  <br />
-                  <div className="form-floating">
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="Duration-Days"
-                      placeholder="New Password"
-                      name="duration"
-                      style={{ width: "100%" }}
-                    />
-                    <label htmlFor="Duration-Days">Duration (In Days)</label>
-                  </div>
-                  <br />
-                  <div className="form-floating">
-                    <textarea
-                      type="text"
-                      className="form-control"
-                      id="message"
-                      placeholder="New Password"
-                      name="message"
-                      style={{ width: "100%" }}
-                    />
-                    <label htmlFor="message">Message</label>
-                  </div>
-                  <hr />
-                  <div className="button">
-                    <button
-                      className="btn shadow gradient-button"
-                      type="submit"
-                    >
-                      Submit Request
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <br />
-            <hr />
-            <br />
-            <div className="form-container">
-              <h3 className="serhed6">Edit Profile Details</h3>
-              <form id="editProfileForm" encType="multipart/form-data">
-                <div className="container">
-                  <div className="column-container">
-                    <div className="column-1">
-                      <div className="sub-row">
-                        <h5>Edit Profile</h5>
+                <h3 className="serhed6">Edit Profile Details</h3>
+                <form id="editProfileForm" encType="multipart/form-data">
+                  <div className="container">
+                    <div className="column-container">
+                      <div className="column-1">
+                        <div className="sub-row">
+                          <h5>Edit Profile</h5>
+                        </div>
+                        {userdata.map((data, index) => (
+                          <div className="personalInfo">
+                            <div className="form-floating">
+                              <input
+                                type="number"
+                                className="form-control"
+                                id="phoneNo"
+                                placeholder="New Password"
+                                style={{ width: "100%" }}
+                                value={editedPhoneNo}
+                                onChange={(e) => {
+                                  setEditedPhoneNo(e.target.value);
+                                }}
+                              />
+                              <label htmlFor="phoneNo">Change PhoneNo</label>
+                            </div>
+                            <br />
+                            <div className="form-floating">
+                              <textarea
+                                type="text"
+                                className="form-control"
+                                id="address_field"
+                                placeholder="New Password"
+                                style={{ width: "100%" }}
+                                value={editedAddress}
+                                onChange={(e) => {
+                                  setEditedAddress(e.target.value);
+                                }}
+                              />
+                              <label htmlFor="address_field">
+                                Change Address
+                              </label>
+                            </div>
+                            <br />
+                            <div className="form-floating">
+                              <input
+                                type="file"
+                                name="Profile"
+                                className="form-control"
+                                accept=".jpg, .jpeg, .png"
+                                id="profilePic"
+                                placeholder="Change Profile pic"
+                                style={{ width: "100%" }}
+                                onChange={(e) => {
+                                  setEditedProfilePic(e.target.files[0]);
+                                }}
+                              />
+                              <label htmlFor="ProfilePic">
+                                Change profile pic
+                              </label>
+                            </div>
+                            <hr />
+                            <div className="button">
+                              <button
+                                className="btn shadow gradient-button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleProfileUpdate();
+                                }}
+                              >
+                                Update Profile{" "}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      {userdata.map((data, index) => (
+
+                      <div className="column-2">
+                        <div className="sub-row">
+                          <h5>Change Password</h5>
+                        </div>
+
                         <div className="personalInfo">
                           <div className="form-floating">
                             <input
-                              type="number"
+                              type="password"
                               className="form-control"
-                              id="phoneNo"
-                              placeholder="New Password"
-                              style={{ width: "100%" }}
-                              value={editedPhoneNo}
+                              id="currentPassword"
+                              placeholder="Current Password"
                               onChange={(e) => {
-                                setEditedPhoneNo(e.target.value);
+                                setcurrpw(e.target.value);
                               }}
-                            />
-                            <label htmlFor="phoneNo">
-                              Change PhoneNo
-                            </label>
-                          </div>
-                          <br />
-                          <div className="form-floating">
-                            <textarea
-                              type="text"
-                              className="form-control"
-                              id="address_field"
-                              placeholder="New Password"
                               style={{ width: "100%" }}
-                              value={editedAddress}
-                              onChange={(e) => {
-                                setEditedAddress(e.target.value);
-                              }}
                             />
-                            <label htmlFor="address_field">
-                              Change Address
+                            <label htmlFor="currentPassword">
+                              Current Password
                             </label>
                           </div>
                           <br />
                           <div className="form-floating">
                             <input
-                              type="file"
-                              name="Profile"
+                              type="password"
                               className="form-control"
-                              accept=".jpg, .jpeg, .png"
-                              id="profilePic"
-                              placeholder="Change Profile pic"
-                              style={{ width: "100%" }}
+                              id="newPassword"
+                              placeholder="New Password"
                               onChange={(e) => {
-                                setEditedProfilePic(e.target.files[0]);
+                                setchangepw(e.target.value);
                               }}
+                              style={{ width: "100%" }}
                             />
-                            <label htmlFor="ProfilePic">
-                              Change profile pic
+                            <label htmlFor="newPassword">New Password</label>
+                          </div>
+                          <br />
+                          <div className="form-floating">
+                            <input
+                              type="password"
+                              className="form-control"
+                              id="confirmPassword"
+                              placeholder="Confirm Password"
+                              onChange={(e) => {
+                                setconfirmpw(e.target.value);
+                              }}
+                              style={{ width: "100%" }}
+                            />
+                            <label htmlFor="confirmPassword">
+                              Confirm Password
                             </label>
                           </div>
                           <hr />
@@ -532,130 +565,126 @@ const Profile = () => {
                               className="btn shadow gradient-button"
                               onClick={(e) => {
                                 e.preventDefault();
-                                handleProfileUpdate();
+                                passwordchange();
                               }}
                             >
-                              Save changes{" "}
+                              Update Password{" "}
                             </button>
                           </div>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="column-2">
-                      <div className="sub-row">
-                        <h5>Change Password</h5>
-                      </div>
-
-                      <div className="personalInfo">
-                        <div className="form-floating">
-                          <input
-                            type="password"
-                            className="form-control"
-                            id="currentPassword"
-                            placeholder="Current Password"
-                            onChange={(e) => {
-                              setcurrpw(e.target.value);
-                            }}
-                            style={{ width: "100%" }}
-                          />
-                          <label htmlFor="currentPassword">
-                            Current Password
-                          </label>
-                        </div>
-                        <br />
-                        <div className="form-floating">
-                          <input
-                            type="password"
-                            className="form-control"
-                            id="newPassword"
-                            placeholder="New Password"
-                            onChange={(e) => {
-                              setchangepw(e.target.value);
-                            }}
-                            style={{ width: "100%" }}
-                          />
-                          <label htmlFor="newPassword">New Password</label>
-                        </div>
-                        <br />
-                        <div className="form-floating">
-                          <input
-                            type="password"
-                            className="form-control"
-                            id="confirmPassword"
-                            placeholder="Confirm Password"
-                            onChange={(e) => {
-                              setconfirmpw(e.target.value);
-                            }}
-                            style={{ width: "100%" }}
-                          />
-                          <label htmlFor="confirmPassword">
-                            Confirm Password
-                          </label>
-                        </div>
-                        <hr />
-                        <div className="button">
-                          <button
-                            className="btn shadow gradient-button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              passwordchange();
-                            }}
-                          >
-                            Save changes{" "}
-                          </button>
-                        </div>
                       </div>
                     </div>
+
+                    <h5>Allergies and Diseases</h5>
+
+                    <div className="allergies">
+                      {/* <div className="form-group">
+                  <label for="allergies">Allergies:</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    id="allergies"
+                    name="allergies"
+                  ></input>
+                </div> */}
+
+                      <div className="form-floating">
+                        <textarea
+                          className="form-control"
+                          id="diseases"
+                          placeholder="Confirm Password"
+                          value={editedAllDiseases}
+                          rows={7}
+                          onChange={(e) => {
+                            setEditedAllDiseases(e.target.value);
+                          }}
+                        ></textarea>
+                        <label htmlFor="diseases">Specific Diseases</label>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="button">
+                      <button
+                        className="btn shadow gradient-button"
+                        onClick={(e) => {
+                          e.preventDefault();
+
+                          handleAlergyUpdate();
+                        }}
+                      >
+                        Save Changes
+                      </button>
+                    </div>
+                    <hr />
                   </div>
+                </form>
+              </div>
+            </div>
+          ) : (
+            <div className="card card-2 cardproff">
+              <div className="justify-content-center mb-2 profilesideimg">
+                <img src={profprofimg} alt="Background"/>
+              </div>
 
-                  <h5>Allergies and Diseases</h5>
-
-                  <div className="allergies">
-                    {/* <div className="form-group">
-                    <label for="allergies">Allergies:</label>
-                    <input
-                      type="text"
-                      className="form-input"
-                      id="allergies"
-                      name="allergies"
-                    ></input>
-                  </div> */}
-
+              <div className="">
+                <div className="form-container">
+                  <h3 className="serhed6">Request Medical</h3>
+                  <form
+                    id="medical-request-form"
+                    onSubmit={(e) => handleAddMedicalRequest(e)}
+                  >
+                    <div className="form-floating">
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="Date_field"
+                        name="consultationDate"
+                        placeholder="New Password"
+                        style={{ width: "100%" }}
+                      />
+                      <label htmlFor="Date_field">Consulatation Date</label>
+                    </div>
+                    <br />
+                    <div className="form-floating">
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="Duration-Days"
+                        placeholder="New Password"
+                        name="duration"
+                        style={{ width: "100%" }}
+                      />
+                      <label htmlFor="Duration-Days">Duration (In Days)</label>
+                    </div>
+                    <br />
                     <div className="form-floating">
                       <textarea
+                        type="text"
                         className="form-control"
-                        id="diseases"
-                        placeholder="Confirm Password"
-                        value={editedAllDiseases}
-                        rows={7}
-                        onChange={(e) => {
-                          setEditedAllDiseases(e.target.value);
-                        }}
-                      ></textarea>
-                      <label htmlFor="diseases">
-                        Specific Diseases
-                      </label>
+                        id="message"
+                        placeholder="New Password"
+                        name="message"
+                        style={{ width: "100%" }}
+                      />
+                      <label htmlFor="message">Message</label>
                     </div>
-                  </div>
-                  <hr />
-                  <div className="button">
-                    <button
-                      className="btn shadow gradient-button"
-                      onClick={(e) => {
-                        e.preventDefault();
-
-                        handleAlergyUpdate();
-                      }}
-                    >
-                      Save Changes
-                    </button>
-                  </div>
-                  <hr />
+                    <hr />
+                    <div className="button">
+                      <button
+                        className="btn shadow gradient-button"
+                        type="submit"
+                      >
+                        Submit Request
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
+              <br />
+              <hr />
+              <br />
             </div>
-          </div>
+          )}
         </div>
       </div>
       <ToastContainer />

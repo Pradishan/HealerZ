@@ -13,6 +13,17 @@ export default function DoctorLogin() {
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe3, setRememberMe3] = useState(false);
+
+  useEffect(() => {
+    const savedDoctorID = localStorage.getItem("doctorID");
+    const savedRememberMe3 = localStorage.getItem("rememberMe3");
+
+    if (savedRememberMe3 === "true" && savedDoctorID) {
+      setDoctorID(savedDoctorID);
+      setRememberMe3(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Doctor");
@@ -40,6 +51,13 @@ export default function DoctorLogin() {
 
         if (message === "Login successful.") {
           toast.success(message);
+          if (rememberMe3) {
+            localStorage.setItem("doctorID", doctorID);
+            localStorage.setItem("rememberMe3", "true");
+          } else {
+            localStorage.removeItem("doctorID");
+            localStorage.removeItem("rememberMe3");
+          }
           setTimeout(() => {
             sessionStorage.setItem("Doctor", true);
             navigate("/doctor");
@@ -117,6 +135,8 @@ export default function DoctorLogin() {
                       type="checkbox"
                       className="form-check-input"
                       id="rememberMeCheckbox"
+                      checked={rememberMe3}
+                      onChange={() => setRememberMe3(!rememberMe3)}
                     />
                     <label
                       className="form-check-label remmberme"

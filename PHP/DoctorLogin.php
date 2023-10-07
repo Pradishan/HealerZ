@@ -29,6 +29,7 @@ if ($method === "POST") {
 
     $doctorID = $data['doctorID'];
     $password = $data['password'];
+    $rememberMe = isset($data['rememberMe3']) ? $data['rememberMe3'] : false;
 
     // Create a new MySQL connection using DBconnector class
     $dbcon = new DBconnector();
@@ -44,6 +45,11 @@ if ($method === "POST") {
         echo json_encode(array("message" => "Invalid Doctor ID or Password."));
         // http_response_code(401); // Unauthorized
         exit();
+    }
+    
+    if ($rememberMe) {
+        setcookie("doctorID", $doctorID, time() + 24 * 60 * 60 * 60, "/");
+        setcookie("authToken3", $token, time() + 24 * 60 * 60 * 60, "/");
     }
 
     // http_response_code(200); // OK

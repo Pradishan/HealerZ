@@ -46,7 +46,7 @@ const Settings = () => {
       } else {
         console.error("No data found or invalid response structure");
       }
-    
+
       setEditedAddress(response.data[0].Address);
       setEditedPhoneNo(response.data[0].PhoneNo);
       if (response.data[0].Profile) {
@@ -69,7 +69,11 @@ const Settings = () => {
   };
 
   const handleProfileUpdate = () => {
-    if (editedPhoneNo.length < 10 || editedPhoneNo.length > 10 || editedPhoneNo[0] != 0) {
+    if (
+      editedPhoneNo.length < 10 ||
+      editedPhoneNo.length > 10 ||
+      editedPhoneNo[0] != 0
+    ) {
       toast.error("Invalid Phone Number");
     } else if (
       userdata[0].Address == editedAddress &&
@@ -84,7 +88,6 @@ const Settings = () => {
       formData.append("Address", editedAddress);
       editedProfilePic && formData.append("Profile", editedProfilePic);
 
-     
       axios
         .post(
           "http://localhost/HealerZ/PHP/Inventory/settings/updateProfilePharmacist.php",
@@ -105,7 +108,7 @@ const Settings = () => {
 
           res.data.error && toast.error(res.data.error);
           // toast.success("Profile updated Successfully");
-          setTimeout(function() {
+          setTimeout(function () {
             window.location.reload();
           }, 1000);
         })
@@ -165,21 +168,34 @@ const Settings = () => {
                         <div key={index}>
                           <div className="justify-content-center mb-2">
                             <div className="d-flex align-items-center justify-content-center ">
-                              <img
-                                src={profilepic}
-                                alt="avatar"
-                                className="rounded-circle me-2"
-                                width="100px"
-                                height="100px"
-                                style={{ objectFit: "cover" }}
-                              />
+                              <div className="image-containertt">
+                                <img
+                                  src={profilepic}
+                                  alt="avatar"
+                                  className="rounded-circle me-2"
+                                  width="100px"
+                                  height="100px"
+                                  style={{ objectFit: "cover" }}
+                                />
+                                <div className="zoomed-image">
+                                  <img
+                                    src={profilepic}
+                                    alt="zoomed-avatar"
+                                    width="150px" /* Adjust the size of the zoomed image as needed */
+                                    height="150px"
+                                    style={{ objectFit: "cover" }}
+                                  />
+                                </div>
+                              </div>
                             </div>
                             <div className="button editbuttprof">
                               <button
                                 className="btn shadow gradient-button"
                                 onClick={handleOpen}
                               >
-                                {showSecondCard?"Close Profile":"Edit Profile"}
+                                {showSecondCard
+                                  ? "Close Profile"
+                                  : "Edit Profile"}
                               </button>
                             </div>
 
@@ -313,7 +329,7 @@ const Settings = () => {
                                 handleProfileUpdate();
                               }}
                             >
-                              Save changes{" "}
+                              Update Profile{" "}
                             </button>
                           </div>
                         </div>
@@ -373,7 +389,7 @@ const Settings = () => {
                                 passwordchange();
                               }}
                             >
-                              Save changes{" "}
+                              Update Password{" "}
                             </button>
                           </div>
                         </div>
@@ -398,7 +414,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </Layout>
   );

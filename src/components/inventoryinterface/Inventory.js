@@ -183,17 +183,18 @@ function Inventory(props) {
           <div className="inventoryhedding">
             {" "}
             {/* <h4>Drug Detail</h4> */}
-          </div>
-          <div className="inventorybuttongroup">
-            <button className="btn btn-success" onClick={addModal}>
+            <button className="btn shadow gradient-button btnss" onClick={addModal}>
               Drug ADD
               <AddCircleIcon className="icoinvent" />
             </button>
+          </div>
+          <div className="inventorybuttongroup">
+           
             <button className="btn btn-primary" onClick={searchModal2}>
               Drug Update
               <UpdateIcon className="icoinvent" />
             </button>
-            <button className="btn btn-dark" onClick={searchModal}>
+            <button className="btn btn-success" onClick={searchModal}>
               Stock Update
               <LocalGroceryStoreIcon className="icoinvent" />
             </button>
