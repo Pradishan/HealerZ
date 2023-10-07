@@ -10,10 +10,19 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$query = "SELECT COUNT(Drug_ID) AS LowStockCount
+// $query = "SELECT COUNT(StockCount) as total FROM `druginventory` WHERE StockCount < 100 && StockCount!=0";
+$query = "SELECT COUNT(druginventory.Drug_ID) AS LowStockCount
           FROM druginventory
-          WHERE StockCount < 100 && StockCount!=0";
+          INNER JOIN drug ON druginventory.Drug_ID = drug.Drug_ID
+          WHERE ((drug.Category = 'Tablet' AND druginventory.StockCount < 100)
+             OR (drug.Category = 'Drops' AND druginventory.StockCount < 50)
+             OR (drug.Category = 'Liquid' AND druginventory.StockCount < 70)
+             OR (drug.Category = 'Capsules' AND druginventory.StockCount < 100)
+             OR (drug.Category = 'Topical' AND druginventory.StockCount < 50)
+             OR (drug.Category = 'Suppositories' AND druginventory.StockCount < 50)
+             OR (drug.Category = 'Injections' AND druginventory.StockCount < 30)
+             OR (drug.Category = 'Implants' AND druginventory.StockCount < 20))
+          AND druginventory.StockCount != 0;";
 
 $result = $conn->query($query);
 $lowtotal = array();
