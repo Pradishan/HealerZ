@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
-import { PropagateLoader } from "react-spinners";
+import { Dna } from "react-loader-spinner";
 
 function AddPatient(props) {
   const [patient_id, setID] = useState("");
@@ -114,22 +114,24 @@ function AddPatient(props) {
       <div className="Addcontt">
         {/* <h3 className="serhett">Add patient</h3> */}
         <div className="addboxx">
-         
-        <h3 className="pataddhed">Add patient</h3>
-        <hr/>
+          <h3 className="pataddhed">Add patient</h3>
+          <hr />
           {isLoading ? (
-            <div style={{ marginLeft: "350px",marginBottom:'30px' }}>
-              <PropagateLoader
-                size={30}
-                color={"purple"}
-                loading={true}
-                style={{ marginLeft: "50px" }}
+            <div style={{ marginLeft: "450px", marginBottom: "30px" }}>
+              <Dna
+                visible={true}
+                height="150"
+                width="150"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                style={{ marginLeft: "70px" }}
               />
             </div>
           ) : (
             <div></div>
           )}
-           <hr/>
+          <hr />
           <form>
             <table>
               <div style={{ display: "flex", flexDirection: "row" }}>
