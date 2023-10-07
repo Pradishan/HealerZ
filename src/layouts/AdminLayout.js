@@ -136,22 +136,9 @@ function Layout({children}) {
                         icon={<ListIcon />}>Employee List</MenuItem>
                     </SubMenu>
 
+                    
                     <MenuItem className="menu-item"
-                    component={<Link to="/logininventory"  />}
-                    icon={<VaccinesIcon />}>Inventory</MenuItem>
-
-                     <MenuItem className="menu-item"
-                    component={<Link to="/clubs/dashboard"  />}
-                    icon={<AdminPanelSettingsIcon />}>Club Admin</MenuItem>
-
-                    <MenuItem className="menu-item"
-                    component={<Link to="/admin/medicalreports"  />}
-                    icon={<SummarizeIcon />}>Medical Reports </MenuItem>
-                     <br/>
-                    <hr/>
-                    <br/>
-                    <MenuItem className="menu-item"
-                    component={<Link to="/admin/settings"  />}
+                    component={<Link to="/admin/Settings"  />}
                     icon={<SettingsIcon />}>Settings </MenuItem>
   
                     <MenuItem className="menu-item" component={<Link to="/"  />} onClick={logoutt} icon={<LogoutRoundedIcon />}> Logout </MenuItem>
