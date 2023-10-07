@@ -31,7 +31,7 @@ class BarchartDrugsoutcome extends Component {
           formatter: function (val) {
             return val;
           },
-          offsetY: 0,
+          offsetY: -10,
           style: {
             fontSize: '12px',
             colors: ['#304758'],
@@ -42,7 +42,7 @@ class BarchartDrugsoutcome extends Component {
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December',
           ],
-          position: 'top',
+          position: 'bottom',
           axisBorder: {
             show: false,
           },
@@ -79,7 +79,7 @@ class BarchartDrugsoutcome extends Component {
         title: {
           text: 'Monthly Patient Income , 2023',
           floating: true,
-          offsetY: 230,
+          offsetY: 0,
           align: 'center',
           style: {
             color: '#444',
