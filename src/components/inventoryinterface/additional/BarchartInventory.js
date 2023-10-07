@@ -78,7 +78,7 @@ class BarchartInventory extends Component {
                   return val.toFixed(2) + '% HighStock: 800, LowStock: 100';
                 } else if (categories[opts.dataPointIndex] === 'Drops') {
                   return val.toFixed(2) + '% HighStock: 300, LowStock: 50';
-                } else if (categories[opts.dataPointIndex] === 'Liquid') {
+                } else if (categories[opts.dataPointIndex] === 'Liquid ') {
                   return val.toFixed(2) + '% HighStock: 600, LowStock: 70';
                 } else if (categories[opts.dataPointIndex] === 'Capsules') {
                   return val.toFixed(2) + '% HighStock: 700, LowStock: 100';
@@ -116,7 +116,7 @@ class BarchartInventory extends Component {
         const data = response.data;
         const categories = data.map((item) => item.Category);
         const percentages = data.map((item) => item.percentage);
-
+console.log(data.map((item) => item.Category));
         this.setState({
           series: [
             {
