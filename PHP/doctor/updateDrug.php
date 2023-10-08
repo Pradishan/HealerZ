@@ -1,45 +1,47 @@
 <?php
-// login.php
-
-require '../classes/Prescription.php';
-use classes\Prescription;
-
-
-
-// Enable CORS for all requests
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Add 'Authorization' if you are using it in your requests
+header("Access-Control-Allow-Methods: PUT");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+require_once "../classes/Drug.php";
+require_once "../classes/DBconnector.php";
+use classes\DBconnector;
+use classes\Drug;
 
 try {
-    // Check if the request method is POST
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Assume your front-end sends data as JSON
-        $data = json_decode(file_get_contents('php://input'), true);
+    $db = new DBconnector();
+    $conn = $db->getConnection();
 
-        // Check if 'patient_ID' is provided in the JSON data 
-        if (isset($data['Prescription_list_ID'])) {
-            $Prescription_list_ID = $data['Prescription_list_ID'];
-            $Patient_ID = $data['Patient_ID'];
-            $TDS = $data['tds'];
-            $Time = $data['time'];
-            $Days = $data['days'];
-
-            // Check if any data was found for the given Patient_ID
-            if (Prescription::updateDrug($Prescription_list_ID, $Patient_ID, $TDS, $Time, $Days)) {
-                echo json_encode(['success' => true, 'message' => 'Drug updated']);
-            } else {
-                // If no data found for the given Patient_ID, return an appropriate response
-                echo json_encode(['message' => 'No drug found']);
-            }
-        } else {
-            // If 'patient_ID' is not provided in the JSON data, return an error message or appropriate response
-            echo json_encode(['message' => 'Missing prescrption_list_ID in the request']);
-        }
+    if ($_SERVER["REQUEST_METHOD"] !== "PUT") {
+        throw new Exception("Invalid request method. Only PUT requests are allowed.");
     }
+
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!isset($data['Drug_ID'])) {
+        throw new Exception('Drug_ID is not provided in the request.');
+    }
+    
+    $drug = new Drug(
+        $data['Drug_ID'],
+        $data['Drug_Name'],
+        $data['Category'],
+        $data['Drug_dosage'],
+        $data['Descriptions']
+    );
+   
+    $result = $drug->updateDrug();
+    
+    if ($result) {
+        echo json_encode(array('message' => 'Drug updated successfully'));
+    } else {
+        echo json_encode(array('error' => 'Drug not found or update failed'));
+    }
+} catch (PDOException $e) {
+    echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
 } catch (Exception $e) {
-    // Return an error response with the specific error message to the front-end
-    header('HTTP/1.1 500 Internal Server Error');
-    echo json_encode(['success' => false, 'message' => 'Error fetching data: ' . $e->getMessage()]);
+    echo json_encode(array('error' => $e->getMessage()));
 }
+
 ?>

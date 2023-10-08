@@ -201,6 +201,31 @@ class Patient
         }
     }
 
+
+    public function updatePatient(){
+        try {
+            $dbcon= new DBconnector();
+            $conn=$dbcon->getConnection();
+            $query="UPDATE patient SET PatientName = :PatientName, DateOfBirth = :DateOfBirth, Gender= :Gender, PhoneNo = :PhoneNo, Email = :Email, Address = :Address, BloodGroup = :BloodGroup, Password = :Password WHERE Patient_ID = :Patient_ID";
+            $pstmt=$conn->prepare($query);
+            $pstmt->bindValue(':PatientName', $this->PatientName);
+            $pstmt->bindValue(':DateOfBirth', $this->DateOfBirth);
+            $pstmt->bindValue(':Gender', $this->Gender);
+            $pstmt->bindValue(':PhoneNo', $this->PhoneNo);
+            $pstmt->bindValue(':Email', $this->Email);
+            $pstmt->bindValue(':Address', $this->Address);
+            $pstmt->bindValue(':BloodGroup', $this->BloodGroup);
+            $pstmt->bindValue(':Password', $this->Password);
+            $pstmt->bindValue(':Patient_ID', $this->Patient_ID);
+            $res=$pstmt->execute();
+    
+            return  $res;
+        } catch (PDOException $e) {
+            return false;
+        }
+       
+    }
+
     public static function SendMail($UserName, $password, $email,$name) {
         // Create an instance; passing `true` enables exceptions
 

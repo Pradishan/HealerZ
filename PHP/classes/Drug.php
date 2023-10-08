@@ -160,10 +160,10 @@ class Drug
             if ($result) {
                 return $result['Drug_ID'];
             } else {
-                return null; // Drug not found
+                return null;
             }
         } catch (PDOException $e) {
-            return null; // Handle the exception as needed
+            return null; 
         }
     }
 
@@ -179,10 +179,10 @@ class Drug
             if ($result) {
                 return $result['Drug_Name'];
             } else {
-                return null; // Drug not found
+                return null; 
             }
         } catch (PDOException $e) {
-            return null; // Handle the exception as needed
+            return null; 
         }
     }
     

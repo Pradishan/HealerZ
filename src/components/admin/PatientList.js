@@ -201,8 +201,8 @@ function PatientList(props) {
             </div>
           </div>
           <hr />
-          <div className={"table-container"}>
-            <table className={"table table-hover table-striped "}>
+          <div className="table-containertt">
+            <table className={"table table-hover table-striped"}>
               <thead
                 className={"top-0 position-sticky h-45"}
                 style={{ zIndex: 100 }}
