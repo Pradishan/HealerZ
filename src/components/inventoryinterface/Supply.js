@@ -21,6 +21,7 @@ function Supply(props) {
   const [filteredPresList, setFilteredPresList] = useState([]);
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [selectedPresToDelete, setSelectedPresToDelete] = useState(null);
 
   const [searchDate, setSearchDate] = useState("");
   const handleChangeDate = (event) => {
@@ -60,9 +61,28 @@ function Supply(props) {
     }
   };
   
-  const handleDelete = () => {
+  const handleDelete = async (prescription_list) => {
     setConfirmModalVisible(true);
+    setSelectedPresToDelete(prescription_list);
   };
+
+  const handleConfirmDelete = async () => {
+    setConfirmModalVisible(false);
+    const drugToDelete = selectedPresToDelete;
+    setSelectedPresToDelete(null);
+    try {
+      await axios.delete(
+        `http://localhost/Healerz/PHP/Inventory/deletePrescription.php?id=${drugToDelete.Prescription_ID}`
+      );
+      toast.success("Prescription deleted successfully");
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting Prescription:", error);
+      toast.error("Error deleting Prescription");
+    }
+  };
+  
+  
 
   useEffect(() => {
     fetchData();
@@ -215,7 +235,7 @@ function Supply(props) {
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"
-                          onClick={handleDelete}
+                          onClick={() => handleDelete(data)}
                           style={{ color: "red" }}
                         >
                           <DeleteIcon />
@@ -245,6 +265,7 @@ function Supply(props) {
       <CustomConfirmModal
         show={confirmModalVisible}
         onHide={() => setConfirmModalVisible(false)}
+        onConfirm={handleConfirmDelete}
       />
     </Layout>
   );
