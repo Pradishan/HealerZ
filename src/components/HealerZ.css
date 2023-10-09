@@ -6,6 +6,16 @@
     z-index: -1;
 }
 
+
+.wave3 {
+    position: fixed;
+    bottom: 45%;
+    left: 43%;
+    height: 100px;
+    width: 200px;
+    z-index: -1;
+}
+
 .neeeeeeee {
     background-image: url("../assets/medback.png");
     background-size: cover;

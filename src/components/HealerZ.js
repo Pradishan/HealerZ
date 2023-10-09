@@ -31,11 +31,12 @@ function HealerZ() {
   return (
     <>
       {!done ? (
-          
+        <div>
+          <img className="wave3" src={logo} alt="Wave" />
           <div className="loaderhomee">
             <Dna type={"bars"} color={"#03fc4e"} height={500} width={500} />
           </div>
-        
+        </div>
       ) : (
         <div>
           <div id="homes">
