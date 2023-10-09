@@ -142,3 +142,10 @@
 .loginiconlogin{
     color: darkblue;
 }
+
+.loaderhomee{
+    position: relative;
+    left: 33%;
+    margin-top: 100px;
+    z-index: 3000;
+}
