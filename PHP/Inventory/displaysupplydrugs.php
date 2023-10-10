@@ -1,36 +1,19 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once '../classes/Prescription.php';
+use classes\Prescription; 
 
 if (isset($_GET['Prescription_ID'])) {
-    $prescriptionID = $_GET['Prescription_ID']; 
-    $query = "SELECT prescription_list.*, druginventory.StockCount 
-    FROM prescription_list
-    LEFT JOIN druginventory ON prescription_list.Drug_ID = druginventory.Drug_ID 
-    WHERE Prescription_ID = '$prescriptionID'";
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-        $data = array();
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
+    $prescriptionID = $_GET['Prescription_ID'];
+    $data = Prescription::getPrescriptionDetails($prescriptionID);
+    
+    if ($data !== false) {
         echo json_encode($data);
     } else {
-        echo json_encode(array()); 
+        http_response_code(500);
+        echo "Error retrieving prescription data.";
     }
 } else {
     echo json_encode(array());
 }
-
-$conn->close();
 ?>

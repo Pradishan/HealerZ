@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import "../inventory.css";
+import "../../inventory.css";
 import axios from "axios";
 import { IconButton } from "@mui/material";
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';

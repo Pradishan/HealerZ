@@ -3,8 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import CustomConfirmModal from '../modals/CustomConfirmModal';
-import UpdateConfirmModal from '../modals/UpdateDataConformation';
+import CustomConfirmModal from './confirmationmodal/CustomConfirmModal';
+import UpdateConfirmModal from './confirmationmodal/UpdateDataConformation';
 
 function UpdateModal(props) {
   const { show, onHide, inputs } = props;

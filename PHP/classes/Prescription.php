@@ -1,7 +1,9 @@
 <?php
+
 namespace classes;
 
 require_once "DBconnector.php";
+
 use classes\DBconnector;
 use PDO;
 use PDOException;
@@ -70,7 +72,6 @@ class Prescription
             } else {
                 return false;
             }
-
         } catch (PDOException $e) {
             return $e;
         }
@@ -96,13 +97,12 @@ class Prescription
             } else {
                 return false;
             }
-
         } catch (PDOException $e) {
             return $e;
         }
     }
 
-    public static function setPrescription_ID($Patient_ID,$Prescription_ID)
+    public static function setPrescription_ID($Patient_ID, $Prescription_ID)
     {
         try {
             $dbcon = new DBconnector();
@@ -119,13 +119,12 @@ class Prescription
             } else {
                 return false;
             }
-
         } catch (PDOException $e) {
             return $e;
         }
     }
 
-    public static function addPrescription($Prescription_ID,$Patient_ID,$Doctor_ID,$status,$TimeP)
+    public static function addPrescription($Prescription_ID, $Patient_ID, $Doctor_ID, $status, $TimeP)
     {
         try {
             $dbcon = new DBconnector();
@@ -149,7 +148,7 @@ class Prescription
             return $e;
         }
     }
-    
+
     public static function displayDrugs($Patient_ID)
     {
         try {
@@ -168,4 +167,119 @@ class Prescription
     }
 
 
+    public static function displayPrescriptions()
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $query = "SELECT prescription_record.*, patient.PatientName
+                  FROM prescription_record
+                  LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID
+                  ORDER BY TimeP DESC";
+
+            $stmt = $conn->prepare($query);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+
+    public static function getPrescriptionDetails($prescriptionID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $query = "SELECT prescription_list.*, druginventory.StockCount 
+                  FROM prescription_list
+                  LEFT JOIN druginventory ON prescription_list.Drug_ID = druginventory.Drug_ID 
+                  WHERE Prescription_ID = ?";
+
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $prescriptionID);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public static function updatePrescriptionStatus($prescriptionID, $status)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $query = "UPDATE prescription_record SET status = ? WHERE Prescription_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $status);
+            $stmt->bindValue(2, $prescriptionID);
+
+            if ($stmt->execute()) {
+                return "Status Updated Successfully";
+            } else {
+                return "Error updating status: " . $stmt->errorInfo();
+            }
+        } catch (PDOException $e) {
+            return "Error updating status: " . $e->getMessage();
+        }
+    }
+
+    public static function updatePrescriptionStatusReject($prescriptionID, $status)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $query = "UPDATE prescription_record SET status = ? WHERE Prescription_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(1, $status);
+            $stmt->bindValue(2, $prescriptionID);
+
+            if ($stmt->execute()) {
+                return "Status Updated Successfully";
+            } else {
+                return "Error updating status: " . $stmt->errorInfo();
+            }
+        } catch (PDOException $e) {
+            return "Error updating status: " . $e->getMessage();
+        }
+    }
+
+    public static function deletePrescription($prescriptionID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $stmt1 = $conn->prepare("DELETE FROM prescription_list WHERE Prescription_ID = :PrescriptionID");
+            $stmt1->bindParam(':PrescriptionID', $prescriptionID);
+            $stmt1->execute();
+            $rowCount1 = $stmt1->rowCount();
+
+            $stmt2 = $conn->prepare("DELETE FROM prescription_record WHERE Prescription_ID = :PrescriptionID");
+            $stmt2->bindParam(':PrescriptionID', $prescriptionID);
+            $stmt2->execute();
+            $rowCount2 = $stmt2->rowCount();
+
+            if ($rowCount1 > 0 || $rowCount2 > 0) {
+                return "Prescription deleted successfully";
+            } else {
+                return "Prescription not found";
+            }
+        } catch (PDOException $e) {
+            return "Database error: " . $e->getMessage();
+        }
+    }
 }

@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import "../inventory.css";
-import UpdateConfirmModal from "./UpdateConfirmModal";
+import UpdateConfirmModal from "./confirmationmodal/UpdateConfirmModal";
 
 function StockUpdateModal(props) {
   const { show, onHide } = props;

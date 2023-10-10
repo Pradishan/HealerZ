@@ -12,9 +12,9 @@ import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
-import LowStockModal from "./dashboard/LowStockModal";
-import OutofStockModal from "./dashboard/OutofStockModal";
-import SufficentModal from "./dashboard/SufficentModal";
+import LowStockModal from "./modals/dashboard/LowStockModal";
+import OutofStockModal from "./modals/dashboard/OutofStockModal";
+import SufficentModal from "./modals/dashboard/SufficentModal";
 
 function Dashboard(props) {
   const [percentage, setPercentage] = useState(0);

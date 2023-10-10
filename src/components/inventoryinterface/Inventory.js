@@ -8,7 +8,7 @@ import "./inventory.css";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import CustomConfirmModal from "./modals/CustomConfirmModal";
+import CustomConfirmModal from "./modals/confirmationmodal/CustomConfirmModal";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import StockUpdateModal from "./modals/StockUpdateModal2";
