@@ -140,7 +140,7 @@ function Inventory(props) {
     setSelectedDrugToDelete(null);
     try {
       await axios.delete(
-        `http://localhost/Healerz/PHP/Inventory/deleteDruggg.php?id=${drugToDelete.Drug_ID}`
+        `http://localhost/Healerz/PHP/Inventory/deleteDrug.php?Drug_ID=${drugToDelete.Drug_ID}`
       );
       toast.success("Drug deleted successfully");
       fetchData();

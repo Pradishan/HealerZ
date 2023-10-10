@@ -5,7 +5,6 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 require_once "../classes/Drug.php";
-
 use classes\Drug;
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
