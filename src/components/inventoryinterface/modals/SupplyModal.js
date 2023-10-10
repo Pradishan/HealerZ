@@ -6,8 +6,8 @@ import { IconButton } from "@mui/material";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import GppBadIcon from "@mui/icons-material/GppBad";
-import UpdateConfirmModal from "./UpdateConfirmModal";
-import RejectConfirmModal from "./RejectConfirmModal";
+import UpdateConfirmModal from "./confirmationmodal/UpdateConfirmModal";
+import RejectConfirmModal from "./confirmationmodal/RejectConfirmModal";
 
 function SupplyPopup(props) {
   const { show, onHide, drugDetails } = props;

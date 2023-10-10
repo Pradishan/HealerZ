@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CustomConfirmModal from "./modals/CustomConfirmModal";
+import CustomConfirmModal from "./modals/confirmationmodal/CustomConfirmModal";
 import axios from "axios";
 import ClearIcon from '@mui/icons-material/Clear';
 import { ToastContainer, toast } from "react-toastify";

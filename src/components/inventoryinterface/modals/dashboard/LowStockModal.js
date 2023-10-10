@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import "../inventory.css";
+import "../../inventory.css";
 import axios from "axios";
 import { IconButton } from "@mui/material";
-import CloudDoneIcon from "@mui/icons-material/CloudDone";
+import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 
-function SufficientModal(props) {
+function LowStockModal(props) {
   const [lowdrugList, setDrugList] = useState([]);
   const [percentage, setPercentage] = useState(null);
   const [percentageVisible, setPercentageVisible] = useState(false);
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/Inventory/dashboard/sufficentstockdetail.php"
+        "http://localhost/Healerz/PHP/Inventory/dashboard/lowstockdetail.php"
       );
       setDrugList(response.data);
     } catch (error) {
@@ -27,7 +27,7 @@ function SufficientModal(props) {
   useEffect(() => {
     if (percentageVisible) {
       fetch(
-        "http://localhost/Healerz/PHP/Inventory/dashboard/sufficentStockpercentage.php"
+        "http://localhost/Healerz/PHP/Inventory/dashboard/lowStockpercentage.php"
       )
         .then((response) => response.json())
         .then((data) => {
@@ -42,28 +42,26 @@ function SufficientModal(props) {
   const togglePercentageVisibility = () => {
     setPercentageVisible(!percentageVisible);
   };
+
   const { show, onHide } = props;
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header>
         <Modal.Title
           className="modaltitleee1"
-          style={{ color: "rgb(3, 163, 6)" }}
+          style={{ color: "rgb(171, 120, 0)" }}
         >
-          Sufficent Stock Details
+          Low Stock Details
         </Modal.Title>
-        <div
-          style={{ marginLeft: "0px" }}
-          className={`setttiplace ${percentageVisible ? "visible" : ""}`}
-        >
+        <div style={{marginLeft:'100px'}} className={`setttiplace3 ${percentageVisible ? "visible" : ""}`}>
           Average : {percentage !== null ? percentage.toFixed(2) : "N/A"}%
         </div>
         <IconButton
           onClick={togglePercentageVisibility}
-          style={{ color: "rgb(3, 163, 6)" }}
+          style={{ color: "rgb(171, 120, 0)" }}
           className="modalbutthover"
         >
-          <CloudDoneIcon sx={{ fontSize: "40px" }} />
+          <RunningWithErrorsIcon sx={{ fontSize: "40px" }} />
         </IconButton>
       </Modal.Header>
       <Modal.Body>
@@ -109,4 +107,4 @@ function SufficientModal(props) {
   );
 }
 
-export default SufficientModal;
+export default LowStockModal;
