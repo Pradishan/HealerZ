@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from "feather-icons-react";
 import logo from "../assets/logo.png";
 import logos from "../assets/logo-small.png";
@@ -10,6 +9,8 @@ import "./layout.css";
 import default_dp from "../assets/default_dp.png";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+
 
 function Layout({ children }) {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -126,12 +127,14 @@ function Layout({ children }) {
             " col-auto col-md-1 px-0 bg-white border-right min-vh-100 trans sidebaar"
           }
         >
-          <div className={"close-btn-container"} onClick={toggleDrawer}>
-            <img
+          <div className="close-btn-container" onClick={toggleDrawer}>
+            {/* <img
               src={SideClose}
               alt="SideClose"
               className={!!open && "rotate-180"}
-            />
+            /> */}
+            <MenuOpenIcon
+              className={!!open && "rotate-180"}/>
           </div>
           {!open ? (
             <div className="logodashboard ms-5">
