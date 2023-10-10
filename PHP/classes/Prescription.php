@@ -256,4 +256,31 @@ class Prescription
             return "Error updating status: " . $e->getMessage();
         }
     }
+
+    public static function deletePrescription($prescriptionID)
+{
+    try {
+        $dbcon = new DBconnector();
+        $conn = $dbcon->getConnection();
+
+        $stmt1 = $conn->prepare("DELETE FROM prescription_list WHERE Prescription_ID = :PrescriptionID");
+        $stmt1->bindParam(':PrescriptionID', $prescriptionID);
+        $stmt1->execute();
+        $rowCount1 = $stmt1->rowCount();
+
+        $stmt2 = $conn->prepare("DELETE FROM prescription_record WHERE Prescription_ID = :PrescriptionID");
+        $stmt2->bindParam(':PrescriptionID', $prescriptionID);
+        $stmt2->execute();
+        $rowCount2 = $stmt2->rowCount();
+
+        if ($rowCount1 > 0 || $rowCount2 > 0) {
+            return "Prescription deleted successfully";
+        } else {
+            return "Prescription not found";
+        }
+    } catch (PDOException $e) {
+        return "Database error: " . $e->getMessage();
+    }
+}
+
 }

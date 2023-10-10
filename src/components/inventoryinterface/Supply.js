@@ -68,19 +68,24 @@ function Supply(props) {
 
   const handleConfirmDelete = async () => {
     setConfirmModalVisible(false);
-    const drugToDelete = selectedPresToDelete;
+    const prescriptionToDelete = selectedPresToDelete;
     setSelectedPresToDelete(null);
     try {
-      await axios.delete(
-        `http://localhost/Healerz/PHP/Inventory/deletePrescription.php?id=${drugToDelete.Prescription_ID}`
+      const response = await axios.get(
+        `http://localhost/Healerz/PHP/Inventory/deletePrescription.php?id=${prescriptionToDelete.Prescription_ID}`
       );
-      toast.success("Prescription deleted successfully");
-      fetchData();
+      if (response.data.message === 'Prescription deleted successfully') {
+        toast.success(response.data.message);
+        fetchData();
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
       console.error("Error deleting Prescription:", error);
       toast.error("Error deleting Prescription");
     }
   };
+  
   
   
 
