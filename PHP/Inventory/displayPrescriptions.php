@@ -1,42 +1,14 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-require_once '../classes/DBconnector.php';
-use classes\DBconnector; 
+require_once '../classes/Prescription.php';
+use classes\Prescription;
 
-$dbConnector = new DBconnector();
-$conn = $dbConnector->getConnection();
+$data = Prescription::displayPrescriptions();
 
-$method = $_SERVER['REQUEST_METHOD'];
-
-if (!$conn) {
-    die("Connection failed: " . $conn->errorInfo());
-}
-
-switch ($method) {
-    case 'GET':
-        $sql = "SELECT prescription_record.*, patient.PatientName
-        FROM prescription_record
-        LEFT JOIN patient ON prescription_record.Patient_ID = patient.Patient_ID
-        ORDER BY TimeP DESC";
-        break;
-}
-$stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    http_response_code(404);
-    die($conn->errorInfo());
-}
-if ($method == 'GET') {
-    if ($stmt->execute()) {
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($data);
-    } else {
-        http_response_code(500);
-        echo "Error executing the query: " . $stmt->errorInfo();
-    }
+if ($data !== false) {
+    echo json_encode($data);
 } else {
-    echo "Unsupported request method.";
+    http_response_code(500);
+    echo "Error retrieving prescription data.";
 }
-
-$conn = null;
 ?>

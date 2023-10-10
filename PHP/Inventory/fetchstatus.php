@@ -1,38 +1,16 @@
 <?php
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
+require_once '../classes/Prescription.php'; 
+use classes\Prescription;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if (mysqli_connect_error()) {
-    echo mysqli_connect_error();
-    exit();
-} else {
-
-    $prescription_id = $_POST["Prescription_ID"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $prescriptionID = $_POST["Prescription_ID"];
     $status = 'Delivered';
+    
+    $result = Prescription::updatePrescriptionStatus($prescriptionID, $status);
 
-        $stmt = $conn->prepare("UPDATE prescription_record SET status = ? WHERE Prescription_ID = ?");
-        $stmt->bind_param("ss", $status, $prescription_id);
-       
-        if ($stmt->execute()) {
-            echo "Status Updated Successfully";
-        } else {
-            echo "Error updating status: " . $stmt->error;
-        }
-        $stmt->close();
-  
+    echo $result;
+} else {
+    echo "Invalid request method.";
 }
-
-mysqli_close($conn);
-
-
-
-
-
-
-
+?>
