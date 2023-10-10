@@ -103,7 +103,7 @@ function PatientList(props) {
     setSelectedPatientToDelete(null);
     try {
       await axios.delete(
-        `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
+        `http://localhost/Healerz/PHP/admin/deletepatient.php?Patient_ID=${patientToDelete.Patient_ID}`
       );
       toast.success("Patient deleted successfully");
       fetchData();

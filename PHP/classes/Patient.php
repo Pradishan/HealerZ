@@ -301,6 +301,27 @@ class Patient
             return ['error' => $e->getMessage()];
         }
     }
+
+    public static function displayPatient()
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $sql = "SELECT * from patient";
+
+            $stmt = $conn->prepare($sql);
+
+            if ($stmt->execute()) {
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $data;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
     
 
 }
