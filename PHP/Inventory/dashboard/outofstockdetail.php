@@ -1,43 +1,43 @@
 <?php
-header("Access-Control-Allow-Origin: *"); 
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
-$dbname = "Healerz"; 
-$id = '';
- 
-$con = mysqli_connect($host, $user, $password,$dbname);
- 
+header("Access-Control-Allow-Origin: *");
+
+require_once '../../classes/DBconnector.php';
+
+use classes\DBconnector;
+
+$dbConnector = new DBconnector();
+
 $method = $_SERVER['REQUEST_METHOD'];
- 
-if (!$con) {
-  die("Connection failed: " . mysqli_connect_error());
+
+try {
+  $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+  die("ERROR: " . $ex->getMessage());
 }
-  
+
 switch ($method) {
-    case 'GET':
-        $sql = "SELECT drug.*, druginventory.StockCount
+  case 'GET':
+    $sql = "SELECT drug.*, druginventory.StockCount
         FROM drug
         INNER JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID
-        WHERE drug.Drug_ID AND druginventory.StockCount=0 ;"; 
-      break;
+        WHERE druginventory.StockCount = 0 ;";
+    break;
 }
- 
-$result = mysqli_query($con,$sql);
- 
-if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
+
+try {
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $conn = null;
+
+  if ($results) {
+    header('Content-Type: application/json');
+    echo json_encode($results);
+  } else {
+    http_response_code(404);
+    echo json_encode(array("message" => "No records found."));
+  }
+} catch (PDOException $ex) {
+  http_response_code(500);
+  echo json_encode(array("message" => "Error: " . $ex->getMessage()));
 }
- 
-if ($method == 'GET') {
-    if (!$id) echo '[';
-    for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
-      echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
-    }
-    if (!$id) echo ']';
-}else {
-    echo mysqli_affected_rows($con);
-}
- 
-$con->close();

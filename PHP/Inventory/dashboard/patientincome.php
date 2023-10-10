@@ -1,29 +1,33 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "healerz"; 
 
-$conn = new mysqli($host, $username, $password, $database);
+require_once '../../classes/DBconnector.php';
+use classes\DBconnector;
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$dbConnector = new DBconnector();
+
+try {
+    $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+    die("ERROR: " . $ex->getMessage());
 }
 
 $sql = "SELECT MONTH(TimeP) AS Month, COUNT(*) AS RecordCount FROM prescription_record GROUP BY Month";
 
-$result = $conn->query($sql);
+try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
-    $data = array();
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+    if ($results) {
+        header('Content-Type: application/json');
+        echo json_encode($results);
+    } else {
+        echo "No data found";
     }
-    echo json_encode($data);
-} else {
-    echo "No data found";
+} catch (PDOException $ex) {
+    http_response_code(500);
+    echo json_encode(array("message" => "Error: " . $ex->getMessage()));
 }
 
-$conn->close();
-?>
+$conn = null;
