@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ClubLayout from "../../layouts/ClubLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import the CSS file
-import "./Clubs.css";
+import "./vaccination.css";
+import axios from "axios";
 
 export default function Vaccination() {
   const [id, setId] = useState("");
@@ -35,7 +36,7 @@ export default function Vaccination() {
         </div>
         <div>
           <label>Vaccination Type:</label>
-          <select  className="select1"
+          <select
             value={vaccinationType}
             onChange={handleVaccinationTypeChange}
           >
@@ -45,7 +46,7 @@ export default function Vaccination() {
             <option value="Type C">Type C</option>
           </select>
         </div>
-        <button onClick={checkVaccinationStatus} className="button1">
+        <button onClick={checkVaccinationStatus}>
           Check Vaccination Status
         </button>
         <div>
@@ -54,4 +55,21 @@ export default function Vaccination() {
       </div>
     </ClubLayout>
   );
+
 }
+
+
+
+
+const checkVaccinationStatus = () => {
+  axios
+    .post("http://localhost/vaccination_details.php", { id, vaccinationType })
+    .then((response) => {
+      const vaccinationStatus = response.data.vaccinationStatus;
+      setVaccinationStatus(vaccinationStatus);
+    })
+    .catch((error) => {
+      console.error("There was an error fetching the data", error);
+    });
+};
+

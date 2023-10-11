@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ClubLayout from "../../layouts/ClubLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./Clubs.css"; // Import the CSS file
+import "./blooddonation.css"; // Import the CSS file
 
 export default function Blooddonation() {
   const [id, setId] = useState("");
@@ -22,7 +22,7 @@ export default function Blooddonation() {
 
   return (
     <ClubLayout>
-      <div className="container BloodDonate">
+      <div className="container Blooddonation">
         {" "}
         {/* Apply the "container" class */}
         <h1>Blood Donation Checker</h1>
