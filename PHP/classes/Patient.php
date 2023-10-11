@@ -159,7 +159,7 @@ class Patient
     public function addPatient()
     {
         try {
-           
+
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
             $query = "INSERT INTO patient (Patient_ID, PatientName,DateOfBirth,Gender,PhoneNo,Email,Address,BloodGroup,Password) VALUES (:Patient_ID, :PatientName, :DateOfBirth, :Gender, :PhoneNo, :Email, :Address, :BloodGroup, :Password)";
@@ -174,9 +174,9 @@ class Patient
             $stmt->bindValue(':BloodGroup', $this->BloodGroup);
             $stmt->bindValue(':Password', $this->Password);
             $res = $stmt->execute();
-            Patient::SendMail($this->Patient_ID,$this->Password,$this->Email,$this->PatientName);
+            Patient::SendMail($this->Patient_ID, $this->Password, $this->Email, $this->PatientName);
             if ($res) {
-               
+
                 return true;
             } else {
                 return false;
@@ -186,28 +186,30 @@ class Patient
         }
     }
 
-    public function deletePatient(){
-        $dbcon=new DBconnector();
-        $conn=$dbcon->getConnection();
-        $query="DELETE FROM patient WHERE Patient_ID = :Patient_ID";
-        $stmt=$conn->prepare($query);
-        $stmt->bindValue(':Patient_ID',$this->Patient_ID);
-        $res=$stmt->execute();
+    public function deletePatient()
+    {
+        $dbcon = new DBconnector();
+        $conn = $dbcon->getConnection();
+        $query = "DELETE FROM patient WHERE Patient_ID = :Patient_ID";
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':Patient_ID', $this->Patient_ID);
+        $res = $stmt->execute();
 
-        if($res){
+        if ($res) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
 
-    public function updatePatient(){
+    public function updatePatient()
+    {
         try {
-            $dbcon= new DBconnector();
-            $conn=$dbcon->getConnection();
-            $query="UPDATE patient SET PatientName = :PatientName, DateOfBirth = :DateOfBirth, Gender= :Gender, PhoneNo = :PhoneNo, Email = :Email, Address = :Address, BloodGroup = :BloodGroup, Password = :Password WHERE Patient_ID = :Patient_ID";
-            $pstmt=$conn->prepare($query);
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "UPDATE patient SET PatientName = :PatientName, DateOfBirth = :DateOfBirth, Gender= :Gender, PhoneNo = :PhoneNo, Email = :Email, Address = :Address, BloodGroup = :BloodGroup, Password = :Password WHERE Patient_ID = :Patient_ID";
+            $pstmt = $conn->prepare($query);
             $pstmt->bindValue(':PatientName', $this->PatientName);
             $pstmt->bindValue(':DateOfBirth', $this->DateOfBirth);
             $pstmt->bindValue(':Gender', $this->Gender);
@@ -217,16 +219,16 @@ class Patient
             $pstmt->bindValue(':BloodGroup', $this->BloodGroup);
             $pstmt->bindValue(':Password', $this->Password);
             $pstmt->bindValue(':Patient_ID', $this->Patient_ID);
-            $res=$pstmt->execute();
-    
+            $res = $pstmt->execute();
+
             return  $res;
         } catch (PDOException $e) {
             return false;
         }
-       
     }
 
-    public static function SendMail($UserName, $password, $email,$name) {
+    public static function SendMail($UserName, $password, $email, $name)
+    {
         // Create an instance; passing `true` enables exceptions
 
         require '../mail/Exception.php';
@@ -249,20 +251,20 @@ class Patient
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Patient Registration for HealerZ !';
-        $message = "Dear ".$name." ,<br>"."<br>";
-        $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>"."<br>";
-        $message .= "<hr>"."<br>";
+        $message = "Dear " . $name . " ,<br>" . "<br>";
+        $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>" . "<br>";
+        $message .= "<hr>" . "<br>";
         $message .= "We've generated a secure password for you, and it can be found in the registration email we sent, ";
-        $message .= "<span style='color: red;'>Please  keep the login credentials with you  and don't share it with others.</span>"."<br>";
-        $message .= "<br>"."<br>";
-        $message .= "<span style='font-weight: bold;'>Username &nbsp;: &nbsp;&nbsp;</span>".$UserName."<br>";
-        $message .= "<span style='font-weight: bold;'>Password &nbsp; : &nbsp;&nbsp;</span>".$password."<br>"."<br>";
-        $message .= "You can use this password to log in to your account for the first time. After logging in, we recommend changing your password to something more memorable and secure"."<br>"."<br>";
-        $message .= "<hr>"."<br>"."<br>";
-        $message .= "Best regards ,"."<br>"."<br>";
-        $message .= "HealerZ ,"."<br>";
-        $message .= "Medical System of UWU ,"."<br>";
-        $message .= "Uva Wellassa University of Srilanka ,"."<br>"."<br>";
+        $message .= "<span style='color: red;'>Please  keep the login credentials with you  and don't share it with others.</span>" . "<br>";
+        $message .= "<br>" . "<br>";
+        $message .= "<span style='font-weight: bold;'>Username &nbsp;: &nbsp;&nbsp;</span>" . $UserName . "<br>";
+        $message .= "<span style='font-weight: bold;'>Password &nbsp; : &nbsp;&nbsp;</span>" . $password . "<br>" . "<br>";
+        $message .= "You can use this password to log in to your account for the first time. After logging in, we recommend changing your password to something more memorable and secure" . "<br>" . "<br>";
+        $message .= "<hr>" . "<br>" . "<br>";
+        $message .= "Best regards ," . "<br>" . "<br>";
+        $message .= "HealerZ ," . "<br>";
+        $message .= "Medical System of UWU ," . "<br>";
+        $message .= "Uva Wellassa University of Srilanka ," . "<br>" . "<br>";
         $message .= "<img src='https://lh3.googleusercontent.com/Qtl6yF3Qn3ma6vEdSuG82hh3U-DJ2g-mmteKeERMawrrecQVh9Mr5RNasI8Id9n2iOQ5FoTIQD30gvmhCnq5znTZcFNosr8bXa1iweg' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
 
 
@@ -282,13 +284,13 @@ class Patient
             $dbcon = new DBconnector();
             $con = $dbcon->getConnection();
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT Patient_ID FROM patient WHERE Patient_ID = ?"; 
+            $query = "SELECT Patient_ID FROM patient WHERE Patient_ID = ?";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $Patient_ID);
             $pstmt->execute();
-    
+
             $result = $pstmt->fetch(PDO::FETCH_ASSOC);
-    
+
             if ($result) {
                 // Patient ID exists
                 return true;
@@ -322,6 +324,24 @@ class Patient
             return false;
         }
     }
-    
 
+
+    public static function searchPatientByID($patient_id)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+
+            $query = "SELECT * FROM patient WHERE Patient_ID = :patient_id";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(':patient_id', $patient_id);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
