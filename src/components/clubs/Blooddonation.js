@@ -15,7 +15,7 @@ export default function Blooddonation() {
 
   const checkDonationStatus = () => {
     const formData = new FormData();
-    formData.append("id", id);
+    formData.append("BDId", id);
 
     axios
       .post(

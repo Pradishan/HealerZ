@@ -27,17 +27,17 @@ try {
 // Get data from POST request
 //$data = json_decode(file_get_contents("php://input"));
 //echo $data;
-if (isset($_POST['id']) && isset($_POST['vaccinationType'])) {
+if (isset($_POST['id'])) {
     $id=$_POST['id'];
-    $type=$_POST['vaccinationType'];
-    $stmt = $pdo->prepare("SELECT DISTINCT * FROM vaccination_details WHERE PatientId = :id AND VaccinationName = :vaccinationType");
-    $stmt->execute(['id' => $id, 'vaccinationType' => $type]);
+    
+    $stmt = $pdo->prepare("SELECT DISTINCT * FROM blood_Donation_Status WHERE BDId = :id ");
+    $stmt->execute(['id' => $id]);
     $result = $stmt->fetch();
 
     if ($result) {
-        echo json_encode(["message" => "Vaccinated"]);
+        echo json_encode(["message" => "Donated"]);
     } else {
-       echo json_encode(["message" => "Not vaccinated"]);
+       echo json_encode(["message" => "Not Donated"]);
       
     }
 } else {
