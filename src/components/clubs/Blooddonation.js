@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ClubLayout from "../../layouts/ClubLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./Clubs.css"; // Import the CSS file
+import "./blooddonation.css"; // Import the CSS file
+import axios from "axios";
 
 export default function Blooddonation() {
   const [id, setId] = useState("");
@@ -13,16 +14,25 @@ export default function Blooddonation() {
   };
 
   const checkDonationStatus = () => {
-    // Replace this with your actual logic to check donation status based on the provided ID
-    // For simplicity, we assume donationStatus is either 'Donated' or 'Not Donated'
-    const donationStatus = "Donated"; // Replace with your logic
+    const formData = new FormData();
+    formData.append("id", id);
 
-    setDonationStatus(donationStatus);
+    axios
+      .post(
+        "http://localhost/Healerz/PHP/club/blood_Donation_Status.php",
+        formData
+      )
+      .then((response) => {
+        setDonationStatus(response.data.message);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data", error);
+      });
   };
 
   return (
     <ClubLayout>
-      <div className="container BloodDonate">
+      <div className="container Blooddonation">
         {" "}
         {/* Apply the "container" class */}
         <h1>Blood Donation Checker</h1>
