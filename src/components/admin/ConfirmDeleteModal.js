@@ -6,7 +6,7 @@ const ConfirmDeleteModal = ({ show, onHide, onConfirm }) => {
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header>
-        <Modal.Title className="modaltitleee">Conformation</Modal.Title>
+        <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to delete</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ background: "white" }}>
         <p>Are you sure you want to delete this Patient Data ?</p>

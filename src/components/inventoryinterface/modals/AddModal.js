@@ -12,6 +12,7 @@ function AddModal(props) {
     const [category, setCat] = useState('');
     const [dosage, setDos] = useState('');
     const [description, setDes] = useState('');
+    const [updateTrigger, setUpdateTrigger] = useState(false);
 
     const resetForm = () => {
         setID('');
@@ -51,6 +52,7 @@ function AddModal(props) {
                     if(response.data.message==="Drug Added Successfully"){
                         toast.success(response.data.message);
                         resetForm();
+                        setUpdateTrigger(!updateTrigger);
                     }else{
                         toast.error("Drug Already Added");
                     }
@@ -80,7 +82,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_ID"}
                                     placeholder={"DRUGXXXXX"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setID(e.target.value)}
                                     value={drug_id}
                                 />
@@ -94,7 +96,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_Name"}
                                     placeholder={"XXXXXXXXXX"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setName(e.target.value)}
                                     value={drug_name}
                                 />
@@ -103,13 +105,12 @@ function AddModal(props) {
                         </tr>
                         <tr>
                             <th>Category</th>
-                            <th className={'inputfield'}>
+                            <th className='inputfield'>
                                 <select
                                     name={'Category'}
-                                    className="inputt"
+                                    className="SearchBox1"
                                     onChange={(e) => setCat(e.target.value)}
                                     value={category}
-                                    style={{height:'30px '}}
                                 >
                                     <option value={''}>Select Category</option>
                                     <option value={'Liquid'}>Liquid</option>
@@ -131,7 +132,7 @@ function AddModal(props) {
                                     type={"text"}
                                     name={"Drug_dosage"}
                                     placeholder={"XXXmg"}
-                                    className={"inputt"}
+                                    className="SearchBox1"
                                     onChange={(e) => setDos(e.target.value)}
                                     value={dosage}
                                 />
@@ -144,7 +145,7 @@ function AddModal(props) {
                                 <textarea
                                     name={"Descriptions"}
                                     placeholder={"Type description here..."}
-                                    className={"inputt"}
+                                    className="SearchBox1 inputt"
                                     rows={3}
                                     onChange={(e) => setDes(e.target.value)}
                                     value={description}
@@ -157,9 +158,9 @@ function AddModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green'}}>Add</Button>
+                <Button variant="primary uptbut" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green',width:'130px'}}>Add</Button>
                 <ToastContainer />
-                <Button variant="secondary uptbut"  style={{backgroundColor:'blue' ,color:'white'}} onClick={resetForm}>Reset</Button>
+                <Button variant="secondary uptbut"   onClick={resetForm}>Reset</Button>
             </Modal.Footer>
         </Modal>
     );

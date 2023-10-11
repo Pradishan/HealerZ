@@ -1,28 +1,33 @@
 <?php
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
+require_once '../classes/DBconnector.php';
 
-$conn=new mysqli($servername, $username, $password, $dbname);
+$dbConnector = new classes\DBconnector();
 
-if(mysqli_connect_error()){
-    echo mysqli_connect_error();
-    exit();
+$conn = $dbConnector->getConnection();
+
+if (!$conn) {
+    die("Connection failed: " . $conn->errorInfo());
 }
-else{
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $drug_id = $_POST["Drug_ID"];
     $drug_stk = $_POST["StockCount"];
-    $expired_date = $_POST["ExpiredDate"];
     
-    $sql="INSERT INTO druginventory(Drug_ID, StockCount, ExpiredDate) VALUES ('$drug_id', '$drug_stk','$expired_date');";
-    $res=mysqli_query($conn,$sql);
-
-    if($res){
-        echo "Item Added Succesfully";
-    }else{
-        echo "error";
+    $query = "UPDATE druginventory SET StockCount = :drug_stk WHERE Drug_ID = :drug_id";
+    
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':drug_stk', $drug_stk, PDO::PARAM_INT);
+    $stmt->bindParam(':drug_id', $drug_id, PDO::PARAM_INT);
+   
+    if ($stmt->execute()) {
+        echo "Item Updated Successfully";
+    } else {
+        echo "Error updating item: " . $stmt->errorInfo()[2];
     }
+} else {
+    echo "Invalid request method.";
 }
+
+$conn = null;
+?>

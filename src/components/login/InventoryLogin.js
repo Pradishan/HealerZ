@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import powsi from "../../assets/Powsi.jpg";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function InventoryLogin() {
   const [pharmacistID, setPharmacistID] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(null);
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const savedPharmacistID = localStorage.getItem("pharmacistID");
+    const savedRememberMe = localStorage.getItem("rememberMe");
+
+    if (savedRememberMe === "true" && savedPharmacistID) {
+      setPharmacistID(savedPharmacistID);
+      setRememberMe(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Pharmacist");
@@ -24,7 +39,8 @@ export default function InventoryLogin() {
   }, []);
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
+    setLogmessage("");
     axios
       .post("http://localhost/HealerZ/PHP/InventoryLogin.php", {
         pharmacistID: pharmacistID,
@@ -32,75 +48,46 @@ export default function InventoryLogin() {
       })
       .then((response) => {
         console.log(response.data);
+        // const message = response.data.message;
         setMessage(response.data.message);
         if (response.data.message === "Login successful.") {
+          toast.success(message);
+          if (rememberMe) {
+            localStorage.setItem("pharmacistID", pharmacistID);
+            localStorage.setItem("rememberMe", "true");
+          } else {
+            localStorage.removeItem("pharmacistID");
+            localStorage.removeItem("rememberMe");
+          }
           setTimeout(() => {
             sessionStorage.setItem("Pharmacist", true);
+            sessionStorage.setItem("pharmacistID", response.data.pharmacistID);
             navigate("/inventory-interface/dashboard");
           }, 100);
+        } else {
+          toast.error(message);
         }
       })
       .catch((error) => {
+        // toast.error("Login failed.");
         setMessage("Login failed.");
       });
   };
-  const errorMessgae = (message) => {
-    let color;
-    switch (message) {
-      case "Pharmacist ID and Password are required.":
-        color = "warning";
-        break;
-      case "Login failed.":
-        color = "danger";
-        break;
-      case "Invalid Pharmacist ID or Password.":
-        color = "danger";
-        break;
-      case "Method not allowed.":
-        color = "warning";
-        break;
-      case "Login successful.":
-        color = "success";
-        break;
-      default:
-        break;
-    }
-    return (
-      <div className={"alert alert-" + color + " mt-3"} role="alert">
-        {message}
-      </div>
-    );
-  };
-
   return (
     <>
       <div className="container mt-5 text-center">
-        <div
-          style={{ display: "flex", flexDirection: "row",alignItems:'center',justifyContent:'center'}}
-        >
-          <img
-            src={powsi}
-            alt="avatar"
-            height="100px"
-            className="mb-3"
-            style={{ borderRadius: "50%" }}
-          />
-          <div
-            style={{
-              height: "80px",
-              width: "2px",
-              backgroundColor: "black",
-              margin: "10px",
-            }}
-          ></div>
-          <img src={logo} alt="avatar" height="100px" className="mb-3" />
-        </div>
-
         <div className="row justify-content-center">
           <div className="col-md-4">
-            <p>{logmessage}</p>
-            <div className="card border-0 shadow">
-              <div className="card-header bg-white text-center">
+            {/* <p style={{width:'400px'}}>{logmessage}</p> */}
+            <div className="card border-0 shadow loginncardpos">
+              <div
+                className="card-header bg-white text-center logoaddinglogin"
+                style={{ gap: "30px" }}
+              >
+                <InventoryIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
                 <h3>Login | Pharmacist</h3>
               </div>
               <div className="card-body">
@@ -119,7 +106,7 @@ export default function InventoryLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
@@ -128,6 +115,40 @@ export default function InventoryLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
+                  </div>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="rememberMeCheckbox"
+                      checked={rememberMe}
+                      onChange={() => setRememberMe(!rememberMe)}
+                    />
+                    <label
+                      className="form-check-label remmberme"
+                      htmlFor="rememberMeCheckbox"
+                    >
+                      Remember Me !
+                    </label>
                   </div>
                   <div className="text-center">
                     <button
@@ -145,8 +166,7 @@ export default function InventoryLogin() {
                 </form>
               </div>
             </div>
-            {/* errror message */}
-            {message ? errorMessgae(message) : ""}
+            <ToastContainer />
           </div>
         </div>
       </div>

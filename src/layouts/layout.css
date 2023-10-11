@@ -146,6 +146,28 @@
     color: #090086;
 }
 
+
+.layoutProfilename{
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #04003d;
+}
+
+.layoutProfilename1 h1{
+    font-family: monospace;
+    overflow: hidden; 
+    border-right: .25em solid rgb(8, 0, 54); 
+    white-space: nowrap;
+    letter-spacing: .15em; 
+    margin-left: 160px;
+    font-size: 20px ;
+    font-weight: 800;
+    color: #04003d;
+}
+
+
+
 @media (max-width: 767px) {
     .sa-modal-bg-inner {
         display: block;

@@ -13,7 +13,7 @@ export default function Protected(props) {
         "loginStatus",
         "Please login to access the Doctor interface!"
       );
-      navigate("/loginDoctor");
+      navigate("/");
       return;
     }
   });

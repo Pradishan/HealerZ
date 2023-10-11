@@ -3,7 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import CustomConfirmModal from '../modals/CustomConfirmModal';
+import CustomConfirmModal from './confirmationmodal/CustomConfirmModal';
+import UpdateConfirmModal from './confirmationmodal/UpdateDataConformation';
 
 function UpdateModal(props) {
   const { show, onHide, inputs } = props;
@@ -17,6 +18,8 @@ function UpdateModal(props) {
   const [description, setDes] = useState(item.Descriptions);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
   useEffect(() => {
     setNewData({
@@ -37,25 +40,30 @@ function UpdateModal(props) {
       newData.Drug_dosage === item.Drug_dosage &&
       newData.Descriptions === item.Descriptions
     ) {
-      // No changes, display the toast message
       toast.info("No data to update!");
     } else {
+      setShowUpdateConfirmModal(true);
+    }
+  };
+
+  const handleUpdateConfirmed = () => {
     axios
       .put("http://localhost/HealerZ/PHP/Inventory/updateDrug.php", newData)
       .then((response) => {
         console.log(response.data);
         toast.success("Drug updated successfully!");
         onHide();
+        setUpdateTrigger(!updateTrigger);
       })
       .catch((error) => {
         toast.error("Failed to update drug!");
         console.error(error);
       });
-    }
+
+    setShowUpdateConfirmModal(false);
   };
 
   const handleDelete = () => {
-    // Show the confirmation modal
     setShowConfirmModal(true);
   };
 
@@ -99,7 +107,7 @@ function UpdateModal(props) {
                     name={"Drug_ID"}
                     defaultValue={drug_id}
                     placeholder={"DRUGXXXXXX"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setID(e.target.value)}
                     readOnly
                   />
@@ -115,7 +123,7 @@ function UpdateModal(props) {
                     name={"Drug_Name"}
                     defaultValue={drug_name}
                     placeholder={"XXXXXXXXXX"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setName(e.target.value)}
                   />
                   <br />
@@ -128,9 +136,8 @@ function UpdateModal(props) {
                   <select
                     name={"Category"}
                     defaultValue={category}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setCat(e.target.value)}
-                    style={{height:'30px '}}
                   >
                     <option value={""}>Select Category</option>
                     <option value={"Liquid"}>Liquid</option>
@@ -154,7 +161,7 @@ function UpdateModal(props) {
                     name={"Drug_dosage"}
                     defaultValue={dosage}
                     placeholder={"XXXmg"}
-                    className={"inputt"}
+                    className="SearchBox1"
                     onChange={(e) => setDos(e.target.value)}
                   />
                   <br />
@@ -168,7 +175,7 @@ function UpdateModal(props) {
                     name={"Descriptions"}
                     defaultValue={description}
                     placeholder={"Type description here..."}
-                    className={"inputt"}
+                    className="SearchBox1 inputt"
                     rows={3}
                     onChange={(e) => setDes(e.target.value)}
                   />
@@ -202,6 +209,11 @@ function UpdateModal(props) {
           onHide={() => setShowConfirmModal(false)}
           onConfirm={handleDeleteConfirmed}
         />
+        <UpdateConfirmModal
+            show={showUpdateConfirmModal}
+            onHide={() => setShowUpdateConfirmModal(false)}
+            onConfirm={handleUpdateConfirmed}
+          />
       </Modal.Footer>
     </Modal>
   );

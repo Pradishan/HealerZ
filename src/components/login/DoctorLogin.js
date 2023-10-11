@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
 import axios from "axios";
-import pradee from "../../assets/pradi.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import MedicationIcon from "@mui/icons-material/Medication";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function DoctorLogin() {
   const [doctorID, setDoctorID] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(null);
   const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe3, setRememberMe3] = useState(false);
+
+  useEffect(() => {
+    const savedDoctorID = localStorage.getItem("doctorID");
+    const savedRememberMe3 = localStorage.getItem("rememberMe3");
+
+    if (savedRememberMe3 === "true" && savedDoctorID) {
+      setDoctorID(savedDoctorID);
+      setRememberMe3(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("Doctor");
@@ -24,7 +38,8 @@ export default function DoctorLogin() {
   }, []);
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
+
     axios
       .post("http://localhost/HealerZ/PHP/DoctorLogin.php", {
         doctorID: doctorID,
@@ -32,76 +47,45 @@ export default function DoctorLogin() {
       })
       .then((response) => {
         console.log(response.data);
-        setMessage(response.data.message);
-        if (response.data.message === "Login successful.") {
+        const message = response.data.message;
+
+        if (message === "Login successful.") {
+          toast.success(message);
+          if (rememberMe3) {
+            localStorage.setItem("doctorID", doctorID);
+            localStorage.setItem("rememberMe3", "true");
+          } else {
+            localStorage.removeItem("doctorID");
+            localStorage.removeItem("rememberMe3");
+          }
           setTimeout(() => {
-            sessionStorage.setItem("Doctor", "true");
-            console.log(sessionStorage.getItem("Doctor"));
+            sessionStorage.setItem("Doctor", true);
             navigate("/doctor");
           }, 100);
+        } else {
+          toast.error(message);
         }
       })
       .catch((error) => {
-        setMessage("Login failed.");
+        toast.error("Login failed.");
       });
-  };
-  const errorMessgae = (message) => {
-    let color;
-    switch (message) {
-      case "Doctor ID and Password are required.":
-        color = "warning";
-        break;
-      case "Login failed.":
-        color = "danger";
-        break;
-      case "Invalid Doctor ID or Password.":
-        color = "danger";
-        break;
-      case "Method not allowed.":
-        color = "warning";
-        break;
-      case "Login successful.":
-        color = "success";
-        break;
-      default:
-        break;
-    }
-    return (
-      <div className={"alert alert-" + color + " mt-3"} role="alert">
-        {message}
-      </div>
-    );
   };
 
   return (
     <>
       <div className="container mt-5 text-center">
-        <div
-        style={{ display: "flex", flexDirection: "row",alignItems:'center',justifyContent:'center'}}
-        >
-          <img
-            src={pradee}
-            alt="avatar"
-            height="100px"
-            className="mb-3"
-            style={{ borderRadius: "50%" }}
-          />
-          <div
-            style={{
-              height: "80px",
-              width: "2px",
-              backgroundColor: "black",
-              margin: "10px",
-            }}
-          ></div>
-          <img src={logo} alt="avatar" height="100px" className="mb-3" />
-        </div>
         <div className="row justify-content-center">
           <div className="col-md-4">
-            <p>{logmessage}</p>
-            <div className="card border-0 shadow">
+            {/* <p style={{ width: "400px" }}>{logmessage}</p> */}
+            <div className="card border-0 shadow loginncardpos">
+              <div className="card-header bg-white text-center logoaddinglogin">
+                <MedicationIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
+                <h3>Login | Doctor</h3>
+              </div>
               <div className="card-body">
-                <h3>Login As Doctor</h3>
                 <form action="" className="py-2">
                   <div className="form-floating mb-3">
                     <input
@@ -117,7 +101,7 @@ export default function DoctorLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
@@ -126,6 +110,40 @@ export default function DoctorLogin() {
                       style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
+                  </div>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="rememberMeCheckbox"
+                      checked={rememberMe3}
+                      onChange={() => setRememberMe3(!rememberMe3)}
+                    />
+                    <label
+                      className="form-check-label remmberme"
+                      htmlFor="rememberMeCheckbox"
+                    >
+                      Remember Me !
+                    </label>
                   </div>
                   <div className="text-center">
                     <button
@@ -143,8 +161,7 @@ export default function DoctorLogin() {
                 </form>
               </div>
             </div>
-            {/* errror message */}
-            {message ? errorMessgae(message) : ""}
+            <ToastContainer />
           </div>
         </div>
       </div>

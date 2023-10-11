@@ -20,15 +20,16 @@ if ($method === "POST") {
         exit();
     }
 
-    $pharmacistID = $data['adminID'];
+    $adminID = $data['adminID'];
     $password = $data['password'];
+    $rememberMe = isset($data['rememberMe2']) ? $data['rememberMe2'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
     $sql = "SELECT * FROM admin WHERE Admin_ID = :adminID LIMIT 1"; 
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":adminID", $pharmacistID);
+    $stmt->bindParam(":adminID", $adminID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -37,8 +38,13 @@ if ($method === "POST") {
         exit();
     }
 
+    if ($rememberMe) {
+        setcookie("adminID", $adminID, time() + 24 * 60 * 60 * 60, "/");
+        setcookie("authToken2", $token, time() + 24 * 60 * 60 * 60, "/");
+    }
 
-    echo json_encode(array("message" => "Login successful."));
+
+    echo json_encode(array("message" => "Login successful.","adminID" => $adminID));
 
 } else {
     echo json_encode(array("message" => "Method not allowed."));

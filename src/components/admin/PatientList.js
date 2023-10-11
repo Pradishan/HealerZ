@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from '@mui/icons-material/Clear';
 
 function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -71,7 +72,6 @@ function PatientList(props) {
   }, []);
 
   useEffect(() => {
-    // Filter the patient list based on ID, Name, and Blood Group filters
     const filteredList = patientList.filter(
       (patient) =>
         patient.Patient_ID.includes(searchTerm3) &&
@@ -103,7 +103,7 @@ function PatientList(props) {
     setSelectedPatientToDelete(null);
     try {
       await axios.delete(
-        `http://localhost/Healerz/PHP/admin/deletepatienttt.php?id=${patientToDelete.Patient_ID}`
+        `http://localhost/Healerz/PHP/admin/deletepatient.php?Patient_ID=${patientToDelete.Patient_ID}`
       );
       toast.success("Patient deleted successfully");
       fetchData();
@@ -115,7 +115,7 @@ function PatientList(props) {
 
   return (
     <AdminLayout>
-      <h3 className="serhett">Patient List</h3>
+      {/* <h3 className="serhett">Patient List</h3> */}
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
           <hr />
@@ -135,7 +135,7 @@ function PatientList(props) {
                   <input
                     className={"SearchBox1"}
                     type="text"
-                    placeholder="PATIENT_ID"
+                    placeholder="Filter By Entroll_No"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
@@ -143,6 +143,11 @@ function PatientList(props) {
                   <div className="search-icon" onClick={handleSearchSubmit}>
                     <SearchIcon />
                   </div>
+                  {searchTerm3 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
               </div>
               <div className="search-input-container">
@@ -153,7 +158,7 @@ function PatientList(props) {
                 <input
                   className={"SearchBox1"}
                   type="text"
-                  placeholder="PATIENT_Name"
+                  placeholder="Filter by Patient Name"
                   value={searchTerm4}
                   onChange={handleChange4}
                   style={{ width: "300px" }}
@@ -161,8 +166,15 @@ function PatientList(props) {
                  <div className="search-icon" onClick={handleSearchSubmit2}>
                     <SearchIcon />
                   </div>
+                  {searchTerm4 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm2("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
               </form>
               </div>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="search-input-container">
               <select
                 className={"SearchBox1"}
                 value={selectedBloodGroup}
@@ -179,18 +191,25 @@ function PatientList(props) {
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
               </select>
+              {selectedBloodGroup && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedBloodGroup("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
+            </div>
+            </div>
             </div>
           </div>
           <hr />
-          <div className={"table-container"}>
-            <table className={"table table-hover table-striped "}>
+          <div className="table-containertt">
+            <table className={"table table-hover table-striped"}>
               <thead
                 className={"top-0 position-sticky h-45"}
                 style={{ zIndex: 100 }}
               >
                 <tr>
                   <th scope="col">NO</th>
-                  <th scope="col">Patient_ID</th>
+                  <th scope="col">Entroll_No</th>
                   <th scope="col">PatientName</th>
                   <th scope="col">Gender</th>
                   <th scope="col">DateOfBirth</th>

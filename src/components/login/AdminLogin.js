@@ -1,45 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import jana from "../../assets/jana.jpg";
-import thanu from "../../assets/thanu.jpg";
-
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function AdminLogin() {
   const [adminID, setAdminID] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(null);
-  const [logmessage, setLogmessage] = useState(null);
-  const [currentImage, setCurrentImage] = useState(jana); // Initially display 'jana.jpg'
+  const [logmessage, setLogmessage] = useState(null); // Initially display 'jana.jpg'
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe2, setRememberMe2] = useState(false);
 
   useEffect(() => {
-    let login = sessionStorage.getItem('admin');
+    const savedAdminID = localStorage.getItem("adminID");
+    const savedRememberMe2 = localStorage.getItem("rememberMe2");
+
+    if (savedRememberMe2 === "true" && savedAdminID) {
+      setAdminID(savedAdminID);
+      setRememberMe2(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    let login = sessionStorage.getItem("admin");
 
     if (login === true) {
-      navigate('/admin/dashboard');
+      navigate("/admin/dashboard");
     }
-    let loginStatus = sessionStorage.getItem('loginStatus');
+    let loginStatus = sessionStorage.getItem("loginStatus");
     if (loginStatus) {
       setLogmessage(loginStatus);
     }
-
-    // Use setInterval to automatically change images every 5 seconds
-    const imageInterval = setInterval(() => {
-      if (currentImage === jana) {
-        setCurrentImage(thanu);
-      } else {
-        setCurrentImage(jana);
-      }
-    }, 2000);
-
-    // Clear the interval when the component unmounts
-    return () => clearInterval(imageInterval);
-  }, [currentImage]);
+  }, []);
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
+
     axios
       .post("http://localhost/HealerZ/PHP/AdminLogin.php", {
         adminID: adminID,
@@ -47,74 +47,43 @@ export default function AdminLogin() {
       })
       .then((response) => {
         console.log(response.data);
-        setMessage(response.data.message);
-        if (response.data.message === "Login successful.") {
+        const message = response.data.message;
+
+        if (message === "Login successful.") {
+          toast.success(message);
+          if (rememberMe2) {
+            localStorage.setItem("adminID", adminID);
+            localStorage.setItem("rememberMe2", "true");
+          } else {
+            localStorage.removeItem("adminID");
+            localStorage.removeItem("rememberMe2");
+          }
           setTimeout(() => {
-            sessionStorage.setItem('admin', true);
-            navigate('/admin/dashboard');
+            sessionStorage.setItem("admin", true);
+            sessionStorage.setItem("adminID", response.data.adminID);
+            navigate("/admin/dashboard");
           }, 100);
+        } else {
+          toast.error(message);
         }
       })
       .catch((error) => {
-        setMessage("Login failed.");
+        toast.error("Login failed.");
       });
-  };
-
-  const errorMessage = (message) => {
-    let color;
-    switch (message) {
-      case "Admin ID and Password are required.":
-        color = 'warning';
-        break;
-      case "Login failed.":
-      case "Invalid Admin ID or Password.":
-        color = 'danger';
-        break;
-      case "Method not allowed.":
-        color = 'warning';
-        break;
-      case "Login successful.":
-        color = 'success';
-        break;
-      default:
-        break;
-    }
-    return (
-      <div className={`alert alert-${color} mt-3`} role="alert">
-        {message}
-      </div>
-    );
   };
 
   return (
     <>
       <div className="container mt-5 text-center">
-        <div
-         style={{ display: "flex", flexDirection: "row",alignItems:'center',justifyContent:'center'}}
-        >
-          <img
-            src={currentImage} // Display the currently selected image
-            alt="avatar"
-            height="100px"
-            className="mb-3"
-            style={{ borderRadius: '50%' }}
-          />
-          <div
-            style={{
-              height: '80px',
-              width: '2px',
-              backgroundColor: 'black',
-              margin: '10px',
-            }}
-          ></div>
-          <img src={logo} alt="avatar" height="100px" className="mb-3" />
-        </div>
-
         <div className="row justify-content-center">
           <div className="col-md-4">
-            <p>{logmessage}</p>
-            <div className="card border-0 shadow">
-              <div className="card-header bg-white text-center">
+            {/* <p style={{width:'400px'}}>{logmessage}</p> */}
+            <div className="card border-0 shadow loginncardpos">
+              <div className="card-header bg-white text-center logoaddinglogin">
+                <AdminPanelSettingsIcon
+                  className="loginiconlogin"
+                  sx={{ fontSize: "40px" }}
+                />
                 <h3>Login | Admin</h3>
               </div>
               <div className="card-body">
@@ -132,16 +101,51 @@ export default function AdminLogin() {
                   </div>
                   <div className="form-floating">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      style={{ width: '100%' }}
+                      style={{ width: "100%" }}
                     />
                     <label htmlFor="floatingPassword">Password</label>
+                    {password && (
+                      <span
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <div className="search-icon">
+                            <VisibilityOffIcon />
+                          </div>
+                        ) : (
+                          <div className="search-icon">
+                            <VisibilityIcon />
+                          </div>
+                        )}
+                      </span>
+                    )}
                   </div>
+                  <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="rememberMeCheckbox"
+                      checked={rememberMe2}
+                      onChange={() => setRememberMe2(!rememberMe2)}
+                    />
+                    <label
+                      className="form-check-label remmberme"
+                      htmlFor="rememberMeCheckbox"
+                    >
+                      Remember Me !
+                    </label>
+                  </div>
+
                   <div className="text-center">
                     <button
                       type="submit"
@@ -158,8 +162,7 @@ export default function AdminLogin() {
                 </form>
               </div>
             </div>
-            {/* error message */}
-            {message ? errorMessage(message) : ""}
+            <ToastContainer />
           </div>
         </div>
       </div>

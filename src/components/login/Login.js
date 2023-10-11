@@ -1,15 +1,59 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+// /* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
+  const [patientID, setPatientID] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(null);
+  const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
-  const profileopen=()=>{
-    navigate('/profile');
-  }
+
+  useEffect(() => {
+    let login = sessionStorage.getItem("patient");
+
+    if (login === true) {
+      navigate("/profile");
+    }
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus) {
+      setLogmessage(loginStatus);
+    }
+  }, []);
+
+  const profileopen = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    setLogmessage("");
+    axios
+      .post("http://localhost/HealerZ/PHP/PatientLogin.php", {
+        patientID: patientID,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setMessage(response.data.message);
+        if (response.data.message === "Login successful.") {
+          toast.success(message);
+          setTimeout(() => {
+            sessionStorage.setItem("patient", true);
+            sessionStorage.setItem("patientID", response.data.patientID);
+            navigate("/profile");
+          }, 100);
+        } else {
+          toast.error(message);
+        }
+      })
+      .catch((error) => {
+        setMessage("Login failed.");
+      });
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow top navbarh">
@@ -34,7 +78,7 @@ function Login() {
           >
             <ul className="navbar-nav">
               <li className="nav-item nav-link nav-hover navicoon">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/home">
                   <FeatherIcon
                     icon="home"
                     className="me-2 naviccon2 nav-hover"
@@ -64,6 +108,8 @@ function Login() {
                   id="floatingInput"
                   placeholder="D0001"
                   style={{ width: "100%" }}
+                  value={patientID}
+                  onChange={(e) => setPatientID(e.target.value)}
                 />
                 <label htmlFor="floatingInput">User ID</label>
               </div>
@@ -74,6 +120,8 @@ function Login() {
                   id="floatingPassword"
                   placeholder="Password"
                   style={{ width: "100%" }}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <label htmlFor="floatingPassword">Password</label>
               </div>
@@ -94,6 +142,7 @@ function Login() {
             <a href="#" className="forgot" onClick={(e) => e.preventDefault()}>
               Forgot! Username/Password?
             </a>
+            <ToastContainer/>
           </div>
         </div>
       </div>

@@ -1,27 +1,16 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
-
-$conn=new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once '../classes/Drug.php'; 
+use classes\Drug; 
 
 if (isset($_GET['Drug_ID'])) {
     $drugID = $_GET['Drug_ID'];
-    $query = "SELECT * FROM drug WHERE Drug_ID = '$drugID'";
-    $result = $conn->query($query);
-    $data = array();
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+    $data = Drug::getDrugByID($drugID);
+
+    if ($data !== false) {
+        echo json_encode($data);
+    } else {
+        http_response_code(500);
+        echo "Error retrieving drug data.";
     }
-
-    echo json_encode($data);
 }
-
-$conn->close();
-?>

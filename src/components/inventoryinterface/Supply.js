@@ -1,127 +1,133 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../layouts/layout";
 import "./inventory.css";
 import SupplyModal from "./modals/SupplyModal";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
-import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
+import BrowserUpdatedIcon from "@mui/icons-material/BrowserUpdated";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CustomConfirmModal from "./modals/CustomConfirmModal";
+import CustomConfirmModal from "./modals/confirmationmodal/CustomConfirmModal";
+import axios from "axios";
+import ClearIcon from '@mui/icons-material/Clear';
+import { ToastContainer, toast } from "react-toastify";
+
 
 function Supply(props) {
   const [showModal, setShowModal] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const supplymodal = () => {
-    setShowModal(!showModal);
-  };
   const [searchTerm3, setSearchTerm] = useState("");
   const [searchTerm4, setSearchTerm2] = useState("");
+  const [presList, setPresList] = useState([]);
+  const [filteredPresList, setFilteredPresList] = useState([]);
+  const [selectedDrug, setSelectedDrug] = useState(null);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [selectedPresToDelete, setSelectedPresToDelete] = useState(null);
+
+  const [searchDate, setSearchDate] = useState("");
+  const handleChangeDate = (event) => {
+    setSearchDate(event.target.value);
+  };
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
   };
+
+
   const handleChange4 = (event) => {
     setSearchTerm2(event.target.value);
   };
 
-  const handleSubmit3 = (event) => {
+  const handleSearchByPresID = (event) => {
     event.preventDefault();
-    console.log(`Searching for ${searchTerm3}...`);
-  };
-  const handleSubmit4 = (event) => {
-    event.preventDefault();
-    console.log(`Searching for ${searchTerm4}...`);
-  };
-  const handleDelete = () => {
-    setConfirmModalVisible(true);
+    const searchedDrug = presList.find((drug) => drug.Prescription_ID === searchTerm3);
+    if (searchedDrug) {
+      setSelectedDrug(searchedDrug);
+      setShowModal(true);
+      setSearchTerm("");
+    } else {
+      toast.error("Invalid Prescription ID");
+    }
   };
 
-  const [drugList1, setdrugList1] = useState([
-    {
-      No: 1,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 2,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 3,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Pending",
-    },
-    {
-      No: 4,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 5,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 6,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 7,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Rejected",
-    },
-    {
-      No: 8,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 9,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-    {
-      No: 10,
-      date: "07-07-2023",
-      Prescription_ID: "PRT00026",
-      Patient_ID: "CST20008",
-      Patient_Name: "Powsi",
-      status: "Delivered",
-    },
-  ]);
+  const handleSearchByPatID = (event) => {
+    event.preventDefault();
+    const searchedDrug = presList.find((drug) => drug.Patient_ID === searchTerm4);
+    if (searchedDrug) {
+      setSelectedDrug(searchedDrug);
+      setShowModal(true);
+      setSearchTerm2("");
+    } else {
+      toast.error("Invalid Patient ID");
+    }
+  };
+  
+  const handleDelete = async (prescription_list) => {
+    setConfirmModalVisible(true);
+    setSelectedPresToDelete(prescription_list);
+  };
+
+  const handleConfirmDelete = async () => {
+    setConfirmModalVisible(false);
+    const prescriptionToDelete = selectedPresToDelete;
+    setSelectedPresToDelete(null);
+    try {
+      const response = await axios.get(
+        `http://localhost/Healerz/PHP/Inventory/deletePrescription.php?id=${prescriptionToDelete.Prescription_ID}`
+      );
+      if (response.data.message === 'Prescription deleted successfully') {
+        toast.success(response.data.message);
+        fetchData();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting Prescription:", error);
+      toast.error("Error deleting Prescription");
+    }
+  };
+  
+  
+  
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/Healerz/PHP/Inventory/displayPrescriptions.php"
+      );
+      setPresList(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const filteredData = presList.filter(
+      (prescription_list) =>
+        prescription_list.Prescription_ID.includes(searchTerm3) &&
+        prescription_list.Patient_ID.includes(searchTerm4) &&
+        (searchDate === "" || prescription_list.TimeP.includes(searchDate))
+    );
+    setFilteredPresList(filteredData);
+  }, [searchTerm3, searchTerm4, searchDate, presList]);
+
+
+  const openModal = (drug) => {
+    setSelectedDrug(drug);
+    setShowModal(true);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   return (
     <Layout>
-        <h3 className='serhedd'>Supply Detail</h3>
+      {/* <h3 className="serhedd">Supply Detail</h3> */}
       <div className={"container tabconttt"}>
         <div className={"p-5"}>
           <hr />
@@ -131,39 +137,65 @@ function Supply(props) {
           >
             <div className={"SearchSection2"}>
               <div className="search-input-container">
-                <form onSubmit={handleSubmit3}>
+                <form onSubmit={handleSearchByPresID}>
                   <input
                     className="SearchBox1"
                     type="text"
-                    placeholder="Prescription_ID"
+                    placeholder="Filter by Prescription_ID"
                     value={searchTerm3}
                     onChange={handleChange3}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={handleSubmit3}>
+                  <div className="search-icon" onClick={handleSearchByPresID}>
                     <SearchIcon />
                   </div>
+                  {searchTerm3 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
               </div>
               <div className="search-input-container">
-                <form onSubmit={handleSubmit4}>
+                <form onSubmit={handleSearchByPatID}>
                   <input
                     className="SearchBox1"
                     type="text"
-                    placeholder="Patient_ID"
+                    placeholder="Filter by Patient_ID"
                     value={searchTerm4}
-                    onChange={handleChange3}
+                    onChange={handleChange4}
                     style={{ width: "300px" }}
                   />
-                  <div className="search-icon" onClick={handleSubmit4}>
+                  <div className="search-icon" onClick={handleSearchByPatID}>
                     <SearchIcon />
                   </div>
+                  {searchTerm4 && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm2("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
                 </form>
+              </div>
+
+              <div className="search-input-container">
+                <input
+                  className="SearchBox1"
+                  type="date"
+                  placeholder="Filter by Date"
+                  value={searchDate}
+                  onChange={handleChangeDate}
+                  style={{ width: "300px" }}
+                />
+                {searchDate && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'4px'}} onClick={() => setSearchDate("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-          <hr/>
-          <div className={"table-container "}>
+          <hr />
+          <div className="table-container tablesupply">
             <table className={"table table-hover table-striped "}>
               <thead className={"top-0 position-sticky h-45"}>
                 <tr>
@@ -177,29 +209,30 @@ function Supply(props) {
                 </tr>
               </thead>
               <tbody>
-                {drugList1.map((data, index) => (
-                  <tr>
-                    <th scope="row">{data.No}</th>
-                    <td>{data.date}</td>
-                    <td>{data.Prescription_ID}</td>
-                    <td>{data.Patient_ID}</td>
-                    <td>{data.Patient_Name}</td>
-                    <td
-                      className={
-                        data.status === "Pending"
-                          ? "pending"
-                          : data.status === "Delivered"
-                          ? "delivered"
-                          : "rejected"
-                      }
-                    >
-                      {data.status}
-                    </td>
-                    <td>
-                    <IconButton
+                {filteredPresList.length > 0 ? (
+                  filteredPresList.map((data, index) => (
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      <td>{data.TimeP}</td>
+                      <td>{data.Prescription_ID}</td>
+                      <td>{data.Patient_ID}</td>
+                      <td>{data.PatientName}</td>
+                      <td
+                        className={
+                          data.status === "Waiting"
+                            ? "waiting"
+                            : data.status === "Delivered"
+                            ? "delivered"
+                            : "rejected"
+                        }
+                      >
+                        {data.status}
+                      </td>
+                      <td>
+                        <IconButton
                           aria-label="delete"
                           className="viewbutt"
-                          onClick={supplymodal}
+                          onClick={() => openModal(data)}
                           style={{ color: "green" }}
                         >
                           <BrowserUpdatedIcon />
@@ -207,23 +240,37 @@ function Supply(props) {
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"
-                          onClick={handleDelete}
+                          onClick={() => handleDelete(data)}
                           style={{ color: "red" }}
                         >
                           <DeleteIcon />
                         </IconButton>
-                    </td>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="7">No results found</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
         </div>
+        <ToastContainer />
       </div>
-      <SupplyModal show={showModal} onHide={supplymodal} />
+      <SupplyModal
+        show={showModal}
+        onHide={() => {
+          setShowModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
+        drugDetails={selectedDrug}
+      />
       <CustomConfirmModal
         show={confirmModalVisible}
         onHide={() => setConfirmModalVisible(false)}
+        onConfirm={handleConfirmDelete}
       />
     </Layout>
   );

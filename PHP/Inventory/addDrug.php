@@ -1,13 +1,8 @@
 <?php
 
 header("Access-Control-Allow-Origin: http://localhost:3000");
-
-
 require_once "../classes/Drug.php";
-
 use classes\Drug;
-
-
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {

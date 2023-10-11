@@ -1,8 +1,9 @@
 <?php
-// login.php
 
-require '../classes/DBconnector.php';
-use \classes\DBconnector;
+require '../classes/Medicalrecord.php';
+require '../classes/Prescription.php';
+use classes\Medicalrecord;
+use classes\Prescription;
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");
@@ -22,48 +23,52 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
 
     try {
-
-        $dbcon = new DBconnector();
-        $conn = $dbcon->getConnection();
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        //front-end sends data as JSON
+        // Front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
+
+        $currentDateTime = date("Y-m-d H:i:s");
 
         $patient_ID = $data['patient_ID'];
         $doctor_ID = $data['doctor_ID'];
-        $dateandTime = $data['dateandTime'];
+        $dateandTime = $currentDateTime;
         $patientcomplaint = $data['patientcomplaint'];
         $onExamination = $data['onExamination'];
         $tests = $data['tests'];
         $confirmeddiagnosis = $data['confirmeddiagnosis'];
-        $prescription_ID = $data['prescription_ID'];
 
+        
+        $prescription_ID = null; 
+        $filteredData = Prescription::displayDrugs($patient_ID);
+        if ($filteredData) {
+            $prescription_ID= $patient_ID ."_".time();
+            if (!Prescription::addPrescription($prescription_ID, $patient_ID, $doctor_ID, 'Waiting', $dateandTime)) {
+                echo json_encode(['success' => false, 'message' => 'error in prescription record adding']);
+                exit;
+            }
+        }
 
+        // Create a new medical record
+        $record = new Medicalrecord($patient_ID, $doctor_ID, $dateandTime, $patientcomplaint, $onExamination, $tests, $confirmeddiagnosis, $prescription_ID);
 
-
-        // Prepare and execute the SQL INSERT query
-        $stmt = $conn->prepare("INSERT INTO medicalrecord (Patient_ID,Doctor_ID,DateandTime,Patientcomplaint,OnExamination,Tests,Confirmeddiagnosis,Prescription_ID) VALUES ( :Patient_ID, :Doctor_ID, :DateandTime, :Patientcomplaint, :OnExamination, :Tests, :Confirmeddiagnosis, :Prescription_ID)");
-
-        $stmt->bindParam(':Patient_ID', $patient_ID);
-        $stmt->bindParam(':Doctor_ID', $doctor_ID);
-        $stmt->bindParam(':DateandTime', $dateandTime);
-        $stmt->bindParam(':Patientcomplaint', $patientcomplaint);
-        $stmt->bindParam(':OnExamination', $onExamination);
-        $stmt->bindParam(':Tests', $tests);
-        $stmt->bindParam(':Confirmeddiagnosis', $confirmeddiagnosis);
-        $stmt->bindParam(':Prescription_ID', $prescription_ID);
-
-        $stmt->execute();
-
-        // Return a success response to the front-end
-        echo json_encode(['success' => true, 'message' => 'Data added successfully']);
+        if ($record->addMedicalrecord()) {
+            if ($prescription_ID !== null) {
+                if (Prescription::setPrescription_ID($patient_ID, $prescription_ID)) {
+                    echo json_encode(['success' => true, 'message' => 'successfully sent prescription', 'prescription_ID' => $prescription_ID]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'error in prescription sending']);
+                }
+            } else {
+                // Prescription ID is null, no prescription data to add
+                echo json_encode(['success' => true, 'message' => 'Medical report added, no prescription', 'prescription_ID' => null]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'error in medical record adding']);
+        }
 
     } catch (PDOException $e) {
         // Return an error response if something goes wrong
-        echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e]);
+        echo json_encode(['success' => false, 'message' => 'Error adding data', 'error' => $e->getMessage()]);
     }
 }
-
 
 ?>
