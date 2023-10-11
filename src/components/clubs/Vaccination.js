@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ClubLayout from "../../layouts/ClubLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import the CSS file
 import "./vaccination.css";
 import axios from "axios";
+import { gridColumnGroupsLookupSelector } from "@mui/x-data-grid";
 
 export default function Vaccination() {
   const [id, setId] = useState("");
   const [vaccinationType, setVaccinationType] = useState("");
   const [vaccinationStatus, setVaccinationStatus] = useState("");
+  const [vaccinationOption, setVaccinationOption] = useState(null);
 
   const handleIdChange = (e) => {
     setId(e.target.value);
@@ -19,12 +21,34 @@ export default function Vaccination() {
   };
 
   const checkVaccinationStatus = () => {
-    // Replace this with your actual data or API call to check vaccination status
-    // For simplicity, we assume vaccinationStatus is either 'Vaccinated' or 'Not Vaccinated'
-    const vaccinationStatus = "Vaccinated"; // Replace with your logic
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("vaccinationType", vaccinationType);
 
-    setVaccinationStatus(vaccinationStatus);
+    axios
+      .post(
+        "http://localhost/Healerz/PHP/club/vaccination_details.php",
+        formData
+      )
+      .then((response) => {
+        setVaccinationStatus(response.data.message);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data", error);
+      });
   };
+  useEffect(() => {
+    if (vaccinationOption === null) {
+      axios
+        .post("http://localhost/Healerz/PHP/club/vaccination_Option.php")
+        .then((response) => {
+          setVaccinationOption(response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the data", error);
+        });
+    }
+  });
 
   return (
     <ClubLayout>
@@ -38,12 +62,16 @@ export default function Vaccination() {
           <label>Vaccination Type:</label>
           <select
             value={vaccinationType}
-            onChange={handleVaccinationTypeChange}
+            onChange={(e) => handleVaccinationTypeChange(e)}
           >
-            <option value="">Select</option>
-            <option value="Type A">Type A</option>
-            <option value="Type B">Type B</option>
-            <option value="Type C">Type C</option>
+            <option value={""}>Select</option>
+            {vaccinationOption?.map((value, key) => {
+              return (
+                <option value={value.VaccinationName} key={key}>
+                  {value["VaccinationName"]}
+                </option>
+              );
+            })}
           </select>
         </div>
         <button onClick={checkVaccinationStatus}>
@@ -55,21 +83,4 @@ export default function Vaccination() {
       </div>
     </ClubLayout>
   );
-
 }
-
-
-
-
-const checkVaccinationStatus = () => {
-  axios
-    .post("http://localhost/vaccination_details.php", { id, vaccinationType })
-    .then((response) => {
-      const vaccinationStatus = response.data.vaccinationStatus;
-      setVaccinationStatus(vaccinationStatus);
-    })
-    .catch((error) => {
-      console.error("There was an error fetching the data", error);
-    });
-};
-

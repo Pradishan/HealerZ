@@ -25,17 +25,20 @@ try {
 }
 
 // Get data from POST request
-$data = json_decode(file_get_contents("php://input"));
-
-if (isset($data->id) && isset($data->vaccinationType)) {
-    $stmt = $pdo->prepare("SELECT * FROM vaccination_details WHERE vaccinationId = :id AND VaccinationName = :vaccinationType");
-    $stmt->execute(['id' => $data->id, 'vaccinationType' => $data->vaccinationType]);
+//$data = json_decode(file_get_contents("php://input"));
+//echo $data;
+if (isset($_POST['id']) && isset($_POST['vaccinationType'])) {
+    $id=$_POST['id'];
+    $type=$_POST['vaccinationType'];
+    $stmt = $pdo->prepare("SELECT DISTINCT * FROM vaccination_details WHERE PatientId = :id AND VaccinationName = :vaccinationType");
+    $stmt->execute(['id' => $id, 'vaccinationType' => $type]);
     $result = $stmt->fetch();
 
     if ($result) {
-        echo json_encode($result);
+        echo json_encode(["message" => "Vaccinated"]);
     } else {
-        echo json_encode(["message" => "No vaccination details found for the provided ID and type."]);
+       echo json_encode(["message" => "Not vaccinated"]);
+      
     }
 } else {
     echo json_encode(["message" => "Invalid data provided."]);
