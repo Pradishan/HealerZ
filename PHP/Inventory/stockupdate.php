@@ -1,33 +1,25 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-require_once '../classes/DBconnector.php';
-
-$dbConnector = new classes\DBconnector();
-
-$conn = $dbConnector->getConnection();
-
-if (!$conn) {
-    die("Connection failed: " . $conn->errorInfo());
-}
+require_once '../classes/Drug.php'; 
+use classes\Drug; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $drug_id = $_POST["Drug_ID"];
-    $drug_stk = $_POST["StockCount"];
-    
-    $query = "UPDATE druginventory SET StockCount = :drug_stk WHERE Drug_ID = :drug_id";
-    
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':drug_stk', $drug_stk, PDO::PARAM_INT);
-    $stmt->bindParam(':drug_id', $drug_id, PDO::PARAM_INT);
-   
-    if ($stmt->execute()) {
-        echo "Item Updated Successfully";
+    if (isset($_POST["Drug_ID"]) && isset($_POST["StockCount"])) {
+        $drugID = $_POST["Drug_ID"];
+        $stockCount = $_POST["StockCount"];
+        $drug = new Drug($drugID, '', '', '', '');
+  
+        $result = $drug->updateStockCount($stockCount);
+
+        if ($result) {
+            echo "Stock Count Updated Successfully";
+        } else {
+            echo "Error updating stock count";
+        }
     } else {
-        echo "Error updating item: " . $stmt->errorInfo()[2];
+        echo "Missing required parameters";
     }
 } else {
     echo "Invalid request method.";
 }
-
-$conn = null;
 ?>

@@ -1,15 +1,17 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once '../../classes/DBconnector.php';
+use classes\DBconnector;
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$dbConnector = new DBconnector();
+
+try {
+    $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+    die("ERROR: " . $ex->getMessage());
 }
+
 // $query = "SELECT COUNT(StockCount) as total FROM `druginventory` WHERE StockCount < 100 && StockCount!=0";
 $query = "SELECT COUNT(druginventory.Drug_ID) AS LowStockCount
           FROM druginventory
@@ -24,17 +26,16 @@ $query = "SELECT COUNT(druginventory.Drug_ID) AS LowStockCount
              OR (drug.Category = 'Implants' AND druginventory.StockCount < 20))
           AND druginventory.StockCount != 0;";
 
-$result = $conn->query($query);
-$lowtotal = array();
+try {
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $lowtotal['LowStockCount'] = $row['LowStockCount'];
-} else {
-    $lowtotal['LowStockCount'] = 0;
+    $lowtotal = array('LowStockCount' => $row['LowStockCount']);
+    echo json_encode($lowtotal);
+} catch (PDOException $ex) {
+    http_response_code(500);
+    echo json_encode(array("message" => "Error: " . $ex->getMessage()));
 }
 
-echo json_encode($lowtotal);
-
-$conn->close();
-?>
+$conn = null; 

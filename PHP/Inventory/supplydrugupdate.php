@@ -1,45 +1,48 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Healerz";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once '../classes/DBconnector.php';
+use classes\DBconnector;
 
-if (mysqli_connect_error()) {
-    echo mysqli_connect_error();
+$dbConnector = new DBconnector();
+
+try {
+    $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+    die("ERROR: " . $ex->getMessage());
+}
+
+$drugIdsToUpdate = $_POST["Drug_ID"];
+$updatedStockCounts = $_POST["StockCount"];
+
+if (count($drugIdsToUpdate) !== count($updatedStockCounts)) {
+    echo "Error: Mismatched array lengths";
     exit();
-} else {
-    $drugIdsToUpdate = $_POST["Drug_ID"];
-    $updatedStockCounts = $_POST["StockCount"];
-    if (count($drugIdsToUpdate) !== count($updatedStockCounts)) {
-        echo "Error: Mismatched array lengths";
-        exit();
-    }
-    $stmt = $conn->prepare("UPDATE druginventory SET StockCount = StockCount - ? WHERE Drug_ID = ?");
+}
 
-    if (!$stmt) {
-        echo "Error preparing statement: " . $conn->error;
-        exit();
-    }
-    $conn->begin_transaction();
+try {
+    $conn->beginTransaction();
+
+    $stmt = $conn->prepare("UPDATE druginventory SET StockCount = StockCount - :stockCount WHERE Drug_ID = :drugId");
+
     for ($i = 0; $i < count($drugIdsToUpdate); $i++) {
         $drugId = $drugIdsToUpdate[$i];
         $stockCount = $updatedStockCounts[$i];
-  
-        $stmt->bind_param("ii", $stockCount, $drugId);
+
+        $stmt->bindParam(":stockCount", $stockCount, PDO::PARAM_INT);
+        $stmt->bindParam(":drugId", $drugId, PDO::PARAM_INT);
+
         if (!$stmt->execute()) {
-            echo "Error updating status: " . $stmt->error;
-            $conn->rollback(); 
-            exit();
+            throw new Exception("Error updating status: " . $stmt->errorInfo()[2]);
         }
     }
-    $conn->commit();
-    $stmt->close();
 
+    $conn->commit();
     echo "Status Updated Successfully";
+} catch (Exception $ex) {
+    $conn->rollBack();
+    http_response_code(500);
+    echo "Error: " . $ex->getMessage();
 }
 
-mysqli_close($conn);
-?>
+$conn = null;

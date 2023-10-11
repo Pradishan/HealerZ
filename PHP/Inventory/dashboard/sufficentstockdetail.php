@@ -1,26 +1,26 @@
 <?php
-header("Access-Control-Allow-Origin: *"); 
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
-$dbname = "Healerz"; 
-$id = '';
- 
-$con = mysqli_connect($host, $user, $password,$dbname);
- 
-$method = $_SERVER['REQUEST_METHOD'];
- 
-if (!$con) {
-  die("Connection failed: " . mysqli_connect_error());
+header("Access-Control-Allow-Origin: *");
+
+require_once '../../classes/DBconnector.php';
+use classes\DBconnector;
+
+$dbConnector = new DBconnector();
+
+try {
+    $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+    die("ERROR: " . $ex->getMessage());
 }
-  
+
+$method = $_SERVER['REQUEST_METHOD'];
+
 switch ($method) {
     case 'GET':
         // $sql = "SELECT drug.*, druginventory.StockCount
         // FROM drug
         // INNER JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID
-        // WHERE drug.Drug_ID AND druginventory.StockCount > 800 ;"; 
-         $sql = "SELECT drug.*, druginventory.StockCount
+        // WHERE drug.Drug_ID AND druginventory.StockCount > 800 ;";
+        $sql = "SELECT drug.*, druginventory.StockCount
          FROM drug
          INNER JOIN druginventory ON drug.Drug_ID = druginventory.Drug_ID
            WHERE ((drug.Category = 'Tablet' AND druginventory.StockCount > 800)
@@ -32,24 +32,24 @@ switch ($method) {
                OR (drug.Category = 'Injections' AND druginventory.StockCount > 300)
                OR (drug.Category = 'Implants' AND druginventory.StockCount > 150))
            AND druginventory.StockCount != 0;";
-      break;
+        break;
 }
- 
-$result = mysqli_query($con,$sql);
- 
-if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
-}
- 
-if ($method == 'GET') {
-    if (!$id) echo '[';
-    for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
-      echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
+
+try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($results) {
+        header('Content-Type: application/json');
+        echo json_encode($results);
+    } else {
+        http_response_code(404);
+        echo json_encode(array("message" => "No records found."));
     }
-    if (!$id) echo ']';
-}else {
-    echo mysqli_affected_rows($con);
+} catch (PDOException $ex) {
+    http_response_code(500);
+    echo json_encode(array("message" => "Error: " . $ex->getMessage()));
 }
- 
-$con->close();
+
+$conn = null; 
