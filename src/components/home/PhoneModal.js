@@ -7,7 +7,7 @@ export default function PhoneModal({ show, onHide }) {
   return (
     <Modal show={show} onHide={onHide}  centered>
       <Modal.Header closeButton>
-        <Modal.Title className="modaltitleee1" style={{color:'#228B22'}}>Call</Modal.Title>
+        <Modal.Title className="modaltitleee1" style={{color:'#228B22'}}>Contact</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="phonemodalicon">
