@@ -89,9 +89,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container" id="aboutus">
+
+
+      <div className="container abotus" id="aboutus">
         <div class="row mt-5 p-5 row1">
-          <div class="col">
+          <div class="col aboutushome">
             <img
               src={logo}
               alt="HealerZ"
