@@ -14,10 +14,12 @@ import { IconButton } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import availability from "../../assets/Doctors-pana.svg";
+import PhoneModal from "./PhoneModal";
 
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
   const [isDoctorSessionOn, setIsDoctorSessionOn] = useState(false);
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
 
   
   useEffect(() => {
@@ -31,7 +33,14 @@ export default function Home() {
   const handleEmailClick = () => {
     window.location.href = "mailto:healerz763@gmail.com";
   };
-  
+
+  const handlePhoneClick = () => {
+    setShowPhoneModal(true);
+  };
+
+  const closePhoneModal = () => {
+    setShowPhoneModal(false);
+  };
   const Teammem = () => {
     setShowTeam(!showTeam);
   };
@@ -77,7 +86,7 @@ export default function Home() {
               <IconButton onClick={handleEmailClick}>
                 <EmailIcon sx={{color:'#4B0082'}}/>
               </IconButton>
-              <IconButton>
+              <IconButton onClick={handlePhoneClick}>
                 <LocalPhoneIcon sx={{color:'#800000'}}/>
               </IconButton>
             </div>
@@ -250,6 +259,8 @@ export default function Home() {
           UWU{" "}
         </div>
       </MDBFooter>
+
+      {showPhoneModal && <PhoneModal show={showPhoneModal} onHide={closePhoneModal} />}
     </div>
   );
 }

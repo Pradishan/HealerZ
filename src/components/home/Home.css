@@ -357,3 +357,18 @@
     gap: 10px;
     margin-left: 30px;
 }
+
+.phonemodalicon{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.phonemodalicon p{
+    font-size: 30px;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #8b8282;
+}
