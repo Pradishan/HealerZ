@@ -1,19 +1,32 @@
-// /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Login() {
   const [patientID, setPatientID] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [logmessage, setLogmessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [rememberMe5, setRememberMe5] = useState(false);
+
+  useEffect(() => {
+    const savedAPatientID = localStorage.getItem("patientID");
+    const savedRememberMe5 = localStorage.getItem("rememberMe5");
+
+    if (savedRememberMe5 === "true" && savedAPatientID) {
+      setPatientID(savedAPatientID);
+      setRememberMe5(true);
+    }
+  }, []);
 
   useEffect(() => {
     let login = sessionStorage.getItem("patient");
@@ -40,6 +53,13 @@ function Login() {
         setMessage(response.data.message);
         if (response.data.message === "Login successful.") {
           toast.success(message);
+          if (rememberMe5) {
+            localStorage.setItem("patientID", patientID);
+            localStorage.setItem("rememberMe5", "true");
+          } else {
+            localStorage.removeItem("patientID");
+            localStorage.removeItem("rememberMe5");
+          }
           setTimeout(() => {
             sessionStorage.setItem("patient", true);
             sessionStorage.setItem("patientID", response.data.patientID);
@@ -99,12 +119,12 @@ function Login() {
             <div className="pill-4 rotate-45"></div>
           </div>
           <div className="login">
-            <h3 className="title">User Login</h3>
+            <h3 className="title">User | Login</h3>
             <form action="" className="py-2">
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control logininputpat"
                   id="floatingInput"
                   placeholder="D0001"
                   style={{ width: "100%" }}
@@ -115,8 +135,8 @@ function Login() {
               </div>
               <div className="form-floating">
                 <input
-                  type="password"
-                  className="form-control"
+                  type={showPassword ? "text" : "password"}
+                  className="form-control logininputpat"
                   id="floatingPassword"
                   placeholder="Password"
                   style={{ width: "100%" }}
@@ -124,7 +144,41 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <label htmlFor="floatingPassword">Password</label>
+                {password && (
+                  <span
+                    className="password-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <div className="search-icon">
+                        <VisibilityOffIcon />
+                      </div>
+                    ) : (
+                      <div className="search-icon">
+                        <VisibilityIcon />
+                      </div>
+                    )}
+                  </span>
+                )}
               </div>
+              <div
+                    className="form-check mb-3"
+                    style={{ marginTop: "15px" }}
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="rememberMeCheckbox"
+                      checked={rememberMe5}
+                      onChange={() => setRememberMe5(!rememberMe5)}
+                    />
+                    <label
+                      className="form-check-label remmbermepatient"
+                      htmlFor="rememberMeCheckbox"
+                    >
+                      Remember Me !
+                    </label>
+                  </div>
               <div className="text-center">
                 <button
                   type="submit"
@@ -142,7 +196,7 @@ function Login() {
             <a href="#" className="forgot" onClick={(e) => e.preventDefault()}>
               Forgot! Username/Password?
             </a>
-            <ToastContainer/>
+            <ToastContainer />
           </div>
         </div>
       </div>
