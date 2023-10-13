@@ -18,12 +18,20 @@ import availability from "../../assets/Doctors-pana.svg";
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
   const [isDoctorSessionOn, setIsDoctorSessionOn] = useState(false);
+
+  
   useEffect(() => {
     let login = sessionStorage.getItem("Doctor");
     if (login === "true") {
       setIsDoctorSessionOn(true);
     }
   }, []);
+
+
+  const handleEmailClick = () => {
+    window.location.href = "mailto:healerz763@gmail.com";
+  };
+  
   const Teammem = () => {
     setShowTeam(!showTeam);
   };
@@ -66,11 +74,11 @@ export default function Home() {
               )}
             </div>
             <div className="indicatmailicon">
-              <IconButton>
-                <EmailIcon/>
+              <IconButton onClick={handleEmailClick}>
+                <EmailIcon sx={{color:'#4B0082'}}/>
               </IconButton>
               <IconButton>
-                <LocalPhoneIcon />
+                <LocalPhoneIcon sx={{color:'#800000'}}/>
               </IconButton>
             </div>
           </div>
