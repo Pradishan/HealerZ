@@ -38,7 +38,7 @@ export default function Hnav() {
         >
           <ul className="navbar-nav">
             <li className="nav-item nav-link nav-hover navicoon">
-              <a className="nav-link" href="/home">
+              <a className="nav-link" href="#home">
                 <IconButton aria-label="delete">
                   <HomeIcon />
                 </IconButton>
