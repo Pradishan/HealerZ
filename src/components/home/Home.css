@@ -46,7 +46,7 @@
     border-radius: 10px;
     background-color: #ffffff !important;
     cursor: pointer;
-    border: 3px solid rgba(249, 249, 249, 0.1)!important;
+    border: 3px solid rgba(249, 249, 249, 0.1) !important;
     box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
     transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94)0s !important;
     justify-content: center;
@@ -58,7 +58,7 @@
     border-radius: 10px;
     background-color: #ffffff !important;
     cursor: pointer;
-    border: 3px solid rgba(255, 255, 255, 0.1)!important;
+    border: 3px solid rgba(255, 255, 255, 0.1) !important;
     box-shadow: rgba(194, 192, 192, 0.69) 0px 26px 30px -10px, rgba(194, 191, 191, 0.73) 0px 16px 10px -10px !important;
     transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94)0s !important;
 }
@@ -72,7 +72,7 @@
     width: 320px;
     margin-bottom: 30px;
     margin-top: 10px;
-    
+
 }
 
 .cardWrap1:hover {
@@ -115,8 +115,44 @@
     .cardcontainer1 {
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
     }
+
     .cardcontainer2 {
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .navbar-collapse1 {
+        justify-content: center !important;
+    }
+
+    .navbar-nav {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-nav li a {
+        margin-right: 0 !important;
+    }
+
+    .navbar-toggler {
+        font-size: 30px;
+    }
+
+    .close-icon {
+        font-size: 30px;
+    }
+
+    .navicoon {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lettnav {
+        margin-top: 0 !important;
+    }
+
+    .navbar-brand1 img {
+        margin-left: 150px;
+
     }
 }
 
@@ -199,7 +235,8 @@
     height: 30px;
     width: 30px;
 }
-.loginiccontt{
+
+.loginiccontt {
     height: 30px;
     width: 30px;
     margin-top: -10px;
@@ -216,8 +253,32 @@
     opacity: 1;
 }
 
-.carousel-control-iconnn{
+.carousel-control-iconnn {
     height: 50px;
     width: 50px;
     color: black;
+}
+
+.cardcontenthome {
+    background-color: #fff;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 25px auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.cardcontenthome img{
+    height: 180px;
+    width: 200px;
+}
+
+.availabiltyiconpos{
+    margin-left: auto;
+}
+
+.availabiltyicon {
+    margin-top: -5px !important;
 }

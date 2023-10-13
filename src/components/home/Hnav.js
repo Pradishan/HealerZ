@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import "./Home.css";
 import { IconButton } from "@mui/material";
 
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import HomeIcon from "@mui/icons-material/Home";
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
-
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 
 export default function Hnav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg shadow top navbarh">
+    <nav className={`navbar navbar-expand-lg shadow top navbarh ${menuOpen ? "open" : "close"}`}>
       <div className="container-fluid">
         <a className="navbar-brand navbar-brand1" href="/">
           <img src={logo} alt="HealerZ" height="48px" />
@@ -20,22 +25,20 @@ export default function Hnav() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={toggleMenu}
         >
-          <span className="navbar-toggler-icon"></span>
+          {menuOpen ? (
+            <span className="close-icon">&times;</span>
+          ) : (
+            <span className="navbar-toggler-icon"></span>
+          )}
         </button>
         <div
-          className="navbar-collapse navbar-collapse1 collapse "
-          id="navbarTogglerDemo02"
+          className={`navbar-collapse navbar-collapse1 collapse ${menuOpen ? "show" : ""}`}
         >
           <ul className="navbar-nav">
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link" href="/home">
-                {/* <FeatherIcon icon="home" className='me-2 naviccon2 nav-hover' /> */}
                 <IconButton aria-label="delete">
                   <HomeIcon />
                 </IconButton>
@@ -44,7 +47,6 @@ export default function Hnav() {
             </li>
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link" href="#services">
-                {/* <FeatherIcon icon="box" className="me-2 naviccon2 nav-hover" /> */}
                 <IconButton aria-label="delete">
                   <MedicalServicesIcon />
                 </IconButton>
@@ -53,7 +55,6 @@ export default function Hnav() {
             </li>
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link" href="#aboutus">
-                {/* <FeatherIcon icon="activity" className='me-2 naviccon2 nav-hover' /> */}
                 <IconButton aria-label="delete">
                   <VolunteerActivismIcon />
                 </IconButton>
@@ -62,11 +63,7 @@ export default function Hnav() {
             </li>
             <li className="nav-item nav-link nav-hover navicoon">
               <a className="nav-link" href="#events">
-                {/* <FeatherIcon
-                  icon="calendar"
-                  className="me-2 naviccon2 nav-hover"
-                /> */}
-                 <IconButton aria-label="delete">
+                <IconButton aria-label="delete">
                   <LocalActivityIcon />
                 </IconButton>
                 <span className="lettnav">EVENTS</span>

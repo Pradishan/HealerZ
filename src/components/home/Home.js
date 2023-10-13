@@ -9,6 +9,10 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./Home.css";
 import FeatherIcon from "feather-icons-react";
 import { MDBFooter, MDBContainer, MDBBtn } from "mdb-react-ui-kit";
+import CircleIcon from "@mui/icons-material/Circle";
+import { IconButton } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
+import availability from "../../assets/Doctors-pana.svg";
 
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
@@ -23,7 +27,24 @@ export default function Home() {
       </div>
       <div className="slider p-3" style={{ minHeight: "100vh" }}>
         <Carousel />
-        <h1 className='serhed'>Healerz</h1>
+        <div className="cardcontenthome">
+          <img src={availability} alt="" />
+          <div>
+            <h3>Available Time</h3>
+            <h3>Available Time</h3>
+            <h3>Available Time</h3>
+          </div>
+          <div className="availabiltyiconpos">
+            <div>
+              <IconButton className="availabiltyicon">
+                <CircleIcon
+                  sx={{ fontSize: "30px" }}
+                  style={{ color: "#7CFC00" }}
+                />
+              </IconButton>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="slider p-3" id="services">
