@@ -29,10 +29,10 @@ export default function Home() {
         <Carousel />
         <div className="cardcontenthome">
           <img src={availability} alt="" />
-          <div>
-            <h3>Available Time</h3>
-            <h3>Available Time</h3>
-            <h3>Available Time</h3>
+          <div className="cardconthhav">
+            <h2>Monday - Friday</h2>
+            <h3>9.00 AM - 5.00 PM</h3>
+            <h4>Available Time</h4>
           </div>
           <div className="availabiltyiconpos">
             <div>

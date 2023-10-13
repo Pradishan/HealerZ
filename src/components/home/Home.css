@@ -154,6 +154,17 @@
         margin-left: 150px;
 
     }
+    .cardconthhav {
+      margin-top: 200px !important;
+      margin-left: -330px !important;
+    }
+
+    .cardcontenthome img{
+        margin-left: 110px !important;
+        height: 250px !important;
+        width: 250px !important;
+        margin-top: -30px !important;
+    }
 }
 
 .forrminputt {
@@ -270,15 +281,38 @@
     flex-direction: row;
 }
 
-.cardcontenthome img{
+.cardcontenthome img {
     height: 180px;
     width: 200px;
 }
 
-.availabiltyiconpos{
+.availabiltyiconpos {
     margin-left: auto;
 }
 
 .availabiltyicon {
     margin-top: -5px !important;
+}
+
+.cardconthhav {
+    margin-left: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cardconthhav h2 {
+    font-weight: 600;
+    font-size: 50px;
+}
+
+.cardconthhav h3{
+    font-weight: 500;
+    font-size: 30px;
+    color: #aca4a4;
+}
+
+.cardconthhav h4{
+    font-weight: 300;
+    font-size: 20px;
+    color: #ff7b00;
 }
