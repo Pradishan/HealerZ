@@ -179,6 +179,9 @@
     .serhed:after {
         display: none;
     }
+    .indicatdoct h4{
+        display: none;
+    }
 }
 
 .forrminputt {
@@ -333,4 +336,21 @@
 
 .aboutushome {
     margin-top: 70px !important;
+}
+
+.indicatdoct{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.indicatdoct h4{
+    font-size: 20px;
+    margin-top: 8px;
+    color: #8b8686;
+}
+.indicatmailicon{
+    margin-top: 100px;
+    display: flex;
+    gap: 20px;
+    margin-left: 50px;
 }

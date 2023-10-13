@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hnav from "./Hnav";
 import Carousel from "./Carousel";
 import Hcard from "./Hcard";
@@ -12,13 +12,20 @@ import { MDBFooter, MDBContainer, MDBBtn } from "mdb-react-ui-kit";
 import CircleIcon from "@mui/icons-material/Circle";
 import { IconButton } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import availability from "../../assets/Doctors-pana.svg";
 
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
-
+  const [isDoctorSessionOn, setIsDoctorSessionOn] = useState(false);
+  useEffect(() => {
+    let login = sessionStorage.getItem("Doctor");
+    if (login === "true") {
+      setIsDoctorSessionOn(true);
+    }
+  }, []);
   const Teammem = () => {
-    setShowTeam(!showTeam); // Toggle the visibility of the team section
+    setShowTeam(!showTeam);
   };
   return (
     <div>
@@ -36,11 +43,34 @@ export default function Home() {
           </div>
           <div className="availabiltyiconpos">
             <div>
-              <IconButton className="availabiltyicon">
-                <CircleIcon
-                  sx={{ fontSize: "30px" }}
-                  style={{ color: "#7CFC00" }}
-                />
+              {isDoctorSessionOn ? (
+                <div className="indicatdoct">
+                  <h4>Available</h4>
+                  <IconButton className="availabiltyicon">
+                    <CircleIcon
+                      sx={{ fontSize: "30px" }}
+                      style={{ color: "#7CFC00" }}
+                    />
+                  </IconButton>
+                </div>
+              ) : (
+                <div className="indicatdoct">
+                  <h4>Not available</h4>
+                  <IconButton className="availabiltyicon">
+                    <CircleIcon
+                      sx={{ fontSize: "30px" }}
+                      style={{ color: "#FF0000" }}
+                    />
+                  </IconButton>
+                </div>
+              )}
+            </div>
+            <div className="indicatmailicon">
+              <IconButton>
+                <EmailIcon/>
+              </IconButton>
+              <IconButton>
+                <LocalPhoneIcon />
               </IconButton>
             </div>
           </div>
@@ -89,7 +119,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
 
       <div className="container abotus" id="aboutus">
         <div class="row mt-5 p-5 row1">
