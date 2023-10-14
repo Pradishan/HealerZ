@@ -208,7 +208,7 @@ export default function Home() {
         className="bg-light text-center"
         style={{
           backgroundColor: "white",
-          boxShadow: "20px 6px 10px 0px rgba(0, 0, 0, 0.25)",
+          boxShadow: "20px 6px 10px 5px rgba(0, 0, 0, 0.1)",
           marginBottom: "-10px",
         }}
       >

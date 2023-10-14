@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $patientID = $data['patientID'];
     $password = $data['password'];
+    $rememberMe = isset($data['rememberMe5']) ? $data['rememberMe5'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
@@ -32,6 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!$user || $password !== $user["Password"]) {
         echo json_encode(array("message" => "Invalid User ID or Password."));
         exit();
+    }
+    if ($rememberMe) {
+        setcookie("patientID", $patientID, time() + 24 * 60 * 60 * 60, "/");
+        setcookie("authToken2", $token, time() + 24 * 60 * 60 * 60, "/");
     }
 
 

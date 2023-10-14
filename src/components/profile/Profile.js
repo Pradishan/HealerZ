@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/logo.png";
-import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import profprofimg from "../../assets/Profilesideimg.webp"
+import profprofimg from "../../assets/Profilesideimg.webp";
 import default_dp from "../../assets/default_dp.png";
 import AgeCalculator from "../doctorinterface/algorithms/AgeCalculator";
+import { IconButton } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import personalsetting from "../../assets/Personal settings.svg";
 
 const Profile = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -143,7 +145,6 @@ const Profile = () => {
           }
         }
         res.data.error && toast.error(res.data.error);
-        toast.success("Special Disease updated Successfully");
         setTimeout(function () {
           window.location.reload();
         }, 2000);
@@ -198,12 +199,9 @@ const Profile = () => {
   };
 
   const onPDFdownload = () => {
-    // using Java Script method to get PDF file
     fetch("sample.pdf").then((response) => {
       response.blob().then((blob) => {
-        // Creating new object of PDF file
         const fileURL = window.URL.createObjectURL(blob);
-        // Setting various property values
         let alink = document.createElement("a");
         alink.href = fileURL;
         alink.download = "CST20008.pdf";
@@ -250,38 +248,42 @@ const Profile = () => {
     sessionStorage.setItem("loginStatus", "Logged out successfully!");
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg shadow top navbarh"
-        style={{ zIndex: 1000 }}
+        className={`navbar navbar-expand-lg shadow top navbarh ${
+          menuOpen ? "open" : "close"
+        }`}
+        style={{ zIndex: "1000" }}
       >
         <div className="container-fluid">
           <a className="navbar-brand navbar-brand1" href="/">
             <img src={logo} alt="HealerZ" height="48px" />
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+            {menuOpen ? (
+              <span className="close-icon">&times;</span>
+            ) : (
+              <span className="navbar-toggler-icon"></span>
+            )}
           </button>
           <div
-            className="navbar-collapse navbar-collapse1 collapse "
-            id="navbarTogglerDemo02"
+            className={`navbar-collapse navbar-collapse1 collapse ${
+              menuOpen ? "show" : ""
+            }`}
           >
             <ul className="navbar-nav">
               <li className="nav-item nav-link nav-hover navicoon">
                 <a className="nav-link" href="/home">
-                  <FeatherIcon
-                    icon="home"
-                    className="me-2 naviccon2 nav-hover"
-                  />
+                  <IconButton aria-label="delete">
+                    <HomeIcon className="naviccon2 " />
+                  </IconButton>
                   <span className="lettnav">HOME</span>
                 </a>
               </li>
@@ -291,12 +293,6 @@ const Profile = () => {
                   href="/login"
                   onClick={logout}
                 >
-                  {/* <FeatherIcon icon="user" className="me-2 loginiccontt" /> */}
-                  {/* <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    className="me-2 loginiccontt"
-                  /> */}
                   <img
                     src={profilepic}
                     alt="avatar"
@@ -317,15 +313,6 @@ const Profile = () => {
           <div className="card card-1 cardproff">
             <h3 className="serhed7">Profile</h3>
             <hr />
-            {/* <div className="card sub-card cardproff">
-              <div className="info">
-                <h6>Farhath</h6>
-                <p className="info">cst20001</p>
-                <p className="info"> N0:31, Kandy, Sri Lanka</p>
-                <p className="info">0771234567</p>
-              </div>
-              <div></div>
-            </div> */}
             {userdata.map((data, index) => (
               <div key={index}>
                 <div
@@ -434,6 +421,7 @@ const Profile = () => {
             <div className="card card-2 cardproff">
               <div className="form-container">
                 <h3 className="serhed6">Edit Profile Details</h3>
+                <hr />
                 <form id="editProfileForm" encType="multipart/form-data">
                   <div className="container">
                     <div className="column-container">
@@ -576,18 +564,7 @@ const Profile = () => {
                     </div>
 
                     <h5>Allergies and Diseases</h5>
-
                     <div className="allergies">
-                      {/* <div className="form-group">
-                  <label for="allergies">Allergies:</label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    id="allergies"
-                    name="allergies"
-                  ></input>
-                </div> */}
-
                       <div className="form-floating">
                         <textarea
                           className="form-control"
@@ -600,35 +577,38 @@ const Profile = () => {
                           }}
                         ></textarea>
                         <label htmlFor="diseases">Specific Diseases</label>
+                        <hr />
+                        <div className="button">
+                          <button
+                            className="btn shadow gradient-button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleAlergyUpdate();
+                            }}
+                          >
+                            Save Changes
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <hr />
-                    <div className="button">
-                      <button
-                        className="btn shadow gradient-button"
-                        onClick={(e) => {
-                          e.preventDefault();
-
-                          handleAlergyUpdate();
-                        }}
-                      >
-                        Save Changes
-                      </button>
-                    </div>
-                    <hr />
                   </div>
                 </form>
               </div>
+              <div className="personalsettingimg">
+                <img src={personalsetting} alt="" />
+              </div>
             </div>
+            
           ) : (
             <div className="card card-2 cardproff">
               <div className="justify-content-center mb-2 profilesideimg">
-                <img src={profprofimg} alt="Background"/>
+                <img src={profprofimg} alt="Background" />
               </div>
 
               <div className="">
                 <div className="form-container">
                   <h3 className="serhed6">Request Medical</h3>
+                  <hr />
                   <form
                     id="medical-request-form"
                     onSubmit={(e) => handleAddMedicalRequest(e)}
