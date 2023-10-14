@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
-import FeatherIcon from "feather-icons-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { IconButton } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 
 function Login() {
   const [patientID, setPatientID] = useState("");
@@ -74,35 +75,41 @@ function Login() {
       });
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg shadow top navbarh">
+      <nav
+        className={`navbar navbar-expand-lg shadow top navbarh ${
+          menuOpen ? "open" : "close"
+        }`}
+      >
         <div className="container-fluid">
           <a className="navbar-brand navbar-brand1" href="/login">
             <img src={logo} alt="HealerZ" height="48px" />
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+            {menuOpen ? (
+              <span className="close-icon">&times;</span>
+            ) : (
+              <span className="navbar-toggler-icon"></span>
+            )}
           </button>
           <div
-            className="navbar-collapse navbar-collapse1 collapse "
-            id="navbarTogglerDemo02"
+            className={`navbar-collapse navbar-collapse1 collapse ${
+              menuOpen ? "show" : ""
+            }`}
           >
             <ul className="navbar-nav">
               <li className="nav-item nav-link nav-hover navicoon">
                 <a className="nav-link" href="/home">
-                  <FeatherIcon
-                    icon="home"
-                    className="me-2 naviccon2 nav-hover"
-                  />
+                  <IconButton aria-label="delete">
+                    <HomeIcon className="naviccon2 " />
+                  </IconButton>
                   <span className="lettnav">HOME</span>
                 </a>
               </li>
@@ -161,24 +168,21 @@ function Login() {
                   </span>
                 )}
               </div>
-              <div
-                    className="form-check mb-3"
-                    style={{ marginTop: "15px" }}
-                  >
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="rememberMeCheckbox"
-                      checked={rememberMe5}
-                      onChange={() => setRememberMe5(!rememberMe5)}
-                    />
-                    <label
-                      className="form-check-label remmbermepatient"
-                      htmlFor="rememberMeCheckbox"
-                    >
-                      Remember Me !
-                    </label>
-                  </div>
+              <div className="form-check mb-3" style={{ marginTop: "15px" }}>
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="rememberMeCheckbox"
+                  checked={rememberMe5}
+                  onChange={() => setRememberMe5(!rememberMe5)}
+                />
+                <label
+                  className="form-check-label remmbermepatient"
+                  htmlFor="rememberMeCheckbox"
+                >
+                  Remember Me !
+                </label>
+              </div>
               <div className="text-center">
                 <button
                   type="submit"

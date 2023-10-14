@@ -173,6 +173,18 @@ a.forgot {
     }
 }
 
+
+@media (max-width: 768px) {
+    .cont {
+        margin-top: 50px;
+        width: 400px !important;
+    }
+    .login {
+        margin-left: 50px;
+    }
+
+}
+
 .remmbermepatient {
     font-size: 16px;
     font-weight: 600;

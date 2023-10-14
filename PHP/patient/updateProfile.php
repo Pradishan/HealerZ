@@ -87,7 +87,7 @@ try {
         $stmt = $conn->prepare("UPDATE patient SET SpecialDisease = ? WHERE Patient_ID = ?");
         $stmt->execute([$_POST['SpecialDisease'], $_POST['Patient_ID']]);
 
-        $message = 'Allergy details updated successfully.';
+        $message = 'Allergies and Diseases details updated successfully.';
     }
 } catch (PDOException $e) {
     $error = 'Database error: ' . $e->getMessage();

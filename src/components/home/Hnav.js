@@ -3,7 +3,6 @@ import logo from "../../assets/logo.png";
 import FeatherIcon from "feather-icons-react";
 import "./Home.css";
 import { IconButton } from "@mui/material";
-
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import HomeIcon from "@mui/icons-material/Home";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
