@@ -14,8 +14,9 @@
 }
 
 .cont {
+    margin-top: 50px;
     width: 690px !important;
-    height: 400px;
+    height: 450px;
     display: grid;
     grid-template-columns: 100%;
     grid-template-areas: "login";
@@ -82,13 +83,16 @@
 }
 
 .login {
-    grid-area: login;
     display: flex;
     flex-direction: column;
+    margin-right: auto;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    margin-top: 50px;
     background: white;
+}
+
+.logininputpat{
+    width: 300px !important;
 }
 
 .login h3.title {
@@ -167,4 +171,22 @@ a.forgot {
     .design {
         display: block;
     }
+}
+
+
+@media (max-width: 768px) {
+    .cont {
+        margin-top: 50px;
+        width: 400px !important;
+    }
+    .login {
+        margin-left: 50px;
+    }
+
+}
+
+.remmbermepatient {
+    font-size: 16px;
+    font-weight: 600;
+    color: darkblue;
 }
