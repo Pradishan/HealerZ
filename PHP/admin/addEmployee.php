@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $regNo = $_POST["regNo"];
 
                 $employee->setEmployee_ID($employee_id);
-                $employee->setEmployee_name($employee_name);
+                $employee->setEmployeeName($employee_name);
                 $employee->setUserType($userType);
                 $employee->setEmail($email);
                 $employee->setPhoneNo($phoneNo);
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $regNo = $_POST["regNo"];
 
                 $employee->setEmployee_ID($employee_id);
-                $employee->setEmployee_name($employee_name);
+                $employee->setEmployeeName($employee_name);
                 $employee->setUserType($userType);
                 $employee->setEmail($email);
                 $employee->setPhoneNo($phoneNo);
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $pass = $_POST["password"];
 
                 $employee->setEmployee_ID($employee_id);
-                $employee->setEmployee_name($employee_name);
+                $employee->setEmployeeName($employee_name);
                 $employee->setUserType($userType);
                 $employee->setPassword($pass);
                 break;
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $pass = $_POST["password"];
 
                 $employee->setEmployee_ID($employee_id);
-                $employee->setEmployee_name($employee_name);
+                $employee->setEmployeeName($employee_name);
                 $employee->setUserType($userType);
                 $employee->setPassword($pass);
                 

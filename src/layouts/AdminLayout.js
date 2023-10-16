@@ -72,7 +72,7 @@ function Layout({ children }) {
     <div className="container-fluid">
       <div className="row flex-nowrap">
         <Sidebar
-          className="sidebar sidebarrt"
+          className="sidebar sidebarrt min-vh-100 w-100px"
           collapsed={collapsed}
           style={{ backgroundColor: "white" }}
           rootStyles={{
