@@ -325,4 +325,41 @@ src/Admin.css
     height: 330px;
 }
  
+/* Style the dropdown container */
+select {
+    width: 270px;
+    height: 30px;
+    border: 1px solid #4F4F4F;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Style the dropdown options */
+  select option {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Style the disabled option */
+  select option:disabled {
+    color: #aaa !important; 
+  }
+
+  select option[value=""] [disabled] {
+    color: #aaa; 
+  }
+  
+  /* Style the dropdown arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  
+  /* Style the focus state */
+  select:focus {
+    outline: none;
+    border-color: #9608af;
+    box-shadow: 0 0 5px rgba(153, 0, 255, 0.5);
+  }
   
