@@ -30,12 +30,12 @@ try {
 if (isset($_POST['id'])) {
     $id=$_POST['id'];
     
-    $stmt = $pdo->prepare("SELECT DISTINCT * FROM blood_Donation_Status WHERE BDId = :id ");
+    $stmt = $pdo->prepare("SELECT DISTINCT * FROM blood_Donation_Status WHERE PatientId = :id ORDER BY Date desc");
     $stmt->execute(['id' => $id]);
-    $result = $stmt->fetch();
+    $result = $stmt->fetchAll();
 
     if ($result) {
-        echo json_encode(["message" => "Donated"]);
+        echo json_encode(["message" => "Donated", "details"=>$result]);
     } else {
        echo json_encode(["message" => "Not Donated"]);
       
