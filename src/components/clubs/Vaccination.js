@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import the CSS file
 import "./vaccination.css";
 import axios from "axios";
-import { gridColumnGroupsLookupSelector } from "@mui/x-data-grid";
+import Vaccine_reg from "./Vaccine_reg";
 
 export default function Vaccination() {
   const [id, setId] = useState("");
@@ -81,6 +81,7 @@ export default function Vaccination() {
           <strong>Vaccination Status:</strong> {vaccinationStatus}
         </div>
       </div>
+      {vaccinationStatus === "Not vaccinated" && <Vaccine_reg />}
     </ClubLayout>
   );
 }

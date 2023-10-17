@@ -8,6 +8,16 @@ import axios from "axios";
 export default function Blooddonation() {
   const [id, setId] = useState("");
   const [donationStatus, setDonationStatus] = useState("");
+  const [donationhist, setDonationhist] = useState(null);
+
+  const checkDonationAvailability = (date) => {
+    const date1 = new Date(date);
+    const date2 = new Date();
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return diffDays >= 90 ? "Can Donate" : "Cannot Donate";
+  };
 
   const handleIdChange = (e) => {
     setId(e.target.value);
@@ -15,7 +25,7 @@ export default function Blooddonation() {
 
   const checkDonationStatus = () => {
     const formData = new FormData();
-    formData.append("BDId", id);
+    formData.append("id", id);
 
     axios
       .post(
@@ -24,6 +34,11 @@ export default function Blooddonation() {
       )
       .then((response) => {
         setDonationStatus(response.data.message);
+        if (response.data.message === "Donated") {
+          setDonationhist(response.data.details);
+        } else {
+          setDonationhist(null);
+        }
       })
       .catch((error) => {
         console.error("There was an error fetching the data", error);
@@ -34,7 +49,7 @@ export default function Blooddonation() {
     <ClubLayout>
       <div className="container Blooddonation">
         {" "}
-        {/* Apply the "container" class */}
+        {}
         <h1>Blood Donation Checker</h1>
         <div>
           <label>ID:</label>
@@ -45,6 +60,31 @@ export default function Blooddonation() {
           <strong>Donation Status:</strong> {donationStatus}
         </div>
       </div>
+      {donationhist !== null && (
+        <div>
+          <table>
+            <tr>
+              <td>Blood Group</td>
+              <td>{donationhist[0]?.BloodGroup}</td>
+            </tr>
+            <tr>
+              <td>Blood Donation Availability</td>
+              <td>{checkDonationAvailability(donationhist[0]?.Date)}</td>
+            </tr>
+            <tr>
+              <td colSpan={1}>Donation History</td>
+            </tr>
+            {donationhist.map((history, key) => {
+              return (
+                <tr key={key}>
+                  <td>{key + 1}</td>
+                  <td>{history?.Date}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+      )}
     </ClubLayout>
   );
 }
