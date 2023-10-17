@@ -210,6 +210,7 @@ export default function Home() {
           backgroundColor: "white",
           boxShadow: "20px 6px 10px 5px rgba(0, 0, 0, 0.1)",
           marginBottom: "-10px",
+          marginTop:'20px'
         }}
       >
         <MDBContainer className="p-4 pb-0">
