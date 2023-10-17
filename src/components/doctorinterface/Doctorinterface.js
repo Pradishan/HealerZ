@@ -55,7 +55,7 @@ export default function Doctorinterface ()
                   { Array.isArray( ids ) ? (
                     ids.map( ( id ) =>
                     {
-                      return <option value={ id.Patient_ID } />;
+                      return <option key={id.Patient_ID} value={ id.Patient_ID } />;
                     } )
                   ) : (
                     <option value="No IDs to display." />
