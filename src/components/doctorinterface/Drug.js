@@ -97,7 +97,7 @@ export default function Drug ( props )
                 { Array.isArray( drugs ) ? (
                     drugs.map( ( drug ) =>
                     {
-                        return <option value={ drug.Drug_Name } />;
+                        return <option key={ drug.Drug_Name } value={ drug.Drug_Name } />;
                     } )
                 ) : (
                     <option value="No Drugs to display." />

@@ -42,7 +42,7 @@ export default function MedModal ( props )
                             <Nav variant="pills" className="flex-column">
                                 <Nav.Item style={ { maxHeight: '70vh', overflowY: 'auto' } }>
                                     { Array.isArray( records ) ? ( records.map( ( record ) => (
-                                        <Nav.Link eventKey={ record.MedicalRecord_ID }><DateTime dateTime={ record.DateandTime } /></Nav.Link>
+                                        <Nav.Link eventKey={ record.MedicalRecord_ID } key={record.MedicalRecord_ID}><DateTime dateTime={ record.DateandTime } /></Nav.Link>
                                     ) ) ) : (
                                         <div className='d-flex flex-column justify-content-center align-items-center mt-5 pt-5'>
                                             <img src={ file } height="50px" alt="select" />
@@ -64,7 +64,7 @@ export default function MedModal ( props )
                                     </Tab.Pane>
                                 ) : null }
                                 { Array.isArray( records ) ? ( records.map( ( record ) => (
-                                    <Tab.Pane eventKey={ record.MedicalRecord_ID }>
+                                    <Tab.Pane eventKey={ record.MedicalRecord_ID } key={ record.MedicalRecord_ID }>
                                         <p><span className='fw-bold'>Date : </span>{ record.DateandTime }</p>
                                         <h5>Patient complain</h5>
                                         <p>{ record.Patientcomplaint }</p>
