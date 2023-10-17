@@ -1,40 +1,43 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:3000");
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "healerz"; 
 
-$conn = new mysqli($host, $username, $password, $database);
+require_once '../../classes/DBconnector.php';
+use classes\DBconnector;
+$dbConnector = new DBconnector();
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $conn = $dbConnector->getConnection();
+} catch (PDOException $ex) {
+    die("ERROR: " . $ex->getMessage());
 }
 
 $sql = "SELECT Category, COUNT(*) as count FROM drug GROUP BY Category";
 
-$result = $conn->query($sql);
+try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
-    $data = array();
-    $totalCount = 0;
+    if ($results) {
+        $totalCount = 0;
 
-    while ($row = $result->fetch_assoc()) {
-        $totalCount += $row['count'];
+        foreach ($results as &$row) {
+            $totalCount += $row['count'];
+        }
+
+        foreach ($results as &$row) {
+            $percentage = ($row['count'] / $totalCount) * 100;
+            $row['percentage'] = $percentage;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($results);
+    } else {
+        echo "No data found";
     }
-  
-    $result->data_seek(0);
-
-    while ($row = $result->fetch_assoc()) {
-        $percentage = ($row['count'] / $totalCount) * 100;
-        $row['percentage'] = $percentage; 
-        $data[] = $row;
-    }
-
-    echo json_encode($data);
-} else {
-    echo "No data found";
+} catch (PDOException $ex) {
+    http_response_code(500);
+    echo json_encode(array("message" => "Error: " . $ex->getMessage()));
 }
 
-$conn->close();
-?>
+$conn = null;

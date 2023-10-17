@@ -190,7 +190,7 @@ export default function HbloodReg() {
             Register
           </Button>
           <ToastContainer/>
-          <Button className='btn btn-primary' onClick={resetForm}>
+          <Button className='btn btn-secondary' onClick={resetForm}>
             Reset
           </Button>
         </Modal.Footer>

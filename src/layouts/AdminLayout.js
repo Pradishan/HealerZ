@@ -72,7 +72,7 @@ function Layout({ children }) {
     <div className="container-fluid">
       <div className="row flex-nowrap">
         <Sidebar
-          className="sidebar sidebarrt"
+          className="sidebar sidebarrt min-vh-100 w-100px"
           collapsed={collapsed}
           style={{ backgroundColor: "white" }}
           rootStyles={{
@@ -180,30 +180,6 @@ function Layout({ children }) {
                 </MenuItem>
               </SubMenu>
 
-              <SubMenu
-                selected
-                className="subline menu-item"
-                label="Doctor"
-                icon={<HealthAndSafetyIcon />}
-                sx={{ fontSize: "16px" }}
-              >
-                <MenuItem
-                  className="menu-item"
-                  sx={{ pl: 0 }}
-                  component={<Link to="/admin/adddoctor" />}
-                  icon={<PersonAddIcon />}
-                >
-                  Add Doctor
-                </MenuItem>
-                <MenuItem
-                  className="menu-item "
-                  sx={{ pl: 0 }}
-                  component={<Link to="/admin/doctorlist" />}
-                  icon={<ListIcon />}
-                >
-                  Doctor List
-                </MenuItem>
-              </SubMenu>
 
               <SubMenu
                 className="subline menu-item"

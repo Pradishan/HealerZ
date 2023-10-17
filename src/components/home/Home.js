@@ -1,86 +1,164 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hnav from "./Hnav";
 import Carousel from "./Carousel";
-import Hcard from "./Hcard";
 import Hteam from "./Hteam";
 import logo from "../../assets/logo.png";
-import { Icon } from "@iconify/react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./Home.css";
 import FeatherIcon from "feather-icons-react";
 import { MDBFooter, MDBContainer, MDBBtn } from "mdb-react-ui-kit";
+import CircleIcon from "@mui/icons-material/Circle";
+import { IconButton } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import availability from "../../assets/Doctors-pana.svg";
+import PhoneModal from "./PhoneModal";
+import focus from "../../assets/focus1.svg";
+import focus2 from "../../assets/focus2.svg";
+import focus3 from "../../assets/focus3.svg";
+import aboutus from "../../assets/aboutus.svg";
+import vaccination from "../../assets/vaccination.svg";
+import blooddonation from "../../assets/Blooddonation.svg";
+import HvacciReg from "./HvacciReg";
+import HbloodReg from "./HbloodReg";
 
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
+  const [isDoctorSessionOn, setIsDoctorSessionOn] = useState(false);
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
 
+  useEffect(() => {
+    let login = sessionStorage.getItem("Doctor");
+    if (login === "true") {
+      setIsDoctorSessionOn(true);
+    }
+  }, []);
+
+  const handleEmailClick = () => {
+    window.location.href = "mailto:healerz763@gmail.com";
+  };
+
+  const handlePhoneClick = () => {
+    setShowPhoneModal(true);
+  };
+
+  const closePhoneModal = () => {
+    setShowPhoneModal(false);
+  };
   const Teammem = () => {
-    setShowTeam(!showTeam); // Toggle the visibility of the team section
+    setShowTeam(!showTeam);
   };
   return (
     <div>
       <div className="navigationH">
         <Hnav />
       </div>
-      <div className="slider p-3" style={{ minHeight: "100vh" }}>
+      <div className="slider p-3" style={{ minHeight: "100vh" }} id="home">
         <Carousel />
-        <h1 className='serhed'>Healerz</h1>
-      </div>
-
-      <div className="slider p-3" id="services">
-        <div className="container text-center mt-2">
-          <h1 className="serhed">OUR SERVICES</h1>
-          <div className="container text-center mt-2 contgap1">
-            <div className="row  cardcontainer1">
-              <div className="col">
-                <div className="card cardWrap1">
-                  <Icon
-                    icon="uil:file-medical"
-                    color="#3c4048"
-                    width="100"
-                    className="iconn"
-                  />
-                  <h4> Medical Service Management</h4>
+        <div className="cardcontenthome">
+          <img src={availability} alt="" />
+          <div className="cardconthhav">
+            <h2>Monday - Friday</h2>
+            <h3>9.00 AM - 5.00 PM</h3>
+            <h4>Available Time</h4>
+          </div>
+          <div className="availabiltyiconpos">
+            <div>
+              {isDoctorSessionOn ? (
+                <div className="indicatdoct">
+                  <h4>Available</h4>
+                  <IconButton className="availabiltyicon">
+                    <CircleIcon
+                      sx={{ fontSize: "30px" }}
+                      style={{ color: "#7CFC00" }}
+                    />
+                  </IconButton>
                 </div>
-              </div>
-              <div className="col">
-                <div className="card cardWrap1">
-                  <Icon
-                    icon="carbon:event"
-                    color="#3c4048"
-                    width="100"
-                    className="iconn"
-                  />
-                  <h4> Club Event Management </h4>
+              ) : (
+                <div className="indicatdoct">
+                  <h4>Not available</h4>
+                  <IconButton className="availabiltyicon">
+                    <CircleIcon
+                      sx={{ fontSize: "30px" }}
+                      style={{ color: "#FF0000" }}
+                    />
+                  </IconButton>
                 </div>
-              </div>
-              <div className="col">
-                <div className="card cardWrap1">
-                  <Icon
-                    icon="wpf:doctors-bag"
-                    color="#3c4048"
-                    width="100"
-                    className="iconn"
-                  />
-                  <h4> Doctor-Patient Collaboration </h4>
-                </div>
-              </div>
+              )}
+            </div>
+            <div className="indicatmailicon">
+              <IconButton
+                onClick={handleEmailClick}
+                className="contacticonnhome"
+              >
+                <EmailIcon sx={{ color: "#4B0082" }} />
+              </IconButton>
+              <IconButton
+                onClick={handlePhoneClick}
+                className="contacticonnhome"
+              >
+                <LocalPhoneIcon sx={{ color: "#800000" }} />
+              </IconButton>
             </div>
           </div>
         </div>
       </div>
-      <div className="container" id="aboutus">
-        <div class="row mt-5 p-5 row1">
-          <div class="col">
-            <img
-              src={logo}
-              alt="HealerZ"
-              height="200px"
-              style={{ marginTop: "180px" }}
-            />
+
+      <div className="slider p-3" id="services">
+        <h1 className="serheddd">OUR Focus</h1>
+        <h3 className="serhedddsub">
+          We provide the best medical service for UWU
+        </h3>
+        <div className="servicefocushome">
+          <div className="servicefocushomesub">
+            <img src={focus} alt="" className="focusimage" />
+            <h4>Medical Service Management</h4>
+            <p>
+              This focus involves efficiently managing medical services within
+              the university's health center. It includes tasks such as
+              appointment scheduling, resource allocation, and ensuring the
+              seamless operation of medical facilities to provide quality care
+              to students and staff.
+            </p>
           </div>
-          <div class="col">
-            <br />
-            <h2 className="serhed"> ABOUT US</h2>
+          <div className="servicefocushomesub">
+            <img src={focus2} alt="" className="focusimage" />
+            <h4>Doctor-Patient Collaboration</h4>
+            <p>
+              This aspect emphasizes the importance of effective communication
+              and cooperation between healthcare professionals and patients. It
+              encourages a patient-centered approach, where doctors work closely
+              with patients to understand their needs, provide information, and
+              involve them in healthcare decisions.
+            </p>
+          </div>
+          <div className="servicefocushomesub">
+            <img src={focus3} alt="" className="focusimage" />
+            <h4>Health and Wellness Programs</h4>
+            <p>
+              These programs aim to promote the overall well-being of the
+              university community. They include initiatives like fitness
+              classes, mental health workshops, and nutrition counseling to help
+              individuals adopt and maintain healthy lifestyles, preventing
+              health issues and fostering a culture of well-being.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="container abotus" id="aboutus">
+        <div class="row mt-5 p-5 row1 abotuscontainer">
+          <div class="col aboutushome">
+            <img src={aboutus} alt="HealerZ" />
+          </div>
+          <div class="col abotuscontentalign">
+            <h1 className="serheddd">About us</h1>
+            <h3 className="serhedddsub1">
+              Exploring our System HealerZ : Learn More About Us
+            </h3>
+            <hr />
             <p>
               {" "}
               The mission is to create a user-friendly University medical system
@@ -97,21 +175,42 @@ export default function Home() {
               Meet Our Team
             </button>
           </div>
-
           <div className="team">{showTeam && <Hteam onClose={Teammem} />}</div>
         </div>
       </div>
 
-      <div className="events">
-        <Hcard />
+      <div className="slider p-3" id="events">
+        <h1 className="serheddd">Events</h1>
+        <h3 className="serhedddsub">
+          Participate in Life-Saving Initiatives: Registration Forms Below
+        </h3>
+        <div className="container text-center mt-2 contgap1">
+          <div className="row  cardcontainer2">
+            <div className="col">
+              <div className="card cardWrap2">
+                <img src={vaccination} alt="" />
+                <h1 className="title"> vaccination</h1>
+                <HvacciReg onClick={handleShow}></HvacciReg>
+              </div>
+            </div>
+            <div className="col">
+              <div className="card cardWrap2">
+                <img src={blooddonation} alt="" />
+                <h1 className="title">Blood donation</h1>
+                <HbloodReg onClick={handleShow}></HbloodReg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <MDBFooter
         className="bg-light text-center"
         style={{
           backgroundColor: "white",
-          boxShadow: "20px 6px 10px 0px rgba(0, 0, 0, 0.25)",
+          boxShadow: "20px 6px 10px 5px rgba(0, 0, 0, 0.1)",
           marginBottom: "-10px",
+          marginTop:'20px'
         }}
       >
         <MDBContainer className="p-4 pb-0">
@@ -190,6 +289,10 @@ export default function Home() {
           UWU{" "}
         </div>
       </MDBFooter>
+
+      {showPhoneModal && (
+        <PhoneModal show={showPhoneModal} onHide={closePhoneModal} />
+      )}
     </div>
   );
 }

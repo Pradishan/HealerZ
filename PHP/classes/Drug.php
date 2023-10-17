@@ -16,6 +16,7 @@ class Drug
     private $Category;
     private $Drug_dosage;
     private $Descriptions;
+    private $StockCount;
 
     public function __construct($Drug_ID, $Drug_Name, $Category, $Drug_dosage, $Descriptions)
     {
@@ -236,4 +237,23 @@ class Drug
             return false;
         }
     }
+
+
+    public function updateStockCount($stockCount)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "UPDATE druginventory SET StockCount = :stockCount WHERE Drug_ID = :drugID";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':stockCount', $stockCount, PDO::PARAM_INT);
+            $stmt->bindParam(':drugID', $this->Drug_ID, PDO::PARAM_INT);
+            $res = $stmt->execute();
+
+            return $res;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    
 }
