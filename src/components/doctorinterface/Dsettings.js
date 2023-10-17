@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from "react-bootstrap";
+import { Modal, Accordion } from "react-bootstrap";
 
 export default function Dsettings ( props )
 {
@@ -25,47 +25,38 @@ export default function Dsettings ( props )
                         </div>
                     </div>
 
-                    <div className="accordion accordion-flush" id="accordionExample">
-                        <div className="accordion-item">
-                            <h2 className="accordion-header">
-                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#profile" aria-expanded="false" aria-controls="collapseOne">
-                                    Change profile picture
-                                </button>
-                            </h2>
-                            <div id="profile" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    <div className="form-floating mb-3">
-                                        <input type="file" className="form-control" id="inputGroupFile02" />
-                                    </div>
-                                    <button className='btn w-100 text-white shadow btn-gr' >
-                                        Update Profile
-                                    </button>
+                    <Accordion defaultActiveKey="0">
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>Change profile picture</Accordion.Header>
+                            <Accordion.Body>
+                                <div className="form-floating mb-3">
+                                    <input type="file" className="form-control" id="inputGroupFile02" />
                                 </div>
-                            </div>
-                            <h2 className="accordion-header">
-                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#password" aria-expanded="false" aria-controls="collapseOne">
-                                    Change Password
+                                <button className='btn w-100 text-white shadow btn-gr' >
+                                    Update Profile
                                 </button>
-                            </h2>
-                            <div id="password" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                        <label for="floatingInput">Current password</label>
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                        <label for="floatingInput">New password</label>
-                                    </div>
-                                    <div className="form-floating">
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                                        <label for="floatingPassword">Confirm Password</label>
-                                    </div>
-                                    <button className='btn w-100 text-white shadow my-3 btn-gr'  >Change Password</button>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="1">
+                            <Accordion.Header>Change Password</Accordion.Header>
+                            <Accordion.Body>
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control" id="floatingPassword1" placeholder="name@example.com" />
+                                    <label htmlFor="floatingPassword1">Current password</label>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control" id="floatingPassword2" placeholder="name@example.com" />
+                                    <label htmlFor="floatingPassword2">New password</label>
+                                </div>
+                                <div className="form-floating">
+                                    <input type="password" className="form-control" id="floatingPassword3" placeholder="Password" />
+                                    <label htmlFor="floatingPassword3">Confirm Password</label>
+                                </div>
+                                <button className='btn w-100 text-white shadow my-3 btn-gr'  >Change Password</button>
+
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
 
                 </Modal.Body>
             </Modal>

@@ -43,10 +43,12 @@ export default function DrugDisplay(props) {
                 {
                   return <PrescriptionDrug records = {records} />;
                 } ) ) : (
+                  <tr><td>
                 <div className='d-flex justify-content-center align-items-center m-0 p-1'>
                   <img src={ add } className='m-0 p-1' height="50px" alt="select" />
                   <span className='m-0 p-1'> Add drugs </span>
                 </div>
+                </td></tr>
               )
               }
     </tbody>

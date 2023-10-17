@@ -101,8 +101,8 @@ export default function MedicalPage ()
           </div>
 
           <div className='d-flex align-items-center'>
-              <select class="form-select rounded-pill border-0 bg-gray" aria-label="Default select example" value={ searchStatus } onChange={ handleSearchStatus }>
-                <option selected value="">All</option>
+              <select id='statusfilter' className="form-select rounded-pill border-0 bg-gray" aria-label="Default select example" value={ searchStatus } onChange={ handleSearchStatus }>
+                <option  defaultValue="">All</option>
                 <option value="Requested">Requested</option>
                 <option value="Approved">Approved</option>
                 <option value="Rejected">Rejected</option>
@@ -157,10 +157,12 @@ export default function MedicalPage ()
                 ) )
               ) : (
                 <tr>
+                  <td>
                   <div className='d-flex justify-content-center align-items-center m-0 p-1'>
                     <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
                     <span className='m-0 p-1'>No Medical records to display.</span>
                   </div>
+                  </td>
                 </tr>
               ) }
             </tbody>

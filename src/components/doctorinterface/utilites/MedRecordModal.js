@@ -13,7 +13,7 @@ export default function MedRecordModal(props) {
                 <Modal.Title>Medical Record</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{maxHeight:'70vh',overflowY: 'auto'}}>
-            <th scope="col">Date</th>
+            <h3>Date</h3>
                 <p>{date}</p>
                 <h3>Patient complain</h3>
                 <p>{complain}</p>

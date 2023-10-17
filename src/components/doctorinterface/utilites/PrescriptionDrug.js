@@ -93,6 +93,7 @@ export default function PrescriptionDrug ( props )
 
     return (
         <tr>
+            <td>
             <div className='d-flex justify-content-between' >
                 <div>
                     <div className='d-flex justify-content-between'>
@@ -140,6 +141,7 @@ export default function PrescriptionDrug ( props )
                 </div>
             </div>
             <hr className='m-0 p-0' />
+            </td>
         </tr>
     )
 }

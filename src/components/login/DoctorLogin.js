@@ -91,25 +91,25 @@ export default function DoctorLogin() {
                     <input
                       type="text"
                       className="form-control"
-                      id="floatingInput"
+                      id="doctorID"
                       placeholder="D0001"
                       value={doctorID}
                       onChange={(e) => setDoctorID(e.target.value)}
                       style={{ width: "100%" }}
                     />
-                    <label htmlFor="floatingInput">Doctor ID</label>
+                    <label htmlFor="doctorID">Doctor ID</label>
                   </div>
                   <div className="form-floating">
                     <input
                       type={showPassword ? "text" : "password"}
                       className="form-control"
-                      id="floatingPassword"
+                      id="floatingPassworddoc"
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       style={{ width: "100%" }}
                     />
-                    <label htmlFor="floatingPassword">Password</label>
+                    <label htmlFor="floatingPassworddoc">Password</label>
                     {password && (
                       <span
                         className="password-toggle"
@@ -134,13 +134,13 @@ export default function DoctorLogin() {
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      id="rememberMeCheckbox"
+                      id="rememberMeCheckboxdoc"
                       checked={rememberMe3}
                       onChange={() => setRememberMe3(!rememberMe3)}
                     />
                     <label
                       className="form-check-label remmberme"
-                      htmlFor="rememberMeCheckbox"
+                      htmlFor="rememberMeCheckboxdoc"
                     >
                       Remember Me !
                     </label>

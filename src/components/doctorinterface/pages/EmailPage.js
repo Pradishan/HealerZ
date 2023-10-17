@@ -66,13 +66,14 @@ export default function EmailPage ( props )
               { Array.isArray( records ) ? (
                 records.map( ( record ) =>
                 {
-                  return <MedicalRecords date={ record.DateandTime } complain={ record.Patientcomplaint } examination={ record.OnExamination } tests={ record.Tests } diagnosis={ record.Confirmeddiagnosis } prescription={ record.Prescription_ID } />;
+                  return <MedicalRecords key = {record.MedicalRecord_ID} date={ record.DateandTime } complain={ record.Patientcomplaint } examination={ record.OnExamination } tests={ record.Tests } diagnosis={ record.Confirmeddiagnosis } prescription={ record.Prescription_ID } />;
                 } ) ) : (
-                <tr>
+                <tr><td>
                   <div className='d-flex justify-content-center align-items-center m-0 p-1'>
                     <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
                     <span className='m-0 p-1'> No Medical records to display.</span>
                   </div>
+                  </td>
                 </tr>
               )
               }

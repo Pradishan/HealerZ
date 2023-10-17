@@ -148,7 +148,7 @@ export default function MedRequestModal ( props )
 
           <div className='form-floating'>
             <textarea className='form-control' placeholder='Leave a comment here' id='messaagefromdoctor' style={ { height: '100px' } }></textarea>
-            <label htmlFor='floatingTextarea2'>Message</label>
+            <label htmlFor='messaagefromdoctor'>Message</label>
           </div>
 
           <div className='d-flex align-items-center justify-content-between'>
