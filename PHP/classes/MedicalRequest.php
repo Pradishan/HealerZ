@@ -139,4 +139,29 @@ class MedicalRequest
             return false;
         }
     }
+
+    public static function handleRequest($State,$Request_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE medicalreport SET State = ? WHERE MedicalRequest_ID = ?";
+            
+            $pstmt = $con->prepare($query);
+
+            $pstmt->bindParam(1,$State);
+            $pstmt->bindParam(2,$Request_ID);
+
+            $res = $pstmt->execute();
+
+            if ($res) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            return $e;
+        }
+    }
 }
