@@ -28,6 +28,7 @@ import Vaccination from "./components/clubs/Vaccination";
 import Registration from "./components/clubs/Registration";
 import Protected3 from "./components/login/Protected3";
 import HealerZ from "./components/HealerZ";
+import Test123 from "./components/Test123";
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/clubs/vacination" element={<Vaccination />}/>
         <Route path="/clubs/registration" element={<Registration/>}/>
         <Route path="/" element={<HealerZ/>}/>
+        <Route path="/test" element={<Test123/>}/>
         
       </Routes>
       </div>
