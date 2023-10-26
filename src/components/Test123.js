@@ -10,7 +10,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 export default function Test123() {
   const [adminID, setAdminID] = useState("");
   const [password, setPassword] = useState("");
-  const [logmessage, setLogmessage] = useState(null);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe2, setRememberMe2] = useState(false);
@@ -24,6 +23,7 @@ export default function Test123() {
       setRememberMe2(true);
     }
   }, []);
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -51,19 +51,13 @@ export default function Test123() {
           const userRole = response.data.role;
 
           switch (userRole) {
-            case "doctor":
-              sessionStorage.setItem("doctor", true);
-              sessionStorage.setItem("role", userRole);
+            case "Doctor":
               navigate("/doctor");
               break;
-            case "pharmacist":
-              sessionStorage.setItem("pharmacist", true);
-              sessionStorage.setItem("role", userRole);
+            case "Pharmacist":
               navigate("/inventory-interface/dashboard");
               break;
             case "admin":
-              sessionStorage.setItem("admin", true);
-              sessionStorage.setItem("role", userRole);
               navigate("/admin/dashboard");
               break;
             default:
