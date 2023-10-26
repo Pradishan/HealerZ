@@ -15,7 +15,7 @@ export default function Protected(props) {
           loginStatusMessage = "Please login to access the Doctor interface!";
           break;
         case "Pharmacist":
-          loginStatusMessage = "Please login to access the Pharmacist interface!";
+          loginStatusMessage = "Pls login to access the Inventory interface!";
           break;
         case "admin":
           loginStatusMessage = "Please login to access the Admin interface!";

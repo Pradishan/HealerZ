@@ -13,6 +13,7 @@ export default function Test123() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe2, setRememberMe2] = useState(false);
+  const [logmessage, setLogmessage] = useState(null); 
 
   useEffect(() => {
     const savedemployeeID = localStorage.getItem("employeeID");
@@ -21,6 +22,13 @@ export default function Test123() {
     if (savedRememberMe2 === "true" && savedemployeeID) {
       setemployeeID(savedemployeeID);
       setRememberMe2(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus) {
+      setLogmessage(loginStatus);
     }
   }, []);
   
@@ -98,7 +106,7 @@ export default function Test123() {
                   className="loginiconlogin"
                   sx={{ fontSize: "40px" }}
                 />
-                <h3>Login | </h3>
+                <h3>Login</h3>
               </div>
               <div className="card-body">
                 <form action="" className="py-2">
@@ -174,6 +182,8 @@ export default function Test123() {
                     </button>
                   </div>
                 </form>
+                <hr/>
+                <p className="logomsg">{logmessage}</p>
               </div>
             </div>
             <ToastContainer />
