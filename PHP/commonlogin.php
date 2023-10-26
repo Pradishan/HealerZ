@@ -23,7 +23,7 @@ if ($method === "POST") {
 
     $employeeID = $data['employeeID'];
     $password = $data['password'];
-    $rememberMe = isset($data['rememberMe2']) ? $data['rememberMe2'] : false;
+    $rememberMe = isset($data['rememberMe']) ? $data['rememberMe'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();

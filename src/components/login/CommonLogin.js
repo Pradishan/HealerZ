@@ -12,16 +12,16 @@ export default function Test123() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe2, setRememberMe2] = useState(false);
+  const [rememberMe, setrememberMe] = useState(false);
   const [logmessage, setLogmessage] = useState(null); 
 
   useEffect(() => {
     const savedemployeeID = localStorage.getItem("employeeID");
-    const savedRememberMe2 = localStorage.getItem("rememberMe2");
+    const savedrememberMe = localStorage.getItem("rememberMe");
 
-    if (savedRememberMe2 === "true" && savedemployeeID) {
+    if (savedrememberMe === "true" && savedemployeeID) {
       setemployeeID(savedemployeeID);
-      setRememberMe2(true);
+      setrememberMe(true);
     }
   }, []);
 
@@ -48,12 +48,12 @@ export default function Test123() {
         if (message === "Login successful.") {
           toast.success(message);
 
-          if (rememberMe2) {
+          if (rememberMe) {
             localStorage.setItem("employeeID", employeeID);
-            localStorage.setItem("rememberMe2", "true");
+            localStorage.setItem("rememberMe", "true");
           } else {
             localStorage.removeItem("employeeID");
-            localStorage.removeItem("rememberMe2");
+            localStorage.removeItem("rememberMe");
           }
 
           const userRole = response.data.role;
@@ -157,8 +157,8 @@ export default function Test123() {
                       type="checkbox"
                       className="form-check-input"
                       id="rememberMeCheckbox"
-                      checked={rememberMe2}
-                      onChange={() => setRememberMe2(!rememberMe2)}
+                      checked={rememberMe}
+                      onChange={() => setrememberMe(!rememberMe)}
                     />
                     <label
                       className="form-check-label remmberme"
