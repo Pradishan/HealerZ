@@ -125,8 +125,12 @@ class employee
     public function addEmployee()
     {
         try {
-            $dbcon = new DBconnector();
-            $conn = $dbcon->getConnection();
+        $dbcon = new DBconnector();
+        $conn = $dbcon->getConnection();
+
+        if ($this-> userType  == 'pharmacist' || $this-> userType == 'doctor' ) {
+        
+           
             $query = "INSERT INTO employee (employee_ID, employeeName, phoneNo, email, address, password, regNo, userType) VALUES (:employee_ID, :employeeName, :phoneNo, :email, :address, :password, :regNo,  :userType)";
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':employee_ID', $this->employee_ID);
@@ -138,98 +142,41 @@ class employee
             $stmt->bindValue(':regNo', $this->regNo);
             $stmt->bindValue(':userType', $this->userType);
             $res = $stmt->execute();
-
-            if ($res) {
-                // Check user type and add specific attributes to respective tables
-                switch ($this->userType) {
-                    case 'doctor':
-                        $this->addDoctorAttributes($conn);
-                        break;
-                    case 'pharmacist':
-                        $this->addPharmacistAttributes($conn);
-                        break;
-                    case 'admin':
-                        $this->addAdminAttributes($conn);
-                        break;
-                    case 'clubadmin':
-                        $this->addClubadminAttributes($conn);
-                        break;
-
-                    default:
-                        // Default case if user type doesn't match any specific type
-                        break;
-                }
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-
-    private function addDoctorAttributes($conn)
-    {
-
-        $query = "INSERT INTO doctor (Doctor_ID,  Doctor_Name, Password, Designation, Email, PhoneNo, Address,  SLMC ) VALUES (:Doctor_ID, :Doctor_Name, :Password, :Designation, :Email, :PhoneNo, :Address, :SLMC)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Doctor_ID', $this->employee_ID);
-        $stmt->bindValue(':Doctor_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->bindValue(':PhoneNo', $this->phoneNo);
-        $stmt->bindValue(':Email', $this->email);
-        $stmt->bindValue(':Address', $this->address);
-        $stmt->bindValue(':SLMC', $this->regNo);
-        $stmt->bindValue(':Designation', $this->userType);
-        $stmt->execute();
-    }
-
-    private function addPharmacistAttributes($conn)
-    {
-        try {
-            $query = "INSERT INTO pharmacist (Pharmacist_ID, Pharmacist_Name, Password, Designation, Email, PhoneNo, Address,  SLMC ) VALUES (:Pharmacist_ID, :Pharmacist_Name, :Password, :Designation, :Email, :PhoneNo, :Address, :SLMC)";
-            $stmt = $conn->prepare($query);
-            $stmt->bindValue(':Pharmacist_ID', $this->employee_ID);
-            $stmt->bindValue(':Pharmacist_Name', $this->employeeName);
-            $stmt->bindValue(':Password', $this->password);
-            $stmt->bindValue(':PhoneNo', $this->phoneNo);
-            $stmt->bindValue(':Email', $this->email);
-            $stmt->bindValue(':Address', $this->address);
-            $stmt->bindValue(':SLMC', $this->regNo);
-            $stmt->bindValue(':Designation', $this->userType);
-            $res = $stmt->execute();
             employee::SendMail($this->employee_ID, $this->password, $this->email, $this->employeeName);
-            if ($res) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            return false;
-        }
+
+        }else{
+            // try {
+            //     $dbcon = new DBconnector();
+            //     $conn = $dbcon->getConnection();
+                $query = "INSERT INTO employee (employee_ID, employeeName, password, userType) VALUES (:employee_ID, :employeeName, :password, :userType)";
+                $stmt = $conn->prepare($query);
+                $stmt->bindValue(':employee_ID', $this->employee_ID);
+                $stmt->bindValue(':employeeName', $this->employeeName);
+                $stmt->bindValue(':password', $this->password);
+                $stmt->bindValue(':userType', $this->userType);
+                $res = $stmt->execute();
+                employee::SendMail($this->employee_ID, $this->password, $this->email, $this->employeeName);
+    
+
+        // } catch (PDOException $e) {
+        //     return false;
+        // }
+
+        // } catch (PDOException $e) {
+        //     return false;
+        // }
     }
-
-    private function addAdminAttributes($conn)
-    {
-        $query = "INSERT INTO admin (Admin_ID, Admin_Name, Password) VALUES (:Admin_ID, :Admin_Name, :Password)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Admin_ID', $this->employee_ID);
-        $stmt->bindValue(':Admin_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->execute();
+    
+    if ($res) {
+        return true;
+    }else {
+        return false;
     }
-
-    private function addClubadminAttributes($conn)
-    {
-        $query = "INSERT INTO admin (Admin_ID, Admin_Name, Password) VALUES (:Admin_ID, :Admin_Name, :Password)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Admin_ID', $this->employee_ID);
-        $stmt->bindValue(':Admin_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->execute();
+    }catch (PDOException $e) {
+        return false;
     }
-
-
+}
+ 
 
     public function deleteEmployee()
     {
