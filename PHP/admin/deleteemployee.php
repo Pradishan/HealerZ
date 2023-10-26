@@ -10,18 +10,18 @@ use classes\Employee;
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
 try {
-    if (!isset($_GET['Employee_ID'])) {
-        throw new Exception('Patient_ID is not provided in the request.');
+    if (!isset($_GET['employee_ID'])) {
+        throw new Exception('employee_ID is not provided in the request.');
     }
-    $employeeid = $_GET['Employee_ID']; 
-    $employee=new Patient($employeeid, null, null, null, null,null,null,null,null);
-    $res = $employee->deleteEmployee();
+    $employee_ID = $_GET['employee_ID']; 
+    $employee =new Employee($employee_ID, null, null, null, null, null, null, null);
+    $res = $employee->deleteemployee();
     $stmt->execute();
     $rowCount = $stmt->rowCount();
     if ($rowCount > 0) {
-        echo json_encode(array('message' => 'employee deleted successfully'));
+        echo json_encode(array('message' => 'Employee deleted successfully'));
     } else {
-        echo json_encode(array('error' => 'employee not found'));
+        echo json_encode(array('error' => 'Employee not found'));
     }
 } catch (PDOException $e) {
     echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
@@ -31,5 +31,4 @@ try {
 } else {
     $response = array("message" => "Invalid request method.");
     echo json_encode($response);
-  
 }
