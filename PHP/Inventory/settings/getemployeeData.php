@@ -3,8 +3,8 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-require '../classes/DBconnector.php';
-use \classes\DBconnector;
+require '../../classes/DBconnector.php';
+use classes\DBconnector;
 
 try {
     $dbcon = new DBconnector();
@@ -12,15 +12,15 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if (isset($_GET['adminID']) && !empty($_GET['adminID'])) {
-            $patientID = $_GET['adminID'];
-            $stmt = $conn->prepare("SELECT * FROM admin WHERE Admin_ID  = '$patientID'");
+        if (isset($_GET['employeeID']) && !empty($_GET['employeeID'])) {
+            $patientID = $_GET['employeeID'];
+            $stmt = $conn->prepare("SELECT * FROM employee WHERE employee_ID  = '$patientID'");
             $stmt->execute();
        
             $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
           
             if ($filteredData) {
-                $stmt = $conn->prepare("SELECT Profile FROM admin WHERE Admin_ID  = '$patientID'");
+                $stmt = $conn->prepare("SELECT Profile FROM employee WHERE employee_ID  = '$patientID'");
                 $stmt->execute();
                 $imagePath = $stmt->fetch(PDO::FETCH_ASSOC)['Profile'];
          

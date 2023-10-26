@@ -7,42 +7,38 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-export default function AdminLogin() {
-  const [adminID, setAdminID] = useState("");
+export default function Test123() {
+  const [employeeID, setemployeeID] = useState("");
   const [password, setPassword] = useState("");
-  const [logmessage, setLogmessage] = useState(null); // Initially display 'jana.jpg'
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe2, setRememberMe2] = useState(false);
+  const [rememberMe, setrememberMe] = useState(false);
+  const [logmessage, setLogmessage] = useState(null); 
 
   useEffect(() => {
-    const savedAdminID = localStorage.getItem("adminID");
-    const savedRememberMe2 = localStorage.getItem("rememberMe2");
+    const savedemployeeID = localStorage.getItem("employeeID");
+    const savedrememberMe = localStorage.getItem("rememberMe");
 
-    if (savedRememberMe2 === "true" && savedAdminID) {
-      setAdminID(savedAdminID);
-      setRememberMe2(true);
+    if (savedrememberMe === "true" && savedemployeeID) {
+      setemployeeID(savedemployeeID);
+      setrememberMe(true);
     }
   }, []);
 
   useEffect(() => {
-    let login = sessionStorage.getItem("admin");
-
-    if (login === true) {
-      navigate("/admin/dashboard");
-    }
     let loginStatus = sessionStorage.getItem("loginStatus");
     if (loginStatus) {
       setLogmessage(loginStatus);
     }
   }, []);
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost/HealerZ/PHP/AdminLogin.php", {
-        adminID: adminID,
+      .post("http://localhost/HealerZ/PHP/commonlogin.php", {
+        employeeID: employeeID,
         password: password,
       })
       .then((response) => {
@@ -51,18 +47,45 @@ export default function AdminLogin() {
 
         if (message === "Login successful.") {
           toast.success(message);
-          if (rememberMe2) {
-            localStorage.setItem("adminID", adminID);
-            localStorage.setItem("rememberMe2", "true");
+
+          if (rememberMe) {
+            localStorage.setItem("employeeID", employeeID);
+            localStorage.setItem("rememberMe", "true");
           } else {
-            localStorage.removeItem("adminID");
-            localStorage.removeItem("rememberMe2");
+            localStorage.removeItem("employeeID");
+            localStorage.removeItem("rememberMe");
           }
-          setTimeout(() => {
-            sessionStorage.setItem("admin", true);
-            sessionStorage.setItem("adminID", response.data.adminID);
-            navigate("/admin/dashboard");
-          }, 100);
+
+          const userRole = response.data.role;
+
+          switch (userRole) {
+            case "Doctor":
+              setTimeout(() => {
+                sessionStorage.setItem("Doctor", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/doctor");
+              }, 100);
+             
+              break;
+            case "Pharmacist":
+              setTimeout(() => {
+                sessionStorage.setItem("Pharmacist", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/inventory-interface/dashboard");
+              }, 100);
+             
+              break;
+            case "admin":
+              setTimeout(() => {
+                sessionStorage.setItem("admin", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/admin/dashboard");
+              }, 100);
+              break;
+            default:
+              // Handle other roles or provide a default redirection
+              break;
+          }
         } else {
           toast.error(message);
         }
@@ -77,14 +100,13 @@ export default function AdminLogin() {
       <div className="container mt-5 text-center">
         <div className="row justify-content-center">
           <div className="col-md-4">
-            {/* <p style={{width:'400px'}}>{logmessage}</p> */}
             <div className="card border-0 shadow loginncardpos">
               <div className="card-header bg-white text-center logoaddinglogin">
                 <AdminPanelSettingsIcon
                   className="loginiconlogin"
                   sx={{ fontSize: "40px" }}
                 />
-                <h3>Login | Admin</h3>
+                <h3>Sign In Here</h3>
               </div>
               <div className="card-body">
                 <form action="" className="py-2">
@@ -94,10 +116,10 @@ export default function AdminLogin() {
                       className="form-control"
                       id="floatingInput"
                       placeholder="D0001"
-                      value={adminID}
-                      onChange={(e) => setAdminID(e.target.value)}
+                      value={employeeID}
+                      onChange={(e) => setemployeeID(e.target.value)}
                     />
-                    <label htmlFor="floatingInput">Admin ID</label>
+                    <label htmlFor="floatingInput">Username</label>
                   </div>
                   <div className="form-floating">
                     <input
@@ -135,8 +157,8 @@ export default function AdminLogin() {
                       type="checkbox"
                       className="form-check-input"
                       id="rememberMeCheckbox"
-                      checked={rememberMe2}
-                      onChange={() => setRememberMe2(!rememberMe2)}
+                      checked={rememberMe}
+                      onChange={() => setrememberMe(!rememberMe)}
                     />
                     <label
                       className="form-check-label remmberme"
@@ -160,6 +182,8 @@ export default function AdminLogin() {
                     </button>
                   </div>
                 </form>
+                <hr/>
+                <p className="logomsg">{logmessage}</p>
               </div>
             </div>
             <ToastContainer />

@@ -1,9 +1,10 @@
 <?php
 require './classes/DBconnector.php';
 use classes\DBconnector;
+
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization"); 
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
@@ -15,21 +16,21 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (empty($data['adminID']) || empty($data['password'])) {
+    if (empty($data['employeeID']) || empty($data['password'])) {
         echo json_encode(array("message" => "Admin ID and Password are required."));
         exit();
     }
 
-    $adminID = $data['adminID'];
+    $employeeID = $data['employeeID'];
     $password = $data['password'];
-    $rememberMe = isset($data['rememberMe2']) ? $data['rememberMe2'] : false;
+    $rememberMe = isset($data['rememberMe']) ? $data['rememberMe'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
-    $sql = "SELECT * FROM admin WHERE Admin_ID = :adminID LIMIT 1"; 
+    $sql = "SELECT * FROM employee WHERE employee_ID = :employeeID LIMIT 1";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":adminID", $adminID);
+    $stmt->bindParam(":employeeID", $employeeID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -38,14 +39,8 @@ if ($method === "POST") {
         exit();
     }
 
-    if ($rememberMe) {
-        setcookie("adminID", $adminID, time() + 24 * 60 * 60 * 60, "/");
-        setcookie("authToken2", $token, time() + 24 * 60 * 60 * 60, "/");
-    }
-
-
-    echo json_encode(array("message" => "Login successful.","adminID" => $adminID));
-
+    $userRole = $user["role"]; 
+    echo json_encode(array("message" => "Login successful.", "employeeID" => $employeeID, "role" => $userRole));
 } else {
     echo json_encode(array("message" => "Method not allowed."));
 }

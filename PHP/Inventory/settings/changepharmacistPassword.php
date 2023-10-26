@@ -18,12 +18,12 @@ try {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!isset($data['Pharmacist_ID'])) {
+    if (!isset($data['employee_ID'])) {
         throw new Exception('Pharmacist_ID is not provided in the request.');
     }
 
-    $stmt = $conn->prepare("UPDATE pharmacist SET Password = :Password WHERE Pharmacist_ID = :Pharmacist_ID");
-    $stmt->bindValue(':Pharmacist_ID', $data['Pharmacist_ID']);
+    $stmt = $conn->prepare("UPDATE employee SET Password = :Password WHERE employee_ID = :employee_ID");
+    $stmt->bindValue(':employee_ID', $data['employee_ID']);
     $stmt->bindValue(':Password', $data['Password']);
 
     $stmt->execute();

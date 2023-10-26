@@ -34,8 +34,8 @@ function Layout({ children }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/admin/getadminData.php",
-        { params: { adminID: sessionStorage.getItem("adminID") } }
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
       );
 
       console.log(response.data);
@@ -117,7 +117,7 @@ function Layout({ children }) {
                       <div className="d-flex align-items-center justify-content-center">
                         <div>
                           <h5 className="m-0">
-                            {userdata.map((data) => data.Admin_Name)}
+                            {userdata.map((data) => data.employee_Name)}
                           </h5>
                           {/* <p className='txt  m-0 text-muted'>emp20345</p> */}
                           <p className="txt m-0 text-muted">
