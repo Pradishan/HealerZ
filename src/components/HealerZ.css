@@ -147,7 +147,7 @@
 .logoaddinglogin{
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    gap: 60px;
 }
 .logoaddinglogin h3{
     color: rgb(0, 0, 70);

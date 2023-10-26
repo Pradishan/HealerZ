@@ -7,7 +7,7 @@ import { IconButton } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import HomeIcon from "@mui/icons-material/Home";
 import { Dna } from "react-loader-spinner";
-import Test123 from "./CommonLogin";
+import Test123 from "./login/CommonLogin";
 import PersonIcon from "@mui/icons-material/Person";
 function HealerZ() {
   const [done, setDone] = useState(undefined);
