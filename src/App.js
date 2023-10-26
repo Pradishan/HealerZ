@@ -15,6 +15,7 @@ import Supply from "./components/inventoryinterface/Supply";
 import Page404 from "./components/page404/Page404";
 import Settings from "./components/inventoryinterface/Settings";
 import Protected from "./components/login/Protected";
+import Protected1 from "./components/login/Protected1";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
 import AddPatient from "./components/admin/AddPatient";
 import UpdatePatient from "./components/admin/UpdatePatient";
@@ -43,7 +44,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/profile"
-          element={<Protected Component={Profile} role="patient" />}
+          element={<Protected1 Component={Profile} role="patient" />}
         />
         <Route path="/inventory-interface/dashboard" element={ <Protected Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/supply" element={ <Protected Component={ Supply }roll={'Pharmacist'} /> } />
