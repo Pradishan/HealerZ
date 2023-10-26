@@ -98,7 +98,7 @@ export default function Test123() {
                   className="loginiconlogin"
                   sx={{ fontSize: "40px" }}
                 />
-                <h3>Login | Admin</h3>
+                <h3>Login | </h3>
               </div>
               <div className="card-body">
                 <form action="" className="py-2">
@@ -111,7 +111,7 @@ export default function Test123() {
                       value={employeeID}
                       onChange={(e) => setemployeeID(e.target.value)}
                     />
-                    <label htmlFor="floatingInput">Admin ID</label>
+                    <label htmlFor="floatingInput">Username</label>
                   </div>
                   <div className="form-floating">
                     <input

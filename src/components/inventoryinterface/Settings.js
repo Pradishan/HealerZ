@@ -36,8 +36,8 @@ const Settings = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/Inventory/settings/getPharmacistData.php",
-        { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
       );
 
       console.log(response.data);
@@ -83,7 +83,7 @@ const Settings = () => {
       toast.error("No changes made");
     } else {
       const formData = new FormData();
-      formData.append("Pharmacist_ID", sessionStorage.getItem("pharmacistID"));
+      formData.append("employee_ID", sessionStorage.getItem("employeeID"));
       formData.append("PhoneNo", editedPhoneNo);
       formData.append("Address", editedAddress);
       editedProfilePic && formData.append("Profile", editedProfilePic);
@@ -201,8 +201,8 @@ const Settings = () => {
 
                             <div className="d-flex align-items-center justify-content-center">
                               <div>
-                                <h2 className="m-0">{data.Pharmacist_Name}</h2>
-                                <p className="fs-5 m-0">{data.Pharmacist_ID}</p>
+                                <h2 className="m-0">{data.employee_Name}</h2>
+                                <p className="fs-5 m-0">{data.employee_ID}</p>
                                 <p className="fs-9 settemailposition">
                                   {data.Email}
                                 </p>

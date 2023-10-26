@@ -42,8 +42,8 @@ function Layout({ children }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/Inventory/settings/getPharmacistData.php",
-        { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
       );
 
       console.log(response.data);
@@ -74,7 +74,7 @@ function Layout({ children }) {
 
 
   useEffect(() => {
-    const userDataArray = userdata.map((data) => data.Pharmacist_Name);
+    const userDataArray = userdata.map((data) => data.employee_Name);
     const activeRoute = getActiveRoute(location.pathname);
 
     let textToType = "";
@@ -294,7 +294,7 @@ function Layout({ children }) {
 
                 <ul className="navbar-nav ms-auto align-items-center">
                   <li className="nav-item px-2 layoutProfilename">
-                    {userdata.map((data) => data.Pharmacist_Name)}
+                    {userdata.map((data) => data.employee_Name)}
                   </li>
 
                   <li className="nav-item px-2">
