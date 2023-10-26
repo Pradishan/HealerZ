@@ -8,18 +8,18 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function Test123() {
-  const [adminID, setAdminID] = useState("");
+  const [employeeID, setemployeeID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe2, setRememberMe2] = useState(false);
 
   useEffect(() => {
-    const savedAdminID = localStorage.getItem("adminID");
+    const savedemployeeID = localStorage.getItem("employeeID");
     const savedRememberMe2 = localStorage.getItem("rememberMe2");
 
-    if (savedRememberMe2 === "true" && savedAdminID) {
-      setAdminID(savedAdminID);
+    if (savedRememberMe2 === "true" && savedemployeeID) {
+      setemployeeID(savedemployeeID);
       setRememberMe2(true);
     }
   }, []);
@@ -30,7 +30,7 @@ export default function Test123() {
 
     axios
       .post("http://localhost/HealerZ/PHP/Testlogin.php", {
-        adminID: adminID,
+        employeeID: employeeID,
         password: password,
       })
       .then((response) => {
@@ -41,10 +41,10 @@ export default function Test123() {
           toast.success(message);
 
           if (rememberMe2) {
-            localStorage.setItem("adminID", adminID);
+            localStorage.setItem("employeeID", employeeID);
             localStorage.setItem("rememberMe2", "true");
           } else {
-            localStorage.removeItem("adminID");
+            localStorage.removeItem("employeeID");
             localStorage.removeItem("rememberMe2");
           }
 
@@ -52,13 +52,27 @@ export default function Test123() {
 
           switch (userRole) {
             case "Doctor":
-              navigate("/doctor");
+              setTimeout(() => {
+                sessionStorage.setItem("Doctor", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/doctor");
+              }, 100);
+             
               break;
             case "Pharmacist":
-              navigate("/inventory-interface/dashboard");
+              setTimeout(() => {
+                sessionStorage.setItem("Pharmacist", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/inventory-interface/dashboard");
+              }, 100);
+             
               break;
             case "admin":
-              navigate("/admin/dashboard");
+              setTimeout(() => {
+                sessionStorage.setItem("admin", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/admin/dashboard");
+              }, 100);
               break;
             default:
               // Handle other roles or provide a default redirection
@@ -94,8 +108,8 @@ export default function Test123() {
                       className="form-control"
                       id="floatingInput"
                       placeholder="D0001"
-                      value={adminID}
-                      onChange={(e) => setAdminID(e.target.value)}
+                      value={employeeID}
+                      onChange={(e) => setemployeeID(e.target.value)}
                     />
                     <label htmlFor="floatingInput">Admin ID</label>
                   </div>

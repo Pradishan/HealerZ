@@ -16,21 +16,21 @@ $method = $_SERVER["REQUEST_METHOD"];
 if ($method === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (empty($data['adminID']) || empty($data['password'])) {
+    if (empty($data['employeeID']) || empty($data['password'])) {
         echo json_encode(array("message" => "Admin ID and Password are required."));
         exit();
     }
 
-    $adminID = $data['adminID'];
+    $employeeID = $data['employeeID'];
     $password = $data['password'];
     $rememberMe = isset($data['rememberMe2']) ? $data['rememberMe2'] : false;
 
     $dbcon = new DBconnector();
     $conn = $dbcon->getConnection();
 
-    $sql = "SELECT * FROM employee WHERE employee_ID = :adminID LIMIT 1";
+    $sql = "SELECT * FROM employee WHERE employee_ID = :employeeID LIMIT 1";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":adminID", $adminID);
+    $stmt->bindParam(":employeeID", $employeeID);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -41,7 +41,7 @@ if ($method === "POST") {
 
     $userRole = $user["role"]; // Assuming Role is stored in the database
     // Include the 'role' in the response data
-    echo json_encode(array("message" => "Login successful.", "adminID" => $adminID, "role" => $userRole));
+    echo json_encode(array("message" => "Login successful.", "employeeID" => $employeeID, "role" => $userRole));
 } else {
     echo json_encode(array("message" => "Method not allowed."));
 }
