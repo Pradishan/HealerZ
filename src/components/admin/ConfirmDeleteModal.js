@@ -9,7 +9,7 @@ const ConfirmDeleteModal = ({ show, onHide, onConfirm }) => {
         <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to delete</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ background: "white" }}>
-        <p>Are you sure you want to delete this Patient Data ?</p>
+        <p>Are you sure you want to delete this Data ?</p>
       </Modal.Body>
       <Modal.Footer>
       <Button variant="danger" onClick={onConfirm}>

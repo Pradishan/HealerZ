@@ -22,34 +22,33 @@ function ViewEmployeeModal(props) {
                         <tr>
                             <th className={'detailhed'}>Employee_Name</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.employeeName}</td>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.employee_Name}</td>
                         </tr>
                         <tr>
-                            <th className={'detailhed'}>PhoneNo</th>
+                            <th className={'detailhed'}>Designation</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.phoneNO}</td>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.role}</td>
                         </tr>
                         <tr>
                             <th className={'detailhed'}>Email</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.email}</td>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.Email}</td>
+                        </tr>
+                        <tr>
+                            <th className={'detailhed'}>PhoneNo</th>
+                            <th className={'detailspac'}>:</th>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.PhoneNo}</td>
                         </tr>
                         <tr>
                             <th className={'detailhed'}>Address</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.address}</td>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.Address}</td>
                         </tr>
                         <tr>
                             <th className={'detailhed'}>SLMC RegNo</th>
                             <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.regNo}</td>
+                            <td className={'detaildet'}>{EmployeeDetails && EmployeeDetails.SLMC}</td>
                         </tr>
-                        <tr>
-                            <th className={'detailhed'}>UserType</th>
-                            <th className={'detailspac'}>:</th>
-                            <td className={'detaildet3'}>{EmployeeDetails && EmployeeDetails.userType}</td>
-                        </tr>
-                        
                         {/* Add more attributes here */}
                     </tbody>
                 </table>
@@ -57,7 +56,7 @@ function ViewEmployeeModal(props) {
                 <hr />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={onHide}>
+                <Button variant="secondary" onClick={onHide}>
                     Close
                 </Button>
             </Modal.Footer>

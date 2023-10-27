@@ -6,20 +6,17 @@ use classes\Employee;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
-        $employee_id = $_POST["employee_ID"];
-        $employee_name = $_POST["employee_name"];
-        $userType = $_POST["userType"];
-        $email = $_POST["email"];
-        $phoneNo = $_POST["phoneNo"];
-        $address = $_POST["address"];
-        $pass = $_POST["password"];
-        $regNo = $_POST["regNo"];
+        $employee_ID = $_POST["employee_ID"];
+        $employee_Name = $_POST["employee_name"];
+        $role = $_POST["userType"];
+        $Email = $_POST["email"];
+        $PhoneNo = $_POST["phoneNo"];
+        $Address = $_POST["address"];
+        $SLMC = $_POST["password"];
+        $Password = $_POST["regNo"];
 
      
-        $employee = new Employee($employee_id, $employee_name, $phoneNo, $email, $address, $pass, $regNo, $userType);
-
-
-        // Add the employee to the database
+        $employee = new Employee($employee_ID,$employee_Name,$role,$Email,$PhoneNo,$Address,$SLMC,$Password);
         $res = $employee->addEmployee();
 
         if ($res) {
