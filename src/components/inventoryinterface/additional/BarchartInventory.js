@@ -108,11 +108,22 @@ class BarchartInventory extends Component {
         colors: [], 
       },
     };
+
+    this.updateColorsInterval = null;
   }
 
   componentDidMount() {
+    this.fetchData(); // Initial data fetch
+    this.updateColorsInterval = setInterval(this.updateColors, 5000); // Update colors every 2 seconds
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateColorsInterval); // Clear the interval when the component unmounts
+  }
+
+  fetchData() {
     axios
-      .get('http://localhost/Healerz/PHP/Inventory/dashboard/categoriescountget.php') // Replace with the actual path to your PHP script
+      .get('http://localhost/Healerz/PHP/Inventory/dashboard/categoriescountget.php')
       .then((response) => {
         const data = response.data;
         const categories = data.map((item) => item.Category);
@@ -139,6 +150,21 @@ class BarchartInventory extends Component {
         console.error(error);
       });
   }
+
+  updateColors = () => {
+    const { data } = this.state.series[0];
+    const percentages = data.slice(); // Make a copy of the data array
+  
+    const randomColors = Array.from({ length: percentages.length }, () => `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`);
+  
+    this.setState((prevState) => ({
+      options: {
+        ...prevState.options,
+        colors: randomColors,
+      },
+    }));
+  }
+  
 
   render() {
     return (
