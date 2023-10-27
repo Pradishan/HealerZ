@@ -113,12 +113,12 @@ class BarchartInventory extends Component {
   }
 
   componentDidMount() {
-    this.fetchData(); // Initial data fetch
-    this.updateColorsInterval = setInterval(this.updateColors, 5000); // Update colors every 2 seconds
+    this.fetchData(); 
+    this.updateColorsInterval = setInterval(this.updateColors, 5000); 
   }
 
   componentWillUnmount() {
-    clearInterval(this.updateColorsInterval); // Clear the interval when the component unmounts
+    clearInterval(this.updateColorsInterval); 
   }
 
   fetchData() {
@@ -153,7 +153,7 @@ class BarchartInventory extends Component {
 
   updateColors = () => {
     const { data } = this.state.series[0];
-    const percentages = data.slice(); // Make a copy of the data array
+    const percentages = data.slice(); 
   
     const randomColors = Array.from({ length: percentages.length }, () => `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`);
   
