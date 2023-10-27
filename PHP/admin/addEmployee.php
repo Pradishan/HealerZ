@@ -7,14 +7,13 @@ use classes\Employee;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
         $employee_ID = $_POST["employee_ID"];
-        $employee_Name = $_POST["employee_name"];
-        $role = $_POST["userType"];
-        $Email = $_POST["email"];
-        $PhoneNo = $_POST["phoneNo"];
-        $Address = $_POST["address"];
-        $SLMC = $_POST["password"];
-        $Password = $_POST["regNo"];
-
+        $employee_Name = $_POST["employee_Name"];
+        $role = $_POST["role"];
+        $Email = $_POST["Email"]; 
+        $PhoneNo = $_POST["PhoneNo"]; 
+        $Address = $_POST["Address"]; 
+        $SLMC = $_POST["SLMC"];
+        $Password = $_POST["Password"];
      
         $employee = new Employee($employee_ID,$employee_Name,$role,$Email,$PhoneNo,$Address,$SLMC,$Password);
         $res = $employee->addEmployee();
