@@ -88,7 +88,7 @@ class BarchartInventory extends Component {
                   return val.toFixed(2) + '% HighStock: 200, LowStock: 50';
                 } else if (categories[opts.dataPointIndex] === 'Injections') {
                   return val.toFixed(2) + '% HighStock: 300, LowStock: 30';
-                }else if (categories[opts.dataPointIndex] === 'Implants') {
+                } else if (categories[opts.dataPointIndex] === 'Implants') {
                   return val.toFixed(2) + '% HighStock: 150, LowStock: 20';
                 }
               }
@@ -105,6 +105,7 @@ class BarchartInventory extends Component {
             color: '#444',
           },
         },
+        colors: [], 
       },
     };
   }
@@ -116,7 +117,9 @@ class BarchartInventory extends Component {
         const data = response.data;
         const categories = data.map((item) => item.Category);
         const percentages = data.map((item) => item.percentage);
-console.log(data.map((item) => item.Category));
+        
+        const randomColors = Array.from({ length: percentages.length }, () => `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`);
+        
         this.setState({
           series: [
             {
@@ -128,6 +131,7 @@ console.log(data.map((item) => item.Category));
             xaxis: {
               categories: categories,
             },
+            colors: randomColors,
           },
         });
       })
