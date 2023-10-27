@@ -56,7 +56,7 @@ function AddPatient(props) {
   };
 
   const handleSubmit = () => {
-    setIsLoading(true);
+    
     if (patient_id.length === 0) {
       toast.warning("Please Enter the Patient_ID");
     } else if (patient_name.length === 0) {
@@ -78,6 +78,7 @@ function AddPatient(props) {
     } else if (bg.length === 0) {
       toast.warning("Please Enter the BloodGroup");
     } else {
+      setIsLoading(true);
       const generatedPassword = generatePassword(8);
 
       const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";

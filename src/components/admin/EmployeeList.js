@@ -119,7 +119,7 @@ function EmployeeList(props) {
   return (
     <AdminLayout>
       {/* <h3 className="serhett">Employee List</h3> */}
-      <div className={"container Employeelisttable"}>
+      <div className={"container patientlisttable"}>
         <div className={"p-5"}>
           <hr />
           <div
@@ -188,7 +188,7 @@ function EmployeeList(props) {
                 <option value="admin">Admin</option>
                 <option value="Doctor">Doctor</option>
                 <option value="Pharmacist">Pharmacist</option>
-                <option value="ClubAdmin">ClubAdmin</option>
+                <option value="Clubadmin">ClubAdmin</option>
               </select>
               {selectedDesignation && (
                   <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedDesignation("")}>
@@ -225,7 +225,7 @@ function EmployeeList(props) {
                       <td>{data.employee_ID}</td>
                       <td>{data.employee_Name}</td>
                       <td>{data.role}</td>
-                      <td>{data.email}</td>
+                      <td>{data.Email}</td>
                       <td>{data.PhoneNo}</td>
                       <td>{data.SLMC}</td>
                       <td>

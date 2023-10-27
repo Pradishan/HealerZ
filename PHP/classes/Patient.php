@@ -242,7 +242,7 @@ class Patient
         $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
         $mail->Username = 'healerz763@gmail.com';                     //SMTP username
-        $mail->Password = 'lbnqanfdkzyvdgij';                               //SMTP password
+        $mail->Password = 'iqgb czzi sjbp ecjg';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         //Recipients
@@ -265,7 +265,7 @@ class Patient
         $message .= "HealerZ ," . "<br>";
         $message .= "Medical System of UWU ," . "<br>";
         $message .= "Uva Wellassa University of Srilanka ," . "<br>" . "<br>";
-        $message .= "<img src='https://lh3.googleusercontent.com/Qtl6yF3Qn3ma6vEdSuG82hh3U-DJ2g-mmteKeERMawrrecQVh9Mr5RNasI8Id9n2iOQ5FoTIQD30gvmhCnq5znTZcFNosr8bXa1iweg' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
+        $message .= "<img src='https://ibb.co/XW6mfhL' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
 
 
         $mail->Body = $message;
