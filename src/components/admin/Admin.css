@@ -319,6 +319,14 @@ src/Admin.css
     margin-left: 50px;
   }
 
+  .dashboradmin2{
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin-left: 50px;
+  }
+
   .custom-calendar7 {
     border: 3px solid #000 !important;
     width: 100% !important;

@@ -53,13 +53,9 @@ class EmployeeChart extends Component {
     axios.get('http://localhost/Healerz/PHP/admin/Employeecount.php')
       .then(response => {
         const roleCounts = response.data;
-        console.log(response.data);
-
-        // Extract role names and counts
-        const categories = Object.keys(roleCounts);
-        const data = Object.values(roleCounts);
-
-        // Update the state with the fetched data
+        const allCategories = ['Doctor', 'Pharmacist', 'admin', 'Clubadmin'];
+        const data = allCategories.map(category => roleCounts[category] || 0);
+        
         this.setState({
           series: [
             {
@@ -69,7 +65,7 @@ class EmployeeChart extends Component {
           options: {
             ...this.state.options,
             xaxis: {
-              categories: categories,
+              categories: allCategories,
               labels: {
                 style: {
                   colors: '#333',
