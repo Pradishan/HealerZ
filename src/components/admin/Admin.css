@@ -1,11 +1,9 @@
-src/Admin.css
-
-.Addcontt {
-    margin-left: 30px;
+src/Admin.css .Addcontt {
+  margin-left: 30px;
 }
 
 .App-header {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 
@@ -13,353 +11,382 @@ src/Admin.css
 /* Done button styles */
 
 .done-button {
-    position: relative;
-    left: 750px;
-    width: 150px;
-    background-color: purple !important;
-    color: #fff;
-    padding: 10px 80px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+  position: relative;
+  left: 750px;
+  width: 150px;
+  background-color: purple !important;
+  color: #fff;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-.done-buttontt3{
-    position: relative;
-    left: 780px;
-    width: 100px;
-    padding: 10px 80px;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+.done-buttontt3 {
+  position: relative;
+  left: 780px;
+  width: 100px;
+  padding: 10px 80px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .done-buttonn1 {
-    margin-left: 170px;
-    position: relative;
-    margin-right: 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 40px;
-    align-items: center;
+  margin-left: 170px;
+  position: relative;
+  margin-right: 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
 }
 
 .btn-danger {
-    background-color: #8f0e0e !important;
-    color: #fff;
-    padding: 10px 80px !important;
-    border: none;
+  background-color: #8f0e0e !important;
+  color: #fff;
+  padding: 10px 80px !important;
+  border: none;
 }
 
 .btn-danger:hover {
-    background-color: #d41225 !important;
+  background-color: #d41225 !important;
 }
 
 .inputfieldd {
-    padding: 15px;
+  padding: 15px;
 }
 
 .addboxx {
-    margin-left: 30px;
-    margin-right: 30px;
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
-    padding: 20px;
-    margin-bottom: 20px;
-    max-width: calc(150vh - 10px);
+  margin-left: 30px;
+  margin-right: 30px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: calc(150vh - 10px);
 }
 
 .cont1 {
-    text-align: left;
+  text-align: left;
 }
 
 .cont2 {
-    text-align: left;
-    padding-left: 140px;
+  text-align: left;
+  padding-left: 140px;
 }
 
 .addinputt {
-    padding: 15px;
-    padding-left: 40px;
+  padding: 15px;
+  padding-left: 40px;
 }
 
 .form-control {
-    width: 220px;
-    height: 20px;
-    border-radius: 5px;
+  width: 220px;
+  height: 20px;
+  border-radius: 5px;
 }
 
 .form-control1 {
-    width: 270px;
-    border-radius: 5px;
-    height: 30px;
+  width: 270px;
+  border-radius: 5px;
+  height: 30px;
 }
 
 .form-controlll1 {
-    width: 270px;
-    border-radius: 5px;
+  width: 270px;
+  border-radius: 5px;
 }
 
 .form-check-label {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    padding-left: 10px;
-    padding-right: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .Adddelbutt {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .done-button3 {
-    position: relative;
-    left: 420px;
-    background-color: purple !important;
-    color: #fff;
-    padding: 10px 80px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+  position: relative;
+  left: 420px;
+  background-color: purple !important;
+  color: #fff;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .done-button5 {
-    position: relative;
-    left: 600px;
-    color: #fff;
-    padding: 10px 80px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+  position: relative;
+  left: 600px;
+  color: #fff;
+  padding: 10px 80px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .SearchBox4 {
-    border-radius: 5px;
-    background: #ffffff;
-    width: 280px;
+  border-radius: 5px;
+  background: #ffffff;
+  width: 280px;
 }
 
 .SearchBox4::placeholder {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .done-button4 {
-    background-color: rgb(13, 0, 128) !important;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-left: 30px;
-    width: 120px;
-    margin-top: -3px;
+  background-color: rgb(13, 0, 128) !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 30px;
+  width: 120px;
+  margin-top: -3px;
 }
 
 .form-control1::placeholder {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .form-controlll1::placeholder {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .serhett {
-    text-transform: uppercase;
-    font-family: sans-serif;
-    margin: 50px auto;
-    margin-top: 40px;
-    color: purple;
-    font-weight: 700!important;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    max-width: 700px;
-    position: relative;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  margin: 50px auto;
+  margin-top: 40px;
+  color: purple;
+  font-weight: 700 !important;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  max-width: 700px;
+  position: relative;
 }
 
 .serhett:before {
-    content: "";
-    display: block;
-    width: 120px;
-    height: 2px;
-    background: #000;
-    left: 0;
-    top: 50%;
-    position: absolute;
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #000;
+  left: 0;
+  top: 50%;
+  position: absolute;
 }
 
 .serhett:after {
-    content: "";
-    display: block;
-    width: 120px;
-    height: 2px;
-    background: #000;
-    right: 0;
-    top: 50%;
-    position: absolute;
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #000;
+  right: 0;
+  top: 50%;
+  position: absolute;
 }
 
-.addboxx{
-    margin: 50px auto;
+.addboxx {
+  margin: 50px auto;
 }
 
-.searrrchbox{
-    width: 800px;
+.searrrchbox {
+  width: 800px;
 }
 
-.serachhett{
-    font-size: 20px;
-    margin-top: 5px;
+.serachhett {
+  font-size: 20px;
+  margin-top: 5px;
 }
-.patientlisttable{
-    margin-top: -50px;
+
+.patientlisttable {
+  margin-top: -50px;
 }
 
 .table-containertt {
-    overflow-y: scroll;
-    /* overflow-x: hidden; */
-    /* width: 100% !important; */
-    max-height: calc(100vh - 220px);
-    border-radius: 9px;
-    border: .75px solid rgba(63, 68, 81, .12156862745098039);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  overflow-y: scroll;
+  /* overflow-x: hidden; */
+  /* width: 100% !important; */
+  max-height: calc(100vh - 220px);
+  border-radius: 9px;
+  border: .75px solid rgba(63, 68, 81, .12156862745098039);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
+
 /* Center the calendar */
 .calenderrr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    margin-top: -80px;
-   margin-bottom: 100px;
-  }
-  
-  /* Style the calendar container */
-  .fc {
-    padding: 20px;
-    width: 500px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
- .fc-event {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    
-  }
-  .fc.fc-time {
-    font-style: italic;
-  }
-  
-  .fc-header-toolbar {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    padding: 10px;
-  }
-
-  .fc .fc-button-primary {
-    background-color:  #010024;
-    border-color:  #ffffff;
-    color: white;
-    margin: 2px;
-    border-radius: 5px;
-    text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  margin-top: -80px;
+  margin-bottom: 100px;
 }
- 
-  
-  /* Style the calendar footer (list view) */
-  .fc.fc-list {
-    background-color: #fff;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  .teaaaaam{
-    margin-bottom: 100px;
-  }
 
-  .pataddhed{
-    text-transform: uppercase;
-    font-family: sans-serif;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    color: purple;
-    font-weight: 700!important;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    position: relative;
-  }
-
-  .barchartcontainer{
-    max-width: 1000px;
-    margin-left: 100px;
-    margin-top: 50px;
-  }
-
-  .catbarchartt{
-    margin-top: 20px !important;
-  }
-
-  .dashboradmin{
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 1100px;
-    margin-left: 50px;
-  }
-
-  .custom-calendar7 {
-    border: 3px solid #000 !important;
-    width: 100% !important;
-    height: 330px;
+/* Style the calendar container */
+.fc {
+  padding: 20px;
+  width: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
- 
+
+.fc-event {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+
+}
+
+.fc.fc-time {
+  font-style: italic;
+}
+
+.fc-header-toolbar {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+
+.fc .fc-button-primary {
+  background-color: #010024;
+  border-color: #ffffff;
+  color: white;
+  margin: 2px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+
+/* Style the calendar footer (list view) */
+.fc.fc-list {
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.teaaaaam {
+  margin-bottom: 100px;
+}
+
+.pataddhed {
+  text-transform: uppercase;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: purple;
+  font-weight: 700 !important;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+}
+
+.barchartcontainer {
+  max-width: 1000px;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+.catbarchartt {
+  margin-top: 20px !important;
+}
+
+.catbarchartt2 {
+  margin-top: 20px !important;
+  margin-left: 50px !important;
+}
+
+.catbarchartt2 h3 {
+  font-size: 20px;
+  color: #a8a3a3;
+  margin-top: -190px;
+  margin-left: 125px;
+}
+.catbarchartt2 h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 165px;
+}
+
+.dashboradmin {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 1100px;
+  margin-left: 50px;
+}
+
+.dashboradmin2 {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 520px;
+  margin-left: 50px;
+}
+
+.custom-calendar7 {
+  border: 3px solid #000 !important;
+  width: 100% !important;
+  height: 330px;
+}
+
 /* Style the dropdown container */
 select {
-    width: 270px;
-    height: 30px;
-    border: 1px solid #4F4F4F;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* Style the dropdown options */
-  select option {
-    background-color: #fff;
-    color: #000;
-  }
+  width: 270px;
+  height: 30px;
+  border: 1px solid #4F4F4F;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  /* Style the disabled option */
-  select option:disabled {
-    color: #aaa !important; 
-  }
+/* Style the dropdown options */
+select option {
+  background-color: #fff;
+  color: #000;
+}
 
-  select option[value=""] [disabled] {
-    color: #aaa; 
-  }
-  
-  /* Style the dropdown arrow */
-  select::-ms-expand {
-    display: none;
-  }
-  
-  /* Style the focus state */
-  select:focus {
-    outline: none;
-    border-color: #9608af;
-    box-shadow: 0 0 5px rgba(153, 0, 255, 0.5);
-  }
-  
+/* Style the disabled option */
+select option:disabled {
+  color: #aaa !important;
+}
+
+select option[value=""] [disabled] {
+  color: #aaa;
+}
+
+/* Style the dropdown arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Style the focus state */
+select:focus {
+  outline: none;
+  border-color: #9608af;
+  box-shadow: 0 0 5px rgba(153, 0, 255, 0.5);
+}
