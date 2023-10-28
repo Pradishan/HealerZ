@@ -20,6 +20,9 @@ export default function Protected(props) {
         case "admin":
           loginStatusMessage = "Please login to access the Admin interface!";
           break;
+          case "Clubadmin":
+          loginStatusMessage = "Pls login to access the Clubdmin interface!";
+          break;
         default:
           loginStatusMessage = "Please login to access this interface!";
           break;
