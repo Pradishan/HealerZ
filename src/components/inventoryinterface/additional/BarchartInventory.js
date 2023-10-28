@@ -88,7 +88,7 @@ class BarchartInventory extends Component {
                   return val.toFixed(2) + '% HighStock: 200, LowStock: 50';
                 } else if (categories[opts.dataPointIndex] === 'Injections') {
                   return val.toFixed(2) + '% HighStock: 300, LowStock: 30';
-                } else if (categories[opts.dataPointIndex] === 'Implants') {
+                }else if (categories[opts.dataPointIndex] === 'Implants') {
                   return val.toFixed(2) + '% HighStock: 150, LowStock: 20';
                 }
               }
@@ -105,32 +105,18 @@ class BarchartInventory extends Component {
             color: '#444',
           },
         },
-        colors: [], 
       },
     };
-
-    this.updateColorsInterval = null;
   }
 
   componentDidMount() {
-    this.fetchData(); 
-    this.updateColorsInterval = setInterval(this.updateColors, 5000); 
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.updateColorsInterval); 
-  }
-
-  fetchData() {
     axios
-      .get('http://localhost/Healerz/PHP/Inventory/dashboard/categoriescountget.php')
+      .get('http://localhost/Healerz/PHP/Inventory/dashboard/categoriescountget.php') // Replace with the actual path to your PHP script
       .then((response) => {
         const data = response.data;
         const categories = data.map((item) => item.Category);
         const percentages = data.map((item) => item.percentage);
-        
-        const randomColors = Array.from({ length: percentages.length }, () => `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`);
-        
+console.log(data.map((item) => item.Category));
         this.setState({
           series: [
             {
@@ -142,7 +128,6 @@ class BarchartInventory extends Component {
             xaxis: {
               categories: categories,
             },
-            colors: randomColors,
           },
         });
       })
@@ -150,21 +135,6 @@ class BarchartInventory extends Component {
         console.error(error);
       });
   }
-
-  updateColors = () => {
-    const { data } = this.state.series[0];
-    const percentages = data.slice(); 
-  
-    const randomColors = Array.from({ length: percentages.length }, () => `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`);
-  
-    this.setState((prevState) => ({
-      options: {
-        ...prevState.options,
-        colors: randomColors,
-      },
-    }));
-  }
-  
 
   render() {
     return (
