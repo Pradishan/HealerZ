@@ -44,12 +44,20 @@ class EmployeeChart extends Component {
             },
           },
         },
+        title: {
+          text: 'Employees Count',
+          floating: true,
+          offsetY: 0,
+          align: 'center',
+          style: {
+            color: '#444',
+          },
+        },
       },
     };
   }
 
   componentDidMount() {
-    // Make an Axios GET request to your PHP script
     axios.get('http://localhost/Healerz/PHP/admin/Employeecount.php')
       .then(response => {
         const roleCounts = response.data;
