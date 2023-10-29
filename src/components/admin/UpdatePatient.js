@@ -61,6 +61,24 @@ function UpdatePatient(props) {
     }
 
     try {
+      if (newData.DateOfBirth) {
+        const selectedDOB = new Date(newData.DateOfBirth);
+        const currentDate = new Date();
+        if (selectedDOB > currentDate) {
+          toast.info("Please select a past date for Date of Birth.");
+          return;
+        }
+      }
+
+      if (newData.PhoneNo && !/^\d{10}$/.test(newData.PhoneNo)) {
+        toast.info("Invalid phone number format");
+        return;
+      }
+
+      if (newData.Email && !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(newData.Email)) {
+        toast.info("Invalid email format");
+        return;
+      }
       const response = await axios.put(
         "http://localhost/HealerZ/PHP/admin/updatepatient.php",
         newData
@@ -96,7 +114,6 @@ function UpdatePatient(props) {
   };
 
   useEffect(() => {
-    // If patientData changes, update newData to reflect the current patientData
     if (patientData) {
       setNewData({
         Patient_ID: patientData.Patient_ID,
@@ -117,8 +134,6 @@ function UpdatePatient(props) {
   return (
     <AdminLayout>
       <div className="Addcontt">
-        {/* <h3 className="serhett">Update patient</h3> */}
-
         <div className="addboxx">
           <h3 className="pataddhed">Update patient</h3>
           <hr />
@@ -154,7 +169,6 @@ function UpdatePatient(props) {
 
           {patientData && (
             <form onSubmit={handleUpdate}>
-              {/* Display patient data and update fields */}
               <table>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <div className="cont1">

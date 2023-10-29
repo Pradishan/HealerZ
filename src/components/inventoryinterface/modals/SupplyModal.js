@@ -42,11 +42,19 @@ function SupplyPopup(props) {
   };
 
   const handleAdd = () => {
-    setConfirmModalVisible(true);
+    if (drugDetails && drugDetails.status === "Waiting") {
+      setConfirmModalVisible(true);
+    } else {
+      toast.error("You Already Delivered This Supply");
+    }
   };
-
+  
   const handleConfirmReject = () => {
-    setrejectConfirmModalVisible(true);
+    if (drugDetails && drugDetails.status === "Waiting") {
+      setrejectConfirmModalVisible(true);
+    } else {
+      toast.error("You Can't Reject This supply");
+    }
   };
 
   const handleConfirmUpdate = () => {
