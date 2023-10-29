@@ -20,25 +20,8 @@ try {
     $data = json_decode(file_get_contents("php://input"), true);
 
     if (!isset($data['employee_ID'])) {
-        throw new Exception('employee_ID or currentPassword is not provided in the request.');
+        throw new Exception('employee_ID is not provided in the request.');
     }
-
-    //  // Fetch the current password from the database
-    //  $stmt = $conn->prepare("SELECT role FROM employee WHERE employee_ID = :employee_ID");
-    // //  $stmt->bindValue(':employee_ID', $data['employee_ID']);
-    // //  $stmt->execute();
-    // //  $result = $stmt->fetch(PDO::FETCH_ASSOC);
- 
-    //  // Check if the provided current password matches the password in the database
-    // //  if ($data['currentPassword'] !== $result['password']) {
-    // //      throw new Exception('Current password does not match.');
-    // //  }
-
-    //  // Check if the user has the 'admin' role
-    // $requiredRole = 'admin'; // Change this to the required role
-    // if ($result['role'] !== $requiredRole) {
-    //     throw new Exception('Unauthorized. Only admin can change passwords.');
-    // }
 
     $stmt = $conn->prepare("UPDATE employee SET password = :password WHERE employee_ID = :employee_ID");
     $stmt->bindValue(':employee_ID', $data['employee_ID']);
