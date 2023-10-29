@@ -80,7 +80,7 @@ const Settings = () => {
       userdata[0].PhoneNo == editedPhoneNo &&
       editedProfilePic == null
     ) {
-      toast.error("No changes made");
+      toast.info("No changes made");
     } else {
       const formData = new FormData();
       formData.append("employee_ID", sessionStorage.getItem("employeeID"));
@@ -99,15 +99,7 @@ const Settings = () => {
           }
         )
         .then((res) => {
-          if (res.data.message) {
-            const messages = res.data.message.split(".");
-            for (const message of messages) {
-              message && toast.success(message);
-            }
-          }
-
-          res.data.error && toast.error(res.data.error);
-          // toast.success("Profile updated Successfully");
+          toast.success("Profile updated Successfully");
           setTimeout(function () {
             window.location.reload();
           }, 1000);
@@ -119,14 +111,14 @@ const Settings = () => {
   };
   const passwordchange = () => {
     if (currpw === null && changepw === null && confirmpw === null) {
-      toast.error("Fill Feilds");
+      toast.warning("Fill Fields");
     } else {
       if (currpw === userdata.map((data) => data.Password)[0]) {
         if (changepw === null) {
-          toast.error("Enter new Password");
+          toast.warning("Enter new Password");
         } else if (changepw === confirmpw && changepw !== null) {
           if (currpw === changepw) {
-            toast.warn("Existing Password !");
+            toast.info("Existing Password !");
           } else {
             const tempuserdata = [...userdata];
             tempuserdata[0].Password = changepw;
@@ -139,7 +131,9 @@ const Settings = () => {
               )
               .then((res) => {
                 toast.success("Password Changed Successfully");
-                window.location.reload();
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
               })
               .catch((err) => {
                 console.log(err);
@@ -222,7 +216,7 @@ const Settings = () => {
                                     </td>
                                     <td>
                                       <p className="fs-5 m-0">
-                                        {data.Designation}
+                                        {data.role}
                                       </p>
                                     </td>
                                   </tr>
