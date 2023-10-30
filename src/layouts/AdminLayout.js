@@ -204,7 +204,7 @@ function Layout({ children }) {
 
               <MenuItem
                 className="menu-item"
-                component={<Link to="/admin/Settings" />}
+                component={<Link to="/admin/settingsAdmin" />}
                 icon={<SettingsIcon />}
               >
                 Settings{" "}

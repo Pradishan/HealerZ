@@ -22,6 +22,7 @@ import UpdatePatient from "./components/admin/UpdatePatient";
 import PatientList from "./components/admin/PatientList";
 import AddEmployee from "./components/admin/AddEmployee";
 import EmployeeList from "./components/admin/EmployeeList";
+import SettingsAdmin from "./components/admin/SettingsAdmin";
 import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
 import Registration from "./components/clubs/Registration";
@@ -56,6 +57,7 @@ function App() {
         <Route path="/admin/patientlist" element={ <Protected Component={ PatientList} roll={'admin'} />} />
         <Route path="/admin/addemployee" element={ <Protected Component={ AddEmployee } roll={'admin'} /> } />
         <Route path="/admin/employeelist" element={ <Protected Component={ EmployeeList } roll={'admin'} /> } />
+        <Route path="/admin/settingsadmin" element={ <Protected Component={ SettingsAdmin } roll={'admin'} /> } />
         <Route path="/clubs/blooddonation" element={<BloodDonation />}/>
         <Route path="/clubs/vacination" element={<Vaccination />}/>
         <Route path="/clubs/registration" element={<Registration/>}/>
