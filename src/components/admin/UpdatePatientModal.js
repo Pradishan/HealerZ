@@ -109,7 +109,6 @@ function UpdatePatientModal(props) {
         <Modal.Title className="modaltitleee">Patient Update</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <hr />
         <form onSubmit={handleUpdate}>
           <table>
             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -290,9 +289,7 @@ function UpdatePatientModal(props) {
               </div>
             </div>
           </table>
-          <hr />
         </form>
-        <hr />
       </Modal.Body>
 
       <Modal.Footer>
