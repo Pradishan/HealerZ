@@ -29,18 +29,18 @@ const Profile = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  },[]);
 
   const passwordchange = () => {
     if (currpw === null && changepw === null && confirmpw === null) {
-      toast.error("Fill Feilds");
+      toast.info("Fill Fields");
     } else {
       if (currpw === userdata.map((data) => data.Password)[0]) {
         if (changepw === null) {
-          toast.error("Enter new Password");
+          toast.warning("Enter new Password");
         } else if (changepw === confirmpw && changepw !== null) {
           if (currpw === changepw) {
-            toast.warn("Existing Password !");
+            toast.info("Existing Password !");
           } else {
             const tempuserdata = [...userdata];
             tempuserdata[0].Password = changepw;
@@ -53,7 +53,9 @@ const Profile = () => {
               )
               .then((res) => {
                 toast.success("Password Changed Successfully");
-                window.location.reload();
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
               })
               .catch((err) => {
                 console.log(err);
@@ -74,21 +76,20 @@ const Profile = () => {
       editedPhoneNo.length > 10 ||
       editedPhoneNo[0] != 0
     ) {
-      toast.error("Invalid Phone Number");
+      toast.info("Invalid Phone Number");
     } else if (
       userdata[0].Address == editedAddress &&
       userdata[0].PhoneNo == editedPhoneNo &&
       editedProfilePic == null
     ) {
-      toast.error("No changes made");
+      toast.info("No changes made");
     } else {
       const formData = new FormData();
       formData.append("Patient_ID", sessionStorage.getItem("patientID"));
       formData.append("PhoneNo", editedPhoneNo);
       formData.append("Address", editedAddress);
       editedProfilePic && formData.append("Profile", editedProfilePic);
-
-      //have to use post method to make image upload work
+      
       axios
         .post(
           "http://localhost/HealerZ/PHP/patient/updateProfile.php",
@@ -100,13 +101,6 @@ const Profile = () => {
           }
         )
         .then((res) => {
-          if (res.data.message) {
-            const messages = res.data.message.split(".");
-            for (const message of messages) {
-              message && toast.success(message);
-            }
-          }
-
           res.data.error && toast.error(res.data.error);
           toast.success("Profile updated Successfully");
           setTimeout(function () {
@@ -147,7 +141,7 @@ const Profile = () => {
         res.data.error && toast.error(res.data.error);
         setTimeout(function () {
           window.location.reload();
-        }, 2000);
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
@@ -170,7 +164,6 @@ const Profile = () => {
       );
       console.log(response.data);
       if (Array.isArray(response.data) && response.data.length > 0) {
-        // Assuming the response is an array of pharmacist data
         setuserdata(response.data);
       } else {
         console.error("No data found or invalid response structure");
@@ -333,7 +326,7 @@ const Profile = () => {
                         <img
                           src={profilepic}
                           alt="zoomed-avatar"
-                          width="150px" /* Adjust the size of the zoomed image as needed */
+                          width="150px" 
                           height="150px"
                           style={{ objectFit: "cover" }}
                         />

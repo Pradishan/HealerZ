@@ -55,6 +55,16 @@ function AddPatient(props) {
     return password;
   };
 
+  const handleDateChange = (selectedDate) => {
+    const currentDate = new Date();
+    const selectedDOB = new Date(selectedDate);
+    if (selectedDOB > currentDate) {
+      toast.info("Please select a past date for Date of Birth.");
+    } else {
+      setDob(selectedDate);
+    }
+  };
+
   const handleSubmit = () => {
     
     if (patient_id.length === 0) {
@@ -180,7 +190,7 @@ function AddPatient(props) {
                         type="date"
                         className="form-control1"
                         name={"DateOfBirth"}
-                        onChange={(e) => setDob(e.target.value)}
+                        onChange={(e) => handleDateChange(e.target.value)}
                         value={dob}
                       />
                     </th>

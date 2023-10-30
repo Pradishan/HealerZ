@@ -82,6 +82,13 @@ export default function Test123() {
                 navigate("/admin/dashboard");
               }, 100);
               break;
+              case "Clubadmin":
+              setTimeout(() => {
+                sessionStorage.setItem("Clubadmin", true);
+                sessionStorage.setItem("employeeID", response.data.employeeID);
+                navigate("/clubs/dashboard");
+              }, 100);
+              break;
             default:
               // Handle other roles or provide a default redirection
               break;

@@ -21,10 +21,8 @@ function StockUpdateModal(props) {
   };
 
   const handleAdd = () => {
-    if (Drug_ID === "") {
-      toast.warning("Please select a drug.");
-    } else if (Stock_IN === "") {
-      toast.warning("Please enter the Stock Count.");
+    if (Stock_IN === "") {
+      toast.warning("Please enter the Stock In Count");
     } else {
       setConfirmModalVisible(true);
     }

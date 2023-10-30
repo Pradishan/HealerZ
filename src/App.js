@@ -40,8 +40,8 @@ function App() {
         <Route path="/home" element={ <Home /> } />
         <Route path="/doctor" element={ <Protected Component={ Doctorinterface } roll={'Doctor'} /> } />
         <Route path="/inventory-interface/inventory" element={ <Protected Component={ Inventory } roll={'Pharmacist'} /> } />
-        <Route path="/clubs/dashboard" element={ <Clubs /> } />
-        <Route path="/clubs/Eventresponse" element={ <Eventresponse /> } />
+        <Route path="/clubs/dashboard" element={ <Protected Component={Clubs} roll={'Clubadmin'} /> } />
+        <Route path="/clubs/Eventresponse" element={ <Protected Component={Eventresponse} roll={'Clubadmin'} /> }/>
         <Route path="/login" element={<Login />} />
         <Route
           path="/profile"
@@ -57,10 +57,11 @@ function App() {
         <Route path="/admin/patientlist" element={ <Protected Component={ PatientList} roll={'admin'} />} />
         <Route path="/admin/addemployee" element={ <Protected Component={ AddEmployee } roll={'admin'} /> } />
         <Route path="/admin/employeelist" element={ <Protected Component={ EmployeeList } roll={'admin'} /> } />
-        <Route path="/admin/settingsadmin" element={ <Protected Component={ SettingsAdmin } roll={'admin'} /> } />
-        <Route path="/clubs/blooddonation" element={<BloodDonation />}/>
-        <Route path="/clubs/vacination" element={<Vaccination />}/>
-        <Route path="/clubs/registration" element={<Registration/>}/>
+
+        <Route path="/clubs/blooddonation" element={ <Protected Component={BloodDonation} roll={'Clubadmin'} />}/>
+        <Route path="/clubs/vacination" element={ <Protected Component={Vaccination} roll={'Clubadmin'} />}/>
+        <Route path="/clubs/registration" element={ <Protected Component={Registration} roll={'Clubadmin'} />}/>
+
         <Route path="/" element={<HealerZ/>}/>
       </Routes>
       </div>
