@@ -177,24 +177,23 @@
     z-index: 100;
 }
 
-.center-headingtable, .center-celltable {
-    text-align: center; 
-    vertical-align: middle; 
-  }
   
 
 .h-45 th {
     font-weight: 700 !important;
     padding: 15px !important;
+    text-align: center;
 }
 
 .h-50 td {
     padding: 15px !important;
+    text-align: center;
 }
 
 .h-50 th {
     font-size: 16px;
     font-weight: 700 !important;
+    text-align: center;
 }
 
 .top-0 {
@@ -631,7 +630,7 @@
 }
 
 .totalcounttt {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -644,6 +643,11 @@
     width: calc(90% - 10px);
     padding: 15px 20px 15px 20px;
 
+}
+.detailspacsupply {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
 }
 
 .settingcardproff {

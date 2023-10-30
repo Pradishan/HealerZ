@@ -199,24 +199,24 @@ function Supply(props) {
             <table className={"table table-hover table-striped "}>
               <thead className="top-0 position-sticky h-45">
                 <tr>
-                  <th scope="col" className="center-headingtable">NO</th>
-                  <th scope="col" className="center-headingtable">DATE</th>
-                  <th scope="col" className="center-headingtable">PRESCRIPTION_ID</th>
-                  <th scope="col" className="center-headingtable">PATIENT_ID</th>
-                  <th scope="col" className="center-headingtable">PATIENT_NAME</th>
-                  <th scope="col" className="center-headingtable">STATUS</th>
-                  <th scope="col" className="center-headingtable">ACTION</th>
+                  <th scope="col">NO</th>
+                  <th scope="col">DATE</th>
+                  <th scope="col">PRESCRIPTION_ID</th>
+                  <th scope="col">PATIENT_ID</th>
+                  <th scope="col">PATIENT_NAME</th>
+                  <th scope="col">STATUS</th>
+                  <th scope="col">ACTION</th>
                 </tr>
               </thead>
               <tbody className="h-50">
                 {filteredPresList.length > 0 ? (
                   filteredPresList.map((data, index) => (
                     <tr key={index}>
-                      <th className="center-celltable" scope="row">{index + 1}</th>
-                      <td className="center-celltable">{data.TimeP}</td>
-                      <td className="center-celltable">{data.Prescription_ID}</td>
-                      <td className="center-celltable">{data.Patient_ID}</td>
-                      <td className="center-celltable">{data.PatientName}</td>
+                      <th scope="row">{index + 1}</th>
+                      <td>{data.TimeP}</td>
+                      <td>{data.Prescription_ID}</td>
+                      <td>{data.Patient_ID}</td>
+                      <td>{data.PatientName}</td>
                       <td
                         style={{textAlign:'center'}}
                         className={
@@ -229,7 +229,7 @@ function Supply(props) {
                       >
                         {data.status}
                       </td>
-                      <td className="center-celltable">
+                      <td>
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"

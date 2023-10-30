@@ -190,7 +190,7 @@ function SupplyPopup(props) {
                   <th scope="col">COUNT</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="h-50">
                 {supplyList.map((item, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
@@ -220,11 +220,11 @@ function SupplyPopup(props) {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                marginLeft: "485px",
+                marginLeft: "505px",
               }}
             >
               <p className="totalcounttthed">Total Count</p>
-              <p className={"detailspac"}>=</p>
+              <p className="detailspacsupply">=</p>
               <p className="totalcounttt">{totalCount}</p>
             </div>
             <hr />
