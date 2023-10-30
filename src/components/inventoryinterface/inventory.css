@@ -100,11 +100,20 @@
 }
 
 .percentagebarr {
-    margin-top: 15px !important;
-    margin-left: 180px;
-    height: 150px;
-    width: 150px;
+    margin-left: 110px;
 }
+
+.percentagebarr  h3 {
+    font-size: 20px;
+    color: #a8a3a3;
+    margin-top: -150px;
+    margin-left: 110px;
+  }
+  .percentagebarr h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 115px;
+  }
 
 .percentagebarrtt {
     margin-top: 25px !important;
