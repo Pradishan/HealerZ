@@ -6,9 +6,9 @@ function ViewPatientModal(props) {
     const { show, onHide, PatientDetails } = props;
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
-                <Modal.Title>Patient Detail</Modal.Title>
+                <Modal.Title className="modaltitleee">Patient Detail</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <hr />
@@ -54,12 +54,6 @@ function ViewPatientModal(props) {
                             <th className={'detailspac'}>:</th>
                             <td className={'detaildet'}>{PatientDetails && PatientDetails.BloodGroup}</td>
                         </tr>
-                        <tr>
-                            <th className={'detailhed'}>Password</th>
-                            <th className={'detailspac'}>:</th>
-                            <td className={'detaildet'}>{PatientDetails && PatientDetails.Password}</td>
-                        </tr>
-                        {/* Add more attributes here */}
                     </tbody>
                 </table>
                 

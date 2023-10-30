@@ -6,7 +6,7 @@ function ViewEmployeeModal(props) {
     const { show, onHide, EmployeeDetails } = props;
 
     return (
-        <Modal show={show} onHide={onHide}>
+        <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>
                 <Modal.Title>Employee Detail</Modal.Title>
             </Modal.Header>
