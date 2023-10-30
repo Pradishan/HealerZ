@@ -318,31 +318,31 @@ function Inventory(props) {
             <hr />
             <div className={"table-container w-100 p-0"}>
               <table
-                className={"table table-hover table-striped "}
+                className={"table table-hover table-striped"}
                 style={{ minWidth: "0px" }}
               >
                 <thead className={"top-0 position-sticky h-45"}>
                   <tr>
-                    <th scope="col">NO</th>
-                    <th scope="col">NDC No</th>
-                    <th scope="col">DRUG_NAME</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Drug_Dosage</th>
-                    <th scope="col">AVAILABLE_COUNT</th>
-                    <th scope="col">ACTION</th>
+                    <th scope="col" className="center-headingtable">NO</th>
+                    <th scope="col" className="center-headingtable">NDC No</th>
+                    <th scope="col" className="center-headingtable">DRUG_NAME</th>
+                    <th scope="col" className="center-headingtable">Category</th>
+                    <th scope="col" className="center-headingtable">Drug_Dosage</th>
+                    <th scope="col" className="center-headingtable">AVAILABLE_COUNT</th>
+                    <th scope="col" className="center-headingtable">ACTION</th>
                   </tr>
                 </thead>
                 <tbody className="h-50">
                   {filteredDrugList.length > 0 ? (
                     filteredDrugList.map((data, index) => (
                       <tr key={index}>
-                        <th scope="row">{index + 1}</th>
-                        <td>{data.Drug_ID}</td>
-                        <td>{data.Drug_Name}</td>
-                        <td>{data.Category}</td>
-                        <td>{data.Drug_dosage}</td>
-                        <td>{data.StockCount}</td>
-                        <td>
+                        <th className="center-celltable" scope="row">{index + 1}</th>
+                        <td className="center-celltable">{data.Drug_ID}</td>
+                        <td className="center-celltable">{data.Drug_Name}</td>
+                        <td className="center-celltable">{data.Category}</td>
+                        <td className="center-celltable">{data.Drug_dosage}</td>
+                        <td className="center-celltable">{data.StockCount}</td>
+                        <td className="center-celltable">
                           <IconButton
                             aria-label="delete"
                             className="viewbutt"

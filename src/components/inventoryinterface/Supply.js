@@ -197,27 +197,28 @@ function Supply(props) {
           <hr />
           <div className="table-container tablesupply">
             <table className={"table table-hover table-striped "}>
-              <thead className={"top-0 position-sticky h-45"}>
+              <thead className="top-0 position-sticky h-45">
                 <tr>
-                  <th scope="col">NO</th>
-                  <th scope="col">DATE</th>
-                  <th scope="col">PRESCRIPTION_ID</th>
-                  <th scope="col">PATIENT_ID</th>
-                  <th scope="col">PATIENT_NAME</th>
-                  <th scope="col">STATUS</th>
-                  <th scope="col">ACTION</th>
+                  <th scope="col" className="center-headingtable">NO</th>
+                  <th scope="col" className="center-headingtable">DATE</th>
+                  <th scope="col" className="center-headingtable">PRESCRIPTION_ID</th>
+                  <th scope="col" className="center-headingtable">PATIENT_ID</th>
+                  <th scope="col" className="center-headingtable">PATIENT_NAME</th>
+                  <th scope="col" className="center-headingtable">STATUS</th>
+                  <th scope="col" className="center-headingtable">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="h-50">
                 {filteredPresList.length > 0 ? (
                   filteredPresList.map((data, index) => (
-                    <tr>
-                      <th scope="row">{index + 1}</th>
-                      <td>{data.TimeP}</td>
-                      <td>{data.Prescription_ID}</td>
-                      <td>{data.Patient_ID}</td>
-                      <td>{data.PatientName}</td>
+                    <tr key={index}>
+                      <th className="center-celltable" scope="row">{index + 1}</th>
+                      <td className="center-celltable">{data.TimeP}</td>
+                      <td className="center-celltable">{data.Prescription_ID}</td>
+                      <td className="center-celltable">{data.Patient_ID}</td>
+                      <td className="center-celltable">{data.PatientName}</td>
                       <td
+                        style={{textAlign:'center'}}
                         className={
                           data.status === "Waiting"
                             ? "waiting"
@@ -228,7 +229,7 @@ function Supply(props) {
                       >
                         {data.status}
                       </td>
-                      <td>
+                      <td className="center-celltable">
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"
