@@ -38,7 +38,7 @@ try {
                 echo json_encode(['message' => 'Admin not found']);
             }
         } else {
-            echo json_encode(['message' => 'Missing Pharmacist_ID parameter in the request']);
+            echo json_encode(['message' => 'Missing employee_ID parameter in the request']);
         }
     }
 } catch (Exception $e) {
