@@ -100,11 +100,20 @@
 }
 
 .percentagebarr {
-    margin-top: 15px !important;
-    margin-left: 180px;
-    height: 150px;
-    width: 150px;
+    margin-left: 110px;
 }
+
+.percentagebarr  h3 {
+    font-size: 20px;
+    color: #a8a3a3;
+    margin-top: -150px;
+    margin-left: 110px;
+  }
+  .percentagebarr h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 115px;
+  }
 
 .percentagebarrtt {
     margin-top: 25px !important;
@@ -177,18 +186,23 @@
     z-index: 100;
 }
 
+  
+
 .h-45 th {
     font-weight: 700 !important;
     padding: 15px !important;
+    text-align: center;
 }
 
 .h-50 td {
     padding: 15px !important;
+    text-align: center;
 }
 
 .h-50 th {
     font-size: 16px;
     font-weight: 700 !important;
+    text-align: center;
 }
 
 .top-0 {
@@ -409,15 +423,11 @@
 }
 
 .waiting {
-    color: #0029FF !important;
-    /* border-radius: 9px !important; */
-    background-color: #B7C4F2 !important;
-    /* display: flex !important; */
+    color: #001fbb !important;
+    background-color: #d9e1f7 !important;
     width: 126px !important;
-    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 10px;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -425,15 +435,11 @@
 }
 
 .delivered {
-    color: #009418 !important;
-    /* border-radius: 9px !important; */
-    background-color: #B8FF81 !important;
-    /* display: flex !important; */
+    color: #12bb02 !important;
+    background-color: #e1f8d0 !important;
     width: 126px !important;
-    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 10px;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -441,15 +447,11 @@
 }
 
 .rejected {
-    color: #E20000 !important;
-    /* border-radius: 9px !important; */
-    background-color: #FFB2B2 !important;
-    /* display: flex !important; */
+    color: #fa0202 !important;
+    background-color: #f8d6d6 !important;
     width: 126px !important;
-    /* padding: 4px 0 !important; */
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 10px;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -637,7 +639,7 @@
 }
 
 .totalcounttt {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -650,6 +652,11 @@
     width: calc(90% - 10px);
     padding: 15px 20px 15px 20px;
 
+}
+.detailspacsupply {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
 }
 
 .settingcardproff {

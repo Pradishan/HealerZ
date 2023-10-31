@@ -3,18 +3,18 @@ import Layout from "../../layouts/layout";
 import Card from "react-bootstrap/Card";
 import { Col, Container, Row } from "react-bootstrap";
 import "./inventory.css";
-import DoughnutChart from "./additional/DoughnutChart";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./additional/ChangingProgressProvider";
 import { IconButton } from "@mui/material";
 import RunningWithErrorsIcon from "@mui/icons-material/RunningWithErrors";
 import CloudDoneIcon from "@mui/icons-material/CloudDone";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
 import LowStockModal from "./modals/dashboard/LowStockModal";
 import OutofStockModal from "./modals/dashboard/OutofStockModal";
 import SufficentModal from "./modals/dashboard/SufficentModal";
+import Drugscount from "./additional/Drugscount";
+import axios from "axios";
 
 function Dashboard(props) {
   const [percentage, setPercentage] = useState(0);
@@ -25,6 +25,17 @@ function Dashboard(props) {
   const [lowshowModal, setlowShowModal] = useState(false);
   const [outofshowModal, setoutofShowModal] = useState(false);
   const [sufficentshowModal, setsufficentShowModal] = useState(false);
+  const [drugCount, setdrugCount] = useState(0);
+
+  useEffect(() => {
+    axios.get("http://localhost/Healerz/PHP/Inventory/dashboard/categorytotal.php")
+      .then((response) => {
+        setdrugCount(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching patient count:", error);
+      });
+  }, []);
   const lowStockmodal = () => {
     setlowShowModal(!lowshowModal);
   };
@@ -178,44 +189,11 @@ function Dashboard(props) {
             <Col>
               <Card className="card3">
                 <Card.Body>
-                  <Card.Title className="CardTitle">Weighted score</Card.Title>
+                  <Card.Title className="CardTitle">Drugs Categories</Card.Title>
                   <div className="percentagebarr">
-                    <DoughnutChart />
-                  </div>
-                  <div className="doughnutindicator">
-                    <div className="doughnutindicator1">
-                      <IconButton
-                        onClick={outofStockmodal}
-                        className="dotticoon"
-                        aria-label="add"
-                        style={{ color: "rgb(219, 4, 4)" }}
-                      >
-                        <FiberManualRecordIcon />
-                      </IconButton>
-                      <p>Out Of Stocks Products </p>
-                    </div>
-                    <div className={"doughnutindicator1"}>
-                      <IconButton
-                        onClick={lowStockmodal}
-                        className="dotticoon"
-                        aria-label="add"
-                        style={{ color: "rgb(247, 210, 0)" }}
-                      >
-                        <FiberManualRecordIcon />
-                      </IconButton>
-                      <p>Products on low stock</p>
-                    </div>
-                    <div className={"doughnutindicator1"}>
-                      <IconButton
-                        onClick={sufficentStockmodal}
-                        className="dotticoon"
-                        aria-label="add"
-                        style={{ color: "rgb(3, 163, 6)" }}
-                      >
-                        <FiberManualRecordIcon />
-                      </IconButton>
-                      <p>Sufficient Stock </p>
-                    </div>
+                    <Drugscount />
+                    <h3>Total</h3>
+                    <h2>{drugCount}</h2>
                   </div>
                 </Card.Body>
               </Card>

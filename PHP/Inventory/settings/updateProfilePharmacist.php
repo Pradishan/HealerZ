@@ -18,7 +18,7 @@ try {
     }
 
     if (!isset($_POST['employee_ID'])) {
-        throw new Exception('Pharmacist_ID is not provided in the request');
+        throw new Exception('employee_ID is not provided in the request');
     }
   
     $stmt = $conn->prepare("SELECT * FROM employee WHERE employee_ID = ?");

@@ -57,6 +57,7 @@ function App() {
         <Route path="/admin/patientlist" element={ <Protected Component={ PatientList} roll={'admin'} />} />
         <Route path="/admin/addemployee" element={ <Protected Component={ AddEmployee } roll={'admin'} /> } />
         <Route path="/admin/employeelist" element={ <Protected Component={ EmployeeList } roll={'admin'} /> } />
+        <Route path="/admin/settingsAdmin" element={ <Protected Component={ SettingsAdmin } roll={'admin'} /> } />
 
         <Route path="/clubs/blooddonation" element={ <Protected Component={BloodDonation} roll={'Clubadmin'} />}/>
         <Route path="/clubs/vacination" element={ <Protected Component={Vaccination} roll={'Clubadmin'} />}/>

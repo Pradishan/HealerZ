@@ -390,3 +390,29 @@ select:focus {
   border-color: #9608af;
   box-shadow: 0 0 5px rgba(153, 0, 255, 0.5);
 }
+
+
+.empprofdetail{
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+}
+
+.detaildetails{
+  text-transform: uppercase;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  color: #4F4F4F;
+}
+.detaildetails2{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  color: #afacac;
+}
+
+.emptabledata{
+  margin-top: 50px;
+}
+

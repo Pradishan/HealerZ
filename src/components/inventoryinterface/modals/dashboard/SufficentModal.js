@@ -85,7 +85,7 @@ function SufficientModal(props) {
                 <th scope="col">StockCount</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="h-50">
               {lowdrugList.map((data, index) => (
                 <tr>
                   <th scope="row">{index + 1}</th>
