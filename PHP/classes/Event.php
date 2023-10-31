@@ -3,21 +3,25 @@
 namespace classes;
 
 require_once "DBconnector.php";
+
 use PDOException;
 use PDO;
 
 
-class Event{
-    private $evtreg_id;
-    private $Patient_ID;
-    private $email;
-    private $name;
-    private $nic;
-    private $phone_no;
-    private $address;
-    private $event;
+class Event
+{
+	private $evtreg_id;
+	private $Patient_ID;
+	private $email;
+	private $name;
+	private $nic;
+	private $phone_no;
+	private $address;
+	private $event;
+	private $date;
 
-	public function __construct($evtreg_id, $Patient_ID, $email, $name, $nic, $phone_no, $address, $event) {
+	public function __construct($evtreg_id, $Patient_ID, $email, $name, $nic, $phone_no, $address, $event, $date)
+	{
 
 		$this->evtreg_id = $evtreg_id;
 		$this->Patient_ID = $Patient_ID;
@@ -27,108 +31,163 @@ class Event{
 		$this->phone_no = $phone_no;
 		$this->address = $address;
 		$this->event = $event;
+		$this->date = $date;
 	}
+	
 
-	public function getEvtreg_id() {
+	public function getEvtreg_id()
+	{
 		return $this->evtreg_id;
 	}
 
-	public function setEvtreg_id($value) {
+	public function setEvtreg_id($value)
+	{
 		$this->evtreg_id = $value;
 	}
 
-	public function getPatient_ID() {
+	public function getPatient_ID()
+	{
 		return $this->Patient_ID;
 	}
 
-	public function setPatient_ID($value) {
+	public function setPatient_ID($value)
+	{
 		$this->Patient_ID = $value;
 	}
 
-	public function getEmail() {
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
-	public function setEmail($value) {
+	public function setEmail($value)
+	{
 		$this->email = $value;
 	}
 
-	public function getName() {
+	public function getName()
+	{
 		return $this->name;
 	}
 
-	public function setName($value) {
+	public function setName($value)
+	{
 		$this->name = $value;
 	}
 
-	public function getNic() {
+	public function getNic()
+	{
 		return $this->nic;
 	}
 
-	public function setNic($value) {
+	public function setNic($value)
+	{
 		$this->nic = $value;
 	}
 
-	public function getPhone_no() {
+	public function getPhone_no()
+	{
 		return $this->phone_no;
 	}
 
-	public function setPhone_no($value) {
+	public function setPhone_no($value)
+	{
 		$this->phone_no = $value;
 	}
 
-	public function getAddress() {
+	public function getAddress()
+	{
 		return $this->address;
 	}
 
-	public function setAddress($value) {
+	public function setAddress($value)
+	{
 		$this->address = $value;
 	}
 
-	public function getEvent() {
+	public function getEvent()
+	{
 		return $this->event;
 	}
 
-	public function setEvent($value) {
+	public function setEvent($value)
+	{
 		$this->event = $value;
+	}
+	public function getDate()
+	{
+		return $this->date;
+	}
+
+	public function setDate($value)
+	{
+		$this->date = $value;
 	}
 
 
 
-    public static function displayEvent()
-    {
-        try {
-            $dbcon = new DBconnector();
-            $conn = $dbcon->getConnection();
+	public static function displayEvent()
+	{
+		try {
+			$dbcon = new DBconnector();
+			$conn = $dbcon->getConnection();
 
-            $sql = "SELECT * from evtreg";
+			$sql = "SELECT * from evtreg";
 
-            $stmt = $conn->prepare($sql);
+			$stmt = $conn->prepare($sql);
 
-            if ($stmt->execute()) {
-                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
+			if ($stmt->execute()) {
+				$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				return $data;
+			} else {
+				return false;
+			}
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
 
-    public function deleteEvent()
-    {
-        $dbcon = new DBconnector();
-        $conn = $dbcon->getConnection();
-        $query = "DELETE FROM evtreg WHERE evtreg_id = :evtreg_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':evtreg_id', $this->evtreg_id);
-        $res = $stmt->execute();
+	public function deleteEvent()
+	{
+		$dbcon = new DBconnector();
+		$conn = $dbcon->getConnection();
+		$query = "DELETE FROM evtreg WHERE evtreg_id = :evtreg_id";
+		$stmt = $conn->prepare($query);
+		$stmt->bindValue(':evtreg_id', $this->evtreg_id);
+		$res = $stmt->execute();
 
-        if ($res) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if ($res) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function addevent()
+	{
+		try {
+			$dbcon = new DBconnector;
+			$conn = $dbcon->getConnection();
+			$currentDate = date("Y-m-d H:i:s");
+			$query = "INSERT INTO evtreg (evtreg_id, Patient_ID, email, name, nic, phone_no, address,event,	Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			$stmt =  $conn->prepare($query);
+			$stmt->bindValue(1, $this->evtreg_id);
+			$stmt->bindValue(2, $this->Patient_ID);
+			$stmt->bindValue(3, $this->email);
+			$stmt->bindValue(4, $this->name);
+			$stmt->bindValue(5, $this->nic);
+			$stmt->bindValue(6, $this->phone_no);
+			$stmt->bindValue(7, $this->address);
+			$stmt->bindValue(8, $this->event);
+			$stmt->bindValue(9, $currentDate);
+			$res = $stmt->execute();
+			if ($res) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
 }
