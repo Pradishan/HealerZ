@@ -14,6 +14,7 @@ import UpdateModal from "./UpdateEvent";
 import ViewModal from "./EventresponseViewModal";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RegistrationModal from "./RegistrationModal";
+import "./Clubs.css";
 
 function EventList(props) {
   const [showModal, setShowModal] = useState(false);
