@@ -13,6 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import UpdateModal from "../admin/UpdatePatientModal";
 import ViewModal from "./EventresponseViewModal";
 
+
 function EventList(props) {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm3, setSearchTerm3] = useState("");
@@ -91,6 +92,7 @@ function EventList(props) {
     setConfirmModalVisible(true);
     setEvtRegToDelete(evtreg);
   };
+
 
   const handleConfirmDelete = async () => {
     setConfirmModalVisible(false);
@@ -286,3 +288,4 @@ function EventList(props) {
 }
 
 export default EventList;
+

@@ -10,24 +10,23 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "./Clubs.css";
 
 
-export default function CHbloodReg(){
+export default function CEReg(){
     
   const [Email, setEmail] = useState('');
   const [Name, setName] = useState('');
   const [Nic, setNic] = useState('');
   const [Phone_no, setPhone_no] = useState('');
   const [Address, setAddress] = useState('');
-  const [Bloodgroup, setBloodgroup] = useState('');
-
-  
+  const [Event, setEvent] = useState('');
+    
   const resetForm = () => {
       setEmail('');
       setName('');
       setNic('');
       setPhone_no('');
       setAddress('');
-      setBloodgroup('');
-  }
+      setEvent('');
+        }
 
 
   const handleSubmit = () => {
@@ -46,26 +45,26 @@ export default function CHbloodReg(){
     else if (Address.length === 0) {
         toast.warning("Pls Enter the Address");
     }
-     else if(Bloodgroup.length===0){
-        toast.warning("pls Enter the Bloodgroup")
+    else if(Event.length===0){
+        toast.warning("pls Enter the Event Name");
         }
-    
+
     else {
-        const url = "http://localhost/HealerZ/PHP";
+        const url = "http://localhost/HealerZ/PHP/club/Evtreg.php";
         let fdata = new FormData();
         fdata.append('email', Email);
         fdata.append('name', Name);
         fdata.append('nic', Nic);
         fdata.append('phone_no', Phone_no);
         fdata.append('address',Address);
-        fdata.append('bloodgroup', Bloodgroup)
-
+        fdata.append('event', Event);
         axios.post(url, fdata)
             .then((response) => {
                 console.log(response.data);
                 //toast.success(response.data.message);
-                if(response.data.message==="Successfully registered"){
+                if(response.data.message===true){
                     toast.success(response.data.message);
+                    toast.success("Successfully added");
                     resetForm();
                 }else{
                     toast.error("Try Again");
@@ -80,11 +79,11 @@ export default function CHbloodReg(){
 
     return(
         <>
-        <div style={{flexDirection:'row',padding:'50px',gap:'20px'}}>
-      <div className="card card-2 cardproff"  style={{width:500,}}>
+        <div style={{flexDirection:'row',padding:'10px',gap:'25px'}}>
+      <div className="card card-2 cardproff" style={{width:750}}>
       <div className="">
               <div className="form-container">
-                <h3 className="serhett9">Blood Donation</h3>
+                <h4 className="d-flex justify-content-center fw-bold">Event Registration</h4>
                 <hr/>
                 <Form id="medical-request-form">
                   <div className="form-floating">
@@ -100,8 +99,8 @@ export default function CHbloodReg(){
                     />
                     <label htmlFor="floatingPassword">Email</label>
                   </div>
-                  <br />
-                  <div className="form-floating">
+               
+                  <div className="form-floating mt-3">
                     <input
                       type="text"
                       className="form-control"
@@ -114,8 +113,8 @@ export default function CHbloodReg(){
                     />
                     <label htmlFor="floatingPassword">Name</label>
                   </div>
-                  <br />
-                  <div className="form-floating">
+                  
+                  <div className="form-floating mt-3">
                     <input
                       type="text"
                       className="form-control"
@@ -128,8 +127,8 @@ export default function CHbloodReg(){
                     />
                     <label htmlFor="floatingPassword">NIC No</label>
                   </div>
-                  <br />
-                  <div className="form-floating">
+                 
+                  <div className="form-floating mt-3">
                     <input
                       type="text"
                       className="form-control"
@@ -142,8 +141,8 @@ export default function CHbloodReg(){
                     />
                     <label htmlFor="floatingPassword">Phone_no</label>
                   </div>
-                  <br />
-                  <div className="form-floating">
+                 
+                  <div className="form-floating mt-3">
                     <input
                       type="text"
                       name={"address"}
@@ -156,27 +155,32 @@ export default function CHbloodReg(){
                     />
                     <label htmlFor="floatingPassword">Address</label>
                   </div>
-                  <br />
+                
+                  <div className="form-floating mt-3" > 
+                  <select
+                                    name={'event'}
+                                    className="form-control"
+                                    onChange={(e) => setEvent(e.target.value)}
+                                    value={Event}
+                   >
+                                    <option value={''}>Select Category</option>
+                                    <option value={'vaccination'}>Vaccination</option>
+                                    <option value={'blooddonation'}>Blood Donation</option>
+                     </select>
 
-                  <br />
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name={"bloodgroup"}
-                      value={Bloodgroup}
-                      onChange={(e) => setBloodgroup(e.target.value)}
-                      id="floatingPassword"
-                      placeholder="Blood group"
-                      style={{ width: "100%" }}
-                    />
-                    <label htmlFor="floatingPassword">Bloodgroup</label>
                   </div>
-                  <br />
+                            
+
+           <div className='justify-content-end'>     
                  
-          <Button className='btn btn-primary'name={"send"} value={"Send"} onClick={handleSubmit} style={{ backgroundColor: 'green',border:'none' }}>
+          <Button className='btn btn-primary mt-3 m-1'name={"send"} value={"Send"} onClick={handleSubmit} style={{ backgroundColor: 'green',border:'none' }}>
             Register
           </Button>
+          
+          <Button className='btn btn-primary m-1' onClick={resetForm}>
+            Reset
+          </Button>
+          </div>  
           <ToastContainer/>
           </Form>
             </div>
