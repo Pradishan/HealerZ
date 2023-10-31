@@ -82,7 +82,7 @@ function UpdateEvent(props) {
   const handleDeleteConfirmed = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost/HealerZ/PHP/club/deleteEvent.php?evtreg_id=${newData.evtreg_id}`
+        `http://localhost/HealerZ/PHP/club/deleteEvent.php?Event_ID=${newData.Event_ID}`
       );
 
       if (response.status === 200) {

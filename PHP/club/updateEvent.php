@@ -19,12 +19,12 @@ try {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!isset($data['evtreg_id'])) {
-        throw new Exception('evtreg_id is not provided in the request.');
+    if (!isset($data['Event_ID'])) {
+        throw new Exception('Event_ID is not provided in the request.');
     }
     
     $event = new Event(
-        $data['evtreg_id'],
+        $data['Event_ID'],
         $data['Patient_ID'],
         $data['email'],
         $data['name'],
