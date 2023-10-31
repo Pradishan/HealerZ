@@ -25,7 +25,6 @@ import EmployeeList from "./components/admin/EmployeeList";
 import SettingsAdmin from "./components/admin/SettingsAdmin";
 import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
-import Registration from "./components/clubs/Registration";
 import HealerZ from "./components/HealerZ";
 
 
@@ -58,10 +57,8 @@ function App() {
         <Route path="/admin/addemployee" element={ <Protected Component={ AddEmployee } roll={'admin'} /> } />
         <Route path="/admin/employeelist" element={ <Protected Component={ EmployeeList } roll={'admin'} /> } />
         <Route path="/admin/settingsAdmin" element={ <Protected Component={ SettingsAdmin } roll={'admin'} /> } />
-
         <Route path="/clubs/blooddonation" element={ <Protected Component={BloodDonation} roll={'Clubadmin'} />}/>
         <Route path="/clubs/vacination" element={ <Protected Component={Vaccination} roll={'Clubadmin'} />}/>
-        <Route path="/clubs/registration" element={ <Protected Component={Registration} roll={'Clubadmin'} />}/>
 
         <Route path="/" element={<HealerZ/>}/>
       </Routes>

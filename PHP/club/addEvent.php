@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $Eventreg = new Event(null, $Patient_ID, $email, $name, $nic, $phone_no, $address, $event, null);
         $res = $Eventreg->addevent();
         if ($res) {
-            $response = array("message" => "Event Added Successfully");
+            $response = array("message" => "Event Registration Successfully");
         } else {
             $response = array("message" => "Failed to add Event");
         }

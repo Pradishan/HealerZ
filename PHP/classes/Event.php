@@ -190,4 +190,30 @@ class Event
 			return false;
 		}
 	}
+
+	public function updateEvent()
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "UPDATE evtreg  SET Patient_ID = :Patient_ID, email = :email, name= :name, nic = :nic, phone_no = :phone_no, address = :address, event = :event, Date = :Date WHERE evtreg_id = :evtreg_id";
+            $pstmt = $conn->prepare($query);
+            $pstmt->bindValue(':Patient_ID', $this->Patient_ID);
+            $pstmt->bindValue(':email', $this->email);
+            $pstmt->bindValue(':name', $this->name);
+            $pstmt->bindValue(':nic', $this->nic);
+            $pstmt->bindValue(':phone_no', $this->phone_no);
+            $pstmt->bindValue(':address', $this->address);
+            $pstmt->bindValue(':event', $this->event);
+            $pstmt->bindValue(':Date', $this->date);
+            $pstmt->bindValue(':evtreg_id', $this->evtreg_id);
+            $res = $pstmt->execute();
+            return  $res;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+
+
 }
