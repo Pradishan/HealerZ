@@ -99,11 +99,17 @@ const Settings = () => {
           }
         )
         .then((res) => {
-          toast.success("Profile updated Successfully");
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        })
+          if (res.data.error) {
+            // Display error message
+            toast.info(res.data.error);
+        } else {
+            // Display success message
+            toast.success("Profile updated Successfully");
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        }
+    })
         .catch((err) => {
           console.log(err);
         });

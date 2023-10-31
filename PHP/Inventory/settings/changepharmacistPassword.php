@@ -19,7 +19,7 @@ try {
     $data = json_decode(file_get_contents("php://input"), true);
 
     if (!isset($data['employee_ID'])) {
-        throw new Exception('Pharmacist_ID is not provided in the request.');
+        throw new Exception('employee_ID is not provided in the request.');
     }
 
     $stmt = $conn->prepare("UPDATE employee SET Password = :Password WHERE employee_ID = :employee_ID");

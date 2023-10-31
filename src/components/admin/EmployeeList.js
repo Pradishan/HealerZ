@@ -217,7 +217,7 @@ function EmployeeList(props) {
                   <th scope="col">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="h-50">
                 {filteredEmployeeList.length > 0 ? (
                   filteredEmployeeList.map((data, index) => (
                     <tr key={index}>
