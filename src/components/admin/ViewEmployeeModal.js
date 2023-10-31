@@ -51,8 +51,8 @@ function ViewEmployeeModal(props) {
               src={profilepic}
               alt="avatar"
               className="rounded-circle me-2"
-              width="200px"
-              height="200px"
+              width="250px"
+              height="250px"
               style={{ objectFit: "cover" }}
             />
             <hr />
@@ -61,7 +61,7 @@ function ViewEmployeeModal(props) {
                 {EmployeeDetails && EmployeeDetails.role}
               </h2>
               <h2 className="detaildetails2">
-                {EmployeeDetails && EmployeeDetails.employee_ID}
+                {EmployeeDetails && EmployeeDetails.employee_Name}
               </h2>
               <h2 className="detaildetails2">
                 {EmployeeDetails && EmployeeDetails.Email}
@@ -91,6 +91,13 @@ function ViewEmployeeModal(props) {
                   <th className={"detailspac"}>:</th>
                   <td className={"detaildet"}>
                     {EmployeeDetails && EmployeeDetails.Email}
+                  </td>
+                </tr>
+                <tr>
+                  <th className={"detailhed"}>Phone No</th>
+                  <th className={"detailspac"}>:</th>
+                  <td className={"detaildet"}>
+                    {EmployeeDetails && EmployeeDetails.PhoneNo}
                   </td>
                 </tr>
                 <tr>
