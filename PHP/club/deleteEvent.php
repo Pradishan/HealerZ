@@ -14,7 +14,7 @@ try {
         throw new Exception('event_ID is not provided in the request.');
     }
     $eventid = $_GET['evtreg_id']; 
-    $event=new Event($eventid, null, null, null, null,null,null,null);
+    $event=new Event($eventid, null, null, null, null,null,null,null,null);
     $res = $event->deleteEvent();
     $stmt->execute();
     $rowCount = $stmt->rowCount();

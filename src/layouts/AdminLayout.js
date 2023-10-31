@@ -11,8 +11,6 @@ import "./AdminLayout.css";
 import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
-import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ListIcon from "@mui/icons-material/List";
 import WheelchairPickupIcon from "@mui/icons-material/WheelchairPickup";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";

@@ -9,10 +9,12 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "../admin/ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
-import EditIcon from '@mui/icons-material/Edit';
-import UpdateModal from "../admin/UpdatePatientModal";
+import EditIcon from "@mui/icons-material/Edit";
+import UpdateModal from "./UpdateEvent";
 import ViewModal from "./EventresponseViewModal";
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RegistrationModal from "./RegistrationModal";
+import "./Clubs.css";
 
 function EventList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +27,17 @@ function EventList(props) {
   const [filteredEventList, setFilteredEventList] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [searchDate, setSearchDate] = useState("");
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [showModal4, setShowModal4] = useState(false);
+
+  const addModal = () => {
+    setShowModal4(!showModal4);
+    fetchData();
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   const handleChangeDate = (event) => {
     setSearchDate(event.target.value);
@@ -55,8 +68,6 @@ function EventList(props) {
       toast.error("Invalid evtreg ID");
     }
   };
-
-  
 
   const openModal = (evtreg) => {
     setSelectedEvtReg(evtreg);
@@ -93,7 +104,6 @@ function EventList(props) {
     setEvtRegToDelete(evtreg);
   };
 
-
   const handleConfirmDelete = async () => {
     setConfirmModalVisible(false);
     const evtregToDelete = evtRegToDelete;
@@ -102,11 +112,11 @@ function EventList(props) {
       await axios.delete(
         `http://localhost/Healerz/PHP/club/deleteEvent.php?evtreg_id=${evtregToDelete.evtreg_id}`
       );
-      toast.success("evtreg deleted successfully");
+      toast.success("Response deleted successfully");
       fetchData();
     } catch (error) {
-      console.error("Error deleting evtreg:", error);
-      toast.error("Error deleting evtreg");
+      console.error("Error deleting Response :", error);
+      toast.error("Error deleting Response ");
     }
   };
 
@@ -117,7 +127,11 @@ function EventList(props) {
 
   return (
     <ClubLayout>
-      <div className={"container eventlisttable"}>
+      <button className="btn shadow gradient-button eventaddbutt" onClick={addModal}>
+        Registration
+        <AddCircleIcon className="icoinvent"/>
+      </button>
+      <div className="container eventlisttable">
         <div className={"p-5"}>
           <hr />
           <div
@@ -166,8 +180,16 @@ function EventList(props) {
                   style={{ width: "300px" }}
                 />
                 {searchDate && (
-                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'4px'}} onClick={() => setSearchDate("")}>
-                   <ClearIcon/>
+                  <div
+                    className="search-icon"
+                    style={{
+                      zIndex: "100",
+                      backgroundColor: "white",
+                      right: "4px",
+                    }}
+                    onClick={() => setSearchDate("")}
+                  >
+                    <ClearIcon />
                   </div>
                 )}
               </div>
@@ -244,7 +266,7 @@ function EventList(props) {
                           onClick={() => handleUpdate(data)}
                           style={{ color: "green" }}
                         >
-                          <EditIcon/>
+                          <EditIcon />
                         </IconButton>
                         <IconButton
                           aria-label="delete"
@@ -280,12 +302,15 @@ function EventList(props) {
       />
       <UpdateModal
         show={showUpdateModal}
-        onHide={() => setShowUpdateModal(false)}
+        onHide={() => {
+          setShowUpdateModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
         inputs={selectedEvtReg} // Pass the selected evtreg data to the UpdateModal
       />
+       <RegistrationModal show={showModal4} onHide={addModal} />
     </ClubLayout>
   );
 }
 
 export default EventList;
-

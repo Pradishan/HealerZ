@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Bell from "../assets/bell.svg";
 import SideClose from "../assets/carbon_side-panel-close.svg";
 import FeatherIcon from "feather-icons-react";
 import logo from "../assets/logo.png";
@@ -9,9 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeToggle } from "../redux/actions";
 import default_dp from "../assets/default_dp.png";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import "../layouts/layout.css";
-import nusnan from "../assets/nusnan.jpg";
+
 
 function ClubLayout({ children }) {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -141,25 +139,6 @@ function ClubLayout({ children }) {
                 </div>
               </NavLink>
             </div>
-            <div className={"w-100 px-sm-2"}>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "side-menu-item side-menu-active "
-                    : "side-menu-item "
-                }
-                to={"/clubs/registration"}
-              >
-                <div className={"d-flex"}>
-                  <FeatherIcon
-                    icon="edit"
-                    className={!open ? "me-2" : "ms-1"}
-                  />
-                  {!open && <div className={"trans-1"}>Registration</div>}
-                </div>
-              </NavLink>
-            </div>
-
             <div className={"w-100 px-sm-2"}>
               <NavLink
                 className={({ isActive }) =>
