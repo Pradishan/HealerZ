@@ -12,7 +12,7 @@ const UpdateConformPatientModal = ({ show, onHide, onConfirm }) => {
         <IconButton style={{color:'darkgreen'}}><UpdateIcon sx={{ fontSize: "40px" }}/></IconButton>
       </Modal.Header>
       <Modal.Body style={{ background: "white" }}>
-        <p>Are you sure you want to Update this Patient Details ?</p>
+        <p>Are you sure you want to Update this Details ?</p>
       </Modal.Body>
       <Modal.Footer>
       <Button variant="success" style={{width:'200px'}} onClick={onConfirm}>

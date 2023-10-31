@@ -182,7 +182,7 @@ class Employee
         $mail->addAddress($email);     //Add a recipient             //Name is optional
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $role.' Registration for HealerZ !';
+        $mail->Subject = $role . ' Registration for HealerZ !';
         $message = "Dear " . $name . " ( " . $role . " ) ,<br>" . "<br>";
         $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>" . "<br>";
         $message .= "<hr>" . "<br>";
@@ -243,6 +243,28 @@ class Employee
         if ($res) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public function updateEmployee()
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "UPDATE employee SET employee_Name = :employee_Name, role = :role, Email= :Email, PhoneNo = :PhoneNo, Address = :Address, SLMC = :SLMC, Password = :Password WHERE employee_ID = :employee_ID";
+            $pstmt = $conn->prepare($query);
+            $pstmt->bindValue(':employee_Name', $this->employee_Name);
+            $pstmt->bindValue(':role', $this->role);
+            $pstmt->bindValue(':Email', $this->Email);
+            $pstmt->bindValue(':PhoneNo', $this->PhoneNo);
+            $pstmt->bindValue(':Address', $this->Address);
+            $pstmt->bindValue(':SLMC', $this->SLMC);
+            $pstmt->bindValue(':Password', $this->Password);
+            $pstmt->bindValue(':employee_ID', $this->employee_ID);
+            $res = $pstmt->execute();
+            return  $res;
+        } catch (PDOException $e) {
             return false;
         }
     }
