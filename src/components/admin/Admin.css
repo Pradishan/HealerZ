@@ -395,7 +395,7 @@ select:focus {
 .empprofdetail{
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 70px;
 }
 
 .detaildetails{
