@@ -125,12 +125,47 @@ function EventList(props) {
     setShowUpdateModal(true);
   };
 
+  const [eventCounts, setEventCounts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost/Healerz/PHP/club/eventCategoriesCount.php")
+      .then((response) => {
+        console.log(response.data);
+        setEventCounts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, [updateTrigger]);
+
+  
+  const getEventCount = (eventName) => {
+    const event = eventCounts.find((item) => item.event === eventName);
+    return event ? event.count : 0;
+  };
+
   return (
     <ClubLayout>
-      <button className="btn shadow gradient-button eventaddbutt" onClick={addModal}>
-        Registration
-        <AddCircleIcon className="icoinvent"/>
-      </button>
+      <div style={{ display: "flex"}}>
+        <div className="vaccountflex">
+          <button className="btn btn-success">
+            Vaccination: {getEventCount("vaccination")}
+          </button>
+        </div>
+        <div className="vaccountflex vaccrt">
+        <button className="btn btn-primary" style={{backgroundColor:'darkred'}}>
+            Blood Donation: {getEventCount("blooddonation")}
+          </button>
+        </div>
+        <button
+          className="btn shadow gradient-button eventaddbutt"
+          onClick={addModal}
+        >
+          Registration
+          <AddCircleIcon className="icoinvent" />
+        </button>
+      </div>
       <div className="container eventlisttable">
         <div className={"p-5"}>
           <hr />
@@ -308,7 +343,7 @@ function EventList(props) {
         }}
         inputs={selectedevent} // Pass the selected event data to the UpdateModal
       />
-       <RegistrationModal show={showModal4} onHide={addModal} />
+      <RegistrationModal show={showModal4} onHide={addModal} />
     </ClubLayout>
   );
 }
