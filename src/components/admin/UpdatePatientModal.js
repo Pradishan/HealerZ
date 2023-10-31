@@ -127,6 +127,7 @@ function UpdatePatientModal(props) {
                       onChange={(e) =>
                         updateNewData("Patient_ID", e.target.value)
                       }
+                      readOnly
                     />
                   </th>
                 </tr>
