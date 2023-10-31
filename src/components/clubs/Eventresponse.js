@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ClubLayout from '../../layouts/ClubLayout'
-import { Button, Col, Container, Row } from "react-bootstrap";
-import Logosmall from "../../assets/logo-small.png";
-import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
 import HbloodReg from "../home/HbloodReg";
 import '../inventoryinterface/inventory.css'
 
@@ -38,25 +36,12 @@ function Eventresponse(props) {
 
     return (
         <ClubLayout>
-            <Container>
-                <Row>
-                    <Col>
-                        <Card className="Sliderr" style={{ width: '1070px', marginTop: '10px', marginLeft: '20px' }}>
-                            <Card.Body style={{ display: 'flex', flexDirection: 'row' }}>
-                                <Card.Title className="cardText1"><h1>Event Registration</h1></Card.Title>
-                                <Card.Img variant="top" src={Logosmall}
-                                    style={{ width: '130px', height: '130px', marginLeft: '500px' }} />
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
             <div className={"container"}>
                 <div className={"p-5"}>
-                    <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row' }}>
-                        <div><h4 className={"content-heading"}>Filter the Results : </h4></div>
+                    <div className={"SearchSection"} style={{ display: 'flex', flexDirection: 'row', marginLeft:'632px' }}>
+                        <div><h4 className={"content-heading"}>Filter the Results:</h4></div>
                         <div className={"SearchSection2"}>
-                            <form onSubmit={handleSubmit3} style={{ display: 'flex', flexDirection: 'row',marginLeft:'300px' }}>
+                            <form onSubmit={handleSubmit3} style={{ display: 'flex', flexDirection: 'row' }}>
 
                                 <input className={"SearchBox1"}
                                     type="text"
@@ -114,3 +99,4 @@ function Eventresponse(props) {
 }
 
 export default Eventresponse;
+
