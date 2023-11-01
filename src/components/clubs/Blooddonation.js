@@ -5,13 +5,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./blooddonation.css"; // Import the CSS file
 import axios from "axios";
 import bddonate from "../../assets/blddonate.png";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BloodDonationModal from "./BloodDonationModal";
 
 export default function Blooddonation() {
   const [id, setId] = useState("");
   const [donationStatus, setDonationStatus] = useState("");
   const [donationhist, setDonationhist] = useState(null);
+  const [showModal4, setShowModal4] = useState(false);
+
+  const addModal = () => {
+    setShowModal4(!showModal4);
+  };
 
   const checkDonationAvailability = (date) => {
     const date1 = new Date(date);
@@ -148,7 +154,10 @@ export default function Blooddonation() {
               <div className="notdonatedstatus">
                 <img src={bddonate} height="150px" alt="" />
                 {donationStatus ? (
-                  <strong>{donationStatus}</strong>
+                  <div className="blooddonarregbutt">
+                    <strong>{donationStatus}</strong>
+                    <button className="btn btn-danger" onClick={addModal}>Donate</button>
+                  </div>
                 ) : (
                   <strong>Donate with US</strong>
                 )}
@@ -156,8 +165,9 @@ export default function Blooddonation() {
             </div>
           )}
         </div>
-        <ToastContainer />
       </div>
+      <ToastContainer />
+      <BloodDonationModal show={showModal4} onHide={addModal} />
     </ClubLayout>
   );
 }

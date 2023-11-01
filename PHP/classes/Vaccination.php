@@ -8,13 +8,15 @@ use PDOException;
 use PDO;
 
 
-class Vaccination{
-    private $vaccinationId;
-    private $VaccinationName;
-    private $Date;
-    private $PatientId;
+class Vaccination
+{
+	private $vaccinationId;
+	private $VaccinationName;
+	private $Date;
+	private $PatientId;
 
-	public function __construct($vaccinationId, $VaccinationName, $Date, $PatientId) {
+	public function __construct($vaccinationId, $VaccinationName, $Date, $PatientId)
+	{
 
 		$this->vaccinationId = $vaccinationId;
 		$this->VaccinationName = $VaccinationName;
@@ -22,40 +24,48 @@ class Vaccination{
 		$this->PatientId = $PatientId;
 	}
 
-	public function getVaccinationId() {
+	public function getVaccinationId()
+	{
 		return $this->vaccinationId;
 	}
 
-	public function setVaccinationId($value) {
+	public function setVaccinationId($value)
+	{
 		$this->vaccinationId = $value;
 	}
 
-	public function getVaccinationName() {
+	public function getVaccinationName()
+	{
 		return $this->VaccinationName;
 	}
 
-	public function setVaccinationName($value) {
+	public function setVaccinationName($value)
+	{
 		$this->VaccinationName = $value;
 	}
 
-	public function getDate() {
+	public function getDate()
+	{
 		return $this->Date;
 	}
 
-	public function setDate($value) {
+	public function setDate($value)
+	{
 		$this->Date = $value;
 	}
 
-	public function getPatientId() {
+	public function getPatientId()
+	{
 		return $this->PatientId;
 	}
 
-	public function setPatientId($value) {
+	public function setPatientId($value)
+	{
 		$this->PatientId = $value;
 	}
 
 
-    public function addVaccine()
+	public function addVaccine()
 	{
 		try {
 			$dbcon = new DBconnector;
@@ -79,27 +89,26 @@ class Vaccination{
 	}
 
 
-    public function checkVaccinationStatus($patientId, $vaccinationType)
-{
-    try {
-        $dbcon = new DBconnector;
-        $conn = $dbcon->getConnection();
-        
-        $stmt = $conn->prepare("SELECT DISTINCT * FROM vaccination_details WHERE PatientId = ? AND VaccinationName = ?");
-        $stmt->bindValue(1, $patientId);
-        $stmt->bindValue(2, $vaccinationType);
-        $stmt->execute();
-        
-        $result = $stmt->fetch();
+	public function checkVaccinationStatus($patientId, $vaccinationType)
+	{
+		try {
+			$dbcon = new DBconnector;
+			$conn = $dbcon->getConnection();
 
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (PDOException $e) {
-        return false;
-    }
-}
+			$stmt = $conn->prepare("SELECT DISTINCT * FROM vaccination_details WHERE PatientId = ? AND VaccinationName = ?");
+			$stmt->bindValue(1, $patientId);
+			$stmt->bindValue(2, $vaccinationType);
+			$stmt->execute();
 
+			$result = $stmt->fetch();
+
+			if ($result) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (PDOException $e) {
+			return false;
+		}
+	}
 }

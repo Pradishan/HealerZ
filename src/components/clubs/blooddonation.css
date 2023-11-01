@@ -116,3 +116,15 @@
     color: rgb(12, 139, 0);
     text-transform: uppercase;
 }
+
+.blooddonarregbutt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px ;
+}
+
+.blooddonarregbutt button{
+    margin-top: 10px;
+    width: 50%;
+}

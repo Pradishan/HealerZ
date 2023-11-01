@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import ClubLayout from "../../layouts/ClubLayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import the CSS file
@@ -113,7 +113,7 @@ export default function Vaccination() {
               </div>
               <hr />
               <button
-                className="btn btn-danger"
+                className="btn btn-success"
                 onClick={checkVaccinationStatus}
               >
                 Check Vaccination Status
@@ -165,14 +165,14 @@ export default function Vaccination() {
                   {vaccinationStatus ? (
                     <strong> {vaccinationStatus}</strong>
                   ) : (
-                    <strong>Wear mask</strong>
+                    <strong>Get ready yourself</strong>
                   )}
                 </div>
               </div>
             )}
           </div>
         </div>
-        <ToastContainer />
+        <ToastContainer/>
       </div>
     </ClubLayout>
   );
