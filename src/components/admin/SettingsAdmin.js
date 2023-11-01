@@ -3,7 +3,7 @@ import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import default_dp from "../../assets/default_dp.png";
+import default_dp from "../../assets/avatar.svg";
 import { IconButton } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -11,7 +11,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import setting from "../../assets/inventorysettings.svg";
+import setting from "../../assets/adminlogin3.svg";
 const SettingsAdmin = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
   const [userdata, setUserData] = useState([]);

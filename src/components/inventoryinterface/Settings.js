@@ -4,7 +4,7 @@ import powsi from "../../assets/Powsi.jpg";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import default_dp from "../../assets/default_dp.png";
+import default_dp from "../../assets/avatar.svg";
 import { IconButton } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
