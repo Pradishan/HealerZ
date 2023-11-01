@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import slider1 from '../../assets/slider1.png';
-import slider2 from '../../assets/slider2.png';
-import slider3 from '../../assets/slider3.png';
-import slider4 from '../../assets/slider4.png';
-import slider5 from '../../assets/slider5.png';
+import Axios from 'axios';
 import FeatherIcon from 'feather-icons-react';
 
 const Carousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-
-  const slides = [slider1, slider2, slider3, slider4, slider5]; 
- 
+  const [slides, setSlides] = useState([]);
+  
   const nextSlide = () => {
     setActiveSlide((activeSlide + 1) % slides.length);
   };
 
   useEffect(() => {
+    Axios.get('http://localhost/Healerz/PHP/club/sliderget.php')
+      .then((response) => {
+        setSlides(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching images:', error);
+      });
+    
     const intervalId = setInterval(nextSlide, 5000);
+    
     return () => {
       clearInterval(intervalId);
     };
@@ -40,7 +44,7 @@ const Carousel = () => {
       <div className="carousel-inner">
         {slides.map((slide, index) => (
           <div key={index} className={`carousel-item${index === activeSlide ? ' active' : ''}`}>
-            <img src={slide} alt="HealerZ" style={{ width: '100%' }} />
+            <img src={`data:image/png;base64,${slide}`} alt="HealerZ" style={{ width: '100%' }} />
           </div>
         ))}
       </div>
@@ -57,3 +61,4 @@ const Carousel = () => {
 };
 
 export default Carousel;
+
