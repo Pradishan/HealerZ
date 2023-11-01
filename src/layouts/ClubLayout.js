@@ -186,6 +186,25 @@ function ClubLayout({ children }) {
                     ? "side-menu-item side-menu-active"
                     : "side-menu-item"
                 }
+                to={"/clubs/settings"}
+              >
+                <div className={"d-flex"}>
+                  <FeatherIcon
+                    icon="settings"
+                    className={!open ? "me-2" : "ms-1"}
+                  />
+                  {!open && <div className={""}>Settings</div>}
+                </div>
+              </NavLink>
+            </div>
+
+            <div className={"w-100 px-sm-2"}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "side-menu-item side-menu-active"
+                    : "side-menu-item"
+                }
                 to={"/"}
               >
                 <div className={"d-flex"} onClick={logoutt}>

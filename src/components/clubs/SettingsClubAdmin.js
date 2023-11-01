@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../layouts/layout";
-import powsi from "../../assets/Powsi.jpg";
+import ClubLayout from "../../layouts/ClubLayout";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +12,9 @@ import ContactEmergencyIcon from "@mui/icons-material/ContactEmergency";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import setting from "../../assets/inventorysettings.svg";
-const Settings = () => {
+
+
+const SettingsClubAdmin = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
   const [userdata, setUserData] = useState([]);
   const [showSecondCard, setShowSecondCard] = useState(false);
@@ -152,7 +153,7 @@ const Settings = () => {
     }
   };
   return (
-    <Layout>
+    <ClubLayout>
       <div className="settingcardcenter">
         <div className="card settingcard settingcardproff">
           <div className="">
@@ -413,8 +414,8 @@ const Settings = () => {
         </div>
         <ToastContainer />
       </div>
-    </Layout>
+    </ClubLayout>
   );
 };
 
-export default Settings;
+export default SettingsClubAdmin;
