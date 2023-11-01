@@ -266,11 +266,11 @@ function EventList(props) {
               >
                 <tr>
                   <th scope="col">NO</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Entroll_No</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">PhoneNo</th>
-                  <th scope="col">Date</th>
                   <th scope="col">Event</th>
                   <th scope="col">ACTION</th>
                 </tr>
@@ -280,11 +280,11 @@ function EventList(props) {
                   filteredEventList.map((data, index) => (
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
+                      <td>{data.Date}</td>
                       <td>{data.Patient_ID}</td>
                       <td>{data.name}</td>
                       <td>{data.email}</td>
                       <td>{data.phone_no}</td>
-                      <td>{data.Date}</td>
                       <td>{data.event}</td>
                       <td>
                         <IconButton
