@@ -318,7 +318,7 @@ function Inventory(props) {
             <hr />
             <div className={"table-container w-100 p-0"}>
               <table
-                className={"table table-hover table-striped "}
+                className={"table table-hover table-striped"}
                 style={{ minWidth: "0px" }}
               >
                 <thead className={"top-0 position-sticky h-45"}>

@@ -19,15 +19,18 @@ import focus3 from "../../assets/focus3.svg";
 import aboutus from "../../assets/aboutus.svg";
 import vaccination from "../../assets/vaccination.svg";
 import blooddonation from "../../assets/Blooddonation.svg";
-import HvacciReg from "./HvacciReg";
-import HbloodReg from "./HbloodReg";
+import RegistrationModal from "../clubs/RegistrationModal";
+
 
 export default function Home() {
   const [showTeam, setShowTeam] = useState(false);
   const [isDoctorSessionOn, setIsDoctorSessionOn] = useState(false);
   const [showPhoneModal, setShowPhoneModal] = useState(false);
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const [showModal4, setShowModal4] = useState(false);
+
+  const addModal = () => {
+    setShowModal4(!showModal4);
+  };
 
   useEffect(() => {
     let login = sessionStorage.getItem("Doctor");
@@ -190,14 +193,14 @@ export default function Home() {
               <div className="card cardWrap2">
                 <img src={vaccination} alt="" />
                 <h1 className="title"> vaccination</h1>
-                <HvacciReg onClick={handleShow}></HvacciReg>
+                <button className="btn shadow gradient-button hregbutt" onClick={addModal}>Registration</button>
               </div>
             </div>
             <div className="col">
               <div className="card cardWrap2">
                 <img src={blooddonation} alt="" />
                 <h1 className="title">Blood donation</h1>
-                <HbloodReg onClick={handleShow}></HbloodReg>
+                <button className="btn shadow gradient-button hregbutt" onClick={addModal}>Registration</button>
               </div>
             </div>
           </div>
@@ -293,6 +296,7 @@ export default function Home() {
       {showPhoneModal && (
         <PhoneModal show={showPhoneModal} onHide={closePhoneModal} />
       )}
+      <RegistrationModal show={showModal4} onHide={addModal} />
     </div>
   );
 }

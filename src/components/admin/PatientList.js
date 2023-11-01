@@ -9,7 +9,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
+import EditIcon from '@mui/icons-material/Edit';
+import UpdateModal from "./UpdatePatientModal";
 
 function PatientList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -21,6 +23,12 @@ function PatientList(props) {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [setPatientToDelete, setSelectedPatientToDelete] = useState(null);
   const [filteredPatientList, setFilteredPatientList] = useState([]);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
@@ -112,10 +120,13 @@ function PatientList(props) {
       toast.error("Error deleting Patient");
     }
   };
+  const handleUpdate = (patient) => {
+    setSelectedPatient(patient);
+    setShowUpdateModal(true);
+  };
 
   return (
     <AdminLayout>
-      {/* <h3 className="serhett">Patient List</h3> */}
       <div className={"container patientlisttable"}>
         <div className={"p-5"}>
           <hr />
@@ -123,9 +134,6 @@ function PatientList(props) {
             className={"SearchSection"}
             style={{ display: "flex", flexDirection: "row" }}
           >
-            {/* <div>
-              <h3 className={"content-heading"}>Filter the Results : </h3>
-            </div> */}
             <div className="SearchSection2">
               <div className="search-input-container">
                 <form
@@ -144,60 +152,84 @@ function PatientList(props) {
                     <SearchIcon />
                   </div>
                   {searchTerm3 && (
-                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm("")}>
-                   <ClearIcon/>
-                  </div>
-                )}
+                    <div
+                      className="search-icon"
+                      style={{
+                        zIndex: "100",
+                        backgroundColor: "white",
+                        right: "6px",
+                      }}
+                      onClick={() => setSearchTerm("")}
+                    >
+                      <ClearIcon />
+                    </div>
+                  )}
                 </form>
               </div>
               <div className="search-input-container">
-              <form
-                onSubmit={handleSearchSubmit2}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                <input
-                  className={"SearchBox1"}
-                  type="text"
-                  placeholder="Filter by Patient Name"
-                  value={searchTerm4}
-                  onChange={handleChange4}
-                  style={{ width: "300px" }}
-                />
-                 <div className="search-icon" onClick={handleSearchSubmit2}>
+                <form
+                  onSubmit={handleSearchSubmit2}
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
+                  <input
+                    className={"SearchBox1"}
+                    type="text"
+                    placeholder="Filter by Patient Name"
+                    value={searchTerm4}
+                    onChange={handleChange4}
+                    style={{ width: "300px" }}
+                  />
+                  <div className="search-icon" onClick={handleSearchSubmit2}>
                     <SearchIcon />
                   </div>
                   {searchTerm4 && (
-                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'6px'}} onClick={() => setSearchTerm2("")}>
-                   <ClearIcon/>
-                  </div>
-                )}
-              </form>
+                    <div
+                      className="search-icon"
+                      style={{
+                        zIndex: "100",
+                        backgroundColor: "white",
+                        right: "6px",
+                      }}
+                      onClick={() => setSearchTerm2("")}
+                    >
+                      <ClearIcon />
+                    </div>
+                  )}
+                </form>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
-              <div className="search-input-container">
-              <select
-                className={"SearchBox1"}
-                value={selectedBloodGroup}
-                onChange={handleBloodGroupChange}
-                style={{ width: "300px" }}
-              >
-                <option value="">Choose Blood Group</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-              </select>
-              {selectedBloodGroup && (
-                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedBloodGroup("")}>
-                   <ClearIcon/>
-                  </div>
-                )}
-            </div>
-            </div>
+                <div className="search-input-container">
+                  <select
+                    className={"SearchBox1"}
+                    value={selectedBloodGroup}
+                    onChange={handleBloodGroupChange}
+                    style={{ width: "300px" }}
+                  >
+                    <option value="">Choose Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                  {selectedBloodGroup && (
+                    <div
+                      className="search-icon"
+                      style={{
+                        zIndex: "100",
+                        backgroundColor: "white",
+                        right: "3px",
+                      }}
+                      onClick={() => setSelectedBloodGroup("")}
+                    >
+                      <ClearIcon />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           <hr />
@@ -218,7 +250,7 @@ function PatientList(props) {
                   <th scope="col">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="h-50">
                 {filteredPatientList.length > 0 ? (
                   filteredPatientList.map((data, index) => (
                     <tr key={index}>
@@ -234,9 +266,17 @@ function PatientList(props) {
                           aria-label="delete"
                           className="viewbutt"
                           onClick={() => openModal(data)}
-                          style={{ color: "green" }}
+                          style={{ color: "blue" }}
                         >
                           <VisibilityIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="update"
+                          className="viewbutt"
+                          onClick={() => handleUpdate(data)}
+                          style={{ color: "green" }}
+                        >
+                          <EditIcon/>
                         </IconButton>
                         <IconButton
                           aria-label="delete"
@@ -269,6 +309,14 @@ function PatientList(props) {
         show={showModal}
         onHide={() => setShowModal(false)}
         PatientDetails={selectedPatient}
+      />
+      <UpdateModal
+        show={showUpdateModal}
+        onHide={() => {
+          setShowUpdateModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
+        inputs={selectedPatient} // Pass the selected patient data to the UpdateModal
       />
     </AdminLayout>
   );

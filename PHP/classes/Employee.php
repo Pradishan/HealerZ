@@ -12,153 +12,143 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-class employee
+class Employee
 {
     private $employee_ID;
-    private $employeeName;
-    private $regNo;
-    private $phoneNo;
-    private $email;
-    private $address;
-    private $password;
-    private $userType;
+    private $employee_Name;
+    private $role;
+    private $Email;
+    private $PhoneNo;
+    private $Address;
+    private $SLMC;
+    private $Password;
+    private $Profile;
 
-
-    public function __construct($employee_ID, $employeeName, $phoneNo, $email, $address, $password, $regNo, $userType)
+    public function __construct($employee_ID, $employee_Name, $role, $Email, $PhoneNo, $Address, $SLMC, $Password)
     {
+
         $this->employee_ID = $employee_ID;
-        $this->employeeName = $employeeName;
-        $this->phoneNo = $phoneNo;
-        $this->email = $email;
-        $this->address = $address;
-        $this->password = $password;
-        $this->regNo = $regNo;
-        $this->userType = $userType;
+        $this->employee_Name = $employee_Name;
+        $this->role = $role;
+        $this->Email = $Email;
+        $this->PhoneNo = $PhoneNo;
+        $this->Address = $Address;
+        $this->SLMC = $SLMC;
+        $this->Password = $Password;
     }
-
-
 
     public function getEmployee_ID()
     {
         return $this->employee_ID;
     }
 
-    public function getEmployeeName()
+    public function setEmployee_ID($value)
     {
-        return $this->employeeName;
+        $this->employee_ID = $value;
     }
 
-    public function getRegNo()
+    public function getEmployee_Name()
     {
-        return $this->regNo;
+        return $this->employee_Name;
     }
 
-    public function getPhoneNo()
+    public function setEmployee_Name($value)
     {
-        return $this->phoneNo;
+        $this->employee_Name = $value;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($value)
+    {
+        $this->role = $value;
     }
 
     public function getEmail()
     {
-        return $this->email;
+        return $this->Email;
+    }
+
+    public function setEmail($value)
+    {
+        $this->Email = $value;
+    }
+
+    public function getPhoneNo()
+    {
+        return $this->PhoneNo;
+    }
+
+    public function setPhoneNo($value)
+    {
+        $this->PhoneNo = $value;
     }
 
     public function getAddress()
     {
-        return $this->address;
+        return $this->Address;
+    }
+
+    public function setAddress($value)
+    {
+        $this->Address = $value;
+    }
+
+    public function getSLMC()
+    {
+        return $this->SLMC;
+    }
+
+    public function setSLMC($value)
+    {
+        $this->SLMC = $value;
     }
 
     public function getPassword()
     {
-        return $this->password;
+        return $this->Password;
     }
 
-    public function getUserType()
+    public function setPassword($value)
     {
-        return $this->userType;
+        $this->Password = $value;
     }
 
-    public function setEmployee_ID($employee_ID): void
+    public function getProfile()
     {
-        $this->employee_ID = $employee_ID;
+        return $this->Profile;
     }
 
-    public function setEmployeeName($employeeName): void
+    public function setProfile($value)
     {
-        $this->employeeName = $employeeName;
+        $this->Profile = $value;
     }
-
-    public function setRegNo($regNo): void
-    {
-        $this->regNo = $regNo;
-    }
-
-    public function setPhoneNo($phoneNo): void
-    {
-        $this->phoneNo = $phoneNo;
-    }
-
-    public function setEmail($email): void
-    {
-        $this->email = $email;
-    }
-
-    public function setAddress($address): void
-    {
-        $this->address = $address;
-    }
-
-    public function setPassword($password): void
-    {
-        $this->password = $password;
-    }
-
-    public function setUserType($userType): void
-    {
-        $this->userType = $userType;
-    }
-
-
 
 
 
     public function addEmployee()
     {
         try {
+
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
-            $query = "INSERT INTO employee (employee_ID, employeeName, phoneNo, email, address, password, regNo, userType) VALUES (:employee_ID, :employeeName, :phoneNo, :email, :address, :password, :regNo,  :userType)";
+            $query = "INSERT INTO employee (employee_ID, employee_Name,role,Email,PhoneNo,Address,SLMC,Password) VALUES (:employee_ID, :employee_Name, :role, :Email, :PhoneNo, :Address, :SLMC, :Password)";
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':employee_ID', $this->employee_ID);
-            $stmt->bindValue(':employeeName', $this->employeeName);
-            $stmt->bindValue(':phoneNo', $this->phoneNo);
-            $stmt->bindValue(':email', $this->email);
-            $stmt->bindValue(':address', $this->address);
-            $stmt->bindValue(':password', $this->password);
-            $stmt->bindValue(':regNo', $this->regNo);
-            $stmt->bindValue(':userType', $this->userType);
+            $stmt->bindValue(':employee_Name', $this->employee_Name);
+            $stmt->bindValue(':role', $this->role);
+            $stmt->bindValue(':Email', $this->Email);
+            $stmt->bindValue(':PhoneNo', $this->PhoneNo);
+            $stmt->bindValue(':Address', $this->Address);
+            $stmt->bindValue(':SLMC', $this->SLMC);
+            $stmt->bindValue(':Password', $this->Password);
             $res = $stmt->execute();
-
+            Employee::SendMail($this->employee_ID, $this->Password, $this->Email, $this->employee_Name, $this->role);
             if ($res) {
-                // Check user type and add specific attributes to respective tables
-                switch ($this->userType) {
-                    case 'doctor':
-                        $this->addDoctorAttributes($conn);
-                        break;
-                    case 'pharmacist':
-                        $this->addPharmacistAttributes($conn);
-                        break;
-                    case 'admin':
-                        $this->addAdminAttributes($conn);
-                        break;
-                    case 'clubadmin':
-                        $this->addClubadminAttributes($conn);
-                        break;
 
-                    default:
-                        // Default case if user type doesn't match any specific type
-                        break;
-                }
                 return true;
             } else {
                 return false;
@@ -168,110 +158,8 @@ class employee
         }
     }
 
-    private function addDoctorAttributes($conn)
-    {
 
-        $query = "INSERT INTO doctor (Doctor_ID,  Doctor_Name, Password, Designation, Email, PhoneNo, Address,  SLMC ) VALUES (:Doctor_ID, :Doctor_Name, :Password, :Designation, :Email, :PhoneNo, :Address, :SLMC)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Doctor_ID', $this->employee_ID);
-        $stmt->bindValue(':Doctor_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->bindValue(':PhoneNo', $this->phoneNo);
-        $stmt->bindValue(':Email', $this->email);
-        $stmt->bindValue(':Address', $this->address);
-        $stmt->bindValue(':SLMC', $this->regNo);
-        $stmt->bindValue(':Designation', $this->userType);
-        $stmt->execute();
-    }
-
-    private function addPharmacistAttributes($conn)
-    {
-        try {
-            $query = "INSERT INTO pharmacist (Pharmacist_ID, Pharmacist_Name, Password, Designation, Email, PhoneNo, Address,  SLMC ) VALUES (:Pharmacist_ID, :Pharmacist_Name, :Password, :Designation, :Email, :PhoneNo, :Address, :SLMC)";
-            $stmt = $conn->prepare($query);
-            $stmt->bindValue(':Pharmacist_ID', $this->employee_ID);
-            $stmt->bindValue(':Pharmacist_Name', $this->employeeName);
-            $stmt->bindValue(':Password', $this->password);
-            $stmt->bindValue(':PhoneNo', $this->phoneNo);
-            $stmt->bindValue(':Email', $this->email);
-            $stmt->bindValue(':Address', $this->address);
-            $stmt->bindValue(':SLMC', $this->regNo);
-            $stmt->bindValue(':Designation', $this->userType);
-            $res = $stmt->execute();
-            employee::SendMail($this->employee_ID, $this->password, $this->email, $this->employeeName);
-            if ($res) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-
-    private function addAdminAttributes($conn)
-    {
-        $query = "INSERT INTO admin (Admin_ID, Admin_Name, Password) VALUES (:Admin_ID, :Admin_Name, :Password)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Admin_ID', $this->employee_ID);
-        $stmt->bindValue(':Admin_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->execute();
-    }
-
-    private function addClubadminAttributes($conn)
-    {
-        $query = "INSERT INTO admin (Admin_ID, Admin_Name, Password) VALUES (:Admin_ID, :Admin_Name, :Password)";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':Admin_ID', $this->employee_ID);
-        $stmt->bindValue(':Admin_Name', $this->employeeName);
-        $stmt->bindValue(':Password', $this->password);
-        $stmt->execute();
-    }
-
-
-
-    public function deleteEmployee()
-    {
-        $dbcon = new DBconnector();
-        $conn = $dbcon->getConnection();
-        $query = "DELETE FROM employee WHERE employee_ID = :employee_ID";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':employee_ID', $this->employee_ID);
-        $res = $stmt->execute();
-
-        if ($res) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    public function updateEmployee()
-    {
-        try {
-            $dbcon = new DBconnector();
-            $conn = $dbcon->getConnection();
-            $query = "UPDATE employee SET employeeName = :employeeName, phoneNo = :phoneNo, email = :email, address = :address,  password = :password, userType = :userType WHERE employee_ID = :employee_ID";
-            $pstmt = $conn->prepare($query);
-            $pstmt->bindValue(':employee_ID', $this->employee_ID);
-            $pstmt->bindValue(':employeeName', $this->employeeName);
-            $pstmt->bindValue(':phoneNo', $this->phoneNo);
-            $pstmt->bindValue(':email', $this->email);
-            $pstmt->bindValue(':address', $this->address);
-            $pstmt->bindValue(':password', $this->password);
-            $pstmt->bindValue(':regNo', $this->regNo);
-            $pstmt->bindValue(':userType', $this->userType);
-            $res = $pstmt->execute();
-
-            return  $res;
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-
-    public static function SendMail($UserName, $password, $email, $name)
+    public static function SendMail($UserName, $password, $email, $name, $role)
     {
         // Create an instance; passing `true` enables exceptions
 
@@ -286,7 +174,7 @@ class employee
         $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
         $mail->Username = 'healerz763@gmail.com';                     //SMTP username
-        $mail->Password = 'lbnqanfdkzyvdgij';                               //SMTP password
+        $mail->Password = 'iqgb czzi sjbp ecjg';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         //Recipients
@@ -294,8 +182,8 @@ class employee
         $mail->addAddress($email);     //Add a recipient             //Name is optional
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'employee Registration for HealerZ !';
-        $message = "Dear " . $name . " ,<br>" . "<br>";
+        $mail->Subject = $role . ' Registration for HealerZ !';
+        $message = "Dear " . $name . " ( " . $role . " ) ,<br>" . "<br>";
         $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>" . "<br>";
         $message .= "<hr>" . "<br>";
         $message .= "We've generated a secure password for you, and it can be found in the registration email we sent, ";
@@ -309,7 +197,7 @@ class employee
         $message .= "HealerZ ," . "<br>";
         $message .= "Medical System of UWU ," . "<br>";
         $message .= "Uva Wellassa University of Srilanka ," . "<br>" . "<br>";
-        $message .= "<img src='https://lh3.googleusercontent.com/Qtl6yF3Qn3ma6vEdSuG82hh3U-DJ2g-mmteKeERMawrrecQVh9Mr5RNasI8Id9n2iOQ5FoTIQD30gvmhCnq5znTZcFNosr8bXa1iweg' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
+        $message .= "<img src='https://ibb.co/XW6mfhL' alt='Your Logo' height='100' width='200'>" . "<br>" . "<br>";
 
 
         $mail->Body = $message;
@@ -322,31 +210,6 @@ class employee
         }
     }
 
-    public static function isemployeeID($employee_ID)
-    {
-        try {
-            $dbcon = new DBconnector();
-            $con = $dbcon->getConnection();
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT employee_ID FROM employee WHERE employee_ID = ?";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $employee_ID);
-            $pstmt->execute();
-
-            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($result) {
-                // employee ID exists
-                return true;
-            } else {
-                // employee ID does not exist
-                return false;
-            }
-        } catch (PDOException $e) {
-            // Handle any database connection errors
-            return ['error' => $e->getMessage()];
-        }
-    }
 
     public static function displayEmployee()
     {
@@ -364,6 +227,43 @@ class employee
             } else {
                 return false;
             }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function deleteemployee()
+    {
+        $dbcon = new DBconnector();
+        $conn = $dbcon->getConnection();
+        $query = "DELETE FROM employee WHERE employee_ID = :employee_ID";
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':employee_ID', $this->employee_ID);
+        $res = $stmt->execute();
+        if ($res) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateEmployee()
+    {
+        try {
+            $dbcon = new DBconnector();
+            $conn = $dbcon->getConnection();
+            $query = "UPDATE employee SET employee_Name = :employee_Name, role = :role, Email= :Email, PhoneNo = :PhoneNo, Address = :Address, SLMC = :SLMC, Password = :Password WHERE employee_ID = :employee_ID";
+            $pstmt = $conn->prepare($query);
+            $pstmt->bindValue(':employee_Name', $this->employee_Name);
+            $pstmt->bindValue(':role', $this->role);
+            $pstmt->bindValue(':Email', $this->Email);
+            $pstmt->bindValue(':PhoneNo', $this->PhoneNo);
+            $pstmt->bindValue(':Address', $this->Address);
+            $pstmt->bindValue(':SLMC', $this->SLMC);
+            $pstmt->bindValue(':Password', $this->Password);
+            $pstmt->bindValue(':employee_ID', $this->employee_ID);
+            $res = $pstmt->execute();
+            return  $res;
         } catch (PDOException $e) {
             return false;
         }

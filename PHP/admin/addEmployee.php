@@ -6,96 +6,16 @@ use classes\Employee;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
-        $employee_id = $_POST["employee_ID"];
-        $employee_name = $_POST["employee_name"];
-        $userType = $_POST["userType"];
-        $email = $_POST["email"];
-        $phoneNo = $_POST["phoneNo"];
-        $address = $_POST["address"];
-        $pass = $_POST["password"];
-        $regNo = $_POST["regNo"];
-
+        $employee_ID = $_POST["employee_ID"];
+        $employee_Name = $_POST["employee_Name"];
+        $role = $_POST["role"];
+        $Email = $_POST["Email"]; 
+        $PhoneNo = $_POST["PhoneNo"]; 
+        $Address = $_POST["Address"]; 
+        $SLMC = $_POST["SLMC"];
+        $Password = $_POST["Password"];
      
-        $employee = new Employee($employee_id, $employee_name, $phoneNo, $email, $address, $pass, $regNo, $userType);
-
-        // Handle different employee types based on designation
-        switch ($userType) {
-            case 'doctor':
-                
-                $employee_id = $_POST["employee_ID"];
-                $employee_name = $_POST["employee_name"];
-                $userType = $_POST["userType"];
-                $email = $_POST["email"];
-                $phoneNo = $_POST["phoneNo"];
-                $address = $_POST["address"];
-                $pass = $_POST["password"];
-                $regNo = $_POST["regNo"];
-
-                $employee->setEmployee_ID($employee_id);
-                $employee->setEmployeeName($employee_name);
-                $employee->setUserType($userType);
-                $employee->setEmail($email);
-                $employee->setPhoneNo($phoneNo);
-                $employee->setAddress($address);
-                $employee->setPassword($pass);
-                $employee->setRegNo($regNo);
-                break;
-
-            case 'pharmacist':
-                
-                $employee_id = $_POST["employee_ID"];
-                $employee_name = $_POST["employee_name"];
-                $userType = $_POST["userType"];
-                $email = $_POST["email"];
-                $phoneNo = $_POST["phoneNo"];
-                $address = $_POST["address"];
-                $pass = $_POST["password"];
-                $regNo = $_POST["regNo"];
-
-                $employee->setEmployee_ID($employee_id);
-                $employee->setEmployeeName($employee_name);
-                $employee->setUserType($userType);
-                $employee->setEmail($email);
-                $employee->setPhoneNo($phoneNo);
-                $employee->setAddress($address);
-                $employee->setPassword($pass);
-                $employee->setRegNo($regNo);
-                break;
-
-            case 'admin':
-                
-                $employee_id = $_POST["employee_ID"];
-                $employee_name = $_POST["employee_name"];
-                $userType = $_POST["userType"];
-                $pass = $_POST["password"];
-
-                $employee->setEmployee_ID($employee_id);
-                $employee->setEmployeeName($employee_name);
-                $employee->setUserType($userType);
-                $employee->setPassword($pass);
-                break;
-                
-            case 'clubadmin':
-                
-                $employee_id = $_POST["employee_ID"];
-                $employee_name = $_POST["employee_name"];
-                $userType = $_POST["userType"];
-                $pass = $_POST["password"];
-
-                $employee->setEmployee_ID($employee_id);
-                $employee->setEmployeeName($employee_name);
-                $employee->setUserType($userType);
-                $employee->setPassword($pass);
-                
-                break;
-            
-        
-            default:
-                // Default case if user type doesn't match any specific type
-                break;
-        }
-
-        // Add the employee to the database
+        $employee = new Employee($employee_ID,$employee_Name,$role,$Email,$PhoneNo,$Address,$SLMC,$Password);
         $res = $employee->addEmployee();
 
         if ($res) {

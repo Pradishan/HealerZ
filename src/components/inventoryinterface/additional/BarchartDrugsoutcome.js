@@ -16,14 +16,11 @@ class BarchartDrugsoutcome extends Component {
       options: {
         chart: {
           height: 350,
-          type: 'line',
+          type: 'area', 
         },
         plotOptions: {
-          line: {
-            borderRadius: 10,
-            dataLabels: {
-              position: 'top',
-            },
+          area: {
+            fillTo: 'origin',
           },
         },
         dataLabels: {
@@ -77,7 +74,7 @@ class BarchartDrugsoutcome extends Component {
           },
         },
         title: {
-          text: 'Monthly Patient Income , 2023',
+          text: 'Monthly Patient Income, 2023',
           floating: true,
           offsetY: 0,
           align: 'center',
@@ -85,7 +82,7 @@ class BarchartDrugsoutcome extends Component {
             color: '#444',
           },
         },
-        colors: ['#00cc00'], // Set the line color to green
+        colors: ['#00cc00'], 
       },
     };
 
@@ -100,10 +97,9 @@ class BarchartDrugsoutcome extends Component {
       .get('http://localhost/Healerz/PHP/Inventory/dashboard/patientincome.php')
       .then((response) => {
         const data = response.data;
-        const months = this.monthNames; // Use a complete list of months
-        const recordCounts = new Array(12).fill(0); // Initialize an array with zeros
+        const months = this.monthNames;
+        const recordCounts = new Array(12).fill(0);
 
-        // Fill in the data counts for the corresponding months
         data.forEach((item) => {
           const monthIndex = item.Month - 1;
           recordCounts[monthIndex] = item.RecordCount;
@@ -131,7 +127,7 @@ class BarchartDrugsoutcome extends Component {
   render() {
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="line" height={250} />
+        <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={250} />
       </div>
     );
   }

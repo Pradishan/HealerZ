@@ -17,20 +17,20 @@ try {
         throw new Exception("Invalid request method. Only POST requests are allowed");
     }
 
-    if (!isset($_POST['Pharmacist_ID'])) {
-        throw new Exception('Pharmacist_ID is not provided in the request');
+    if (!isset($_POST['employee_ID'])) {
+        throw new Exception('employee_ID is not provided in the request');
     }
   
-    $stmt = $conn->prepare("SELECT * FROM pharmacist WHERE Pharmacist_ID = ?");
-    $stmt->execute([$_POST['Pharmacist_ID']]);
+    $stmt = $conn->prepare("SELECT * FROM employee WHERE employee_ID = ?");
+    $stmt->execute([$_POST['employee_ID']]);
 
     if ($stmt->rowCount() == 0) {
         throw new Exception('Pharmacist details not found');
     }
 
     if (isset($_POST['Address']) && isset($_POST['PhoneNo'])) {
-        $stmt = $conn->prepare("UPDATE pharmacist SET Address = ?, PhoneNo = ? WHERE Pharmacist_ID = ?");
-        $stmt->execute([$_POST['Address'], $_POST['PhoneNo'], $_POST['Pharmacist_ID']]);
+        $stmt = $conn->prepare("UPDATE employee SET Address = ?, PhoneNo = ? WHERE employee_ID = ?");
+        $stmt->execute([$_POST['Address'], $_POST['PhoneNo'], $_POST['employee_ID']]);
 
         $message = 'Profile updated successfully.';
      
@@ -47,7 +47,7 @@ try {
                 }
               
                 $file_type = strtolower(pathinfo(basename($_FILES["Profile"]["name"]), PATHINFO_EXTENSION));
-                $target_file = $target_dir . $_POST['Pharmacist_ID'] . "." . $file_type;
+                $target_file = $target_dir . $_POST['employee_ID'] . "." . $file_type;
              
                 if ($_FILES["Profile"]["size"] > 500000) {
                     throw new Exception("Sorry, your photo is too large");
@@ -63,8 +63,8 @@ try {
          
                 if (move_uploaded_file($_FILES["Profile"]["tmp_name"], $target_file)) {
                    
-                    $stmt = $conn->prepare("UPDATE pharmacist SET Profile = ? WHERE Pharmacist_ID = ?");
-                    $stmt->execute([$target_file, $_POST['Pharmacist_ID']]);
+                    $stmt = $conn->prepare("UPDATE employee SET Profile = ? WHERE employee_ID = ?");
+                    $stmt->execute([$target_file, $_POST['employee_ID']]);
 
                     $message = 'Profile updated successfully.';
                 } else {

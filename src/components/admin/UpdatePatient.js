@@ -4,10 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
+import CustomConfirmModal from "./ConfirmDeleteModal";
+import UpdateConfirmModal from "./UpdateConformPatientModal";
 
 function UpdatePatient(props) {
   const [patient_id, setPatientID] = useState("");
   const [patientData, setPatientData] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
 
   const [newData, setNewData] = useState({});
 
@@ -47,6 +51,31 @@ function UpdatePatient(props) {
     }
   };
 
+  const handleUpdateConfirmed = async () => {
+    try {
+      const response = await axios.put(
+        "http://localhost/HealerZ/PHP/admin/updatepatient.php",
+        newData
+      );
+      console.log("Update Response: ", response);
+
+      if (response.data && response.data.message) {
+        toast.success(response.data.message);
+        setPatientData(null);
+        setNewData({});
+      } else if (response.data && response.data.error) {
+        toast.error(response.data.error);
+      } else {
+        toast.error("Failed to update patient!");
+      }
+    } catch (error) {
+      toast.error("An error occurred during the update.");
+      console.error("Update Error: ", error);
+    } finally {
+      setShowUpdateConfirmModal(false);
+    }
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -61,21 +90,40 @@ function UpdatePatient(props) {
     }
 
     try {
-      const response = await axios.put(
-        "http://localhost/HealerZ/PHP/admin/updatepatient.php",
-        newData
-      );
-      console.log(response.data);
-      toast.success("Patient updated successfully!");
-      setPatientData(null);
-      setNewData({});
+      if (newData.DateOfBirth) {
+        const selectedDOB = new Date(newData.DateOfBirth);
+        const currentDate = new Date();
+        if (selectedDOB > currentDate) {
+          toast.info("Please select a past date for Date of Birth.");
+          return;
+        }
+      }
+
+      if (newData.PhoneNo && !/^\d{10}$/.test(newData.PhoneNo)) {
+        toast.info("Invalid phone number format");
+        return;
+      }
+
+      if (
+        newData.Email &&
+        !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(newData.Email)
+      ) {
+        toast.info("Invalid email format");
+        return;
+      }
+
+      setShowUpdateConfirmModal(true); 
     } catch (error) {
-      toast.error("Failed to update Patient!");
+      toast.error("Failed to update patient!");
       console.error(error);
     }
   };
 
   const handleDelete = async () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleDeleteConfirmed = async () => {
     if (!patientData || !patientData.Patient_ID) {
       toast.error("Patient ID not found!");
       return;
@@ -92,11 +140,12 @@ function UpdatePatient(props) {
     } catch (error) {
       toast.error("Failed to delete patient!");
       console.error(error);
+    } finally {
+      setShowConfirmModal(false);
     }
   };
 
   useEffect(() => {
-    // If patientData changes, update newData to reflect the current patientData
     if (patientData) {
       setNewData({
         Patient_ID: patientData.Patient_ID,
@@ -117,8 +166,6 @@ function UpdatePatient(props) {
   return (
     <AdminLayout>
       <div className="Addcontt">
-        {/* <h3 className="serhett">Update patient</h3> */}
-
         <div className="addboxx">
           <h3 className="pataddhed">Update patient</h3>
           <hr />
@@ -154,7 +201,6 @@ function UpdatePatient(props) {
 
           {patientData && (
             <form onSubmit={handleUpdate}>
-              {/* Display patient data and update fields */}
               <table>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <div className="cont1">
@@ -369,6 +415,16 @@ function UpdatePatient(props) {
           )}
         </div>
         <ToastContainer />
+        <CustomConfirmModal
+          show={showConfirmModal}
+          onHide={() => setShowConfirmModal(false)}
+          onConfirm={handleDeleteConfirmed}
+        />
+        <UpdateConfirmModal
+          show={showUpdateConfirmModal}
+          onHide={() => setShowUpdateConfirmModal(false)}
+          onConfirm={handleUpdateConfirmed}
+        />
       </div>
     </AdminLayout>
   );

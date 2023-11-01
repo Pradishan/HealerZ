@@ -21,10 +21,15 @@ function AddModal(props) {
         setDos('');
         setDes('');
     }
+    const validateDrugID = (input) => {
+        return /^\d{7}$/.test(input);
+    }
 
     const handleSubmit = () => {
         if (drug_id.length === 0) {
             toast.warning("Pls Enter the Drug_ID");
+        }else if (!validateDrugID(drug_id)) {
+            toast.info("Please enter a valid 7-digit NDC Code");
         } else if (drug_name.length === 0) {
             toast.warning("Pls Enter the Drug_Name");
         }
@@ -48,7 +53,6 @@ function AddModal(props) {
             axios.post(url, fdata)
                 .then((response) => {
                     console.log(response.data);
-                    //toast.success(response.data.message);
                     if(response.data.message==="Drug Added Successfully"){
                         toast.success(response.data.message);
                         resetForm();
@@ -85,6 +89,7 @@ function AddModal(props) {
                                     className="SearchBox1"
                                     onChange={(e) => setID(e.target.value)}
                                     value={drug_id}
+                                    maxLength={7}
                                 />
                                 <br />
                             </th>

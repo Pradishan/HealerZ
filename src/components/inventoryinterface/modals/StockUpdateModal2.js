@@ -13,7 +13,6 @@ function StockUpdateModal(props) {
   const [Drug_ID, setID] = useState("");
   const [updateTrigger, setUpdateTrigger] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  
 
   const addStockCount = (value) => {
     if (inputs && inputs.Drug_ID) {
@@ -23,7 +22,11 @@ function StockUpdateModal(props) {
   };
 
   const handleAdd = (drug) => {
-    setConfirmModalVisible(true);
+    if (Stock_IN === "") {
+      toast.warning("Please enter the Stock In Count");
+    } else {
+      setConfirmModalVisible(true);
+    }
   };
 
   const handleConfirmDelete = () => {
@@ -71,16 +74,12 @@ function StockUpdateModal(props) {
               <tr>
                 <th className={"detailhed"}>Drug_Name</th>
                 <th className={"detailspac"}>:</th>
-                <th className={"detaildet"}>
-                  {inputs && inputs.Drug_Name}
-                </th>
+                <th className={"detaildet"}>{inputs && inputs.Drug_Name}</th>
               </tr>
               <tr>
                 <th className="detailhed">Available Count</th>
                 <th className={"detailspac"}>:</th>
-                <th className={"detaildet"}>
-                  {inputs && inputs.StockCount}
-                </th>
+                <th className={"detaildet"}>{inputs && inputs.StockCount}</th>
               </tr>
             </tbody>
           </table>
@@ -96,7 +95,7 @@ function StockUpdateModal(props) {
                         type={"number"}
                         name={"StockCount"}
                         className={"SearchBox1"}
-                        style={{width:'300px'}}
+                        style={{ width: "300px" }}
                         onChange={(e) => addStockCount(e.target.value)}
                       />
                     </td>
@@ -111,15 +110,12 @@ function StockUpdateModal(props) {
           <Button
             variant="primary uptbut"
             onClick={() => handleAdd(inputs)}
-            style={{ backgroundColor: "green",width:'130px'}}
+            style={{ backgroundColor: "green", width: "130px" }}
           >
             Update
           </Button>
           <ToastContainer />
-          <Button
-            variant="secondary uptbut"
-            onClick={onHide}
-          >
+          <Button variant="secondary uptbut" onClick={onHide}>
             Cancel
           </Button>
         </Modal.Footer>

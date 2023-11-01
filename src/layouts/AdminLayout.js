@@ -11,8 +11,6 @@ import "./AdminLayout.css";
 import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
-import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ListIcon from "@mui/icons-material/List";
 import WheelchairPickupIcon from "@mui/icons-material/WheelchairPickup";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
@@ -34,8 +32,8 @@ function Layout({ children }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/admin/getadminData.php",
-        { params: { adminID: sessionStorage.getItem("adminID") } }
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
       );
 
       console.log(response.data);
@@ -117,7 +115,7 @@ function Layout({ children }) {
                       <div className="d-flex align-items-center justify-content-center">
                         <div>
                           <h5 className="m-0">
-                            {userdata.map((data) => data.Admin_Name)}
+                            {userdata.map((data) => data.employee_Name)}
                           </h5>
                           {/* <p className='txt  m-0 text-muted'>emp20345</p> */}
                           <p className="txt m-0 text-muted">
@@ -204,7 +202,7 @@ function Layout({ children }) {
 
               <MenuItem
                 className="menu-item"
-                component={<Link to="/admin/Settings" />}
+                component={<Link to="/admin/settingsAdmin" />}
                 icon={<SettingsIcon />}
               >
                 Settings{" "}
@@ -231,22 +229,10 @@ function Layout({ children }) {
               </div>
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto align-items-center">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active position-relative px-2"
-                      aria-current="page"
-                      href="#"
-                    >
-                      <div className="red-dot" />
-                      <img src={Bell} alt={""} />
-                    </a>
+                <li className="nav-item px-2 layoutProfilename">
+                    {userdata.map((data) => data.employee_Name)}
                   </li>
                   <li className="nav-item px-2">
-                    <a
-                      className="nav-link  position-relative p-0"
-                      aria-current="page"
-                      href="#"
-                    >
                       <img
                         src={profilepic}
                         alt="avatar"
@@ -254,7 +240,6 @@ function Layout({ children }) {
                         width="40px"
                         height="40px"
                       />
-                    </a>
                   </li>
                 </ul>
               </div>

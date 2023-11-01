@@ -55,8 +55,18 @@ function AddPatient(props) {
     return password;
   };
 
+  const handleDateChange = (selectedDate) => {
+    const currentDate = new Date();
+    const selectedDOB = new Date(selectedDate);
+    if (selectedDOB > currentDate) {
+      toast.info("Please select a past date for Date of Birth.");
+    } else {
+      setDob(selectedDate);
+    }
+  };
+
   const handleSubmit = () => {
-    setIsLoading(true);
+    
     if (patient_id.length === 0) {
       toast.warning("Please Enter the Patient_ID");
     } else if (patient_name.length === 0) {
@@ -78,6 +88,7 @@ function AddPatient(props) {
     } else if (bg.length === 0) {
       toast.warning("Please Enter the BloodGroup");
     } else {
+      setIsLoading(true);
       const generatedPassword = generatePassword(8);
 
       const url = "http://localhost/HealerZ/PHP/admin/addpatient.php";
@@ -179,7 +190,7 @@ function AddPatient(props) {
                         type="date"
                         className="form-control1"
                         name={"DateOfBirth"}
-                        onChange={(e) => setDob(e.target.value)}
+                        onChange={(e) => handleDateChange(e.target.value)}
                         value={dob}
                       />
                     </th>

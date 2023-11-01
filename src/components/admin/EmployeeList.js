@@ -9,7 +9,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
+import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
+import UpdateEmployeeModal from "./UpdateEmployeeModal";
 
 function EmployeeList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +22,13 @@ function EmployeeList(props) {
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const [setEmployeeToDelete, setSelectedEmployeeToDelete] = useState(null);
   const [filteredEmployeeList, setFilteredEmployeeList] = useState([]);
+  const [selectedDesignation, setSelectedDesignation] = useState("");
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
@@ -29,11 +38,15 @@ function EmployeeList(props) {
     setSearchTerm2(event.target.value);
   };
 
+  const handleDesignationChange = (event) => {
+    setSelectedDesignation(event.target.value);
+  };
+
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     const searchedEmployee = EmployeeList.find(
-      (Employee) => Employee.employee_ID === searchTerm3
+      (employee) => employee.employee_ID === searchTerm3
     );
     if (searchedEmployee) {
       setSelectedEmployee(searchedEmployee);
@@ -47,7 +60,7 @@ function EmployeeList(props) {
   const handleSearchSubmit2 = (event) => {
     event.preventDefault();
     const searchedEmployee = EmployeeList.find(
-      (Employee) => Employee.employeeName === searchTerm4
+      (employee) => employee.employee_Name === searchTerm4
     );
     if (searchedEmployee) {
       setSelectedEmployee(searchedEmployee);
@@ -67,11 +80,22 @@ function EmployeeList(props) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const filteredList = EmployeeList.filter(
+      (employee) =>
+        employee.employee_ID.includes(searchTerm3)  &&
+        employee.employee_Name.toLowerCase().includes(searchTerm4.toLowerCase()) &&
+        (selectedDesignation === "" || employee.role === selectedDesignation)
+    );
+    setFilteredEmployeeList(filteredList);
+  }, [searchTerm3,searchTerm4,selectedDesignation,EmployeeList]);
+
+
  
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/admin/displayEmployeelist.php"
+        "http://localhost/Healerz/PHP/admin/displayemployeelist.php"
       );
       setEmployeeList(response.data);
     } catch (error) {
@@ -79,9 +103,9 @@ function EmployeeList(props) {
     }
   };
 
-  const handleDelete = (Employee) => {
+  const handleDelete = (employee) => {
     setConfirmModalVisible(true);
-    setSelectedEmployeeToDelete(Employee);
+    setSelectedEmployeeToDelete(employee);
   };
 
   const handleConfirmDelete = async () => {
@@ -90,7 +114,7 @@ function EmployeeList(props) {
     setSelectedEmployeeToDelete(null);
     try {
       await axios.delete(
-        `http://localhost/Healerz/PHP/admin/deleteemployee.php?Employee_ID=${EmployeeToDelete.employee_ID}`
+        `http://localhost/Healerz/PHP/admin/deleteemployee.php?employee_ID=${EmployeeToDelete.employee_ID}`
       );
       toast.success("Employee deleted successfully");
       fetchData();
@@ -100,10 +124,15 @@ function EmployeeList(props) {
     }
   };
 
+  const handleUpdate = (employee) => {
+    setSelectedEmployee(employee);
+    setShowUpdateModal(true);
+  };
+
   return (
     <AdminLayout>
       {/* <h3 className="serhett">Employee List</h3> */}
-      <div className={"container Employeelisttable"}>
+      <div className={"container patientlisttable"}>
         <div className={"p-5"}>
           <hr />
           <div
@@ -160,7 +189,27 @@ function EmployeeList(props) {
                 )}
               </form>
               </div>
-              
+              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="search-input-container">
+              <select
+                className={"SearchBox1"}
+                value={selectedDesignation}
+                onChange={handleDesignationChange}
+                style={{ width: "300px" }}
+              >
+                <option value="">Choose Designation</option>
+                <option value="admin">Admin</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Pharmacist">Pharmacist</option>
+                <option value="Clubadmin">ClubAdmin</option>
+              </select>
+              {selectedDesignation && (
+                  <div className="search-icon" style={{zIndex:'100',backgroundColor:'white',right:'3px'}} onClick={() => setSelectedDesignation("")}>
+                   <ClearIcon/>
+                  </div>
+                )}
+            </div>
+            </div>
             </div>
           </div>
           <hr />
@@ -173,35 +222,41 @@ function EmployeeList(props) {
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">Employee_ID</th>
-                  <th scope="col">EmployeeName</th>                
+                  <th scope="col">EmployeeName</th> 
+                  <th scope="col">Designation</th>
+                  <th scope="col">Email</th>               
                   <th scope="col">PhoneNo</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Addess</th>
-                  <th scope="col">SLMC RegNo</th>
-                  <th scope="col">UserType</th>
+                  <th scope="col">SLMC</th>
                   <th scope="col">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="h-50">
                 {filteredEmployeeList.length > 0 ? (
                   filteredEmployeeList.map((data, index) => (
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>{data.employee_ID}</td>
-                      <td>{data.employeeName}</td>
-                      <td>{data.phoneNo}</td>
-                      <td>{data.email}</td>
-                      <td>{data.address}</td>
-                      <td>{data.regNo}</td>
-                      <td>{data.userType}</td>
+                      <td>{data.employee_Name}</td>
+                      <td>{data.role}</td>
+                      <td>{data.Email}</td>
+                      <td>{data.PhoneNo}</td>
+                      <td>{data.SLMC}</td>
                       <td>
                         <IconButton
                           aria-label="delete"
                           className="viewbutt"
                           onClick={() => openModal(data)}
-                          style={{ color: "green" }}
+                          style={{ color: "blue" }}
                         >
                           <VisibilityIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="update"
+                          className="viewbutt"
+                          onClick={() => handleUpdate(data)}
+                          style={{ color: "green" }}
+                        >
+                          <EditIcon/>
                         </IconButton>
                         <IconButton
                           aria-label="delete"
@@ -234,6 +289,14 @@ function EmployeeList(props) {
         show={showModal}
         onHide={() => setShowModal(false)}
         EmployeeDetails={selectedEmployee}
+      />
+       <UpdateEmployeeModal
+        show={showUpdateModal}
+        onHide={() => {
+          setShowUpdateModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
+        inputs={selectedEmployee} // Pass the selected patient data to the UpdateModal
       />
     </AdminLayout>
   );

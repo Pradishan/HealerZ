@@ -9,8 +9,7 @@ import "./layout.css";
 import default_dp from "../assets/default_dp.png";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 function Layout({ children }) {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -18,7 +17,6 @@ function Layout({ children }) {
   const [typingText, setTypingText] = useState("");
   const [isTextVisible, setTextVisibility] = useState(true);
   const location = useLocation();
-
 
   const dispatch = useDispatch();
   const open = useSelector((state) => {
@@ -42,8 +40,8 @@ function Layout({ children }) {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Healerz/PHP/Inventory/settings/getPharmacistData.php",
-        { params: { pharmacistID: sessionStorage.getItem("pharmacistID") } }
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
       );
 
       console.log(response.data);
@@ -71,10 +69,8 @@ function Layout({ children }) {
     };
   };
 
-
-
   useEffect(() => {
-    const userDataArray = userdata.map((data) => data.Pharmacist_Name);
+    const userDataArray = userdata.map((data) => data.employee_Name);
     const activeRoute = getActiveRoute(location.pathname);
 
     let textToType = "";
@@ -83,7 +79,6 @@ function Layout({ children }) {
     } else {
       textToType = `Hi..! ${userDataArray.join(", ")} Welcome..!`;
     }
-   
 
     let currentIndex = 0;
     const intervalId = setInterval(() => {
@@ -103,18 +98,17 @@ function Layout({ children }) {
     };
   }, [userdata]);
 
-
   function getActiveRoute(pathname) {
     if (pathname === "/inventory-interface/dashboard") {
       return "Dashboard";
-    }else if (pathname === "/inventory-interface/inventory") {
+    } else if (pathname === "/inventory-interface/inventory") {
       return "Inventory";
-    }else if (pathname === "/inventory-interface/supply") {
-        return "Supply";
-      }else if (pathname === "/inventory-interface/summary") {
-        return "Summary";
-      }
-    
+    } else if (pathname === "/inventory-interface/supply") {
+      return "Supply";
+    } else if (pathname === "/inventory-interface/summary") {
+      return "Summary";
+    }
+
     return null;
   }
 
@@ -133,8 +127,7 @@ function Layout({ children }) {
               alt="SideClose"
               className={!!open && "rotate-180"}
             /> */}
-            <MenuOpenIcon
-              className={!!open && "rotate-180"}/>
+            <MenuOpenIcon className={!!open && "rotate-180"} />
           </div>
           {!open ? (
             <div className="logodashboard ms-5">
@@ -294,7 +287,7 @@ function Layout({ children }) {
 
                 <ul className="navbar-nav ms-auto align-items-center">
                   <li className="nav-item px-2 layoutProfilename">
-                    {userdata.map((data) => data.Pharmacist_Name)}
+                    {userdata.map((data) => data.employee_Name)}
                   </li>
 
                   <li className="nav-item px-2">

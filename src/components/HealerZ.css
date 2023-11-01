@@ -9,7 +9,7 @@
 
 .wave3 {
     position: fixed;
-    bottom: 45%;
+    bottom: 47%;
     left: 43%;
     height: 100px;
     width: 200px;
@@ -72,7 +72,7 @@
     flex-direction: row;
     gap: 50px;
     position: fixed;
-    right: 50px;
+    right: 10px;
     margin-top: 20px;
     z-index: 200;
 }
@@ -84,6 +84,12 @@
 .loginncardform {
     margin-top: 120px;
     margin-left: -200px;
+}
+
+.loginncardform h1{
+    margin-top: -50px;
+    font-weight: 600;
+    color: rgb(1, 1, 105);
 }
 
 .loginncardpos {
@@ -141,7 +147,7 @@
 .logoaddinglogin{
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 60px;
 }
 .logoaddinglogin h3{
     color: rgb(0, 0, 70);
@@ -158,4 +164,9 @@
     left: 33%;
     margin-top: 100px;
     z-index: 3000;
+}
+
+.logomsg{
+    font-size: 18px;
+    color: rgb(10, 153, 10);
 }
