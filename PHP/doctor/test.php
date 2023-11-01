@@ -8,12 +8,12 @@ use classes\Prescription;
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Methods: PUT, OPTIONS");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Add 'Authorization' if you are using it in your requests
 
 try {
     // Check if the request method is POST
-    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Assume your front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
 

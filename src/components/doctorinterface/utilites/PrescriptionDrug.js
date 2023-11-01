@@ -33,7 +33,7 @@ export default function PrescriptionDrug ( props )
         } else
         {
 
-            axios.post( 'http://localhost/HealerZ/PHP/doctor/updateDrug.php', formData )
+            axios.put( 'http://localhost/HealerZ/PHP/doctor/updateDrug.php', formData )
                 .then( ( response ) =>
                 {
                     console.log( 'Data send successfully!', response.data );
@@ -68,28 +68,26 @@ export default function PrescriptionDrug ( props )
         } ) );
     };
 
-    const handleDelete = ( e ) =>
-    {
+    const handleDelete = (e) => {
         e.preventDefault();
-        axios.post( 'http://localhost/HealerZ/PHP/doctor/deleteDrug.php', { Prescription_list_ID: records.Prescription_list_ID } )
-            .then( ( response ) =>
-            {
-                console.log( 'Data send successfully!', response.data );
-                if ( response.data.success )
-                {
-                    toast.success( response.data.message );
-                } else
-                {
-                    toast.error( response.data.message );
-                }
-
-            } )
-            .catch( ( error ) =>
-            {
-                console.error( 'Error sending data:', error );
-
-            } );
+        axios.delete('http://localhost/HealerZ/PHP/doctor/deleteDrug.php', {
+            data: {
+                Prescription_list_ID: records.Prescription_list_ID
+            }
+        })
+        .then((response) => {
+            if (response.data.success) {
+                toast.success(response.data.message);
+            } else {
+                toast.error(response.data.message);
+            }
+            console.log('Data sent successfully! for delete', response.data);
+        })
+        .catch((error) => {
+            console.error('Error sending data:', error);
+        });
     }
+    
 
     return (
         <tr>
