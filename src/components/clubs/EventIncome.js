@@ -82,7 +82,7 @@ class EventIncome extends Component {
             color: '#444',
           },
         },
-        colors: ['#00cc00'], 
+        colors: ['rgb(168, 0, 163)'], 
       },
     };
 

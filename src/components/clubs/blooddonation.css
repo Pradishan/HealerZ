@@ -1,5 +1,5 @@
 .Blooddonation {
-    max-width: 600px;
+    width: 90%;
     margin: 2rem auto;
     padding: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,14 +26,78 @@
     display: block;
     width: 100%;
     padding: 0.75rem;
-    background-color: #007bff;
+    font-size: 16px;
     color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.Blooddonation button:hover {
-    background-color: #0056b3;
+
+.contbloddont {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.bdhedchechhead {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    color: #020d77;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+
+}
+
+.bdhedchechheading {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    color: #e40303;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+
+}
+
+.notdonatedstatus {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.notdonatedstatus strong {
+    margin-top: 15px;
+    font-size: 30px;
+    font-weight: 600;
+    color: darkred;
+    text-transform: uppercase;
+}
+
+.donathisdetail{
+    display: flex;
+}
+
+
+.donatehispart h4{
+    color: rgb(179, 179, 166);
+    font-size: 19px;
+    text-transform: uppercase;
+
+}
+.availabilitycheck{
+    text-align: center;
+    color: green;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.donatdettt th{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.vertical-linedonate{
+    border-left: 1px solid #999292; /* Adjust the style and color as needed */
+  height: 120px; /* Adjust the height as needed */
+  margin: 0 20px; 
 }
