@@ -132,7 +132,7 @@ class Event
 			$dbcon = new DBconnector();
 			$conn = $dbcon->getConnection();
 
-			$sql = "SELECT * from event";
+			$sql = "SELECT * from event ORDER BY date DESC";
 
 			$stmt = $conn->prepare($sql);
 
