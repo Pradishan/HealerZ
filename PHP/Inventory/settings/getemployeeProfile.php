@@ -25,7 +25,7 @@ try {
             if ($employeeData) {
                 $imagePath = $employeeData['Profile'];
                 if (is_null($imagePath) || !file_exists($imagePath)) {
-                    $imagePath = './profilePics/default_dp.png'; 
+                    $imagePath = './profilePics/avatar.svg'; 
                 }
                 $imageData = file_get_contents($imagePath);
                 $imageType = mime_content_type($imagePath);

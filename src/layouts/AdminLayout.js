@@ -8,7 +8,6 @@ import {
   sidebarClasses,
 } from "react-pro-sidebar";
 import "./AdminLayout.css";
-import Bell from "../assets/bell.svg";
 import logo from "../assets/logo.png";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ListIcon from "@mui/icons-material/List";
@@ -19,7 +18,7 @@ import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import default_dp from "../assets/default_dp.png";
+import default_dp from "../assets/avatar.svg";
 import axios from "axios";
 
 function Layout({ children }) {

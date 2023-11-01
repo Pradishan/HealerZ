@@ -6,7 +6,7 @@ import logos from "../assets/logo-small.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeToggle } from "../redux/actions";
-import default_dp from "../assets/default_dp.png";
+import default_dp from "../assets/avatar.svg";
 import axios from "axios";
 import "../layouts/layout.css";
 

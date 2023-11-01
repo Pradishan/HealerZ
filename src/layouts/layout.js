@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeToggle } from "../redux/actions";
 import "./layout.css";
-import default_dp from "../assets/default_dp.png";
+import default_dp from "../assets/avatar.svg";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
