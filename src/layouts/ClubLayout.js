@@ -132,7 +132,7 @@ function ClubLayout({ children }) {
               >
                 <div className={"d-flex"}>
                   <FeatherIcon
-                    icon="filter"
+                    icon="layers"
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={"trans-1"}>Event Response</div>}
@@ -150,7 +150,7 @@ function ClubLayout({ children }) {
               >
                 <div className={"d-flex"}>
                   <FeatherIcon
-                    icon="thermometer"
+                    icon="droplet"
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={"trans-1"}>Blood Donation</div>}
@@ -169,7 +169,7 @@ function ClubLayout({ children }) {
               >
                 <div className={"d-flex"}>
                   <FeatherIcon
-                    icon="activity"
+                    icon="shield"
                     className={!open ? "me-2" : "ms-1"}
                   />
                   {!open && <div className={""}>Vaccination</div>}
