@@ -6,7 +6,7 @@ import logos from "../assets/logo-small.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeToggle } from "../redux/actions";
-import default_dp from "../assets/default_dp.png";
+import default_dp from "../assets/avatar.svg";
 import axios from "axios";
 import "../layouts/layout.css";
 
@@ -178,6 +178,25 @@ function ClubLayout({ children }) {
             </div>
 
             <div className={"w-100 border-bottom-d1d1d1 mb-3"} />
+
+            <div className={"w-100 px-sm-2"}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "side-menu-item side-menu-active"
+                    : "side-menu-item"
+                }
+                to={"/clubs/settings"}
+              >
+                <div className={"d-flex"}>
+                  <FeatherIcon
+                    icon="settings"
+                    className={!open ? "me-2" : "ms-1"}
+                  />
+                  {!open && <div className={""}>Settings</div>}
+                </div>
+              </NavLink>
+            </div>
 
             <div className={"w-100 px-sm-2"}>
               <NavLink
