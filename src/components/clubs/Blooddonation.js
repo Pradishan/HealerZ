@@ -88,7 +88,7 @@ export default function Blooddonation() {
               <hr />
               <div className="donathisdetail">
                 <div className="donatehispart">
-                  <h4 style={{marginLeft:'10px'}}>Donar Detail</h4>
+                  <h4 style={{ marginLeft: "10px" }}>Donar Detail</h4>
                   <table>
                     <tbody className="donatdettt">
                       <tr>
@@ -116,20 +116,20 @@ export default function Blooddonation() {
                   <h4>Donation History</h4>
                   <table>
                     <tbody className="donatdettt">
-                    <tr>
-                      <th>No</th>
-                      <th style={{ paddingLeft: "15px" }}>Doantion Date</th>
-                    </tr>
-                    {donationhist.map((history, key) => {
-                      return (
-                        <tr key={key}>
-                          <th>{key + 1}</th>
-                          <td style={{ paddingLeft: "15px" }}>
-                            {history?.Date}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                      <tr>
+                        <th>No</th>
+                        <th style={{ paddingLeft: "15px" }}>Doantion Date</th>
+                      </tr>
+                      {donationhist.map((history, key) => {
+                        return (
+                          <tr key={key}>
+                            <th>{key + 1}</th>
+                            <td style={{ paddingLeft: "15px" }}>
+                              {history?.Date}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -147,7 +147,11 @@ export default function Blooddonation() {
             <div className="container Blooddonation">
               <div className="notdonatedstatus">
                 <img src={bddonate} height="150px" alt="" />
-                <strong>{donationStatus}</strong>
+                {donationStatus ? (
+                  <strong>{donationStatus}</strong>
+                ) : (
+                  <strong>Donate with US</strong>
+                )}
               </div>
             </div>
           )}
