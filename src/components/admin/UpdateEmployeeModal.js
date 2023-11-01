@@ -7,8 +7,8 @@ import CustomConfirmModal from "./ConfirmDeleteModal";
 import UpdateConfirmModal from "./UpdateConformPatientModal";
 
 function UpdatePatientModal(props) {
-  const { show, onHide, inputs } = props; 
-  const [newData, setNewData] = useState({ ...inputs }); 
+  const { show, onHide, inputs } = props;
+  const [newData, setNewData] = useState({ ...inputs });
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showUpdateConfirmModal, setShowUpdateConfirmModal] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(false);
@@ -32,20 +32,12 @@ function UpdatePatientModal(props) {
       return;
     }
 
-    if (!newData.Patient_ID) {
+    if (!newData.employee_ID) {
       toast.info("Patient_ID is missing in the update data!");
       return;
     }
 
     try {
-      if (newData.DateOfBirth) {
-        const selectedDOB = new Date(newData.DateOfBirth);
-        const currentDate = new Date();
-        if (selectedDOB > currentDate) {
-          toast.info("Please select a past date for Date of Birth.");
-          return;
-        }
-      }
 
       if (newData.PhoneNo && !/^\d{10}$/.test(newData.PhoneNo)) {
         toast.info("Invalid phone number format");
@@ -61,15 +53,15 @@ function UpdatePatientModal(props) {
       }
 
       const response = await axios.put(
-        "http://localhost/HealerZ/PHP/admin/updatepatient.php",
+        "http://localhost/HealerZ/PHP/admin/updateEmployee.php",
         newData
       );
       console.log(response.data);
-      toast.success("Patient updated successfully!");
+      toast.success("Employee updated successfully!");
       onHide();
       setUpdateTrigger(!updateTrigger);
     } catch (error) {
-      toast.error("Failed to update Patient!");
+      toast.error("Failed to update Employee!");
       console.error(error);
     }
     setShowUpdateConfirmModal(false);
@@ -82,17 +74,17 @@ function UpdatePatientModal(props) {
   const handleDeleteConfirmed = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost/HealerZ/PHP/admin/deletepatient.php?Patient_ID=${newData.Patient_ID}`
+        `http://localhost/HealerZ/PHP/admin/deleteemployee.php?employee_ID=${newData.employee_ID}`
       );
 
       if (response.status === 200) {
-        toast.success("Patient deleted successfully!");
+        toast.success("Employee deleted successfully!");
         onHide();
       } else {
-        toast.error("Failed to delete patient!");
+        toast.error("Failed to delete Employee!");
       }
     } catch (error) {
-      toast.error("Failed to delete patient!");
+      toast.error("Failed to delete Employee!");
       console.error(error);
     } finally {
       setShowConfirmModal(false);
@@ -100,13 +92,13 @@ function UpdatePatientModal(props) {
   };
 
   useEffect(() => {
-    setNewData({ ...inputs }); 
+    setNewData({ ...inputs });
   }, [inputs]);
 
   return (
     <Modal show={show} onHide={onHide} centered size="xl">
       <Modal.Header closeButton>
-        <Modal.Title className="modaltitleee">Patient Update</Modal.Title>
+        <Modal.Title className="modaltitleee">Employee Update</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleUpdate}>
@@ -115,7 +107,7 @@ function UpdatePatientModal(props) {
               <div className="cont1">
                 <tr>
                   <th>
-                    <label>Entroll_No:</label>
+                    <label>Employee_ID:</label>
                   </th>
                   <th className="addinputt">
                     {" "}
@@ -123,9 +115,9 @@ function UpdatePatientModal(props) {
                       type="text"
                       className="form-control1"
                       name="Patient_ID"
-                      value={newData.Patient_ID || ""}
+                      value={newData.employee_ID || ""}
                       onChange={(e) =>
-                        updateNewData("Patient_ID", e.target.value)
+                        updateNewData("employee_ID", e.target.value)
                       }
                       readOnly
                     />
@@ -134,16 +126,16 @@ function UpdatePatientModal(props) {
                 <tr>
                   <th>
                     {" "}
-                    <label>Patient_Name:</label>
+                    <label>Employee_Name:</label>
                   </th>
                   <th className="addinputt">
                     <input
                       type="text"
                       className="form-control1"
                       name="PatientName"
-                      value={newData.PatientName || ""}
+                      value={newData.employee_Name || ""}
                       onChange={(e) =>
-                        updateNewData("PatientName", e.target.value)
+                        updateNewData("employee_Name", e.target.value)
                       }
                     />
                   </th>
@@ -151,90 +143,27 @@ function UpdatePatientModal(props) {
                 <tr>
                   <th>
                     {" "}
-                    <label>Date of Birth:</label>
+                    <label>Designation:</label>
                   </th>
                   <th className="addinputt">
                     {" "}
-                    <input
-                      type="date"
+                    <select
                       className="form-control1"
-                      name="DateOfBirth"
-                      value={newData.DateOfBirth || ""}
-                      onChange={(e) =>
-                        updateNewData("DateOfBirth", e.target.value)
-                      }
-                    />
-                  </th>
-                </tr>
-                <tr>
-                  <th>
-                    <label>Gender:</label>
-                  </th>
-                  <th className="addinputt">
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="Gender"
-                          value="Male"
-                          checked={newData.Gender === "Male"}
-                          onChange={(e) =>
-                            updateNewData("Gender", e.target.value)
-                          }
-                        />
-                        <label className="form-check-label">Male</label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="Gender"
-                          value="Female"
-                          checked={newData.Gender === "Female"}
-                          onChange={(e) =>
-                            updateNewData("Gender", e.target.value)
-                          }
-                        />
-                        <label className="form-check-label">Female</label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="Gender"
-                          value="Other"
-                          checked={newData.Gender === "Other"}
-                          onChange={(e) =>
-                            updateNewData("Gender", e.target.value)
-                          }
-                        />
-                        <label className="form-check-label">Other</label>
-                      </div>
-                    </div>
+                      name={"role"}
+                      value={newData.role || ""}
+                      onChange={(e) => updateNewData("role", e.target.value)}
+                    >
+                      <option value="">Choose Designation</option>
+                      <option value="admin">Admin</option>
+                      <option value="Doctor">Doctor</option>
+                      <option value="Pharmacist">Pharmacist</option>
+                      <option value="Clubadmin">Clubadmin</option>
+                    </select>
                   </th>
                 </tr>
                 <tr>
                   <th>
                     {" "}
-                    <label>Phone_No:</label>
-                  </th>
-                  <th className="addinputt">
-                    {" "}
-                    <input
-                      type="text"
-                      className="form-control1"
-                      name="PhoneNo"
-                      value={newData.PhoneNo || ""}
-                      onChange={(e) => updateNewData("PhoneNo", e.target.value)}
-                    />
-                  </th>
-                </tr>
-              </div>
-
-              <div className="cont2">
-                <tr>
-                  <th>
                     <label>Email:</label>
                   </th>
                   <th className="addinputt">
@@ -245,6 +174,24 @@ function UpdatePatientModal(props) {
                       name="Email"
                       value={newData.Email || ""}
                       onChange={(e) => updateNewData("Email", e.target.value)}
+                    />
+                  </th>
+                </tr>
+              </div>
+
+              <div className="cont2">
+                <tr>
+                  <th>
+                    <label>PhoneNo:</label>
+                  </th>
+                  <th className="addinputt">
+                    {" "}
+                    <input
+                      type="text"
+                      className="form-control1"
+                      name="PhoneNo"
+                      value={newData.PhoneNo || ""}
+                      onChange={(e) => updateNewData("PhoneNo", e.target.value)}
                     />
                   </th>
                 </tr>
@@ -264,27 +211,16 @@ function UpdatePatientModal(props) {
                 </tr>
                 <tr>
                   <th>
-                    <label>Blood Group:</label>
+                    <label>SLMC No:</label>
                   </th>
                   <th className="addinputt">
-                    <select
-                      className="form-control1"
-                      name="BloodGroup"
-                      value={newData.BloodGroup || ""}
-                      onChange={(e) =>
-                        updateNewData("BloodGroup", e.target.value)
-                      }
-                    >
-                      <option value="">Choose Blood Group</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
+                    <input
+                      type="text"
+                      className="form-controlll1"
+                      name="SLMC"
+                      value={newData.SLMC || ""}
+                      onChange={(e) => updateNewData("SLMC", e.target.value)}
+                    />
                   </th>
                 </tr>
               </div>

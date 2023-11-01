@@ -21,9 +21,9 @@ function EventList(props) {
   const [searchTerm3, setSearchTerm3] = useState("");
   const [selectedBloodGroup, setSelectedBloodGroup] = useState("");
   const [eventlist, setEventList] = useState([]);
-  const [selectedEvtReg, setSelectedEvtReg] = useState(null);
+  const [selectedevent, setSelectedevent] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
-  const [evtRegToDelete, setEvtRegToDelete] = useState(null);
+  const [eventToDelete, seteventToDelete] = useState(null);
   const [filteredEventList, setFilteredEventList] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [searchDate, setSearchDate] = useState("");
@@ -57,20 +57,20 @@ function EventList(props) {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    const searchedEvtReg = eventlist.find(
-      (evtreg) => evtreg.evtreg_ID === searchTerm3
+    const searchedevent = eventlist.find(
+      (event) => event.Event_ID === searchTerm3
     );
-    if (searchedEvtReg) {
-      setSelectedEvtReg(searchedEvtReg);
+    if (searchedevent) {
+      setSelectedevent(searchedevent);
       setShowModal(true);
       setSearchTerm3("");
     } else {
-      toast.error("Invalid evtreg ID");
+      toast.error("Invalid event ID");
     }
   };
 
-  const openModal = (evtreg) => {
-    setSelectedEvtReg(evtreg);
+  const openModal = (event) => {
+    setSelectedevent(event);
     setShowModal(true);
   };
 
@@ -80,10 +80,10 @@ function EventList(props) {
 
   useEffect(() => {
     const filteredList = eventlist.filter(
-      (evtreg) =>
-        evtreg.Patient_ID.includes(searchTerm3) &&
-        (searchDate === "" || evtreg.Date.includes(searchDate)) &&
-        (selectedBloodGroup === "" || evtreg.event === selectedBloodGroup)
+      (event) =>
+        event.Patient_ID.includes(searchTerm3) &&
+        (searchDate === "" || event.Date.includes(searchDate)) &&
+        (selectedBloodGroup === "" || event.event === selectedBloodGroup)
     );
     setFilteredEventList(filteredList);
   }, [searchTerm3, searchDate, selectedBloodGroup, eventlist]);
@@ -99,18 +99,18 @@ function EventList(props) {
     }
   };
 
-  const handleDelete = (evtreg) => {
+  const handleDelete = (event) => {
     setConfirmModalVisible(true);
-    setEvtRegToDelete(evtreg);
+    seteventToDelete(event);
   };
 
   const handleConfirmDelete = async () => {
     setConfirmModalVisible(false);
-    const evtregToDelete = evtRegToDelete;
-    setEvtRegToDelete(null);
+    const eventToDeletetemp = eventToDelete;
+    seteventToDelete(null);
     try {
       await axios.delete(
-        `http://localhost/Healerz/PHP/club/deleteEvent.php?evtreg_id=${evtregToDelete.evtreg_id}`
+        `http://localhost/Healerz/PHP/club/deleteEvent.php?Event_ID=${eventToDeletetemp.Event_ID}`
       );
       toast.success("Response deleted successfully");
       fetchData();
@@ -120,17 +120,52 @@ function EventList(props) {
     }
   };
 
-  const handleUpdate = (evtreg) => {
-    setSelectedEvtReg(evtreg);
+  const handleUpdate = (event) => {
+    setSelectedevent(event);
     setShowUpdateModal(true);
+  };
+
+  const [eventCounts, setEventCounts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost/Healerz/PHP/club/eventCategoriesCount.php")
+      .then((response) => {
+        console.log(response.data);
+        setEventCounts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, [updateTrigger]);
+
+  
+  const getEventCount = (eventName) => {
+    const event = eventCounts.find((item) => item.event === eventName);
+    return event ? event.count : 0;
   };
 
   return (
     <ClubLayout>
-      <button className="btn shadow gradient-button eventaddbutt" onClick={addModal}>
-        Registration
-        <AddCircleIcon className="icoinvent"/>
-      </button>
+      <div style={{ display: "flex"}}>
+        <div className="vaccountflex">
+          <button className="btn btn-success">
+            Vaccination: {getEventCount("vaccination")}
+          </button>
+        </div>
+        <div className="vaccountflex vaccrt">
+        <button className="btn btn-primary" style={{backgroundColor:'darkred'}}>
+            Blood Donation: {getEventCount("blooddonation")}
+          </button>
+        </div>
+        <button
+          className="btn shadow gradient-button eventaddbutt"
+          onClick={addModal}
+        >
+          Registration
+          <AddCircleIcon className="icoinvent" />
+        </button>
+      </div>
       <div className="container eventlisttable">
         <div className={"p-5"}>
           <hr />
@@ -231,11 +266,11 @@ function EventList(props) {
               >
                 <tr>
                   <th scope="col">NO</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Entroll_No</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">PhoneNo</th>
-                  <th scope="col">Date</th>
                   <th scope="col">Event</th>
                   <th scope="col">ACTION</th>
                 </tr>
@@ -245,11 +280,11 @@ function EventList(props) {
                   filteredEventList.map((data, index) => (
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
+                      <td>{data.Date}</td>
                       <td>{data.Patient_ID}</td>
                       <td>{data.name}</td>
                       <td>{data.email}</td>
                       <td>{data.phone_no}</td>
-                      <td>{data.Date}</td>
                       <td>{data.event}</td>
                       <td>
                         <IconButton
@@ -298,7 +333,7 @@ function EventList(props) {
       <ViewModal
         show={showModal}
         onHide={() => setShowModal(false)}
-        EventDetails={selectedEvtReg}
+        EventDetails={selectedevent}
       />
       <UpdateModal
         show={showUpdateModal}
@@ -306,9 +341,9 @@ function EventList(props) {
           setShowUpdateModal(false);
           setUpdateTrigger(!updateTrigger);
         }}
-        inputs={selectedEvtReg} // Pass the selected evtreg data to the UpdateModal
+        inputs={selectedevent} // Pass the selected event data to the UpdateModal
       />
-       <RegistrationModal show={showModal4} onHide={addModal} />
+      <RegistrationModal show={showModal4} onHide={addModal} />
     </ClubLayout>
   );
 }

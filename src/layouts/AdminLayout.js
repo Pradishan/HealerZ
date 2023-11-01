@@ -229,22 +229,10 @@ function Layout({ children }) {
               </div>
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto align-items-center">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active position-relative px-2"
-                      aria-current="page"
-                      href="#"
-                    >
-                      <div className="red-dot" />
-                      <img src={Bell} alt={""} />
-                    </a>
+                <li className="nav-item px-2 layoutProfilename">
+                    {userdata.map((data) => data.employee_Name)}
                   </li>
                   <li className="nav-item px-2">
-                    <a
-                      className="nav-link  position-relative p-0"
-                      aria-current="page"
-                      href="#"
-                    >
                       <img
                         src={profilepic}
                         alt="avatar"
@@ -252,7 +240,6 @@ function Layout({ children }) {
                         width="40px"
                         height="40px"
                       />
-                    </a>
                   </li>
                 </ul>
               </div>

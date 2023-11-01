@@ -10,10 +10,10 @@ use classes\Event;
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
 try {
-    if (!isset($_GET['evtreg_id'])) {
+    if (!isset($_GET['Event_ID'])) {
         throw new Exception('event_ID is not provided in the request.');
     }
-    $eventid = $_GET['evtreg_id']; 
+    $eventid = $_GET['Event_ID']; 
     $event=new Event($eventid, null, null, null, null,null,null,null,null);
     $res = $event->deleteEvent();
     $stmt->execute();

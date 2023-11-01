@@ -9,7 +9,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
+import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
+import UpdateEmployeeModal from "./UpdateEmployeeModal";
 
 function EmployeeList(props) {
   const [showModal, setShowModal] = useState(false);
@@ -21,6 +23,12 @@ function EmployeeList(props) {
   const [setEmployeeToDelete, setSelectedEmployeeToDelete] = useState(null);
   const [filteredEmployeeList, setFilteredEmployeeList] = useState([]);
   const [selectedDesignation, setSelectedDesignation] = useState("");
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, [updateTrigger]);
 
   const handleChange3 = (event) => {
     setSearchTerm(event.target.value);
@@ -114,6 +122,11 @@ function EmployeeList(props) {
       console.error("Error deleting Employee:", error);
       toast.error("Error deleting Employee");
     }
+  };
+
+  const handleUpdate = (employee) => {
+    setSelectedEmployee(employee);
+    setShowUpdateModal(true);
   };
 
   return (
@@ -233,9 +246,17 @@ function EmployeeList(props) {
                           aria-label="delete"
                           className="viewbutt"
                           onClick={() => openModal(data)}
-                          style={{ color: "green" }}
+                          style={{ color: "blue" }}
                         >
                           <VisibilityIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="update"
+                          className="viewbutt"
+                          onClick={() => handleUpdate(data)}
+                          style={{ color: "green" }}
+                        >
+                          <EditIcon/>
                         </IconButton>
                         <IconButton
                           aria-label="delete"
@@ -268,6 +289,14 @@ function EmployeeList(props) {
         show={showModal}
         onHide={() => setShowModal(false)}
         EmployeeDetails={selectedEmployee}
+      />
+       <UpdateEmployeeModal
+        show={showUpdateModal}
+        onHide={() => {
+          setShowUpdateModal(false);
+          setUpdateTrigger(!updateTrigger);
+        }}
+        inputs={selectedEmployee} // Pass the selected patient data to the UpdateModal
       />
     </AdminLayout>
   );

@@ -10,7 +10,7 @@ use PDO;
 
 class Event
 {
-	private $evtreg_id;
+	private $Event_ID;
 	private $Patient_ID;
 	private $email;
 	private $name;
@@ -20,10 +20,10 @@ class Event
 	private $event;
 	private $date;
 
-	public function __construct($evtreg_id, $Patient_ID, $email, $name, $nic, $phone_no, $address, $event, $date)
+	public function __construct($Event_ID, $Patient_ID, $email, $name, $nic, $phone_no, $address, $event, $date)
 	{
 
-		$this->evtreg_id = $evtreg_id;
+		$this->Event_ID = $Event_ID;
 		$this->Patient_ID = $Patient_ID;
 		$this->email = $email;
 		$this->name = $name;
@@ -35,14 +35,14 @@ class Event
 	}
 	
 
-	public function getEvtreg_id()
+	public function getEvent_ID()
 	{
-		return $this->evtreg_id;
+		return $this->Event_ID;
 	}
 
-	public function setEvtreg_id($value)
+	public function setEvent_ID($value)
 	{
-		$this->evtreg_id = $value;
+		$this->Event_ID = $value;
 	}
 
 	public function getPatient_ID()
@@ -132,7 +132,7 @@ class Event
 			$dbcon = new DBconnector();
 			$conn = $dbcon->getConnection();
 
-			$sql = "SELECT * from evtreg";
+			$sql = "SELECT * from event";
 
 			$stmt = $conn->prepare($sql);
 
@@ -151,9 +151,9 @@ class Event
 	{
 		$dbcon = new DBconnector();
 		$conn = $dbcon->getConnection();
-		$query = "DELETE FROM evtreg WHERE evtreg_id = :evtreg_id";
+		$query = "DELETE FROM event WHERE Event_ID = :Event_ID";
 		$stmt = $conn->prepare($query);
-		$stmt->bindValue(':evtreg_id', $this->evtreg_id);
+		$stmt->bindValue(':Event_ID', $this->Event_ID);
 		$res = $stmt->execute();
 
 		if ($res) {
@@ -169,9 +169,9 @@ class Event
 			$dbcon = new DBconnector;
 			$conn = $dbcon->getConnection();
 			$currentDate = date("Y-m-d H:i:s");
-			$query = "INSERT INTO evtreg (evtreg_id, Patient_ID, email, name, nic, phone_no, address,event,	Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			$query = "INSERT INTO event (Event_ID, Patient_ID, email, name, nic, phone_no, address,event,Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			$stmt =  $conn->prepare($query);
-			$stmt->bindValue(1, $this->evtreg_id);
+			$stmt->bindValue(1, $this->Event_ID);
 			$stmt->bindValue(2, $this->Patient_ID);
 			$stmt->bindValue(3, $this->email);
 			$stmt->bindValue(4, $this->name);
@@ -196,7 +196,7 @@ class Event
         try {
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
-            $query = "UPDATE evtreg  SET Patient_ID = :Patient_ID, email = :email, name= :name, nic = :nic, phone_no = :phone_no, address = :address, event = :event, Date = :Date WHERE evtreg_id = :evtreg_id";
+            $query = "UPDATE event  SET Patient_ID = :Patient_ID, email = :email, name= :name, nic = :nic, phone_no = :phone_no, address = :address, event = :event, Date = :Date WHERE Event_ID = :Event_ID";
             $pstmt = $conn->prepare($query);
             $pstmt->bindValue(':Patient_ID', $this->Patient_ID);
             $pstmt->bindValue(':email', $this->email);
@@ -206,7 +206,7 @@ class Event
             $pstmt->bindValue(':address', $this->address);
             $pstmt->bindValue(':event', $this->event);
             $pstmt->bindValue(':Date', $this->date);
-            $pstmt->bindValue(':evtreg_id', $this->evtreg_id);
+            $pstmt->bindValue(':Event_ID', $this->Event_ID);
             $res = $pstmt->execute();
             return  $res;
         } catch (PDOException $e) {

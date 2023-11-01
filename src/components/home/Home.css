@@ -435,14 +435,3 @@
     margin-left: 30px;
     margin-bottom: 20px;
 }
-
-.eventaddbutt {
-    width: 250px !important;
-    margin-top: 30px !important;
-    position: relative;
-    left: 70%;
-}
-
-.eventlisttable {
-    margin-top: -30px;
-}
