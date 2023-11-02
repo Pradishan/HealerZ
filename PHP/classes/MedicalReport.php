@@ -177,6 +177,29 @@ class MedicalReport
             return ['error' => $e->getMessage()];
         }
     }
+    public static function getReportById($Report_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT * FROM medicalreport WHERE Report_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Report_ID);
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result;
+            } else {
+                return ['error' => 'report not available'];;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
 
 
 }

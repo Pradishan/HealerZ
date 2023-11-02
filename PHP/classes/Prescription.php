@@ -15,7 +15,6 @@ class Prescription
     private $Patient_ID;
     private $Drug_ID;
     private $Doctor_ID;
-    private $Pharmacist_ID;
     private $TDS;
     private $Time;
     private $Days;

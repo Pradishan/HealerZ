@@ -11,7 +11,7 @@ export default function TestPage ( props )
 
   const [ formData, setFormData ] = useState( {
     patient_ID: selectedId,
-    doctor_ID: 'D001',
+    doctor_ID: 'e001',
     patientcomplaint: '',
     onExamination: '',
     tests: '',
@@ -62,7 +62,7 @@ export default function TestPage ( props )
             setDone( false );
             setFormData( {
               patient_ID: selectedId,
-              doctor_ID: 'D001',
+              doctor_ID: 'e001',
               patientcomplaint: '',
               onExamination: '',
               tests: '',

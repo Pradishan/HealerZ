@@ -4,6 +4,7 @@ namespace classes;
 require_once "DBconnector.php";
 use classes\DBconnector;
 use PDOException;
+use PDO;
 
 
 class MedicalRequest
@@ -164,4 +165,28 @@ class MedicalRequest
             return $e;
         }
     }
+    public static function getRequestById($Request_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT * FROM medicalrequest WHERE MedicalRequest_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Request_ID);
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result;
+            } else {
+                return ['error' => 'reqest not available'];;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
+
 }

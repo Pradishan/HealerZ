@@ -45,7 +45,7 @@ export default function MedRequestModal ( props )
         console.error( 'Error fetching data:', error );
       }
     };
-
+ 
     fetchData();
   }, [ data ] );
 

@@ -2,8 +2,10 @@
 
 require '../classes/MedicalReport.php';
 require '../classes/MedicalRequest.php';
+
 use classes\MedicalReport;
 use classes\MedicalRequest;
+
 
 // Enable CORS for all requests
 header("Access-Control-Allow-Origin: http://localhost:3000");
@@ -24,43 +26,38 @@ if ($method === "POST") {
         // Front-end sends data as JSON
         $data = json_decode(file_get_contents('php://input'), true);
 
-        if (!isset($data['Requset_ID']) || !isset($data['patient_ID']) || !isset($data['doctor_ID']) || !isset($data['startDate']) || !isset($data['endDate']) || !isset($data['Message']) || !isset($data['status'])) {
+        if (!isset($data['Requset_ID']) || !isset($data['patient_ID'])) {
             echo json_encode(['success' => false, 'message' => 'Invalid request data']);
             http_response_code(400); // Bad Request
             exit;
         }
 
-        $currentDateTime = date("Y-m-d H:i:s");
         $Report_ID = null;
         $Requset_ID = $data['Requset_ID'];
         $patient_ID = $data['patient_ID'];
-        $doctor_ID = $data['doctor_ID'];
-        $IssueDate = $currentDateTime;
-        $startDate = $data['startDate'];
-        $endDate = $data['endDate'];
-        $message = $data['Message'];
-        $status = $data['status'];
+
 
         $Report_ID = MedicalReport::isReportForRequest($Requset_ID);
 
-        if (MedicalRequest::handleRequest($status, $Requset_ID)) {
+
             if ($Report_ID) {
-                MedicalReport::deleteMedicalreport($Report_ID);
-            }
-            if ($status == 'Approved') {
-                $Report_ID = $patient_ID . "_" . time();
-                $report = new MedicalReport($Report_ID, $Requset_ID, $patient_ID, $doctor_ID, $IssueDate, $startDate, $endDate, $message);
-                if ($report->createReport()) {
-                    echo json_encode(['success' => true, 'message' => 'Request Approved']);
+                $filteredData = MedicalReport::getReportById($Report_ID);
+                if ($filteredData) {
+                    // Return the filtered data as JSON
+                    header('Content-Type: application/json');
+                    echo json_encode($filteredData);
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Error in creating medical report']);
+                    // If no data found for the given Patient_ID, return an error message or appropriate response
+                    echo json_encode(['message' => 'Patient not found']);
                 }
-            } else {
-                echo json_encode(['success' => true, 'message' => 'Request Rejected']);
+            }else{
+
+                $data = MedicalRequest::getRequestById($Request_ID);
+                $StartDate = $data->row['StartDate'];
+                $EndDate = $data->row['EndDate'];
+                $Message = 'test';
             }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error in medical request handling']);
-        }
+
     } catch (PDOException $e) {
         // Log the error
         error_log("Error: " . $e->getMessage());
