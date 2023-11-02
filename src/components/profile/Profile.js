@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import profprofimg from "../../assets/Profilesideimg.webp";
-import default_dp from "../../assets/default_dp.png";
+import default_dp from "../../assets/avatar.svg";
 import AgeCalculator from "../doctorinterface/algorithms/AgeCalculator";
 import { IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";

@@ -23,6 +23,7 @@ import PatientList from "./components/admin/PatientList";
 import AddEmployee from "./components/admin/AddEmployee";
 import EmployeeList from "./components/admin/EmployeeList";
 import SettingsAdmin from "./components/admin/SettingsAdmin";
+import SettingsclubAdmin from "./components/clubs/SettingsClubAdmin";
 import BloodDonation from "./components/clubs/Blooddonation";
 import Vaccination from "./components/clubs/Vaccination";
 import HealerZ from "./components/HealerZ";
@@ -42,10 +43,7 @@ function App() {
         <Route path="/clubs/dashboard" element={ <Protected Component={Clubs} roll={'Clubadmin'} /> } />
         <Route path="/clubs/Eventresponse" element={ <Protected Component={Eventresponse} roll={'Clubadmin'} /> }/>
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/profile"
-          element={<Protected1 Component={Profile} role="patient" />}
-        />
+        <Route path="/profile" element={<Protected1 Component={Profile} role={"patient"}/>}/>
         <Route path="/inventory-interface/dashboard" element={ <Protected Component={ Dashboard } roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/supply" element={ <Protected Component={ Supply }roll={'Pharmacist'} /> } />
         <Route path="/inventory-interface/summary" element={ <Protected Component={ Summary }roll={'Pharmacist'} /> } />
@@ -59,7 +57,7 @@ function App() {
         <Route path="/admin/settingsAdmin" element={ <Protected Component={ SettingsAdmin } roll={'admin'} /> } />
         <Route path="/clubs/blooddonation" element={ <Protected Component={BloodDonation} roll={'Clubadmin'} />}/>
         <Route path="/clubs/vacination" element={ <Protected Component={Vaccination} roll={'Clubadmin'} />}/>
-
+        <Route path="/clubs/settings" element={ <Protected Component={SettingsclubAdmin} roll={'Clubadmin'} />}/>
         <Route path="/" element={<HealerZ/>}/>
       </Routes>
       </div>

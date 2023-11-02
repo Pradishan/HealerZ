@@ -1,34 +1,63 @@
-import { useState } from "react";
-import { Card } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { FileUploader } from "react-drag-drop-files";
-
-
-
-const fileTypes = ["JPEG", "PNG", "GIF"];
+import React, { useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import Axios from "axios";
 
 export default function Eventslider() {
   const [file, setFile] = useState(null);
-  const handleChange = (file) => {
-    setFile(file);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
   };
- const handleSubmit = (file) => {
-      
- }
+
+  const handleSubmit = async () => {
+    if (!file) {
+      alert("Please select a file to upload.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await Axios.post(
+        "http://localhost/Healerz/PHP/club/sliderUploader.php",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert("File uploaded successfully.");
+      } else {
+        alert("File upload failed.");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("File upload failed.");
+    }
+  };
+
   return (
-    <Card style={{margin:'75px', width: '24rem' ,height:'220px',backgroundColor:'white' }}>
-    <Card.Body>
-      <Card.Title><h4 className="d-flex justify-content-center fw-bold">Slider Post</h4></Card.Title>
-      <Card.Text style={{marginTop:'40px'}}>
-      <FileUploader
-                 multiple={true}
-                 handleChange={handleChange}
-                 name="file"
-                 types={fileTypes}
-             />  
-      </Card.Text>
-    </Card.Body>
-    <Button className="primary" type="submit" name={"send"} value={"SEND"} onClick={handleSubmit} style={{backgroundColor:'green',width:'100px', marginBottom:'20px',marginLeft:'260px'}}>Post</Button>
-  </Card>
+    <Card style={{ margin: "75px", width: "24rem", backgroundColor: "white" }}>
+      <Card.Body>
+        <Card.Title>
+        <h3 className="bdhedchechhead">Slider Post</h3>
+        <hr/>
+        </Card.Title>
+        <input type="file" accept="*/*" onChange={handleFileChange} />
+        <hr/>
+        <Button
+          variant="success"
+          onClick={handleSubmit}
+          style={{ width: "100%", margin: "20px auto", display: "block" }}
+        >
+          Post
+        </Button>
+      </Card.Body>
+    </Card>
   );
 }
