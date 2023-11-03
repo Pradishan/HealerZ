@@ -344,4 +344,28 @@ class Patient
             return false;
         }
     }
+
+    public static function getNameById($Patient_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT PatientName FROM patient WHERE Patient_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Patient_ID);
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result;
+            } else {
+                return ['error' => 'Patient_ID not available'];;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
 }

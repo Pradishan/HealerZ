@@ -16,9 +16,12 @@ class MedicalReport
     private $StartDate;
     private $EndDate;
     private $Message;
+    private $Doctor_name;
+    private $Patient_Name;
 
 
-    public function __construct($Report_ID, $Request_ID, $Patient_ID, $Doctor_ID, $IssueDate, $StartDate, $EndDate, $Message)
+    public function __construct($Report_ID, $Request_ID, $Patient_ID, $Doctor_ID, $IssueDate, $StartDate, $EndDate, $Message, $Doctor_name, $Patient_Name)
+
     {
         $this->Report_ID = $Report_ID;
         $this->Request_ID = $Request_ID;
@@ -28,6 +31,8 @@ class MedicalReport
         $this->StartDate = $StartDate;
         $this->EndDate = $EndDate;
         $this->Message = $Message;
+        $this->Doctor_name = $Doctor_name;
+        $this->Patient_Name = $Patient_Name;
     }
 
 
@@ -36,18 +41,20 @@ class MedicalReport
         try {
             $dbcon = new DBconnector();
             $con = $dbcon->getConnection();
-            $query = "INSERT INTO medicalreport (Report_ID, MedicalRequest_ID, patient_ID, Doctor_ID, IssueDate, StartDate, EndDate, Message) VALUES (?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO medicalreport (Report_ID, MedicalRequest_ID, patient_ID, Doctor_ID, IssueDate, StartDate, EndDate, Message, 	Doctor_Name, Patient_Name) VALUES (?,?,?,?,?,?,?,?,?,?)";
             
             $pstmt = $con->prepare($query);
 
-            $pstmt->bindParam(1,$this->Request_ID);
-            $pstmt->bindParam(2,$this->Report_ID);
+            $pstmt->bindParam(1, $this->Report_ID);
+            $pstmt->bindParam(2, $this->Request_ID);
             $pstmt->bindParam(3,$this->Patient_ID);
             $pstmt->bindParam(4,$this->Doctor_ID);
             $pstmt->bindParam(5,$this->IssueDate);
             $pstmt->bindParam(6,$this->StartDate);
             $pstmt->bindParam(7,$this->EndDate);
             $pstmt->bindParam(8,$this->Message);
+            $pstmt->bindParam(9,$this->Doctor_name);
+            $pstmt->bindParam(10,$this->Patient_Name);
 
             if ($pstmt->execute()) {
                 return true;
@@ -141,7 +148,7 @@ class MedicalReport
             $result = $pstmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
-                return $result->MedicalRequest_ID;
+                return $result['Report_ID'];
             } else {
                 // Patient ID does not exist
                 return false;

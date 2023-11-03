@@ -1,6 +1,7 @@
 <?php
 
 namespace classes;
+
 require_once "DBconnector.php";
 use classes\DBconnector;
 use PDOException;
@@ -141,17 +142,17 @@ class MedicalRequest
         }
     }
 
-    public static function handleRequest($State,$Request_ID)
+    public static function handleRequest($State, $Request_ID)
     {
         try {
             $dbcon = new DBconnector();
             $con = $dbcon->getConnection();
-            $query = "UPDATE medicalreport SET State = ? WHERE MedicalRequest_ID = ?";
-            
+            $query = "UPDATE medicalrequest SET State = ? WHERE MedicalRequest_ID = ?";
+
             $pstmt = $con->prepare($query);
 
-            $pstmt->bindParam(1,$State);
-            $pstmt->bindParam(2,$Request_ID);
+            $pstmt->bindParam(1, $State);
+            $pstmt->bindParam(2, $Request_ID);
 
             $res = $pstmt->execute();
 
@@ -181,7 +182,32 @@ class MedicalRequest
             if ($result) {
                 return $result;
             } else {
-                return ['error' => 'reqest not available'];;
+                return ['error' => 'reqest not available'];
+                ;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
+    public static function getStatusById($Request_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT State FROM medicalrequest WHERE MedicalRequest_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Request_ID);
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result['State'];
+            } else {
+                return ['error' => 'reqest not available'];
+                ;
             }
         } catch (PDOException $e) {
             // Handle any database connection errors

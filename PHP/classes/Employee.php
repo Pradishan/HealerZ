@@ -268,4 +268,28 @@ class Employee
             return false;
         }
     }
+
+    public static function getNameById($employee_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT employee_Name,Profile FROM employee WHERE employee_ID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $employee_ID);
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result;
+            } else {
+                return ['error' => 'employee not available'];;
+            }
+        } catch (PDOException $e) {
+            // Handle any database connection errors
+            return ['error' => $e->getMessage()];
+        }
+    }
 }
