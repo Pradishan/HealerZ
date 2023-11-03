@@ -151,7 +151,7 @@ export default function MedicalPage ()
                     </td>
                     <td><Status status={ record.State } /></td>
                     <td className='text-center'>
-                      <button className='btn text-white btn-gr p-1' onClick={ () => openModal( {'Request_ID':record.MedicalRequest_ID,'patient_ID':record.Patient_ID,'Doctor_ID':'e001'} ) } >View</button>
+                      <button className='btn text-white btn-gr p-1' onClick={ () => openModal( {'Request_ID':record.MedicalRequest_ID,'patient_ID':record.Patient_ID,'Doctor_ID':sessionStorage.getItem("employeeID")} ) } >View</button>
                     </td>
                   </tr>
                 ) )

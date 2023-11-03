@@ -9,7 +9,7 @@ export default function MedicalForm (props)
 
     const [ formData, setFormData ] = useState( {
         patient_ID: selectedId,
-        doctor_ID: 'e001',
+        doctor_ID: sessionStorage.getItem("employeeID"),
         dateandTime: time,
         patientcomplaint: '',
         onExamination: '',
@@ -61,7 +61,7 @@ export default function MedicalForm (props)
                         toast.success( response.data.message );
                         setFormData( {
                             patient_ID: selectedId,
-                            doctor_ID: 'e001',
+                            doctor_ID: sessionStorage.getItem("employeeID"),
                             dateandTime: time,
                             patientcomplaint: '',
                             onExamination: '',

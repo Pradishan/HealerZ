@@ -74,7 +74,7 @@ export default function MedRequestModal ( props )
           }
         );
         setTemp( response.data );
-        console.log(response.data);
+        console.log( response.data );
         setFormData( {
           Request_ID: data.Request_ID,
           patient_ID: data.patient_ID,
@@ -316,7 +316,7 @@ export default function MedRequestModal ( props )
 
           <h4> (Description) because of :</h4>
           <div className='form-floating'>
-            <textarea className='form-control' placeholder='Leave a comment here' id='messagefromdoctor' style={ { height: '100px' } } defaultValue={ formData.Message } onChange={ handleChange }></textarea>
+            <textarea className='form-control' placeholder='Leave a comment here' name='Message' id='messagefromdoctor' style={ { height: '100px' } } value={ formData.Message } onChange={ handleChange }></textarea>
             <label htmlFor='messagefromdoctor'>Message</label>
           </div>
 

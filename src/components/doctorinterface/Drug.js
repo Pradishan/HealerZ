@@ -32,7 +32,7 @@ export default function Drug ( props )
     const [ formData, setFormData ] = useState( {
         patient_ID: selectedId,
         drug: "",
-        doctor_ID: 'e001',
+        doctor_ID: sessionStorage.getItem("employeeID"),
     } );
 
     formData.patient_ID = selectedId;
@@ -59,7 +59,7 @@ export default function Drug ( props )
                         setFormData( {
                             patient_ID: selectedId,
                             drug: "",
-                            doctor_ID: 'e001',
+                            doctor_ID: sessionStorage.getItem("employeeID"),
                         } );
                     } else
                     {
