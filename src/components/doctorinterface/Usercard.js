@@ -19,6 +19,7 @@ export default function Usercard ( props )
         overflowY: 'auto',
     };
 
+    const [ profilepic, setprofilepic ] = useState( userDefault );
     const [ showModal, setShowModal ] = useState( false );
     const [ detail, setDetail ] = useState( null ); // Initialize detail as null initially
     const [ loading, setLoading ] = useState( true ); // Added loading state
@@ -43,7 +44,15 @@ export default function Usercard ( props )
                     patient_ID: selectedId,
                 } );
                 setDetail( response.data[ 0 ] );
-                setLoading( false ); // Set loading to false when data is fetched
+                setLoading( false );
+                if ( response.data[ 0 ].Profile )
+                {
+                    convertBase64ProfileImage(
+                        '../patient/'+response.data[ 0 ].Profile,
+                        '../patient/'+response.data[ 0 ].ProfileType
+                    );
+                } // Set loading to false when data is fetched
+                console.log(response.data[0])
             } catch ( error )
             {
                 console.error( 'Error fetching data:', error );
@@ -53,12 +62,22 @@ export default function Usercard ( props )
 
         fetchData();
     }, [ selectedId ] ); // Updated dependency to selectedId
- 
+
+    const convertBase64ProfileImage = ( base64, type ) =>
+    {
+        const image = new Image();
+        image.src = `data:${ type };base64,${ base64 }`;
+        image.onload = () =>
+        {
+            setprofilepic( image.src );
+        };
+    };
+
     return (
         <>
             <div className='bg-white shadow rounded p-2' style={ width }>
                 { loading ? (
-                    <Loader load={true} />
+                    <Loader load={ true } />
                 ) : !selectedId ? (
                     <div className='d-flex justify-content-center align-items-center my-5 py-5'>
                         <img src={ select } height="50px" alt="select" />
@@ -66,14 +85,14 @@ export default function Usercard ( props )
                     </div>
                 ) : !detail ? (
                     <div className='d-flex justify-content-center align-items-center my-5 py-5'>
-                    <img src={ user } height="50px" alt="select" />
-                    <span className='ms-2'> Patient not found </span>
-                </div>
+                        <img src={ user } height="50px" alt="select" />
+                        <span className='ms-2'> Patient not found </span>
+                    </div>
                 ) : (
                     <div className='m-3'>
                         <div className='d-flex align-items-center justify-content-center mb-2'>
                             <div className='d-flex align-items-center justify-content-center ms-2'>
-                                <img src={ detail.Profile?(detail.Profile):(userDefault) } alt='avatar' className='rounded-circle me-2' width='100px' height='100px' />
+                                <img src={ profilepic } alt='avatar' className='rounded-circle me-2' width='100px' height='100px' />
                             </div>
 
                             <div className='d-flex align-items-center justify-content-center'>
@@ -111,10 +130,10 @@ export default function Usercard ( props )
                             <p className='m-0'>Bloog group</p>
                             <p className='text-danger m-0 fw-bold'>{ detail.BloodGroup }</p>
                         </div>
-                     
+
 
                         <h5 className='mt-2'>Special Disease</h5>
-                        <div style={ scroll }>{detail.SpecialDisease?(<p className='text-muted m-0'>{detail.SpecialDisease}</p>):<p className='text-muted m-0'>No Special Disease to show </p>}</div>
+                        <div style={ scroll }>{ detail.SpecialDisease ? ( <p className='text-muted m-0'>{ detail.SpecialDisease }</p> ) : <p className='text-muted m-0'>No Special Disease to show </p> }</div>
                         <button className='btn w-100 text-white shadow my-3 btn-gr' onClick={ toggleModal } >Medical Records</button>
                     </div>
                 ) }

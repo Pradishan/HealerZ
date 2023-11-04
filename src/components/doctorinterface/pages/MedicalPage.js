@@ -23,6 +23,7 @@ function calculateDateDuration ( startDateStr, endDateStr )
 export default function MedicalPage ()
 {
 
+  const [ profilepic, setprofilepic ] = useState( userDefault );
   const [ records, setRecords ] = useState( [] );
   const [ showModal, setShowModal ] = useState( false );
   const [ selectedData, setSelectedData ] = useState( null );
@@ -38,6 +39,14 @@ export default function MedicalPage ()
     {
       const response = await axios.post( 'http://localhost/HealerZ/PHP/doctor/loadMedicalRequest.php' );
       setRecords( response.data );
+      if ( response.data.Profile )
+      {
+        convertBase64ProfileImage(
+          '../patient/'+response.data.Profile,
+          '../patient/'+response.data.ProfileType
+        );
+      }
+
       // console.log( response.data );
     } catch ( error )
     {
@@ -74,7 +83,17 @@ export default function MedicalPage ()
         record.State.includes( searchStatus ) && record.PatientName.toLowerCase().includes( searchName.toLowerCase() ) && record.Patient_ID.toLowerCase().includes( searchID.toLowerCase() )
     );
     setFilteredMedical( filteredData );
-  }, [searchStatus, searchName, searchID, records] );
+  }, [ searchStatus, searchName, searchID, records ] );
+
+  const convertBase64ProfileImage = ( base64, type ) =>
+  {
+    const image = new Image();
+    image.src = `data:${ type };base64,${ base64 }`;
+    image.onload = () =>
+    {
+      setprofilepic( image.src );
+    };
+  };
 
   const openModal = ( data ) =>
   {
@@ -101,14 +120,14 @@ export default function MedicalPage ()
           </div>
 
           <div className='d-flex align-items-center'>
-              <select id='statusfilter' className="form-select rounded-pill border-0 bg-gray" aria-label="Default select example" value={ searchStatus } onChange={ handleSearchStatus }>
-                <option  defaultValue="">All</option>
-                <option value="Requested">Requested</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-              </select>
+            <select id='statusfilter' className="form-select rounded-pill border-0 bg-gray" aria-label="Default select example" value={ searchStatus } onChange={ handleSearchStatus }>
+              <option defaultValue="">All</option>
+              <option value="Requested">Requested</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
           </div>
-          <button className='mx-2 p-1 btn rounded-pill icon-btn' onClick={() => {setSearchName('');setSearchID('');setSearchStatus('');}}><FeatherIcon icon="rotate-ccw" className='text-success m-0 p-0' /></button>
+          <button className='mx-2 p-1 btn rounded-pill icon-btn' onClick={ () => { setSearchName( '' ); setSearchID( '' ); setSearchStatus( '' ); } }><FeatherIcon icon="rotate-ccw" className='text-success m-0 p-0' /></button>
         </div>
 
 
@@ -134,7 +153,7 @@ export default function MedicalPage ()
                 filteredMedical.map( ( record ) => (
                   <tr className="" key={ record.MedicalRequest_ID }>
                     <td>{ record.Patient_ID }</td>
-                    <td> <img src={ record.Profile ? ( record.Profile ) : ( userDefault ) } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.PatientName }</td>
+                    <td> <img src={ profilepic } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.PatientName }</td>
                     <td style={ { minWidth: '100px' } }>
                       <DateTime dateTime={ record.ConsultationDate } />
                     </td>
@@ -151,17 +170,17 @@ export default function MedicalPage ()
                     </td>
                     <td><Status status={ record.State } /></td>
                     <td className='text-center'>
-                      <button className='btn text-white btn-gr p-1' onClick={ () => openModal( {'Request_ID':record.MedicalRequest_ID,'patient_ID':record.Patient_ID,'Doctor_ID':sessionStorage.getItem("employeeID")} ) } >View</button>
+                      <button className='btn text-white btn-gr p-1' onClick={ () => openModal( { 'Request_ID': record.MedicalRequest_ID, 'patient_ID': record.Patient_ID, 'Doctor_ID': sessionStorage.getItem( "employeeID" ) } ) } >View</button>
                     </td>
                   </tr>
                 ) )
               ) : (
                 <tr>
                   <td>
-                  <div className='d-flex justify-content-center align-items-center m-0 p-1'>
-                    <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
-                    <span className='m-0 p-1'>No Medical records to display.</span>
-                  </div>
+                    <div className='d-flex justify-content-center align-items-center m-0 p-1'>
+                      <img src={ cloud } className='m-0 p-1' height="50px" alt="select" />
+                      <span className='m-0 p-1'>No Medical records to display.</span>
+                    </div>
                   </td>
                 </tr>
               ) }

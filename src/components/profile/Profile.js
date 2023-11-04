@@ -74,12 +74,12 @@ const Profile = () => {
     if (
       editedPhoneNo.length < 10 ||
       editedPhoneNo.length > 10 ||
-      editedPhoneNo[0] != 0
+      editedPhoneNo[0] !== 0
     ) {
       toast.info("Invalid Phone Number");
     } else if (
-      userdata[0].Address == editedAddress &&
-      userdata[0].PhoneNo == editedPhoneNo &&
+      userdata[0].Address === editedAddress &&
+      userdata[0].PhoneNo === editedPhoneNo &&
       editedProfilePic == null
     ) {
       toast.info("No changes made");
