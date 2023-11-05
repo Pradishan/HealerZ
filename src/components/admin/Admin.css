@@ -225,7 +225,7 @@ src/Admin.css .Addcontt {
   overflow-y: scroll;
   /* overflow-x: hidden; */
   /* width: 100% !important; */
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 310px);
   border-radius: 9px;
   border: .75px solid rgba(63, 68, 81, .12156862745098039);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
