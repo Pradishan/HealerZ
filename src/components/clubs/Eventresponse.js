@@ -263,7 +263,7 @@ function EventList(props) {
             </div>
           </div>
           <hr />
-          <div className="table-containertt">
+          <div className="tablecontainerttclub">
             <table className={"table table-hover table-striped"}>
               <thead
                 className={"top-0 position-sticky h-45"}
