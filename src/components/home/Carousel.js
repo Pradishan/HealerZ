@@ -1,50 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import slider1 from '../../assets/slider1.png';
+import slider2 from '../../assets/slider2.png';
+import slider3 from '../../assets/slider3.png';
+import slider4 from '../../assets/slider4.png';
+import slider5 from '../../assets/slider5.png';
 import FeatherIcon from 'feather-icons-react';
 
 const Carousel = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [slides, setSlides] = useState([]);
-  
-  const nextSlide = () => {
-    setActiveSlide((activeSlide + 1) % slides.length);
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    Axios.get('http://localhost/Healerz/PHP/club/sliderget.php')
-      .then((response) => {
-        setSlides(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching images:', error);
-      });
-    
-    const intervalId = setInterval(nextSlide, 5000);
-    
+    const interval = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % 5; 
+      setActiveIndex(nextIndex);
+    }, 5000); 
+
     return () => {
-      clearInterval(intervalId);
+      clearInterval(interval);
     };
-  }, [activeSlide]);
+  }, [activeIndex]);
+
+  const sliders = [slider1, slider2, slider3, slider4, slider5];
 
   return (
     <div id="carouselExampleCaptions" className="carousel slide" style={{ marginTop: '70px' }}>
       <div className="carousel-indicators">
-        {slides.map((slide, index) => (
+        {sliders.map((_, index) => (
           <button
             key={index}
             type="button"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide-to={index}
             aria-label={`Slide ${index + 1}`}
-            className={index === activeSlide ? 'active' : ''}
-            aria-current={index === activeSlide}
+            className={index === activeIndex ? 'active' : ''}
+            aria-current={index === activeIndex}
           ></button>
         ))}
       </div>
       <div className="carousel-inner">
-        {slides.map((slide, index) => (
-          <div key={index} className={`carousel-item${index === activeSlide ? ' active' : ''}`}>
-            <img src={`data:image/png;base64,${slide}`} alt="HealerZ" style={{ width: '100%' }} />
+        {sliders.map((slider, index) => (
+          <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`}>
+            <img src={slider} alt={`Slider ${index + 1}`} width="100%" />
           </div>
         ))}
       </div>
@@ -61,4 +57,3 @@ const Carousel = () => {
 };
 
 export default Carousel;
-
