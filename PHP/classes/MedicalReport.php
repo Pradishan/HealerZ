@@ -62,7 +62,7 @@ class MedicalReport
                 return false;
             }
         } catch (PDOException $e) {
-            return $e->getMessage(); // Return the error message for debugging.
+            return $e->getMessage(); 
         }
     }
 
@@ -150,11 +150,9 @@ class MedicalReport
             if ($result) {
                 return $result['Report_ID'];
             } else {
-                // Patient ID does not exist
                 return false;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }
@@ -173,14 +171,11 @@ class MedicalReport
             $result = $pstmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
-                // Patient ID exists
                 return true;
             } else {
-                // Patient ID does not exist
                 return false;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }
@@ -203,7 +198,6 @@ class MedicalReport
                 return ['error' => 'report not available'];;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }

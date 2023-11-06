@@ -186,7 +186,6 @@ class MedicalRequest
                 ;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }
@@ -210,7 +209,6 @@ class MedicalRequest
                 ;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }
