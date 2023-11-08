@@ -172,7 +172,7 @@ class Employee
         $mail->Host = 'smtp.gmail.com';                     
         $mail->SMTPAuth = true;                                 
         $mail->Username = 'healerz763@gmail.com';                    
-        $mail->Password = 'iqgb czzi sjbp ecjg';                             
+        $mail->Password = 'srpz rprs atxc dzww';                             
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
         $mail->Port = 465;                                   
         $mail->setFrom('healerz763@gmail.com');
