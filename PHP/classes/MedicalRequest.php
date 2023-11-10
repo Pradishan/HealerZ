@@ -3,6 +3,7 @@
 namespace classes;
 
 require_once "DBconnector.php";
+
 use classes\DBconnector;
 use PDOException;
 use PDO;
@@ -161,7 +162,6 @@ class MedicalRequest
             } else {
                 return false;
             }
-
         } catch (PDOException $e) {
             return $e;
         }
@@ -182,8 +182,7 @@ class MedicalRequest
             if ($result) {
                 return $result;
             } else {
-                return ['error' => 'reqest not available'];
-                ;
+                return ['error' => 'reqest not available'];;
             }
         } catch (PDOException $e) {
             return ['error' => $e->getMessage()];
@@ -205,12 +204,36 @@ class MedicalRequest
             if ($result) {
                 return $result['State'];
             } else {
-                return ['error' => 'reqest not available'];
-                ;
+                return ['error' => 'reqest not available'];;
             }
         } catch (PDOException $e) {
             return ['error' => $e->getMessage()];
         }
     }
 
+
+
+    public static function getApprovedMedicalRequests($Patient_ID)
+    {
+        try {
+            $dbcon = new DBconnector();
+            $con = $dbcon->getConnection();
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $query = "SELECT * FROM medicalrequest WHERE Patient_ID = ? AND State = 'Approved'";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $Patient_ID);
+            $pstmt->execute();
+
+            $results = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($results) {
+                return $results;
+            } else {
+                return [];
+            }
+        } catch (PDOException $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
 }
