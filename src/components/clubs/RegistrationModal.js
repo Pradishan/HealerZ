@@ -73,7 +73,6 @@ function RegistrationModal(props) {
         <Modal.Title className="modaltitleee">Registration</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <hr />
         <form>
           <div className="form-floating">
             <input
@@ -171,7 +170,6 @@ function RegistrationModal(props) {
             </select>
           </div>
         </form>
-        <hr />
       </Modal.Body>
       <Modal.Footer>
         <Button
