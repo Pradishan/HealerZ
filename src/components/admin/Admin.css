@@ -225,7 +225,7 @@ src/Admin.css .Addcontt {
   overflow-y: scroll;
   /* overflow-x: hidden; */
   /* width: 100% !important; */
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 280px);
   border-radius: 9px;
   border: .75px solid rgba(63, 68, 81, .12156862745098039);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -325,6 +325,7 @@ src/Admin.css .Addcontt {
   margin-top: -190px;
   margin-left: 125px;
 }
+
 .catbarchartt2 h2 {
   font-size: 30px;
   font-weight: 600;
@@ -392,27 +393,43 @@ select:focus {
 }
 
 
-.empprofdetail{
+.empprofdetail {
   display: flex;
   flex-direction: row;
   gap: 70px;
 }
 
-.detaildetails{
+.detaildetails {
   text-transform: uppercase;
   font-size: 30px;
   font-style: normal;
   font-weight: 600;
   color: #4F4F4F;
 }
-.detaildetails2{
+
+.detaildetails2 {
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   color: #afacac;
 }
 
-.emptabledata{
+.emptabledata {
   margin-top: 50px;
 }
 
+.paginationtable {
+  display: flex;
+  margin-top: -15px;
+}
+
+.pagination-count-buttons {
+  margin-left: auto;
+  display: flex;
+  margin-top: 10px;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 20px;
+}

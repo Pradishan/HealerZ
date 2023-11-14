@@ -10,7 +10,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CustomConfirmModal from "./ConfirmDeleteModal";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import UpdateModal from "./UpdatePatientModal";
 
 function PatientList(props) {
@@ -25,6 +25,14 @@ function PatientList(props) {
   const [filteredPatientList, setFilteredPatientList] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [patientsPerPage, setPatientsPerPage] = useState(10);
+  const indexOfLastPatient = currentPage * patientsPerPage;
+  const indexOfFirstPatient = indexOfLastPatient - patientsPerPage;
+  const currentPatients = filteredPatientList.slice(
+    indexOfFirstPatient,
+    indexOfLastPatient
+  );
 
   useEffect(() => {
     fetchData();
@@ -251,8 +259,8 @@ function PatientList(props) {
                 </tr>
               </thead>
               <tbody className="h-50">
-                {filteredPatientList.length > 0 ? (
-                  filteredPatientList.map((data, index) => (
+                {currentPatients.length > 0 ? (
+                  currentPatients.map((data, index) => (
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>{data.Patient_ID}</td>
@@ -276,7 +284,7 @@ function PatientList(props) {
                           onClick={() => handleUpdate(data)}
                           style={{ color: "green" }}
                         >
-                          <EditIcon/>
+                          <EditIcon />
                         </IconButton>
                         <IconButton
                           aria-label="delete"
@@ -297,6 +305,33 @@ function PatientList(props) {
               </tbody>
             </table>
           </div>
+          <hr />
+          <div className="paginationtable">
+            <div>
+              <p>
+                Page {currentPage} of{" "}
+                {Math.ceil(filteredPatientList.length / patientsPerPage)}
+              </p>
+            </div>
+            <div className="pagination-count-buttons">
+              <div className="pagination-buttons">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => setCurrentPage(currentPage + 1)}
+                  disabled={indexOfLastPatient >= filteredPatientList.length}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <ToastContainer />
         <CustomConfirmModal
@@ -316,7 +351,7 @@ function PatientList(props) {
           setShowUpdateModal(false);
           setUpdateTrigger(!updateTrigger);
         }}
-        inputs={selectedPatient} // Pass the selected patient data to the UpdateModal
+        inputs={selectedPatient}
       />
     </AdminLayout>
   );

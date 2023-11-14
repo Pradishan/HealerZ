@@ -229,27 +229,23 @@ class Patient
 
     public static function SendMail($UserName, $password, $email, $name)
     {
-        // Create an instance; passing `true` enables exceptions
-
         require '../mail/Exception.php';
         require '../mail/PHPMailer.php';
         require '../mail/SMTP.php';
         $mail = new PHPMailer(true);
 
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
-        $mail->Username = 'healerz763@gmail.com';                     //SMTP username
-        $mail->Password = 'iqgb czzi sjbp ecjg';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        //Recipients
+   
+        $mail->SMTPDebug = 0;                     
+        $mail->isSMTP();                                           
+        $mail->Host = 'smtp.gmail.com';                    
+        $mail->SMTPAuth = true;                                   
+        $mail->Username = 'healerz763@gmail.com';                    
+        $mail->Password = 'srpz rprs atxc dzww';                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           
+        $mail->Port = 465;                                  
         $mail->setFrom('healerz763@gmail.com');
-        $mail->addAddress($email);     //Add a recipient             //Name is optional
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->addAddress($email);    
+        $mail->isHTML(true);                             
         $mail->Subject = 'Patient Registration for HealerZ !';
         $message = "Dear " . $name . " ,<br>" . "<br>";
         $message .= "<span style='color: green;'>Welcome to Healerz! , Your account has been successfully created.</span>" . "<br>";
@@ -292,14 +288,11 @@ class Patient
             $result = $pstmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
-                // Patient ID exists
                 return true;
             } else {
-                // Patient ID does not exist
                 return false;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }
@@ -364,7 +357,6 @@ class Patient
                 return ['error' => 'Patient_ID not available'];;
             }
         } catch (PDOException $e) {
-            // Handle any database connection errors
             return ['error' => $e->getMessage()];
         }
     }

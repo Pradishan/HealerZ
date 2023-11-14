@@ -53,7 +53,7 @@ class Medicalrecord
                 return false;
             }
         } catch (PDOException $e) {
-            return $e->getMessage(); // Return the error message for debugging.
+            return $e->getMessage(); 
         }
     }
 
@@ -125,7 +125,7 @@ class Medicalrecord
                 return false;
             }
         } catch (PDOException $e) {
-            return $e->getMessage(); // Return the error message
+            return $e->getMessage(); 
         }
     }
 

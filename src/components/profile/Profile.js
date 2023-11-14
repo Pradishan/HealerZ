@@ -11,6 +11,9 @@ import AgeCalculator from "../doctorinterface/algorithms/AgeCalculator";
 import { IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import personalsetting from "../../assets/Personal settings.svg";
+import jsPDF from "jspdf";
+import signature from "../../assets/Signature.png";
+import pdfback from "../../assets/PDF back.jpg";
 
 const Profile = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -23,13 +26,33 @@ const Profile = () => {
   const [changepw, setchangepw] = useState(null);
   const [confirmpw, setconfirmpw] = useState(null);
   const [showSecondCard, setShowSecondCard] = useState(false);
+  const [medicallist, setmedicallist] = useState([]);
+
+  useEffect(() => {
+    fetchData2();
+  }, []);
+
+  const fetchData2 = async () => {
+    try {
+      const patientID = sessionStorage.getItem("patientID");
+
+      const response = await axios.get(
+        `http://localhost/Healerz/PHP/patient/getmedicalreport.php?patientID=${patientID}`
+      );
+
+      setmedicallist(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleOpen = () => {
     setShowSecondCard(!showSecondCard);
   };
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   const passwordchange = () => {
     if (currpw === null && changepw === null && confirmpw === null) {
@@ -89,7 +112,7 @@ const Profile = () => {
       formData.append("PhoneNo", editedPhoneNo);
       formData.append("Address", editedAddress);
       editedProfilePic && formData.append("Profile", editedProfilePic);
-      
+
       axios
         .post(
           "http://localhost/HealerZ/PHP/patient/updateProfile.php",
@@ -148,14 +171,6 @@ const Profile = () => {
       });
   };
 
-  const [medicallist, setmedicallist] = useState([
-    { No: 1, date: "07-07-2023" },
-    { No: 2, date: "07-04-2023" },
-    { No: 3, date: "07-06-2022" },
-    { No: 4, date: "07-04-2022" },
-    { No: 5, date: "07-11-2021" },
-  ]);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -191,17 +206,42 @@ const Profile = () => {
     };
   };
 
-  const onPDFdownload = () => {
-    fetch("sample.pdf").then((response) => {
-      response.blob().then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
-        let alink = document.createElement("a");
-        alink.href = fileURL;
-        alink.download = "CST20008.pdf";
-        alink.click();
-      });
-    });
+  const generatePDF = (data) => {
+    const pdf = new jsPDF();
+    const img = new Image();
+    img.src = pdfback;
+    
+    img.onload = function () {
+      pdf.addImage(img, 'JPEG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+      pdf.setFontSize(20);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(0, 0, 139);
+      pdf.text("Medical Request Confirmation", 105, 20, { align: "center" });
+      pdf.setTextColor(0, 0, 0);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(12);
+      pdf.text(`Patient ID: ${data.Patient_ID}`, 20, 40);
+      pdf.text(`Consultation Date: ${data.ConsultationDate}`, 20, 50);
+      pdf.setFontSize(12);
+      pdf.text("We are pleased to inform you that your medical request has been reviewed and approved.", 20, 70);
+      pdf.text(`Approved Period: From ${data.StartDate} to ${data.EndDate}`, 20, 80);
+      pdf.text(`If you have any further questions or concerns regarding your approved medical request,`, 20,100);
+      pdf.text(`please do not hesitate to contact [Medical Center Of Uva Wellassa University]`, 20, 110);
+      pdf.text(`Contact Number : 021-221-0721`, 20, 120);
+      pdf.text(`Email : healerz763@gmail.com`, 20, 130);
+  
+      pdf.addImage(signature, "PNG", 30, 150, 30, 20);
+  
+      pdf.line(20, 170, 80, 170);
+      pdf.setFontSize(12);
+      pdf.text("Doctor Signature", 20, 180);
+      pdf.text("HealerZ ( Medical Center Of UWU )", 20, 190);
+      pdf.addImage(logo, "PNG", 20, 200, 40, 20);
+      
+      pdf.save(`${data.Patient_ID}_medical_record.pdf`);
+    };
   };
+  
 
   const handleAddMedicalRequest = async (e) => {
     e.preventDefault();
@@ -326,7 +366,7 @@ const Profile = () => {
                         <img
                           src={profilepic}
                           alt="zoomed-avatar"
-                          width="150px" 
+                          width="150px"
                           height="150px"
                           style={{ objectFit: "cover" }}
                         />
@@ -386,25 +426,32 @@ const Profile = () => {
                   <th>Download</th>
                 </thead>
                 <tbody>
-                  {medicallist.map((data, index) => (
+                  {medicallist.length === 0 ? (
                     <tr>
-                      <th scope="row">{data.No}</th>
-                      <td style={{ fontSize: "12px" }}>{data.date}</td>
-                      <td>
-                        {" "}
-                        <Link to="/profile">
+                      <td colSpan="3" className="text-center">
+                        No medical Reports available
+                      </td>
+                    </tr>
+                  ) : (
+                    medicallist.map((data, index) => (
+                      <tr key={index}>
+                        <th scope="row">{index + 1}</th>
+                        <td style={{ fontSize: "12px" }}>
+                          {data.ConsultationDate}
+                        </td>
+                        <td>
                           <div className="button">
                             <button
                               className="btn shadow gradient-buttonnn"
-                              onClick={onPDFdownload}
+                              onClick={() => generatePDF(data)}
                             >
                               Download
                             </button>
                           </div>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
               <hr />
@@ -591,7 +638,6 @@ const Profile = () => {
                 <img src={personalsetting} alt="" />
               </div>
             </div>
-            
           ) : (
             <div className="card card-2 cardproff">
               <div className="justify-content-center mb-2 profilesideimg">

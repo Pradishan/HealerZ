@@ -39,6 +39,11 @@ function EventList(props) {
     fetchData();
   }, [updateTrigger]);
 
+  const handleRegistrationModalClose = () => {
+    setShowModal4(false); // Close the RegistrationModal
+    setUpdateTrigger(!updateTrigger); // Update the trigger when the RegistrationModal is closed
+  };
+
   const handleChangeDate = (event) => {
     setSearchDate(event.target.value);
   };
@@ -258,7 +263,7 @@ function EventList(props) {
             </div>
           </div>
           <hr />
-          <div className="table-containertt">
+          <div className="tablecontainerttclub">
             <table className={"table table-hover table-striped"}>
               <thead
                 className={"top-0 position-sticky h-45"}
@@ -341,9 +346,9 @@ function EventList(props) {
           setShowUpdateModal(false);
           setUpdateTrigger(!updateTrigger);
         }}
-        inputs={selectedevent} // Pass the selected event data to the UpdateModal
+        inputs={selectedevent} 
       />
-      <RegistrationModal show={showModal4} onHide={addModal} />
+      <RegistrationModal show={showModal4} onHide={handleRegistrationModalClose} />
     </ClubLayout>
   );
 }
