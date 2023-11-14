@@ -13,6 +13,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import personalsetting from "../../assets/Personal settings.svg";
 import jsPDF from "jspdf";
 import signature from "../../assets/Signature.png";
+import pdfback from "../../assets/PDF back.jpg";
 
 const Profile = () => {
   const [profilepic, setprofilepic] = useState(default_dp);
@@ -207,30 +208,40 @@ const Profile = () => {
 
   const generatePDF = (data) => {
     const pdf = new jsPDF();
-
-    pdf.setFontSize(20);
-    pdf.text("Medical Request Confirmation", 105, 20, { align: "center" });
-
-    pdf.setFontSize(14);
-    pdf.text(`Patient ID: ${data.Patient_ID}`, 20, 40);
-    pdf.text(`Consultation Date: ${data.consultationDate}`, 20, 55);
-    pdf.text(`Start Date: ${data.StartDate}`, 20, 70);
-    pdf.text(`End Date: ${data.EndDate}`, 20, 85);
-    pdf.setFontSize(14);
-    pdf.text("Your medical Request was approved.", 60, 100, {
-      align: "center",
-      color: "green",
-    });
-
-    pdf.addImage(signature, "PNG", 40, 120, 30, 20);
-
-    pdf.line(20, 140, 100, 140);
-    pdf.setFontSize(14);
-    pdf.text("Doctor Signature", 20, 150);
-
-    pdf.addImage(logo, "PNG", 20, 160, 60, 30);
-    pdf.save(`${data.Patient_ID}_medical_record.pdf`);
+    const img = new Image();
+    img.src = pdfback;
+    
+    img.onload = function () {
+      pdf.addImage(img, 'JPEG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+      pdf.setFontSize(20);
+      pdf.setFont("helvetica", "bold");
+      pdf.setTextColor(0, 0, 139);
+      pdf.text("Medical Request Confirmation", 105, 20, { align: "center" });
+      pdf.setTextColor(0, 0, 0);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(12);
+      pdf.text(`Patient ID: ${data.Patient_ID}`, 20, 40);
+      pdf.text(`Consultation Date: ${data.ConsultationDate}`, 20, 50);
+      pdf.setFontSize(12);
+      pdf.text("We are pleased to inform you that your medical request has been reviewed and approved.", 20, 70);
+      pdf.text(`Approved Period: From ${data.StartDate} to ${data.EndDate}`, 20, 80);
+      pdf.text(`If you have any further questions or concerns regarding your approved medical request,`, 20,100);
+      pdf.text(`please do not hesitate to contact [Medical Center Of Uva Wellassa University]`, 20, 110);
+      pdf.text(`Contact Number : 021-221-0721`, 20, 120);
+      pdf.text(`Email : healerz763@gmail.com`, 20, 130);
+  
+      pdf.addImage(signature, "PNG", 30, 150, 30, 20);
+  
+      pdf.line(20, 170, 80, 170);
+      pdf.setFontSize(12);
+      pdf.text("Doctor Signature", 20, 180);
+      pdf.text("HealerZ ( Medical Center Of UWU )", 20, 190);
+      pdf.addImage(logo, "PNG", 20, 200, 40, 20);
+      
+      pdf.save(`${data.Patient_ID}_medical_record.pdf`);
+    };
   };
+  
 
   const handleAddMedicalRequest = async (e) => {
     e.preventDefault();
