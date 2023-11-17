@@ -5,7 +5,7 @@ import DateTime from '../algorithms/DateTime';
 import Status from '../algorithms/Status';
 import cloud from '../../../assets/icons8-error-cloud.gif';
 import MedRequestModal from '../utilites/MedRequestModal';
-import userDefault from '../../../assets/userDefault.jpg'
+import userDefault from '../../../assets/avatar.svg'
 
 
 function calculateDateDuration ( startDateStr, endDateStr )

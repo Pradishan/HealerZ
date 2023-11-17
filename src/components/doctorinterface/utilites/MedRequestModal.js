@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 import Status from '../algorithms/Status';
 import DateTime from '../algorithms/DateTime';
-import userDefault from '../../../assets/userDefault.jpg';
+import userDefault from '../../../assets/avatar.svg';
 import DOP from '../algorithms/DOB';
 import AgeCalculator from '../algorithms/AgeCalculator';
 import { toast } from 'react-toastify';

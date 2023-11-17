@@ -1,6 +1,6 @@
 import React from 'react';
 import Status from './algorithms/Status';
-import userDefault from '../../assets/userDefault.jpg'
+import userDefault from '../../assets/avatar.svg'
 
 export default function Notification ( props )
 {
