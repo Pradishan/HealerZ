@@ -117,7 +117,7 @@ function SupplyPopup(props) {
   };
   return (
     <>
-      <Modal show={show} onHide={onHide} size="lg" centered>
+      <Modal show={show} onHide={onHide} size="lg" centered backdrop="static">
         <Modal.Header>
           <Modal.Title className="modaltitleee">Drug Supply</Modal.Title>
           {drugDetails && drugDetails.status === "Waiting" && (

@@ -8,7 +8,7 @@ function ViewModal(props) {
   const { show, onHide, drugDetails } = props;
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} centered backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleee">Drug Detail</Modal.Title>
         <IconButton>
