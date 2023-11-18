@@ -96,7 +96,7 @@ function UpdatePatientModal(props) {
   }, [inputs]);
 
   return (
-    <Modal show={show} onHide={onHide} centered size="xl">
+    <Modal show={show} onHide={onHide} centered size="xl" backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title className="modaltitleee">Employee Update</Modal.Title>
       </Modal.Header>

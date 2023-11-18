@@ -90,7 +90,7 @@ function UpdateModal(props) {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} centered backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title className="modaltitleee">Drug UPDATE</Modal.Title>
       </Modal.Header>

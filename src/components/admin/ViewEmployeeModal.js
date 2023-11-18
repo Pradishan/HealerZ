@@ -34,7 +34,7 @@ function ViewEmployeeModal(props) {
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered size="lg">
+    <Modal show={show} onHide={onHide} centered size="lg" backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleee">Employee Detail</Modal.Title>
         <IconButton>

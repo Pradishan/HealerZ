@@ -53,7 +53,7 @@ function SearchIDstkUpdate(props) {
 
     const { show, onHide } = props;
     return (
-        <Modal show={show} onHide={onHide} className={"moddd"} centered>
+        <Modal show={show} onHide={onHide} className={"moddd"} centered backdrop="static">
             <Modal.Header closeButton>
                 <Modal.Title className="modaltitleee">Update Stock</Modal.Title>
             </Modal.Header>

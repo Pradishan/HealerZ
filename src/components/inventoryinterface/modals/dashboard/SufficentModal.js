@@ -44,7 +44,7 @@ function SufficientModal(props) {
   };
   const { show, onHide } = props;
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} size="lg" centered backdrop="static">
       <Modal.Header>
         <Modal.Title
           className="modaltitleee1"

@@ -5,7 +5,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 export default function PhoneModal({ show, onHide }) {
   return (
-    <Modal show={show} onHide={onHide}  centered>
+    <Modal show={show} onHide={onHide} centered backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title className="modaltitleee1" style={{color:'#228B22'}}>Contact</Modal.Title>
       </Modal.Header>
