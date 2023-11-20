@@ -36,9 +36,6 @@ export default function Dtabs ( props )
     fetchData();
   }, [ selectedId ] );
 
-  console.log( selectedId );
-  console.log( id );
-
   return (
     <>
       <ul className="nav nav-tabs" id="myTab" role="tablist">
