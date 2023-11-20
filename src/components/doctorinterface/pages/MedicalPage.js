@@ -23,7 +23,6 @@ function calculateDateDuration ( startDateStr, endDateStr )
 export default function MedicalPage ()
 {
 
-  const [ profilepic, setprofilepic ] = useState( userDefault );
   const [ records, setRecords ] = useState( [] );
   const [ showModal, setShowModal ] = useState( false );
   const [ selectedData, setSelectedData ] = useState( null );
@@ -37,17 +36,20 @@ export default function MedicalPage ()
   {
     try
     {
-      const response = await axios.post( 'http://localhost/HealerZ/PHP/doctor/loadMedicalRequest.php' );
-      setRecords( response.data );
-      if ( response.data.Profile )
+      const response = await axios.post( 'http://localhost/HealerZ/PHP/patient/loadMedicalRequest.php' );
+      const updatedRecords = response.data.map( record =>
       {
-        convertBase64ProfileImage(
-          '../patient/'+response.data.Profile,
-          '../patient/'+response.data.ProfileType
-        );
-      }
-
+        if ( record.Profile && record.ProfileType )
+        {
+          const image = new Image();
+          image.src = `data:${ record.ProfileType };base64,${ record.Profile }`;
+          return { ...record, profilepic: image.src };
+        }
+        return { ...record, profilepic: userDefault };
+      } );
+      setRecords( updatedRecords );
       // console.log( response.data );
+
     } catch ( error )
     {
       console.error( 'Error fetching data:', error );
@@ -84,16 +86,6 @@ export default function MedicalPage ()
     );
     setFilteredMedical( filteredData );
   }, [ searchStatus, searchName, searchID, records ] );
-
-  const convertBase64ProfileImage = ( base64, type ) =>
-  {
-    const image = new Image();
-    image.src = `data:${ type };base64,${ base64 }`;
-    image.onload = () =>
-    {
-      setprofilepic( image.src );
-    };
-  };
 
   const openModal = ( data ) =>
   {
@@ -153,7 +145,7 @@ export default function MedicalPage ()
                 filteredMedical.map( ( record ) => (
                   <tr className="" key={ record.MedicalRequest_ID }>
                     <td>{ record.Patient_ID }</td>
-                    <td> <img src={ profilepic } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.PatientName }</td>
+                    <td> <img src={ record.profilepic } alt='avatar' className='rounded-circle me-2' width='25px' height='25px' />{ record.PatientName }</td>
                     <td style={ { minWidth: '100px' } }>
                       <DateTime dateTime={ record.ConsultationDate } />
                     </td>

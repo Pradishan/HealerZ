@@ -24,9 +24,28 @@ try {
         // Fetch the filtered data as an associative array
         $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Return the filtered data as JSON
-        header('Content-Type: application/json');
-        echo json_encode($filteredData);
+        if ($filteredData) {
+            header('Content-Type: application/json');
+
+            foreach ($filteredData as &$row) {
+                $imagePath = $row['Profile'];
+
+                if (file_exists($imagePath)) {
+                    $imageData = file_get_contents($imagePath);
+                    $imageType = mime_content_type($imagePath);
+
+                    $base64 = base64_encode($imageData);
+
+                    $row['Profile'] = $base64;
+                    $row['ProfileType'] = $imageType;
+                }
+            }
+            unset($row); // Unset the reference to the last element to avoid conflicts
+
+            echo json_encode($filteredData);
+        } else {
+            echo json_encode(['message' => 'Patient not found']);
+        }
     }
 } catch (Exception $e) {
     // Return an error response with the specific error message to the front-end

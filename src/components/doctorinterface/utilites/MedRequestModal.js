@@ -22,7 +22,7 @@ function calculateDateDuration ( startDateStr, endDateStr )
 export default function MedRequestModal ( props )
 {
   const { show, onHide, data } = props;
-
+  const [ profilepic, setprofilepic ] = useState( userDefault );
   const [ detail, setDetail ] = useState( {} );
   const [ temp, setTemp ] = useState( {} );
   const [ formData, setFormData ] = useState( {
@@ -44,12 +44,19 @@ export default function MedRequestModal ( props )
       try
       {
         const response = await axios.post(
-          'http://localhost/HealerZ/PHP/doctor/getMedicalRequest.php',
+          'http://localhost/HealerZ/PHP/patient/getMedicalRequest.php',
           {
             MedicalRequest_ID: data.Request_ID,
           }
         );
         setDetail( response.data[ 0 ] );
+        if ( response.data[ 0 ].Profile )
+        {
+          convertBase64ProfileImage(
+            response.data[ 0 ].Profile,
+            response.data[ 0 ].ProfileType
+          );
+        }
       } catch ( error )
       {
         console.error( 'Error fetching data:', error );
@@ -74,7 +81,7 @@ export default function MedRequestModal ( props )
           }
         );
         setTemp( response.data );
-        console.log( response.data );
+        // console.log( response.data );
         setFormData( {
           Request_ID: data.Request_ID,
           patient_ID: data.patient_ID,
@@ -94,6 +101,16 @@ export default function MedRequestModal ( props )
 
     fetchData();
   }, [ data ] );
+
+  const convertBase64ProfileImage = ( base64, type ) =>
+  {
+    const image = new Image();
+    image.src = `data:${ type };base64,${ base64 }`;
+    image.onload = () =>
+    {
+      setprofilepic( image.src );
+    };
+  };
 
   const handleRequest = ( e ) =>
   {
@@ -156,7 +173,7 @@ export default function MedRequestModal ( props )
             <div className='d-flex align-items-center justify-content-center mb-2'>
               <div className='d-flex align-items-center justify-content-center ms-2'>
                 <img
-                  src={ detail.Profile ? detail.Profile : userDefault }
+                  src={ profilepic ? profilepic : userDefault }
                   alt='Avatar'
                   className='rounded-circle me-2'
                   width='100px'
@@ -221,23 +238,14 @@ export default function MedRequestModal ( props )
                   <p className='m-0 me-4'>Status</p>
                   <Status status={ detail.State } />
                 </div>
-
-                <div className='btn-group mt-1' role='group' aria-label='Basic radio toggle button group'>
-                  <input type='radio' className='btn-check' name='status' id='btnradio1' autoComplete='off' />
-                  <label className='btn btn-outline-success' htmlFor='btnradio1'>
-                    Approve
-                  </label>
-
-                  <input type='radio' className='btn-check' name='status' id='btnradio2' autoComplete='off' />
-                  <label className='btn btn-outline-danger' htmlFor='btnradio2'>
-                    Reject
-                  </label>
+                <div className='d-flex align-items-center justify-content-between mt-2'>
+                  <p className='m-0 me-4 fw-bold'>Message</p>
                 </div>
+                <p style={ { maxHeight: '10rem',maxWidth: '30rem', overflow: 'auto' } }>{ detail.Message }</p>
               </div>
             </div>
           </div>
         </div>
-        <p style={ { maxHeight: '10rem', overflow: 'auto' } }><span className='text-black ms-5'>Message:</span> { detail.Message }</p>
         <hr />
         <form onSubmit={ handleRequest }>
           <p>

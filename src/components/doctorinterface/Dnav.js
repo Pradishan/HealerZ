@@ -10,16 +10,28 @@ import MedRequestModal from "./utilites/MedRequestModal";
 import {Offcanvas} from 'react-bootstrap';
 
 
+
 export default function Dnav() {
   const navigate = useNavigate();
 
   const [records, setRecords] = useState([]);
-  const [selectedData, setSelectedData] = useState(null);
+  const [selectedData, setSelectedData] = useState();
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.post('http://localhost/HealerZ/PHP/doctor/loadNotification.php');
-      setRecords(response.data);
+      const response = await axios.post('http://localhost/HealerZ/PHP/patient/loadNotification.php');
+      const updatedRecords = response.data.map( record =>
+        {
+          if ( record.Profile && record.ProfileType )
+          {
+            const image = new Image();
+            image.src = `data:${ record.ProfileType };base64,${ record.Profile }`;
+            return { ...record, profilepic: image.src };
+          }
+          return { ...record, profilepic: null };
+        } );
+        setRecords( updatedRecords );
+        // console.log(records);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -134,7 +146,7 @@ export default function Dnav() {
                 key={record.MedicalRequest_ID}
                 type="button"
                 className='icon-hover rounded p-2 d-flex align-items-center justify-content-between m-3 my-2'
-                onClick={() => openModal(record.MedicalRequest_ID)}
+                onClick={() => openModal( { 'Request_ID': record.MedicalRequest_ID, 'patient_ID': record.Patient_ID, 'Doctor_ID': sessionStorage.getItem( "employeeID" ) })}
               >
                 <Notification record={record} />
               </div>

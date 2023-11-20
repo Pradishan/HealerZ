@@ -20,24 +20,34 @@ try {
         $data = json_decode(file_get_contents('php://input'), true);
 
         // Check if 'patient_ID' is provided in the JSON data
-        if (isset($data['patient_ID'])) {
+        if (isset($data['MedicalRequest_ID'])) {
             // Get the patient ID from the request
-            $patientID = $data['patient_ID'];
+            $MedicalRequest_ID = $data['MedicalRequest_ID'];
 
             // Prepare and execute the SQL query using positional parameter
-            $stmt = $conn->prepare("SELECT * FROM patient WHERE Patient_ID = ?");
-            $stmt->execute([$patientID]); // Use execute with an array of parameters
+            $stmt = $conn->prepare("SELECT medicalrequest.*, patient.Patient_ID, patient.PatientName, patient.DateOfBirth, patient.PhoneNo, patient.Email, patient.Address, patient.BloodGroup, patient.Profile FROM medicalrequest INNER JOIN patient ON medicalrequest.Patient_ID = patient.Patient_ID WHERE medicalrequest.MedicalRequest_ID = ?");
+            $stmt->execute([$MedicalRequest_ID]); // Use execute with an array of parameters
 
             // Fetch the filtered data as an associative array
             $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Check if any data was found for the given Patient_ID
             if ($filteredData) {
-                // Return the filtered data as JSON
                 header('Content-Type: application/json');
+
+                $imagePath = $filteredData[0]['Profile']; // Assume Profile contains the relative image path
+
+                if (file_exists($imagePath)) {
+                    $imageData = file_get_contents($imagePath);
+                    $imageType = mime_content_type($imagePath);
+
+                    $base64 = base64_encode($imageData);
+
+                    $filteredData[0]['Profile'] = $base64;
+                    $filteredData[0]['ProfileType'] = $imageType;
+                }
+
                 echo json_encode($filteredData);
             } else {
-                // If no data found for the given Patient_ID, return an error message or appropriate response
                 echo json_encode(['message' => 'Patient not found']);
             }
         } else {

@@ -143,17 +143,18 @@ class MedicalRequest
         }
     }
 
-    public static function handleRequest($State, $Request_ID)
+    public static function handleRequest($State, $Request_ID, $Doctor_ID)
     {
         try {
             $dbcon = new DBconnector();
             $con = $dbcon->getConnection();
-            $query = "UPDATE medicalrequest SET State = ? WHERE MedicalRequest_ID = ?";
+            $query = "UPDATE medicalrequest SET State = ?, Doctor_ID = ? WHERE MedicalRequest_ID = ?";
 
             $pstmt = $con->prepare($query);
 
             $pstmt->bindParam(1, $State);
-            $pstmt->bindParam(2, $Request_ID);
+            $pstmt->bindParam(2, $Doctor_ID);
+            $pstmt->bindParam(3, $Request_ID);
 
             $res = $pstmt->execute();
 
@@ -182,7 +183,8 @@ class MedicalRequest
             if ($result) {
                 return $result;
             } else {
-                return ['error' => 'reqest not available'];;
+                return ['error' => 'reqest not available'];
+                ;
             }
         } catch (PDOException $e) {
             return ['error' => $e->getMessage()];
@@ -204,7 +206,8 @@ class MedicalRequest
             if ($result) {
                 return $result['State'];
             } else {
-                return ['error' => 'reqest not available'];;
+                return ['error' => 'reqest not available'];
+                ;
             }
         } catch (PDOException $e) {
             return ['error' => $e->getMessage()];

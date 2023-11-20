@@ -25,7 +25,7 @@ if ($method === "PUT") {
         $data = json_decode(file_get_contents('php://input'), true);
 
         if (!isset($data['Request_ID']) || !isset($data['patient_ID']) || !isset($data['Doctor_ID']) || !isset($data['startDate']) || !isset($data['endDate']) || !isset($data['Message']) || !isset($data['status'])) {
-            echo json_encode(['success' => false, 'message' => 'Invalid request data','data' => $data]);
+            echo json_encode(['success' => false, 'message' => 'Invalid request data', 'data' => $data]);
             // http_response_code(400); // Bad Request
             exit();
         }
@@ -44,8 +44,7 @@ if ($method === "PUT") {
         $Patient_Name = $data['Patient_Name'];
 
         $Report_ID = MedicalReport::isReportForRequest($Request_ID);
-
-        if (MedicalRequest::handleRequest($status, $Request_ID) == true) {
+        if (MedicalRequest::handleRequest($status, $Request_ID, $Doctor_ID) == true) {
             if ($Report_ID) {
                 MedicalReport::deleteMedicalreport($Report_ID);
             }
