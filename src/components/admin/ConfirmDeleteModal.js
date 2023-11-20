@@ -7,7 +7,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const ConfirmDeleteModal = ({ show, onHide, onConfirm }) => {
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} size="lg" centered backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to delete</Modal.Title>
         <IconButton style={{color:'darkred'}}><DeleteForeverIcon sx={{ fontSize: "40px" }}/></IconButton>

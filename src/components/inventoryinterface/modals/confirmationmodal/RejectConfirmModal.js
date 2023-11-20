@@ -6,7 +6,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 const RejectConfirmModal = ({ show, onHide, onConfirm }) => {
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} size="lg" centered backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleee1" style={{color:'darkred'}}>Conformation to Reject !</Modal.Title>
         <IconButton style={{color:'darkred'}}><CancelIcon sx={{ fontSize: "40px" }}/></IconButton> 

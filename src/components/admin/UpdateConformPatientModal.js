@@ -6,7 +6,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 
 const UpdateConformPatientModal = ({ show, onHide, onConfirm }) => {
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} size="lg" centered backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleee1" style={{color:'Green'}}>Conformation to Update Details !</Modal.Title>
         <IconButton style={{color:'darkgreen'}}><UpdateIcon sx={{ fontSize: "40px" }}/></IconButton>

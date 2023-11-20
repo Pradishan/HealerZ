@@ -104,12 +104,11 @@ function UpdateEvent(props) {
   }, [inputs]);
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} centered backdrop="static">
       <Modal.Header closeButton>
         <Modal.Title className="modaltitleee">Update Response</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <hr />
         <form>
         <div className="form-floating">
                   <input
@@ -221,7 +220,6 @@ function UpdateEvent(props) {
                   </select>
                 </div>
         </form>
-        <hr />
       </Modal.Body>
 
       <Modal.Footer>

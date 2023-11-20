@@ -6,7 +6,7 @@ import AgeCalculator from './algorithms/AgeCalculator';
 import select from '../../assets/icons8-select.gif';
 import user from '../../assets/icons8-user.gif';
 import Loader from '../Loader';
-import userDefault from '../../assets/userDefault.jpg'
+import userDefault from '../../assets/avatar.svg'
 
 export default function Usercard ( props )
 {

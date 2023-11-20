@@ -36,7 +36,7 @@ function EventresponseViewModal(props) {
   }
 
   return (
-    <Modal show={show} onHide={onHide} centered size="md">
+    <Modal show={show} onHide={onHide} centered size="md" backdrop="static">
       <Modal.Header>
         <Modal.Title className="modaltitleeeevent">
           Event Response Detail ( {eventname} )
