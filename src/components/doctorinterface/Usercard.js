@@ -40,18 +40,18 @@ export default function Usercard ( props )
                     setLoading( false );
                     return;
                 }
-                const response = await axios.post( 'http://localhost/HealerZ/PHP/doctor/getPatient.php', {
+                const response = await axios.post( 'http://localhost/HealerZ/PHP/patient/getPatient.php', {
                     patient_ID: selectedId,
                 } );
                 setDetail( response.data[ 0 ] );
                 setLoading( false );
-                if ( response.data[ 0 ].Profile )
-                {
+                console.log(response.data[ 0 ].Profile);
+                if (response.data[0].Profile) {
                     convertBase64ProfileImage(
-                        '../patient/'+response.data[ 0 ].Profile,
-                        '../patient/'+response.data[ 0 ].ProfileType
+                      response.data[0].Profile,
+                      response.data[0].ProfileType
                     );
-                } // Set loading to false when data is fetched
+                  }
                 console.log(response.data[0])
             } catch ( error )
             {
