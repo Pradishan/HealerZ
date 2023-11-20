@@ -56,6 +56,9 @@ export default function MedRequestModal ( props )
             response.data[ 0 ].Profile,
             response.data[ 0 ].ProfileType
           );
+        } else
+        {
+          setprofilepic( userDefault );
         }
       } catch ( error )
       {

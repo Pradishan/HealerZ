@@ -45,12 +45,16 @@ export default function Usercard ( props )
                 } );
                 setDetail( response.data[ 0 ] );
                 setLoading( false );
-                if (response.data[0].Profile) {
+                if ( response.data[ 0 ].Profile )
+                {
                     convertBase64ProfileImage(
-                      response.data[0].Profile,
-                      response.data[0].ProfileType
+                        response.data[ 0 ].Profile,
+                        response.data[ 0 ].ProfileType
                     );
-                  }
+                } else
+                {
+                    setprofilepic( userDefault );
+                }
 
             } catch ( error )
             {
