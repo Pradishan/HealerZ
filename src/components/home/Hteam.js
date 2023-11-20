@@ -5,7 +5,7 @@ import powsi from "../../assets/Powsi.jpg";
 import thanu from "../../assets/thanu.jpg";
 import pradi from "../../assets/pradi.jpg";
 import farhath from "../../assets/farhath.jpg";
-import jana from "../../assets/Jana.jpg";
+import jana from "../../assets/jana.jpg";
 import joshi from "../../assets/joshi.jpg";
 
 const Hteam = ({ onClose }) => {
