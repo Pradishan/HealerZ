@@ -241,7 +241,9 @@ export default function MedRequestModal ( props )
                 <div className='d-flex align-items-center justify-content-between mt-2'>
                   <p className='m-0 me-4 fw-bold'>Message</p>
                 </div>
-                <p style={ { maxHeight: '10rem',maxWidth: '30rem', overflow: 'auto' } }>{ detail.Message }</p>
+                <div className='d-flex align-items-center justify-content-between mt-0'>
+                  <p style={ { maxHeight: '10rem', maxWidth: '30rem', overflow: 'auto' } }>{ detail.Message }</p>
+                </div>
               </div>
             </div>
           </div>
