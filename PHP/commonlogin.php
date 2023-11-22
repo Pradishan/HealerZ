@@ -35,7 +35,7 @@ if ($method === "POST") {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user || !password_verify($password, $user["Password"])) {
-        echo json_encode(array("message" => "Invalid Admin ID or Password."));
+        echo json_encode(array("message" => "Invalid User ID or Password."));
         exit();
     }
 

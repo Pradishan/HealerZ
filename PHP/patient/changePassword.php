@@ -11,31 +11,34 @@ use classes\DBconnector;
 $con = new DBconnector();
 $conn = $con->getConnection();
 
-try {    
-    if ($_SERVER["REQUEST_METHOD"] !== "PUT") {
-        throw new Exception("Invalid request method. Only PUT requests are allowed.");
-    }
-
+if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!isset($data['Patient_ID'])) {
-        throw new Exception('User_ID is not provided in the request.');
+    $patientID = isset($data['patientID']) ? $data['patientID'] : null;
+    $newPassword = isset($data['newPassword']) ? $data['newPassword'] : null;
+
+    if (!$patientID || !$newPassword) {
+        echo json_encode(array("message" => "patientID and new password are required."));
+        exit();
     }
 
-    $stmt = $conn->prepare("UPDATE patient SET Password = :Password WHERE Patient_ID = :Patient_ID");
-    $stmt->bindValue(':Patient_ID', $data['Patient_ID']);
-    $stmt->bindValue(':Password', $data['Password']);
+    $dbcon = new DBconnector();
+    $conn = $dbcon->getConnection();
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    $stmt->execute();
-    $rowCount = $stmt->rowCount();
-    if ($rowCount > 0) {
-        echo json_encode(array('message' => 'Password changed successfully'));
+    $sql = "UPDATE patient SET Password = :hashedPassword WHERE Patient_ID = :patientID";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":hashedPassword", $hashedPassword);
+    $stmt->bindParam(":patientID", $patientID);
+
+    $res = $stmt->execute();
+
+    if ($res) {
+        echo json_encode(array("message" => "Password updated successfully."));
     } else {
-        echo json_encode(array('error' => 'Patient not found'));
+        echo json_encode(array("message" => "Failed to update password."));
     }
-} catch (PDOException $e) {
-    echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
-} catch (Exception $e) {
-    echo json_encode(array('error' => $e->getMessage()));
+} else {
+    echo json_encode(array("message" => "Method not allowed."));
 }
 
