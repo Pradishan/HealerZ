@@ -135,6 +135,7 @@ class Employee
 
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
+            $hashedPassword = password_hash($this->Password, PASSWORD_DEFAULT);
             $query = "INSERT INTO employee (employee_ID, employee_Name,role,Email,PhoneNo,Address,SLMC,Password) VALUES (:employee_ID, :employee_Name, :role, :Email, :PhoneNo, :Address, :SLMC, :Password)";
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':employee_ID', $this->employee_ID);
@@ -144,7 +145,7 @@ class Employee
             $stmt->bindValue(':PhoneNo', $this->PhoneNo);
             $stmt->bindValue(':Address', $this->Address);
             $stmt->bindValue(':SLMC', $this->SLMC);
-            $stmt->bindValue(':Password', $this->Password);
+            $stmt->bindValue(':Password', $hashedPassword);
             $res = $stmt->execute();
             Employee::SendMail($this->employee_ID, $this->Password, $this->Email, $this->employee_Name, $this->role);
             if ($res) {

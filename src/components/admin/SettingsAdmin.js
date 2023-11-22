@@ -112,44 +112,50 @@ const SettingsAdmin = () => {
         });
     }
   };
-  const passwordchange = () => {
-    if (currpw === null && changepw === null && confirmpw === null) {
-      toast.warning("Fill Fields");
-    } else {
-      if (currpw === userdata.map((data) => data.Password)[0]) {
-        if (changepw === null) {
-          toast.warning("Enter new Password");
-        } else if (changepw === confirmpw && changepw !== null) {
-          if (currpw === changepw) {
-            toast.info("Existing Password !");
-          } else {
-            const tempuserdata = [...userdata];
-            tempuserdata[0].Password = changepw;
-            setUserData(tempuserdata);
-            console.log(userdata[0]);
-            axios
-              .put(
+  const passwordchange = async () => {
+    try {
+      if (!currpw) {
+        toast.warning("Fill the Current Password");
+      }else {
+        const response = await axios.get(`http://localhost/HealerZ/PHP/Inventory/settings/getPassword.php?employeeID=${userdata[0].employee_ID}`);
+  
+        const hashedPasswordFromServer = response.data.Password;
+        const isCurrentPasswordCorrect = await axios.post('http://localhost/HealerZ/PHP/Inventory/settings/verifyPassword.php', {
+          currentPassword: currpw,
+          hashedPassword: hashedPasswordFromServer,
+        });
+  
+        if (isCurrentPasswordCorrect.data.isValid) {
+          if (!changepw) {
+            toast.warning("Fill the New Password");
+          }else if (changepw === confirmpw) {
+            if (currpw === changepw) {
+              toast.info("Existing Password !");
+            } else {
+              await axios.put(
                 "http://localhost/HealerZ/PHP/Inventory/settings/changepharmacistPassword.php",
-                userdata[0]
-              )
-              .then((res) => {
-                toast.success("Password Changed Successfully");
-                setTimeout(function () {
-                  window.location.reload();
-                }, 1000);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+                { employeeID: userdata[0].employee_ID, newPassword: changepw }
+              );
+  
+              toast.success("Password Changed Successfully");
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            }
+          }else if (!confirmpw) {
+            toast.warning("Fill the Confirm Password");
+          }  else {
+            toast.error("Wrong Confirm Password !");
           }
         } else {
-          toast.error("Wrong Confirm Password !");
+          toast.error("Wrong Current Password !");
         }
-      } else {
-        toast.error("Wrong Current Password !");
       }
+    } catch (error) {
+      console.log(error);
     }
   };
+
   return (
     <AdminLayout>
       <div className="settingcardcenter">

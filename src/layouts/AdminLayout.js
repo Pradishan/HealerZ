@@ -117,7 +117,7 @@ function Layout({ children }) {
                             {userdata.map((data) => data.employee_Name)}
                           </h5>
                           {/* <p className='txt  m-0 text-muted'>emp20345</p> */}
-                          <p className="txt m-0 text-muted">
+                          <p className="txt m-0 text-muted" style={{fontSize:'12px'}}>
                             {userdata.map((data) => data.Email)}
                           </p>
                           {/* <p className='txt m-0 text-muted'>0771234567</p> */}
