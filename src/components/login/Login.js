@@ -197,9 +197,6 @@ function Login() {
                 </button>
               </div>
             </form>
-            <a href="#" className="forgot" onClick={(e) => e.preventDefault()}>
-              Forgot! Username/Password?
-            </a>
             <ToastContainer />
           </div>
         </div>
