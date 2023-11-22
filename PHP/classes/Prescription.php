@@ -196,10 +196,11 @@ class Prescription
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
 
-            $query = "SELECT prescription_list.*, druginventory.StockCount 
-                  FROM prescription_list
-                  LEFT JOIN druginventory ON prescription_list.Drug_ID = druginventory.Drug_ID 
-                  WHERE Prescription_ID = ?";
+            $query = "SELECT prescription_list.*, druginventory.StockCount, drug.*
+            FROM prescription_list
+            LEFT JOIN druginventory ON prescription_list.Drug_ID = druginventory.Drug_ID
+            LEFT JOIN drug ON prescription_list.Drug_ID = drug.Drug_ID
+            WHERE prescription_list.Prescription_ID = ?";
 
             $stmt = $conn->prepare($query);
             $stmt->bindValue(1, $prescriptionID);

@@ -61,55 +61,52 @@ const Profile = () =>
     fetchData();
   }, [] );
 
-  const passwordchange = () =>
-  {
-    if ( currpw === null && changepw === null && confirmpw === null )
-    {
-      toast.info( "Fill Fields" );
-    } else
-    {
-      if ( currpw === userdata.map( ( data ) => data.Password )[ 0 ] )
-      {
-        if ( changepw === null )
-        {
-          toast.warning( "Enter new Password" );
-        } else if ( changepw === confirmpw && changepw !== null )
-        {
-          if ( currpw === changepw )
+  const passwordchange = async () => {
+    try {
+      if (!currpw) {
+        toast.warning("Fill the Current Password");
+      } else {
+        const response = await axios.get(
+          `http://localhost/HealerZ/PHP/patient/getPassword.php?patientID=${userdata[0].Patient_ID}`
+        );
+
+        const hashedPasswordFromServer = response.data.Password;
+        const isCurrentPasswordCorrect = await axios.post(
+          "http://localhost/HealerZ/PHP/Inventory/settings/verifyPassword.php",
           {
-            toast.info( "Existing Password !" );
-          } else
-          {
-            const tempuserdata = [ ...userdata ];
-            tempuserdata[ 0 ].Password = changepw;
-            setuserdata( tempuserdata );
-            console.log( userdata[ 0 ] );
-            axios
-              .put(
-                "http://localhost/HealerZ/PHP/patient/changePassword.php",
-                userdata[ 0 ]
-              )
-              .then( ( res ) =>
-              {
-                toast.success( "Password Changed Successfully" );
-                setTimeout( function ()
-                {
-                  window.location.reload();
-                }, 1000 );
-              } )
-              .catch( ( err ) =>
-              {
-                console.log( err );
-              } );
+            currentPassword: currpw,
+            hashedPassword: hashedPasswordFromServer,
           }
-        } else
-        {
-          toast.error( "Wrong Confirm Password !" );
+        );
+
+        if (isCurrentPasswordCorrect.data.isValid) {
+          if (!changepw) {
+            toast.warning("Fill the New Password");
+          } else if (changepw === confirmpw) {
+            if (currpw === changepw) {
+              toast.info("Existing Password !");
+            } else {
+              await axios.put(
+                "http://localhost/HealerZ/PHP/patient/changePassword.php",
+                { patientID: userdata[0].Patient_ID, newPassword: changepw }
+              );
+
+              toast.success("Password Changed Successfully");
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            }
+          } else if (!confirmpw) {
+            toast.warning("Fill the Confirm Password");
+          } else {
+            toast.error("Wrong Confirm Password !");
+          }
+        } else {
+          toast.error("Wrong Current Password !");
         }
-      } else
-      {
-        toast.error( "Wrong Current Password !" );
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 

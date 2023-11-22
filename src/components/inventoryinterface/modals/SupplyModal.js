@@ -183,6 +183,7 @@ function SupplyPopup(props) {
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">DRUG_ID</th>
+                  <th scope="col">DRUG_Name</th>
                   <th scope="col">StockCount</th>
                   <th scope="col">TDS</th>
                   <th scope="col">AF/BF</th>
@@ -195,6 +196,7 @@ function SupplyPopup(props) {
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{item.Drug_ID}</td>
+                    <td>{item.Drug_Name}</td>
                     <td>{item.StockCount}</td>
                     <td>{item.TDS}</td>
                     <td>{item.Time}</td>

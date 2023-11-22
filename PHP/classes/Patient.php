@@ -162,6 +162,7 @@ class Patient
 
             $dbcon = new DBconnector();
             $conn = $dbcon->getConnection();
+            $hashedPassword = password_hash($this->Password, PASSWORD_DEFAULT);
             $query = "INSERT INTO patient (Patient_ID, PatientName,DateOfBirth,Gender,PhoneNo,Email,Address,BloodGroup,Password) VALUES (:Patient_ID, :PatientName, :DateOfBirth, :Gender, :PhoneNo, :Email, :Address, :BloodGroup, :Password)";
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':Patient_ID', $this->Patient_ID);
@@ -172,7 +173,7 @@ class Patient
             $stmt->bindValue(':Email', $this->Email);
             $stmt->bindValue(':Address', $this->Address);
             $stmt->bindValue(':BloodGroup', $this->BloodGroup);
-            $stmt->bindValue(':Password', $this->Password);
+            $stmt->bindValue(':Password', $hashedPassword);
             $res = $stmt->execute();
             Patient::SendMail($this->Patient_ID, $this->Password, $this->Email, $this->PatientName);
             if ($res) {

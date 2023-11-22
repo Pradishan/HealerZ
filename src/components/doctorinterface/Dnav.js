@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Dsettings from "./Dsettings";
 import MedRequestModal from "./utilites/MedRequestModal";
 import {Offcanvas} from 'react-bootstrap';
-
+import default_dp from "../../assets/avatar.svg";
 
 
 export default function Dnav() {
@@ -64,6 +64,43 @@ export default function Dnav() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [profilepic, setprofilepic] = useState(default_dp);
+  const [userdata, setUserData] = useState([]);
+  useEffect(() => {
+    fetchData2();
+  }, []);
+
+  const fetchData2 = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/Healerz/PHP/Inventory/settings/getemployeeData.php",
+        { params: { employeeID: sessionStorage.getItem("employeeID") } }
+      );
+
+      console.log(response.data);
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        setUserData(response.data);
+      } else {
+        console.error("No data found or invalid response structure");
+      }
+      if (response.data[0].Profile) {
+        convertBase64ProfileImage(
+          response.data[0].Profile,
+          response.data[0].ProfileType
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const convertBase64ProfileImage = (base64, type) => {
+    const image = new Image();
+    image.src = `data:${type};base64,${base64}`;
+    image.onload = () => {
+      setprofilepic(image.src);
+    };
+  };
 
   return (
     <>
@@ -103,7 +140,7 @@ export default function Dnav() {
                 aria-expanded="false"
               >
                 <img
-                  src="https://source.unsplash.com/random/1"
+                 src={profilepic}
                   alt="avatar"
                   height="38px"
                   width="38px"
