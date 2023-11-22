@@ -12,7 +12,11 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $stmt = $conn->prepare("SELECT medicalrequest.*, patient.Patient_ID, patient.PatientName, patient.Profile FROM medicalrequest INNER JOIN patient ON medicalrequest.Patient_ID = patient.Patient_ID");
+        $stmt = $conn->prepare("SELECT medicalrequest.*, patient.Patient_ID, patient.PatientName, patient.Profile 
+                        FROM medicalrequest 
+                        INNER JOIN patient ON medicalrequest.Patient_ID = patient.Patient_ID 
+                        ORDER BY medicalrequest.MedicalRequest_ID DESC");
+
         $stmt->execute();
 
         $filteredData = $stmt->fetchAll(PDO::FETCH_ASSOC);
